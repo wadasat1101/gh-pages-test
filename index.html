@@ -2,21 +2,43 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>GitHub Pages Test</title>
+  <title>トヨタ自動車（7203）日足</title>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <style>
-    body {
-      font-family: sans-serif;
-      background: #111;
-      color: #0f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
+    body { margin: 0; font-family: sans-serif; }
+    #chart { height: 100vh; }
   </style>
 </head>
 <body>
-  <h1>Hello World</h1>
+  <div id="chart"></div>
+
+  <script>
+    const chart = LightweightCharts.createChart(
+      document.getElementById('chart'),
+      {
+        layout: {
+          background: { color: '#ffffff' },
+          textColor: '#333',
+        },
+        timeScale: {
+          timeVisible: true,
+          secondsVisible: false,
+        },
+      }
+    );
+
+    const candleSeries = chart.addCandlestickSeries();
+
+    fetch('./data/7203.json')
+      .then(res => res.json())
+      .then(data => {
+        candleSeries.setData(data);
+        chart.timeScale().fitContent();
+      })
+      .catch(err => {
+        console.error(err);
+        alert('データ読み込み失敗');
+      });
+  </script>
 </body>
 </html>
