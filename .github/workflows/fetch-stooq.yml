@@ -20,20 +20,23 @@ jobs:
       - name: Convert CSV to JSON
         run: |
           python << 'EOF'
-          import csv, json, datetime
 
-          result = []
-          three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
+import csv
+import json
+import datetime
 
-          with open('data/7203.csv', newline='') as f:
-          reader = csv.DictReader(f)
+result = []
+three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
 
-          # ヘッダー名を正規化
-          headers = {h.lower(): h for h in reader.fieldnames}
+with open('data/7203.csv', newline='') as f:
+    reader = csv.DictReader(f)
 
-          for row in reader:
-            d = datetime.date.fromisoformat(row[headers['date']])
-            if d >= three_months_ago:
+    # ヘッダーを小文字で扱えるようにする
+    headers = {h.lower(): h for h in reader.fieldnames}
+
+    for row in reader:
+        d = datetime.date.fromisoformat(row[headers['date']])
+        if d >= three_months_ago:
             result.append({
                 "time": row[headers['date']],
                 "open": float(row[headers['open']]),
@@ -43,8 +46,8 @@ jobs:
                 "volume": int(row[headers['volume']])
             })
 
-          with open('data/7203.json', 'w') as f:
-          json.dump(result, f, indent=2)
+with open('data/7203.json', 'w') as f:
+    json.dump(result, f, indent=2)
 
           EOF
 
