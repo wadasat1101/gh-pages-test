@@ -3,7 +3,7 @@ name: Fetch Stooq Data
 on:
   schedule:
     - cron: '0 1 * * *'   # 毎日 日本時間10時（UTC+9）
-  workflow_dispatch:     # 手動実行も可能
+  workflow_dispatch:
 
 jobs:
   fetch:
@@ -15,40 +15,38 @@ jobs:
 
       - name: Fetch CSV from Stooq
         run: |
+          mkdir -p data
           curl -s "https://stooq.pl/q/d/l/?s=7203.jp&i=d" -o data/7203.csv
 
       - name: Convert CSV to JSON
         run: |
           python << 'EOF'
+          import csv
+          import json
+          import datetime
 
-import csv
-import json
-import datetime
+          result = []
+          three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
 
-result = []
-three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
+          with open('data/7203.csv', newline='') as f:
+              reader = csv.DictReader(f)
 
-with open('data/7203.csv', newline='') as f:
-    reader = csv.DictReader(f)
+              headers = {h.lower(): h for h in reader.fieldnames}
 
-    # ヘッダーを小文字で扱えるようにする
-    headers = {h.lower(): h for h in reader.fieldnames}
+              for row in reader:
+                  d = datetime.date.fromisoformat(row[headers['date']])
+                  if d >= three_months_ago:
+                      result.append({
+                          "time": row[headers['date']],
+                          "open": float(row[headers['open']]),
+                          "high": float(row[headers['high']]),
+                          "low": float(row[headers['low']]),
+                          "close": float(row[headers['close']]),
+                          "volume": int(row[headers['volume']])
+                      })
 
-    for row in reader:
-        d = datetime.date.fromisoformat(row[headers['date']])
-        if d >= three_months_ago:
-            result.append({
-                "time": row[headers['date']],
-                "open": float(row[headers['open']]),
-                "high": float(row[headers['high']]),
-                "low": float(row[headers['low']]),
-                "close": float(row[headers['close']]),
-                "volume": int(row[headers['volume']])
-            })
-
-with open('data/7203.json', 'w') as f:
-    json.dump(result, f, indent=2)
-
+          with open('data/7203.json', 'w') as f:
+              json.dump(result, f, indent=2)
           EOF
 
       - name: Commit & Push
