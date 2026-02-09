@@ -26,7 +26,7 @@ jobs:
           import datetime
 
           result = []
-          three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
+          three_months_ago = datetime.date.today() - datetime.timedelta(days=10800)
 
           with open('data/7203.csv', newline='') as f:
               reader = csv.DictReader(f)
@@ -54,3 +54,4 @@ jobs:
           git add data/7203.json
           git commit -m "Update 7203 stock data" || echo "No changes"
           git push
+
