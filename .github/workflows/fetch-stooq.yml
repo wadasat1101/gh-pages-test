@@ -20,19 +20,13 @@ jobs:
           import csv
           import json
           import time
-          import datetime
           import subprocess
-          import sys
 
           # ===== 設定 =====
           SYMBOLS_FILE = 'symbols.json'
           OUTPUT_DIR = 'data'
-          DAYS = 90            # 直近何日分
-          SLEEP_SEC = 2        # 呼び出し制限対策（重要）
+          SLEEP_SEC = 2        # 呼び出し制限対策
           # =================
-
-          today = datetime.date.today()
-          since = today - datetime.timedelta(days=DAYS)
 
           with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
               symbols = json.load(f)['symbols']
@@ -60,11 +54,6 @@ jobs:
                   reader = csv.DictReader(f)
                   for row in reader:
                       try:
-                          d = datetime.date.fromisoformat(row['Data'])
-                      except Exception:
-                          continue
-
-                      if d >= since:
                           result.append({
                               "time": row['Data'],
                               "open": float(row['Otwarcie']),
@@ -73,6 +62,9 @@ jobs:
                               "close": float(row['Zamkniecie']),
                               "volume": int(row['Wolumen'])
                           })
+                      except Exception:
+                          # 欠損行・異常値はスキップ
+                          continue
 
               with open(json_path, 'w', encoding='utf-8') as f:
                   json.dump(result, f, indent=2, ensure_ascii=False)
