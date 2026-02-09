@@ -13,45 +13,82 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch CSV from Stooq
+      - name: Fetch & Convert Stooq Data
         run: |
           mkdir -p data
-          curl -s "https://stooq.pl/q/d/l/?s=7203.jp&i=d" -o data/7203.csv
-
-      - name: Convert CSV to JSON
-        run: |
           python << 'EOF'
           import csv
           import json
+          import time
           import datetime
+          import subprocess
+          import sys
 
-          result = []
-          three_months_ago = datetime.date.today() - datetime.timedelta(days=10800)
+          # ===== 設定 =====
+          SYMBOLS_FILE = 'symbols.json'
+          OUTPUT_DIR = 'data'
+          DAYS = 90            # 直近何日分
+          SLEEP_SEC = 2        # 呼び出し制限対策（重要）
+          # =================
 
-          with open('data/7203.csv', newline='') as f:
-              reader = csv.DictReader(f)
+          today = datetime.date.today()
+          since = today - datetime.timedelta(days=DAYS)
 
-              for row in reader:
-                  d = datetime.date.fromisoformat(row['Data'])
-                  if d >= three_months_ago:
-                      result.append({
-                          "time": row['Data'],
-                          "open": float(row['Otwarcie']),
-                          "high": float(row['Najwyzszy']),
-                          "low": float(row['Najnizszy']),
-                          "close": float(row['Zamkniecie']),
-                          "volume": int(row['Wolumen'])
-                      })
+          with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
+              symbols = json.load(f)['symbols']
 
-          with open('data/7203.json', 'w') as f:
-              json.dump(result, f, indent=2)
+          for item in symbols:
+              code = item['code']
+              name = item.get('name', '')
+              symbol = f"{code}.jp"
+              csv_path = f"{OUTPUT_DIR}/{code}.csv"
+              json_path = f"{OUTPUT_DIR}/{code}.json"
+
+              print(f"Fetching {symbol} ({name})")
+
+              url = f"https://stooq.pl/q/d/l/?s={symbol}&i=d"
+
+              # CSV取得
+              subprocess.run(
+                  ["curl", "-s", url, "-o", csv_path],
+                  check=True
+              )
+
+              result = []
+
+              with open(csv_path, newline='', encoding='utf-8') as f:
+                  reader = csv.DictReader(f)
+                  for row in reader:
+                      try:
+                          d = datetime.date.fromisoformat(row['Data'])
+                      except Exception:
+                          continue
+
+                      if d >= since:
+                          result.append({
+                              "time": row['Data'],
+                              "open": float(row['Otwarcie']),
+                              "high": float(row['Najwyzszy']),
+                              "low": float(row['Najnizszy']),
+                              "close": float(row['Zamkniecie']),
+                              "volume": int(row['Wolumen'])
+                          })
+
+              with open(json_path, 'w', encoding='utf-8') as f:
+                  json.dump(result, f, indent=2, ensure_ascii=False)
+
+              print(f"Saved {json_path} ({len(result)} records)")
+
+              # Stooq呼び出し制限対策
+              time.sleep(SLEEP_SEC)
+
+          print("All symbols processed.")
           EOF
 
       - name: Commit & Push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/7203.json
-          git commit -m "Update 7203 stock data" || echo "No changes"
+          git add data/*.json
+          git commit -m "Update stock data (auto)" || echo "No changes"
           git push
-
