@@ -13,74 +13,84 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Fetch & Convert Stooq Data
+      - name: Fetch & Convert Stooq Data (Daily / Weekly / Monthly)
         run: |
-          mkdir -p data
           python << 'EOF'
           import csv
           import json
           import time
           import subprocess
+          import os
 
           # ===== 設定 =====
           SYMBOLS_FILE = 'symbols.json'
           OUTPUT_DIR = 'data'
-          SLEEP_SEC = 2        # 呼び出し制限対策
+          SLEEP_SEC = 2
+          INTERVALS = {
+              "daily": "d",
+              "weekly": "w",
+              "monthly": "m"
+          }
           # =================
 
           with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
               symbols = json.load(f)['symbols']
 
-          for item in symbols:
-              code = item['code']
-              name = item.get('name', '')
-              symbol = f"{code}.jp"
-              csv_path = f"{OUTPUT_DIR}/{code}.csv"
-              json_path = f"{OUTPUT_DIR}/{code}.json"
+          for interval_name, interval_code in INTERVALS.items():
+              interval_dir = f"{OUTPUT_DIR}/{interval_name}"
+              os.makedirs(interval_dir, exist_ok=True)
 
-              print(f"Fetching {symbol} ({name})")
+              print(f"=== Processing {interval_name} data ===")
 
-              url = f"https://stooq.pl/q/d/l/?s={symbol}&i=d"
+              for item in symbols:
+                  code = item['code']
+                  name = item.get('name', '')
+                  symbol = f"{code}.jp"
 
-              # CSV取得
-              subprocess.run(
-                  ["curl", "-s", url, "-o", csv_path],
-                  check=True
-              )
+                  csv_path = f"{interval_dir}/{code}.csv"
+                  json_path = f"{interval_dir}/{code}.json"
 
-              result = []
+                  url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
 
-              with open(csv_path, newline='', encoding='utf-8') as f:
-                  reader = csv.DictReader(f)
-                  for row in reader:
-                      try:
-                          result.append({
-                              "time": row['Data'],
-                              "open": float(row['Otwarcie']),
-                              "high": float(row['Najwyzszy']),
-                              "low": float(row['Najnizszy']),
-                              "close": float(row['Zamkniecie']),
-                              "volume": int(row['Wolumen'])
-                          })
-                      except Exception:
-                          # 欠損行・異常値はスキップ
-                          continue
+                  print(f"Fetching {symbol} ({interval_name})")
 
-              with open(json_path, 'w', encoding='utf-8') as f:
-                  json.dump(result, f, indent=2, ensure_ascii=False)
+                  subprocess.run(
+                      ["curl", "-s", url, "-o", csv_path],
+                      check=True
+                  )
 
-              print(f"Saved {json_path} ({len(result)} records)")
+                  result = []
 
-              # Stooq呼び出し制限対策
-              time.sleep(SLEEP_SEC)
+                  with open(csv_path, newline='', encoding='utf-8') as f:
+                      reader = csv.DictReader(f)
+                      for row in reader:
+                          try:
+                              result.append({
+                                  "time": row['Data'],
+                                  "open": float(row['Otwarcie']),
+                                  "high": float(row['Najwyzszy']),
+                                  "low": float(row['Najnizszy']),
+                                  "close": float(row['Zamkniecie']),
+                                  "volume": int(row['Wolumen'])
+                              })
+                          except Exception:
+                              continue
 
-          print("All symbols processed.")
+                  with open(json_path, 'w', encoding='utf-8') as f:
+                      json.dump(result, f, indent=2, ensure_ascii=False)
+
+                  print(f"Saved {json_path} ({len(result)} records)")
+
+                  # 呼び出し制限対策
+                  time.sleep(SLEEP_SEC)
+
+          print("All symbols & intervals processed.")
           EOF
 
       - name: Commit & Push
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add data/*.json
-          git commit -m "Update stock data (auto)" || echo "No changes"
+          git add data/
+          git commit -m "Update stock data (daily/weekly/monthly)" || echo "No changes"
           git push
