@@ -1,1 +1,52 @@
+name: Fetch Stooq Data
 
+on:
+  schedule:
+    - cron: '0 1 * * *'   # 毎日 日本時間10時（UTC+9）
+  workflow_dispatch:     # 手動実行も可能
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Fetch CSV from Stooq
+        run: |
+          curl -s "https://stooq.pl/q/d/l/?s=7203.jp&i=d" -o data/7203.csv
+
+      - name: Convert CSV to JSON
+        run: |
+          python << 'EOF'
+          import csv, json, datetime
+
+          result = []
+          three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
+
+          with open('data/7203.csv', newline='') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+              d = datetime.date.fromisoformat(row['Date'])
+              if d >= three_months_ago:
+                result.append({
+                  "time": row["Date"],
+                  "open": float(row["Open"]),
+                  "high": float(row["High"]),
+                  "low": float(row["Low"]),
+                  "close": float(row["Close"]),
+                  "volume": int(row["Volume"])
+                })
+
+          with open('data/7203.json', 'w') as f:
+            json.dump(result, f, indent=2)
+          EOF
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/7203.json
+          git commit -m "Update 7203 stock data" || echo "No changes"
+          git push
