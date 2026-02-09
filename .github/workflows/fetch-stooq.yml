@@ -31,8 +31,6 @@ jobs:
           with open('data/7203.csv', newline='') as f:
               reader = csv.DictReader(f)
 
-              headers = {h.lower(): h for h in reader.fieldnames}
-
               for row in reader:
                   d = datetime.date.fromisoformat(row['Data'])
                   if d >= three_months_ago:
