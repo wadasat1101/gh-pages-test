@@ -26,21 +26,26 @@ jobs:
           three_months_ago = datetime.date.today() - datetime.timedelta(days=90)
 
           with open('data/7203.csv', newline='') as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-              d = datetime.date.fromisoformat(row['Date'])
-              if d >= three_months_ago:
-                result.append({
-                  "time": row["Date"],
-                  "open": float(row["Open"]),
-                  "high": float(row["High"]),
-                  "low": float(row["Low"]),
-                  "close": float(row["Close"]),
-                  "volume": int(row["Volume"])
-                })
+          reader = csv.DictReader(f)
+
+          # ヘッダー名を正規化
+          headers = {h.lower(): h for h in reader.fieldnames}
+
+          for row in reader:
+            d = datetime.date.fromisoformat(row[headers['date']])
+            if d >= three_months_ago:
+            result.append({
+                "time": row[headers['date']],
+                "open": float(row[headers['open']]),
+                "high": float(row[headers['high']]),
+                "low": float(row[headers['low']]),
+                "close": float(row[headers['close']]),
+                "volume": int(row[headers['volume']])
+            })
 
           with open('data/7203.json', 'w') as f:
-            json.dump(result, f, indent=2)
+          json.dump(result, f, indent=2)
+
           EOF
 
       - name: Commit & Push
