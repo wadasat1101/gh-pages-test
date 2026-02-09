@@ -34,15 +34,15 @@ jobs:
               headers = {h.lower(): h for h in reader.fieldnames}
 
               for row in reader:
-                  d = datetime.date.fromisoformat(row[headers['date']])
+                  d = datetime.date.fromisoformat(row[headers['Data']])
                   if d >= three_months_ago:
                       result.append({
-                          "time": row[headers['date']],
-                          "open": float(row[headers['open']]),
-                          "high": float(row[headers['high']]),
-                          "low": float(row[headers['low']]),
-                          "close": float(row[headers['close']]),
-                          "volume": int(row[headers['volume']])
+                          "time": row[headers['Data']],
+                          "open": float(row[headers['Otwarcie']]),
+                          "high": float(row[headers['Najwyzszy']]),
+                          "low": float(row[headers['Najnizszy']]),
+                          "close": float(row[headers['Zamkniecie']]),
+                          "volume": int(row[headers['Wolumen']])
                       })
 
           with open('data/7203.json', 'w') as f:
