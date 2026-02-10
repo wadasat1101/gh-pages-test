@@ -34,25 +34,35 @@ jobs:
           # =================
 
           with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
-              symbols = json.load(f)['symbols']
+              config = json.load(f)
+
+          symbols = config['symbols']
+          markets = config['markets']
+          default_market = config.get('default', {}).get('market')
 
           for interval_name, interval_code in INTERVALS.items():
               interval_dir = f"{OUTPUT_DIR}/{interval_name}"
               os.makedirs(interval_dir, exist_ok=True)
 
-              print(f"=== Processing {interval_name} data ===")
+              print(f"\n=== Processing {interval_name} data ===")
 
               for item in symbols:
                   code = item['code']
                   name = item.get('name', '')
-                  symbol = f"{code}.jp"
+                  market_key = item.get('market', default_market)
+                  market = markets[market_key]
+
+                  suffix = market.get('suffix', '')
+                  has_volume = market.get('hasVolume', True)
+
+                  symbol = f"{code}{suffix}"
 
                   csv_path = f"{interval_dir}/{code}.csv"
                   json_path = f"{interval_dir}/{code}.json"
 
                   url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
 
-                  print(f"Fetching {symbol} ({interval_name})")
+                  print(f"Fetching {symbol} ({name}) [{interval_name}]")
 
                   subprocess.run(
                       ["curl", "-s", url, "-o", csv_path],
@@ -65,14 +75,19 @@ jobs:
                       reader = csv.DictReader(f)
                       for row in reader:
                           try:
-                              result.append({
+                              record = {
                                   "time": row['Data'],
                                   "open": float(row['Otwarcie']),
                                   "high": float(row['Najwyzszy']),
                                   "low": float(row['Najnizszy']),
-                                  "close": float(row['Zamkniecie']),
-                                  "volume": int(row['Wolumen'])
-                              })
+                                  "close": float(row['Zamkniecie'])
+                              }
+
+                              if has_volume and 'Wolumen' in row:
+                                  record["volume"] = int(row['Wolumen'])
+
+                              result.append(record)
+
                           except Exception:
                               continue
 
@@ -81,10 +96,10 @@ jobs:
 
                   print(f"Saved {json_path} ({len(result)} records)")
 
-                  # 呼び出し制限対策
+                  # Stooq 呼び出し制限対策
                   time.sleep(SLEEP_SEC)
 
-          print("All symbols & intervals processed.")
+          print("\nAll symbols & intervals processed successfully.")
           EOF
 
       - name: Commit & Push
