@@ -1,83 +1,52 @@
 {
-  "version": 1,
-
-  "default": {
-    "source": "stooq",
-    "market": "JP"
-  },
-
-  "markets": {
-    "JP": {
-      "label": "日本株",
-      "suffix": ".jp",
-      "hasVolume": true
-    },
-    "US_INDEX": {
-      "label": "米国指数",
-      "suffix": "",
-      "hasVolume": false
-    }
-  },
-
-  "symbols": [
-    { "code": "7203", "name": "トヨタ自動車", "market": "JP" },
-    { "code": "6758", "name": "ソニーグループ", "market": "JP" },
-    { "code": "9984", "name": "ソフトバンクグループ", "market": "JP" },
-    { "code": "9432", "name": "日本電信電話", "market": "JP" },
-    { "code": "8306", "name": "三菱UFJフィナンシャルG", "market": "JP" },
-    { "code": "8316", "name": "三井住友FG", "market": "JP" },
-    { "code": "8766", "name": "東京海上HD", "market": "JP" },
-    { "code": "8001", "name": "伊藤忠商事", "market": "JP" },
-    { "code": "8031", "name": "三井物産", "market": "JP" },
-    { "code": "8058", "name": "三菱商事", "market": "JP" },
-
-    { "code": "6861", "name": "キーエンス", "market": "JP" },
-    { "code": "6594", "name": "日本電産", "market": "JP" },
-    { "code": "6954", "name": "ファナック", "market": "JP" },
-    { "code": "7741", "name": "HOYA", "market": "JP" },
-    { "code": "7733", "name": "オリンパス", "market": "JP" },
-
-    { "code": "4502", "name": "武田薬品工業", "market": "JP" },
-    { "code": "4519", "name": "中外製薬", "market": "JP" },
-    { "code": "4568", "name": "第一三共", "market": "JP" },
-    { "code": "4523", "name": "エーザイ", "market": "JP" },
-
-    { "code": "6501", "name": "日立製作所", "market": "JP" },
-    { "code": "6702", "name": "富士通", "market": "JP" },
-    { "code": "6752", "name": "パナソニックHD", "market": "JP" },
-    { "code": "6503", "name": "三菱電機", "market": "JP" },
-
-    { "code": "9020", "name": "東日本旅客鉄道", "market": "JP" },
-    { "code": "9022", "name": "東海旅客鉄道", "market": "JP" },
-    { "code": "9101", "name": "日本郵船", "market": "JP" },
-    { "code": "9104", "name": "商船三井", "market": "JP" },
-
-    { "code": "9983", "name": "ファーストリテイリング", "market": "JP" },
-    { "code": "8267", "name": "イオン", "market": "JP" },
-    { "code": "3382", "name": "セブン&アイHD", "market": "JP" },
-
-    { "code": "7974", "name": "任天堂", "market": "JP" },
-    { "code": "7832", "name": "バンダイナムコHD", "market": "JP" },
-
-    { "code": "6098", "name": "リクルートHD", "market": "JP" },
-    { "code": "2413", "name": "エムスリー", "market": "JP" },
-
-    { "code": "5401", "name": "日本製鉄", "market": "JP" },
-    { "code": "5411", "name": "JFEホールディングス", "market": "JP" },
-
-    { "code": "1925", "name": "大和ハウス工業", "market": "JP" },
-    { "code": "1801", "name": "大成建設", "market": "JP" },
-
-    { "code": "6178", "name": "日本郵政", "market": "JP" },
-    { "code": "7182", "name": "ゆうちょ銀行", "market": "JP" },
-    { "code": "8308", "name": "りそなHD", "market": "JP" },
-
+  "source": "stooq",
+  "markets": [
     {
-      "code": "^spx",
-      "name": "S&P 500",
-      "market": "US_INDEX",
-      "type": "index",
-      "country": "US"
+      "market": "JP",
+      "name": "日本株",
+      "suffix": ".jp",
+      "sectors": [
+        {
+          "code": "TECH",
+          "name": "情報・通信",
+          "symbols": [
+            { "code": "9432", "name": "日本電信電話" },
+            { "code": "6758", "name": "ソニーグループ" },
+            { "code": "9984", "name": "ソフトバンクグループ" },
+            { "code": "6098", "name": "リクルートHD" },
+            { "code": "2413", "name": "エムスリー" }
+          ]
+        },
+        {
+          "code": "AUTO",
+          "name": "輸送用機器",
+          "symbols": [
+            { "code": "7203", "name": "トヨタ自動車" },
+            { "code": "7267", "name": "ホンダ" },
+            { "code": "7201", "name": "日産自動車" },
+            { "code": "7269", "name": "スズキ" },
+            { "code": "7211", "name": "三菱自動車" }
+          ]
+        }
+      ]
+    },
+    {
+      "market": "US",
+      "name": "米国市場",
+      "suffix": "",
+      "sectors": [
+        {
+          "code": "INDEX",
+          "name": "株価指数",
+          "symbols": [
+            {
+              "code": "^SPX",
+              "name": "S&P 500",
+              "stooq": "^spx"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
