@@ -1,170 +1,243 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8">
-<title>Stooq Stock Chart</title>
+  <meta charset="UTF-8" />
+  <title>株価チャート（Stooq）</title>
+  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: #111;
+      color: #ddd;
+    }
 
-<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+    #toolbar {
+      padding: 8px;
+      display: flex;
+      gap: 8px;
+      background: #1a1a1a;
+      align-items: center;
+    }
 
-<style>
-  body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    padding: 20px;
-  }
-  select, button {
-    margin-right: 8px;
-    padding: 4px 6px;
-  }
-  #chart {
-    margin-top: 20px;
-    height: 500px;
-  }
-</style>
+    select, button {
+      background: #333;
+      color: #ddd;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+    }
+
+    button.active {
+      background: #4caf50;
+      color: #000;
+    }
+
+    #chart {
+      height: calc(100vh - 44px);
+    }
+  </style>
 </head>
 <body>
 
-<h1>株価チャート（Stooq）</h1>
-
-<label>市場:
+<div id="toolbar">
   <select id="marketSelect"></select>
-</label>
-
-<label>業種:
   <select id="sectorSelect"></select>
-</label>
-
-<label>銘柄:
   <select id="symbolSelect"></select>
-</label>
 
-<label>足種:
-  <select id="intervalSelect">
-    <option value="daily">日足</option>
-    <option value="weekly">週足</option>
-    <option value="monthly">月足</option>
-  </select>
-</label>
-
-<button id="loadBtn">表示</button>
+  <button data-interval="daily" class="active">日足</button>
+  <button data-interval="weekly">週足</button>
+  <button data-interval="monthly">月足</button>
+</div>
 
 <div id="chart"></div>
 
 <script>
-let symbolsConfig;
-let chart, candleSeries, volumeSeries, maSeries;
+  let config;
+  let currentMarket;
+  let currentSector;
+  let currentSymbol;
+  let currentInterval = 'daily';
 
-/* ===== symbols.json 読み込み ===== */
-fetch('symbols.json')
-  .then(r => r.json())
-  .then(json => {
-    symbolsConfig = json;
-    initMarkets();
+  /* ===== チャート初期化 ===== */
+  const chart = LightweightCharts.createChart(
+    document.getElementById('chart'),
+    {
+      layout: {
+        background: { color: '#111' },
+        textColor: '#ddd',
+      },
+      grid: {
+        vertLines: { color: '#222' },
+        horzLines: { color: '#222' },
+      },
+      rightPriceScale: {
+        scaleMargins: { top: 0.1, bottom: 0.3 },
+      },
+      timeScale: { timeVisible: true },
+    }
+  );
+
+  // ===== ローソク足 =====
+  const candleSeries = chart.addSeries(
+    LightweightCharts.CandlestickSeries,
+    {
+      upColor: '#4caf50',
+      downColor: '#ef5350',
+      borderUpColor: '#4caf50',
+      borderDownColor: '#ef5350',
+      wickUpColor: '#4caf50',
+      wickDownColor: '#ef5350',
+    }
+  );
+
+  // ===== 出来高 =====
+  const volumeSeries = chart.addSeries(
+    LightweightCharts.HistogramSeries,
+    {
+      priceFormat: { type: 'volume' },
+      priceScaleId: '',
+    }
+  );
+
+  volumeSeries.priceScale().applyOptions({
+    scaleMargins: { top: 0.75, bottom: 0 },
   });
 
-/* ===== プルダウン制御 ===== */
-const marketSelect = document.getElementById('marketSelect');
-const sectorSelect = document.getElementById('sectorSelect');
-const symbolSelect = document.getElementById('symbolSelect');
+  // ===== 移動平均線 =====
+  const ma5Series = chart.addSeries(
+    LightweightCharts.LineSeries,
+    { color: '#ff9800', lineWidth: 1 }
+  );
 
-function initMarkets() {
-  marketSelect.innerHTML = '';
-  symbolsConfig.markets.forEach((m, i) => {
-    marketSelect.add(new Option(m.name, i));
-  });
-  marketSelect.onchange = initSectors;
-  initSectors();
-}
+  const ma25Series = chart.addSeries(
+    LightweightCharts.LineSeries,
+    { color: '#03a9f4', lineWidth: 1 }
+  );
 
-function initSectors() {
-  sectorSelect.innerHTML = '';
-  const market = symbolsConfig.markets[marketSelect.value];
-  market.sectors.forEach((s, i) => {
-    sectorSelect.add(new Option(s.name, i));
-  });
-  sectorSelect.onchange = initSymbols;
-  initSymbols();
-}
+  const ma75Series = chart.addSeries(
+    LightweightCharts.LineSeries,
+    { color: '#e91e63', lineWidth: 1 }
+  );
 
-function initSymbols() {
-  symbolSelect.innerHTML = '';
-  const market = symbolsConfig.markets[marketSelect.value];
-  const sector = market.sectors[sectorSelect.value];
-  sector.symbols.forEach(s => {
-    symbolSelect.add(new Option(`${s.code} ${s.name}`, s.code));
-  });
-}
 
-/* ===== チャート初期化 ===== */
-function initChart() {
-  if (chart) chart.remove();
-
-  chart = LightweightCharts.createChart(document.getElementById('chart'), {
-    layout: { background: { color: '#ffffff' }, textColor: '#000' },
-    rightPriceScale: { scaleMargins: { top: 0.1, bottom: 0.3 } },
-    timeScale: { timeVisible: true, secondsVisible: false },
-    width: document.getElementById('chart').clientWidth,
-    height: 500
-  });
-
-  candleSeries = chart.addCandlestickSeries();
-  volumeSeries = chart.addHistogramSeries({
-    priceFormat: { type: 'volume' },
-    priceScaleId: '',
-    scaleMargins: { top: 0.7, bottom: 0 }
-  });
-
-  maSeries = chart.addLineSeries({
-    color: 'blue',
-    lineWidth: 2
-  });
-}
-
-/* ===== 移動平均 ===== */
-function calcMA(data, period = 25) {
-  const ma = [];
-  for (let i = period - 1; i < data.length; i++) {
-    const slice = data.slice(i - period + 1, i + 1);
-    const avg = slice.reduce((s, d) => s + d.close, 0) / period;
-    ma.push({ time: data[i].time, value: avg });
+  function calcSMA(data, period) {
+    const result = [];
+    for (let i = period - 1; i < data.length; i++) {
+      const slice = data.slice(i - period + 1, i + 1);
+      const avg = slice.reduce((s, d) => s + d.close, 0) / period;
+      result.push({ time: data[i].time, value: avg });
+    }
+    return result;
   }
-  return ma;
-}
 
-/* ===== データロード ===== */
-document.getElementById('loadBtn').onclick = () => {
-  const market = symbolsConfig.markets[marketSelect.value].market;
-  const code = symbolSelect.value;
-  const interval = document.getElementById('intervalSelect').value;
+  async function loadData() {
+    if (!currentSymbol) return;
 
-  const path = `data/${market}/${interval}/${code}.json`;
+    const path = `./data/${currentMarket}/${currentInterval}/${currentSymbol}.json`;
+    const res = await fetch(path);
+    const data = await res.json();
 
-  fetch(path)
-    .then(r => r.json())
-    .then(data => {
-      initChart();
+    candleSeries.setData(data);
 
-      const candles = data.map(d => ({
-        time: d.time,
-        open: d.open,
-        high: d.high,
-        low: d.low,
-        close: d.close
-      }));
-
-      const volumes = data.map(d => ({
+    volumeSeries.setData(
+      data.map(d => ({
         time: d.time,
         value: d.volume,
-        color: d.close >= d.open ? '#26a69a' : '#ef5350'
-      }));
+        color: d.close >= d.open ? '#4caf50aa' : '#ef5350aa',
+      }))
+    );
 
-      candleSeries.setData(candles);
-      volumeSeries.setData(volumes);
-      maSeries.setData(calcMA(candles, 25));
+    ma5Series.setData(calcSMA(data, 5));
+    ma25Series.setData(calcSMA(data, 25));
+    ma75Series.setData(calcSMA(data, 75));
 
-      chart.timeScale().fitContent();
-    })
-    .catch(e => alert('データ読み込み失敗'));
-};
+    chart.timeScale().fitContent();
+  }
+
+  /* ===== プルダウン制御 ===== */
+  const marketSelect = document.getElementById('marketSelect');
+  const sectorSelect = document.getElementById('sectorSelect');
+  const symbolSelect = document.getElementById('symbolSelect');
+
+  function refreshMarket() {
+    marketSelect.innerHTML = '';
+    config.markets.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.market;
+      opt.textContent = m.name;
+      marketSelect.appendChild(opt);
+    });
+    currentMarket = config.markets[0].market;
+    marketSelect.value = currentMarket;
+    refreshSector();
+  }
+
+  function refreshSector() {
+    sectorSelect.innerHTML = '';
+    const market = config.markets.find(m => m.market === currentMarket);
+
+    market.sectors.forEach(s => {
+      const opt = document.createElement('option');
+      opt.value = s.code;
+      opt.textContent = s.name;
+      sectorSelect.appendChild(opt);
+    });
+
+    currentSector = market.sectors[0].code;
+    sectorSelect.value = currentSector;
+    refreshSymbol();
+  }
+
+  function refreshSymbol() {
+    symbolSelect.innerHTML = '';
+    const market = config.markets.find(m => m.market === currentMarket);
+    const sector = market.sectors.find(s => s.code === currentSector);
+
+    sector.symbols.forEach(sym => {
+      const opt = document.createElement('option');
+      opt.value = sym.code;
+      opt.textContent = `${sym.code} ${sym.name}`;
+      symbolSelect.appendChild(opt);
+    });
+
+    currentSymbol = sector.symbols[0].code;
+    symbolSelect.value = currentSymbol;
+    loadData();
+  }
+
+  marketSelect.addEventListener('change', () => {
+    currentMarket = marketSelect.value;
+    refreshSector();
+  });
+
+  sectorSelect.addEventListener('change', () => {
+    currentSector = sectorSelect.value;
+    refreshSymbol();
+  });
+
+  symbolSelect.addEventListener('change', () => {
+    currentSymbol = symbolSelect.value;
+    loadData();
+  });
+
+  document.querySelectorAll('button[data-interval]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('button[data-interval]')
+        .forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentInterval = btn.dataset.interval;
+      loadData();
+    });
+  });
+
+  /* ===== symbols.json 読み込み ===== */
+  fetch('./symbols.json')
+    .then(res => res.json())
+    .then(json => {
+      config = json;
+      refreshMarket();
+    });
 </script>
 
 </body>
