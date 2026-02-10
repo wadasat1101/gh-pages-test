@@ -103,10 +103,18 @@
   
   chart.subscribeCrosshairMove(param => {
     if (!param || !param.time) return;
+    if (!param.seriesPrices) return;
 
-    const price = param.seriesPrices?.get
-      ? param.seriesPrices.get(candleSeries)
-      : param.seriesPrices[candleSeries];
+    let price;
+
+    // Map の場合（Lightweight Charts v4+）
+    if (typeof param.seriesPrices.get === 'function') {
+      price = param.seriesPrices.get(candleSeries);
+    } 
+    // Object の場合（環境差異対策）
+    else {
+      price = param.seriesPrices[candleSeries];
+    }
 
     if (!price) return;
 
@@ -116,8 +124,6 @@
     ohlcLow.textContent   = price.low.toFixed(2);
     ohlcClose.textContent = price.close.toFixed(2);
   });
-
-
 
   // ===== ローソク足 =====
   const candleSeries = chart.addSeries(
