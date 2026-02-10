@@ -102,11 +102,12 @@
   );
   
   chart.subscribeCrosshairMove(param => {
-    if (!param || !param.time || !param.seriesPrices) {
-      return;
-    }
+    if (!param || !param.time) return;
 
-    const price = param.seriesPrices.get(candleSeries);
+    const price = param.seriesPrices?.get
+      ? param.seriesPrices.get(candleSeries)
+      : param.seriesPrices[candleSeries];
+
     if (!price) return;
 
     ohlcDate.textContent  = param.time;
@@ -115,6 +116,7 @@
     ohlcLow.textContent   = price.low.toFixed(2);
     ohlcClose.textContent = price.close.toFixed(2);
   });
+
 
 
   // ===== ローソク足 =====
