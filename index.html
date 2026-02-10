@@ -1,191 +1,142 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>株価チャート（Stooq）</title>
-  <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, sans-serif;
-      background: #111;
-      color: #ddd;
-    }
-
-    #toolbar {
-      padding: 8px;
-      display: flex;
-      gap: 8px;
-      background: #1a1a1a;
-      align-items: center;
-    }
-
-    select, button {
-      background: #333;
-      color: #ddd;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-    }
-
-    button.active {
-      background: #4caf50;
-      color: #000;
-    }
-
-    #chart {
-      height: calc(100vh - 44px);
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Stooq Stock Viewer</title>
+<style>
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    padding: 20px;
+  }
+  select, button {
+    margin-right: 8px;
+    padding: 4px 6px;
+  }
+  pre {
+    margin-top: 16px;
+    padding: 12px;
+    background: #f5f5f5;
+    max-height: 400px;
+    overflow: auto;
+  }
+</style>
 </head>
 <body>
 
-<div id="toolbar">
+<h1>株価データビューア（Stooq）</h1>
+
+<label>
+  市場:
+  <select id="marketSelect"></select>
+</label>
+
+<label>
+  業種:
+  <select id="sectorSelect"></select>
+</label>
+
+<label>
+  銘柄:
   <select id="symbolSelect"></select>
+</label>
 
-  <button data-interval="daily" class="active">日足</button>
-  <button data-interval="weekly">週足</button>
-  <button data-interval="monthly">月足</button>
-</div>
+<label>
+  足種:
+  <select id="intervalSelect">
+    <option value="daily">日足</option>
+    <option value="weekly">週足</option>
+    <option value="monthly">月足</option>
+  </select>
+</label>
 
-<div id="chart"></div>
+<button id="loadBtn">読み込み</button>
+
+<pre id="output">(未読み込み)</pre>
 
 <script>
-  let currentSymbol = null;
-  let currentInterval = 'daily';
+let symbolsConfig;
 
-  const chart = LightweightCharts.createChart(
-    document.getElementById('chart'),
-    {
-      layout: {
-        background: { color: '#111' },
-        textColor: '#ddd',
-      },
-      grid: {
-        vertLines: { color: '#222' },
-        horzLines: { color: '#222' },
-      },
-      rightPriceScale: {
-        scaleMargins: { top: 0.1, bottom: 0.3 },
-      },
-      timeScale: { timeVisible: true },
-    }
-  );
+const marketSelect  = document.getElementById('marketSelect');
+const sectorSelect  = document.getElementById('sectorSelect');
+const symbolSelect  = document.getElementById('symbolSelect');
+const intervalSelect = document.getElementById('intervalSelect');
+const output = document.getElementById('output');
 
-  const candleSeries = chart.addSeries(
-    LightweightCharts.CandlestickSeries,
-    {
-      upColor: '#4caf50',
-      downColor: '#ef5350',
-      borderUpColor: '#4caf50',
-      borderDownColor: '#ef5350',
-      wickUpColor: '#4caf50',
-      wickDownColor: '#ef5350',
-    }
-  );
-
-  const volumeSeries = chart.addSeries(
-    LightweightCharts.HistogramSeries,
-    {
-      priceFormat: { type: 'volume' },
-      priceScaleId: '',
-    }
-  );
-
-  volumeSeries.priceScale().applyOptions({
-    scaleMargins: { top: 0.75, bottom: 0 },
+/* ---------- 初期ロード ---------- */
+fetch('symbols.json')
+  .then(r => r.json())
+  .then(json => {
+    symbolsConfig = json;
+    initMarkets();
   });
-  
-  // 移動平均線
-  const ma5Series = chart.addSeries(
-    LightweightCharts.LineSeries,
-    { color: '#ff9800', lineWidth: 1 }
-  );
-  
-  const ma25Series = chart.addSeries(
-    LightweightCharts.LineSeries,
-    { color: '#03a9f4', lineWidth: 1 }
-  );
-  
-  const ma75Series = chart.addSeries(
-    LightweightCharts.LineSeries,
-    { color: '#e91e63', lineWidth: 1 }
-  );
-  
-  function calcSMA(data, period) {
-    const result = [];
-    for (let i = 0; i < data.length; i++) {
-      if (i < period - 1) continue;
-  
-      const slice = data.slice(i - period + 1, i + 1);
-      const avg =
-        slice.reduce((sum, d) => sum + d.close, 0) / period;
-  
-      result.push({
-        time: data[i].time,
-        value: avg,
-      });
-    }
-    return result;
-  }
 
+/* ---------- 市場 ---------- */
+function initMarkets() {
+  marketSelect.innerHTML = '';
+  symbolsConfig.markets.forEach((m, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = m.name;
+    marketSelect.appendChild(opt);
+  });
+  marketSelect.onchange = initSectors;
+  initSectors();
+}
 
-  async function loadData() {
-    if (!currentSymbol) return;
-  
-    const res = await fetch(`./data/${currentInterval}/${currentSymbol}.json`);
-    const data = await res.json();
-  
-    candleSeries.setData(data);
-  
-    volumeSeries.setData(
-      data.map(d => ({
-        time: d.time,
-        value: d.volume,
-        color: d.close >= d.open ? '#4caf50aa' : '#ef5350aa',
-      }))
-    );
-  
-    // 移動平均線
-    ma5Series.setData(calcSMA(data, 5));
-    ma25Series.setData(calcSMA(data, 25));
-    ma75Series.setData(calcSMA(data, 75));
-  
-    chart.timeScale().fitContent();
-  }
+/* ---------- 業種 ---------- */
+function initSectors() {
+  sectorSelect.innerHTML = '';
+  symbolSelect.innerHTML = '';
 
+  const market = symbolsConfig.markets[marketSelect.value];
+  market.sectors.forEach((s, idx) => {
+    const opt = document.createElement('option');
+    opt.value = idx;
+    opt.textContent = s.name;
+    sectorSelect.appendChild(opt);
+  });
 
-  // symbols.json 読み込み
-  fetch('./symbols.json')
-    .then(res => res.json())
+  sectorSelect.onchange = initSymbols;
+  initSymbols();
+}
+
+/* ---------- 銘柄 ---------- */
+function initSymbols() {
+  symbolSelect.innerHTML = '';
+
+  const market = symbolsConfig.markets[marketSelect.value];
+  const sector = market.sectors[sectorSelect.value];
+
+  sector.symbols.forEach(sym => {
+    const opt = document.createElement('option');
+    opt.value = sym.code;
+    opt.textContent = `${sym.code} ${sym.name}`;
+    symbolSelect.appendChild(opt);
+  });
+}
+
+/* ---------- データ読み込み ---------- */
+document.getElementById('loadBtn').onclick = () => {
+  const marketObj = symbolsConfig.markets[marketSelect.value];
+  const market = marketObj.market;
+  const code = symbolSelect.value;
+  const interval = intervalSelect.value;
+
+  const path = `data/${market}/${interval}/${code}.json`;
+
+  fetch(path)
+    .then(r => {
+      if (!r.ok) throw new Error('データが存在しません');
+      return r.json();
+    })
     .then(json => {
-      const select = document.getElementById('symbolSelect');
-
-      json.symbols.forEach(s => {
-        const opt = document.createElement('option');
-        opt.value = s.code;
-        opt.textContent = `${s.code} ${s.name}`;
-        select.appendChild(opt);
-      });
-
-      currentSymbol = json.symbols[0].code;
-      loadData();
-
-      select.addEventListener('change', () => {
-        currentSymbol = select.value;
-        loadData();
-      });
+      // 直近20件だけ表示
+      output.textContent = JSON.stringify(json.slice(-20), null, 2);
+    })
+    .catch(err => {
+      output.textContent = err.message;
     });
-
-  // 足種別切替
-  document.querySelectorAll('button[data-interval]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentInterval = btn.dataset.interval;
-      loadData();
-    });
-  });
+};
 </script>
 
 </body>
