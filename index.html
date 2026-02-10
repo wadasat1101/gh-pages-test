@@ -20,21 +20,13 @@
       align-items: center;
     }
     
-    <div id="ohlc" style="
+    #ohlc {
       padding: 6px 12px;
       font-size: 13px;
       background:#181818;
       border-bottom:1px solid #222;
-    ">
+    }
     
-      <span id="ohlc-date">----</span>
-      ｜ O: <span id="ohlc-open">-</span>
-      H: <span id="ohlc-high">-</span>
-      L: <span id="ohlc-low">-</span>
-      C: <span id="ohlc-close">-</span>
-    </div>
-
-
     select, button {
       background: #333;
       color: #ddd;
@@ -64,6 +56,15 @@
   <button data-interval="weekly">週足</button>
   <button data-interval="monthly">月足</button>
 </div>
+
+<div id="ohlc">
+  <span id="ohlc-date">----</span>
+  ｜ O: <span id="ohlc-open">-</span>
+  H: <span id="ohlc-high">-</span>
+  L: <span id="ohlc-low">-</span>
+  C: <span id="ohlc-close">-</span>
+</div>
+
 
 <div id="chart"></div>
 
