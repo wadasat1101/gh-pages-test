@@ -2,7 +2,8 @@ name: Fetch Stooq Data
 
 on:
   schedule:
-    - cron: '0 1 * * *'   # 毎日 日本時間10時（UTC+9）
+    # 毎日 日本時間10:00（UTC+9 → UTC 01:00）
+    - cron: '0 1 * * *'
   workflow_dispatch:
 
 jobs:
@@ -25,7 +26,7 @@ jobs:
           # ===== 設定 =====
           SYMBOLS_FILE = 'symbols.json'
           OUTPUT_DIR = 'data'
-          SLEEP_SEC = 2
+          SLEEP_SEC = 2   # Stooq 呼び出し制限対策
           INTERVALS = {
               "daily": "d",
               "weekly": "w",
@@ -37,8 +38,8 @@ jobs:
               config = json.load(f)
 
           for market in config['markets']:
-              market_code = market['market']
-              suffix = market.get('suffix', '')
+              market_code = market['market']      # JP / US
+              suffix = market.get('suffix', '')   # .jp / ''
 
               print(f"=== Market: {market_code} ===")
 
@@ -51,47 +52,51 @@ jobs:
                   for sector in market['sectors']:
                       sector_name = sector['name']
 
-                      for item in sector['symbols']:
-                          code = item['code']
-                          name = item.get('name', '')
-                          stooq_symbol = item.get('stooq')
+                      for symbol_info in sector['symbols']:
+                          code = symbol_info['code']
+                          name = symbol_info.get('name', '')
+                          stooq_symbol = symbol_info.get('stooq')
 
-                          # Stooq用シンボル決定
-                          symbol = stooq_symbol if stooq_symbol else f"{code}{suffix}"
+                          # Stooq 用シンボル決定
+                          if stooq_symbol:
+                              symbol = stooq_symbol
+                          else:
+                              symbol = f"{code}{suffix}"
 
                           csv_path = f"{interval_dir}/{code}.csv"
                           json_path = f"{interval_dir}/{code}.json"
 
                           url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
 
-                          print(f"Fetching {symbol} [{market_code}/{sector_name}/{interval_name}]")
+                          print(f"Fetching {symbol} [{market_code} / {sector_name} / {interval_name}]")
 
                           subprocess.run(
                               ["curl", "-s", url, "-o", csv_path],
                               check=True
                           )
 
-                          result = []
+                          records = []
 
                           with open(csv_path, newline='', encoding='utf-8') as f:
                               reader = csv.DictReader(f)
                               for row in reader:
                                   try:
-                                      result.append({
-                                          "time": row['Data'],
-                                          "open": float(row['Otwarcie']),
-                                          "high": float(row['Najwyzszy']),
-                                          "low": float(row['Najnizszy']),
-                                          "close": float(row['Zamkniecie']),
-                                          "volume": int(row['Wolumen'])
+                                      records.append({
+                                          "time": row["Data"],
+                                          "open": float(row["Otwarcie"]),
+                                          "high": float(row["Najwyzszy"]),
+                                          "low": float(row["Najnizszy"]),
+                                          "close": float(row["Zamkniecie"]),
+                                          "volume": int(row["Wolumen"])
                                       })
                                   except Exception:
+                                      # 欠損・異常行は無視
                                       continue
 
                           with open(json_path, 'w', encoding='utf-8') as f:
-                              json.dump(result, f, indent=2, ensure_ascii=False)
+                              json.dump(records, f, indent=2, ensure_ascii=False)
 
-                          print(f"Saved {json_path} ({len(result)} records)")
+                          print(f"Saved {json_path} ({len(records)} records)")
 
                           # 呼び出し制限対策
                           time.sleep(SLEEP_SEC)
