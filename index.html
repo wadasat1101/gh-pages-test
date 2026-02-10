@@ -19,6 +19,21 @@
       background: #1a1a1a;
       align-items: center;
     }
+    
+    <div id="ohlc" style="
+      padding: 6px 12px;
+      font-size: 13px;
+      background:#181818;
+      border-bottom:1px solid #222;
+    ">
+    
+      <span id="ohlc-date">----</span>
+      ｜ O: <span id="ohlc-open">-</span>
+      H: <span id="ohlc-high">-</span>
+      L: <span id="ohlc-low">-</span>
+      C: <span id="ohlc-close">-</span>
+    </div>
+
 
     select, button {
       background: #333;
@@ -58,6 +73,13 @@
   let currentSector;
   let currentSymbol;
   let currentInterval = 'daily';
+  
+  const ohlcDate  = document.getElementById('ohlc-date');
+  const ohlcOpen  = document.getElementById('ohlc-open');
+  const ohlcHigh  = document.getElementById('ohlc-high');
+  const ohlcLow   = document.getElementById('ohlc-low');
+  const ohlcClose = document.getElementById('ohlc-close');
+
 
   /* ===== チャート初期化 ===== */
   const chart = LightweightCharts.createChart(
@@ -77,6 +99,22 @@
       timeScale: { timeVisible: true },
     }
   );
+  
+  chart.subscribeCrosshairMove(param => {
+    if (!param || !param.time || !param.seriesPrices) {
+      return;
+    }
+
+    const price = param.seriesPrices.get(candleSeries);
+    if (!price) return;
+
+    ohlcDate.textContent  = param.time;
+    ohlcOpen.textContent  = price.open.toFixed(2);
+    ohlcHigh.textContent  = price.high.toFixed(2);
+    ohlcLow.textContent   = price.low.toFixed(2);
+    ohlcClose.textContent = price.close.toFixed(2);
+  });
+
 
   // ===== ローソク足 =====
   const candleSeries = chart.addSeries(
@@ -153,6 +191,16 @@
     ma75Series.setData(calcSMA(data, 75));
 
     chart.timeScale().fitContent();
+    
+    if (data.length > 0) {
+      const last = data[data.length - 1];
+      ohlcDate.textContent  = last.time;
+      ohlcOpen.textContent  = last.open.toFixed(2);
+      ohlcHigh.textContent  = last.high.toFixed(2);
+      ohlcLow.textContent   = last.low.toFixed(2);
+      ohlcClose.textContent = last.close.toFixed(2);
+    }
+
   }
 
   /* ===== プルダウン制御 ===== */
