@@ -36,70 +36,67 @@ jobs:
           with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
               config = json.load(f)
 
-          symbols = config['symbols']
-          markets = config['markets']
-          default_market = config.get('default', {}).get('market')
+          for market in config['markets']:
+              market_code = market['market']
+              suffix = market.get('suffix', '')
 
-          for interval_name, interval_code in INTERVALS.items():
-              interval_dir = f"{OUTPUT_DIR}/{interval_name}"
-              os.makedirs(interval_dir, exist_ok=True)
+              print(f"=== Market: {market_code} ===")
 
-              print(f"\n=== Processing {interval_name} data ===")
+              for interval_name, interval_code in INTERVALS.items():
+                  interval_dir = f"{OUTPUT_DIR}/{market_code}/{interval_name}"
+                  os.makedirs(interval_dir, exist_ok=True)
 
-              for item in symbols:
-                  code = item['code']
-                  name = item.get('name', '')
-                  market_key = item.get('market', default_market)
-                  market = markets[market_key]
+                  print(f"-- Interval: {interval_name}")
 
-                  suffix = market.get('suffix', '')
-                  has_volume = market.get('hasVolume', True)
+                  for sector in market['sectors']:
+                      sector_name = sector['name']
 
-                  symbol = f"{code}{suffix}"
+                      for item in sector['symbols']:
+                          code = item['code']
+                          name = item.get('name', '')
+                          stooq_symbol = item.get('stooq')
 
-                  csv_path = f"{interval_dir}/{code}.csv"
-                  json_path = f"{interval_dir}/{code}.json"
+                          # Stooq用シンボル決定
+                          symbol = stooq_symbol if stooq_symbol else f"{code}{suffix}"
 
-                  url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
+                          csv_path = f"{interval_dir}/{code}.csv"
+                          json_path = f"{interval_dir}/{code}.json"
 
-                  print(f"Fetching {symbol} ({name}) [{interval_name}]")
+                          url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
 
-                  subprocess.run(
-                      ["curl", "-s", url, "-o", csv_path],
-                      check=True
-                  )
+                          print(f"Fetching {symbol} [{market_code}/{sector_name}/{interval_name}]")
 
-                  result = []
+                          subprocess.run(
+                              ["curl", "-s", url, "-o", csv_path],
+                              check=True
+                          )
 
-                  with open(csv_path, newline='', encoding='utf-8') as f:
-                      reader = csv.DictReader(f)
-                      for row in reader:
-                          try:
-                              record = {
-                                  "time": row['Data'],
-                                  "open": float(row['Otwarcie']),
-                                  "high": float(row['Najwyzszy']),
-                                  "low": float(row['Najnizszy']),
-                                  "close": float(row['Zamkniecie'])
-                              }
+                          result = []
 
-                              if has_volume and 'Wolumen' in row:
-                                  record["volume"] = int(row['Wolumen'])
+                          with open(csv_path, newline='', encoding='utf-8') as f:
+                              reader = csv.DictReader(f)
+                              for row in reader:
+                                  try:
+                                      result.append({
+                                          "time": row['Data'],
+                                          "open": float(row['Otwarcie']),
+                                          "high": float(row['Najwyzszy']),
+                                          "low": float(row['Najnizszy']),
+                                          "close": float(row['Zamkniecie']),
+                                          "volume": int(row['Wolumen'])
+                                      })
+                                  except Exception:
+                                      continue
 
-                              result.append(record)
+                          with open(json_path, 'w', encoding='utf-8') as f:
+                              json.dump(result, f, indent=2, ensure_ascii=False)
 
-                          except Exception:
-                              continue
+                          print(f"Saved {json_path} ({len(result)} records)")
 
-                  with open(json_path, 'w', encoding='utf-8') as f:
-                      json.dump(result, f, indent=2, ensure_ascii=False)
+                          # 呼び出し制限対策
+                          time.sleep(SLEEP_SEC)
 
-                  print(f"Saved {json_path} ({len(result)} records)")
-
-                  # Stooq 呼び出し制限対策
-                  time.sleep(SLEEP_SEC)
-
-          print("\nAll symbols & intervals processed successfully.")
+          print("All markets / sectors / symbols / intervals processed.")
           EOF
 
       - name: Commit & Push
@@ -107,5 +104,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add data/
-          git commit -m "Update stock data (daily/weekly/monthly)" || echo "No changes"
+          git commit -m "Update stock data (JP & US / daily weekly monthly)" || echo "No changes"
           git push
