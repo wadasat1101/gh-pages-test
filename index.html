@@ -72,6 +72,21 @@
     #chart {
       flex: 1;
     }
+    
+    #tooltip {
+      position: absolute;
+      display: none;
+      pointer-events: none;
+      background: rgba(0,0,0,0.85);
+      border: 1px solid #444;
+      padding: 8px;
+      font-size: 12px;
+      color: #ddd;
+      border-radius: 6px;
+      white-space: nowrap;
+      z-index: 1000;
+    }
+
   </style>
 </head>
 <body>
@@ -93,6 +108,9 @@
   安値: <span id="ohlc-low">-</span>
   終値: <span id="ohlc-close">-</span>
   出来高: <span id="ohlc-volume">-</span>
+  乖離率(5): <span id="ohlc-div5">-</span>
+  乖離率(25): <span id="ohlc-div25">-</span>
+  乖離率(75): <span id="ohlc-div75">-</span>
 </div>
 
 <div id="legend">
@@ -101,8 +119,9 @@
   <span class="legend-ma75">■ 移動平均線(75)</span>
 </div>
 
-
 <div id="chart"></div>
+
+<div id="tooltip"></div>
 
 <script>
   let config;
@@ -117,6 +136,12 @@
   const ohlcLow   = document.getElementById('ohlc-low');
   const ohlcClose = document.getElementById('ohlc-close');
   const ohlcVolume = document.getElementById('ohlc-volume');
+  const ohlcDiv5 = document.getElementById('ohlc-div5');
+  const ohlcDiv25 = document.getElementById('ohlc-div25');
+  const ohlcDiv75 = document.getElementById('ohlc-div75');
+  
+  const tooltip = document.getElementById('tooltip');
+
 
 
   /* ===== チャート初期化 ===== */
@@ -142,26 +167,120 @@
   );
   
   chart.subscribeCrosshairMove(param => {
-    if (!param || !param.time) return;
-    if (!param.seriesData) return;
-    
+
+    // マウスがチャート外に出たら非表示
+    if (!param || !param.time || !param.point) {
+      tooltip.style.display = 'none';
+      return;
+    }
+
+    if (!param.seriesData) {
+      tooltip.style.display = 'none';
+      return;
+    }
+
     const candle = param.seriesData.get(candleSeries);
     const volume = param.seriesData.get(volumeSeries);
-    if (!candle) return;
-    if (!volume) return;
+    const ma5 = param.seriesData.get(ma5Series);
+    const ma25 = param.seriesData.get(ma25Series);
+    const ma75 = param.seriesData.get(ma75Series);
 
+    if (!candle) {
+      tooltip.style.display = 'none';
+      return;
+    }
+    
+
+	let div5 = null;
+	let div25 = null;
+	let div75 = null;
+	if (ma5) {
+	  div5 = calcDeviation(candle.close, ma5.value);
+	}
+	if (ma25) {
+	  div25 = calcDeviation(candle.close, ma25.value);
+	}
+	if (ma75) {
+	  div75 = calcDeviation(candle.close, ma75.value);
+	}
+	
+	const f5  = formatDeviation(div5);
+    const f25 = formatDeviation(div25);
+    const f75 = formatDeviation(div75);
+
+    ohlcDiv5.textContent  = f5.text;
+    ohlcDiv5.style.color  = f5.color;
+
+    ohlcDiv25.textContent = f25.text;
+    ohlcDiv25.style.color = f25.color;
+
+    ohlcDiv75.textContent = f75.text;
+    ohlcDiv75.style.color = f75.color;
+
+/*
+	if (div5 !== null) {
+	  const text = (div5 >= 0 ? '+' : '') + div5.toFixed(1) + '%';
+	  ohlcDiv5.textContent = text;
+	  ohlcDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
+	} else {
+	  ohlcDiv5.textContent = '-';
+	}
+	if (div25 !== null) {
+	  const text = (div25 >= 0 ? '+' : '') + div25.toFixed(1) + '%';
+	  ohlcDiv25.textContent = text;
+	  ohlcDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
+	} else {
+	  ohlcDiv25.textContent = '-';
+	}
+	if (div75 !== null) {
+	  const text = (div75 >= 0 ? '+' : '') + div75.toFixed(1) + '%';
+	  ohlcDiv75.textContent = text;
+	  ohlcDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
+	} else {
+	  ohlcDiv75.textContent = '-';
+	}
+	*/
+
+
+    // 上部OHLC更新
     ohlcDate.textContent  = param.time;
     ohlcOpen.textContent  = candle.open.toFixed(2);
     ohlcHigh.textContent  = candle.high.toFixed(2);
     ohlcLow.textContent   = candle.low.toFixed(2);
     ohlcClose.textContent = candle.close.toFixed(2);
-    
-    ohlcVolume.textContent = volume.value.toLocaleString();    
+    ohlcVolume.textContent =
+      volume ? volume.value.toLocaleString() : '-';
+
+    // ===== Tooltip 内容 =====
+    const t5  = formatDeviation(div5);
+    const t25 = formatDeviation(div25);
+    const t75 = formatDeviation(div75);
+    tooltip.innerHTML = `
+      <div><strong>${param.time}</strong></div>
+      <div>始値: ${candle.open.toFixed(2)}</div>
+      <div>高値: ${candle.high.toFixed(2)}</div>
+      <div>安値: ${candle.low.toFixed(2)}</div>
+      <div>終値: ${candle.close.toFixed(2)}</div>
+      <div>出来高: ${volume ? volume.value.toLocaleString() : '-'}</div>
+      <div>乖離率(5):  <span style="color:${t5.color}">${t5.text}</span></div>
+      <div>乖離率(25): <span style="color:${t25.color}">${t25.text}</span></div>
+      <div>乖離率(75): <span style="color:${t75.color}">${t75.text}</span></div>
+    `;
+
+    // ===== マウス位置へ移動 =====
+    const chartRect = document
+      .getElementById('chart')
+      .getBoundingClientRect();
+
+    tooltip.style.left =
+      chartRect.left + param.point.x + 15 + 'px';
+
+    tooltip.style.top =
+      chartRect.top + param.point.y + 15 + 'px';
+
+    tooltip.style.display = 'block';
   });
-  
-  chart.subscribeClick(param => {
-    // クリックしたときの処理
-  });
+
 
 
   // ===== ローソク足 =====
@@ -231,6 +350,22 @@
     }
     return result;
   }
+  
+  function calcDeviation(close, ma) {
+    if (!ma) return null;
+    return ((close / ma - 1) * 100);
+  }
+  
+  function formatDeviation(div) {
+    if (div === null || div === undefined || isNaN(div)) {
+      return { text: '-', color: '#aaa' };
+    }
+
+    return {
+      text: (div >= 0 ? '+' : '') + div.toFixed(1) + '%',
+      color: div >= 0 ? '#4caf50' : '#ef5350'
+    };
+  }
 
   async function loadData() {
     if (!currentSymbol) return;
@@ -266,8 +401,15 @@
       });
     }
     
+    const last = data[data.length - 1];
+    const ma5Data = calcSMA(data, 5);
+    const lastMA5 = ma5Data.length > 0 ? ma5Data[ma5Data.length - 1].value : null;
+    const ma25Data = calcSMA(data, 25);
+    const lastMA25 = ma25Data.length > 0 ? ma25Data[ma25Data.length - 1].value : null;
+    const ma75Data = calcSMA(data, 75);
+    const lastMA75 = ma75Data.length > 0 ? ma75Data[ma75Data.length - 1].value : null;
+    
     if (data.length > 0) {
-      const last = data[data.length - 1];
       ohlcDate.textContent  = last.time;
       ohlcOpen.textContent  = last.open.toFixed(2);
       ohlcHigh.textContent  = last.high.toFixed(2);
@@ -275,7 +417,25 @@
       ohlcClose.textContent = last.close.toFixed(2);
       ohlcVolume.textContent = last.volume.toLocaleString();
     }
-
+    
+    if (lastMA5) {
+      const div5 = calcDeviation(last.close, lastMA5);
+      const text = (div5 >= 0 ? '+' : '') + div5.toFixed(1) + '%';
+      ohlcDiv5.textContent = text;
+      ohlcDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
+    }
+    if (lastMA25) {
+      const div25 = calcDeviation(last.close, lastMA25);
+      const text = (div25 >= 0 ? '+' : '') + div25.toFixed(1) + '%';
+      ohlcDiv25.textContent = text;
+      ohlcDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
+    }
+    if (lastMA75) {
+      const div75 = calcDeviation(last.close, lastMA75);
+      const text = (div75 >= 0 ? '+' : '') + div75.toFixed(1) + '%';
+      ohlcDiv75.textContent = text;
+      ohlcDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
+    }
   }
 
   /* ===== プルダウン制御 ===== */
