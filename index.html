@@ -92,6 +92,7 @@
   高値: <span id="ohlc-high">-</span>
   安値: <span id="ohlc-low">-</span>
   終値: <span id="ohlc-close">-</span>
+  出来高: <span id="ohlc-volume">-</span>
 </div>
 
 <div id="legend">
@@ -115,6 +116,7 @@
   const ohlcHigh  = document.getElementById('ohlc-high');
   const ohlcLow   = document.getElementById('ohlc-low');
   const ohlcClose = document.getElementById('ohlc-close');
+  const ohlcVolume = document.getElementById('ohlc-volume');
 
 
   /* ===== チャート初期化 ===== */
@@ -143,15 +145,18 @@
     if (!param || !param.time) return;
     if (!param.seriesData) return;
     
-    const data = param.seriesData.get(candleSeries);
-    if (!data) return;
+    const candle = param.seriesData.get(candleSeries);
+    const volume = param.seriesData.get(volumeSeries);
+    if (!candle) return;
+    if (!volume) return;
 
     ohlcDate.textContent  = param.time;
-    ohlcOpen.textContent  = data.open.toFixed(2);
-    ohlcHigh.textContent  = data.high.toFixed(2);
-    ohlcLow.textContent   = data.low.toFixed(2);
-    ohlcClose.textContent = data.close.toFixed(2);
+    ohlcOpen.textContent  = candle.open.toFixed(2);
+    ohlcHigh.textContent  = candle.high.toFixed(2);
+    ohlcLow.textContent   = candle.low.toFixed(2);
+    ohlcClose.textContent = candle.close.toFixed(2);
     
+    ohlcVolume.textContent = volume.value.toLocaleString();    
   });
   
   chart.subscribeClick(param => {
@@ -268,6 +273,7 @@
       ohlcHigh.textContent  = last.high.toFixed(2);
       ohlcLow.textContent   = last.low.toFixed(2);
       ohlcClose.textContent = last.close.toFixed(2);
+      ohlcVolume.textContent = last.volume.toLocaleString();
     }
 
   }
