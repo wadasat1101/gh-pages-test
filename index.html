@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>株価チャート（Stooq）</title>
+  <title>株価チャート(local)（Stooq）</title>
   <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
   <style>
     body {
@@ -10,6 +10,11 @@
       font-family: system-ui, sans-serif;
       background: #111;
       color: #ddd;
+      
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
     }
 
     #toolbar {
@@ -27,6 +32,30 @@
       border-bottom:1px solid #222;
     }
     
+    #legend {
+      padding: 4px 12px;
+      font-size: 12px;
+      background: #141414;
+      border-bottom: 1px solid #222;
+    }
+
+    #legend span {
+      margin-right: 12px;
+    }
+
+    .legend-ma5 {
+      color: #ff9800;
+    }
+
+    .legend-ma25 {
+      color: #03a9f4;
+    }
+
+    .legend-ma75 {
+      color: #e91e63;
+    }
+
+    
     select, button {
       background: #333;
       color: #ddd;
@@ -41,7 +70,7 @@
     }
 
     #chart {
-      height: calc(100vh - 44px);
+      flex: 1;
     }
   </style>
 </head>
@@ -59,10 +88,16 @@
 
 <div id="ohlc">
   <span id="ohlc-date">----</span>
-  ｜ O: <span id="ohlc-open">-</span>
-  H: <span id="ohlc-high">-</span>
-  L: <span id="ohlc-low">-</span>
-  C: <span id="ohlc-close">-</span>
+  ｜ 始値: <span id="ohlc-open">-</span>
+  高値: <span id="ohlc-high">-</span>
+  安値: <span id="ohlc-low">-</span>
+  終値: <span id="ohlc-close">-</span>
+</div>
+
+<div id="legend">
+  <span class="legend-ma5">■ 移動平均線(5)</span>
+  <span class="legend-ma25">■ 移動平均線(25)</span>
+  <span class="legend-ma75">■ 移動平均線(75)</span>
 </div>
 
 
@@ -106,27 +141,23 @@
   
   chart.subscribeCrosshairMove(param => {
     if (!param || !param.time) return;
-    if (!param.seriesPrices) return;
-
-    let price;
-
-    // Map の場合（Lightweight Charts v4+）
-    if (typeof param.seriesPrices.get === 'function') {
-      price = param.seriesPrices.get(candleSeries);
-    } 
-    // Object の場合（環境差異対策）
-    else {
-      price = param.seriesPrices[candleSeries];
-    }
-
-    if (!price) return;
+    if (!param.seriesData) return;
+    
+    const data = param.seriesData.get(candleSeries);
+    if (!data) return;
 
     ohlcDate.textContent  = param.time;
-    ohlcOpen.textContent  = price.open.toFixed(2);
-    ohlcHigh.textContent  = price.high.toFixed(2);
-    ohlcLow.textContent   = price.low.toFixed(2);
-    ohlcClose.textContent = price.close.toFixed(2);
+    ohlcOpen.textContent  = data.open.toFixed(2);
+    ohlcHigh.textContent  = data.high.toFixed(2);
+    ohlcLow.textContent   = data.low.toFixed(2);
+    ohlcClose.textContent = data.close.toFixed(2);
+    
   });
+  
+  chart.subscribeClick(param => {
+    // クリックしたときの処理
+  });
+
 
   // ===== ローソク足 =====
   const candleSeries = chart.addSeries(
@@ -157,17 +188,32 @@
   // ===== 移動平均線 =====
   const ma5Series = chart.addSeries(
     LightweightCharts.LineSeries,
-    { color: '#ff9800', lineWidth: 1 }
+    {
+      color: '#ff9800',
+      lineWidth: 1,
+      lastValueVisible: false,
+      priceLineVisible: false
+    }
   );
 
   const ma25Series = chart.addSeries(
     LightweightCharts.LineSeries,
-    { color: '#03a9f4', lineWidth: 1 }
+    {
+      color: '#03a9f4',
+      lineWidth: 1,
+      lastValueVisible: false,
+      priceLineVisible: false
+    }
   );
 
   const ma75Series = chart.addSeries(
     LightweightCharts.LineSeries,
-    { color: '#e91e63', lineWidth: 1 }
+    { 
+      color: '#e91e63',
+      lineWidth: 1,
+      lastValueVisible: false,
+      priceLineVisible: false
+    }
   );
 
 
@@ -202,7 +248,18 @@
     ma25Series.setData(calcSMA(data, 25));
     ma75Series.setData(calcSMA(data, 75));
 
-    chart.timeScale().fitContent();
+	
+    // ローソク足をN本表示
+    let n = 150;
+    if (data.length > n) {
+      const from = data[data.length - n].time;
+      const to   = data[data.length - 1].time;
+
+      chart.timeScale().setVisibleRange({
+        from,
+        to,
+      });
+    }
     
     if (data.length > 0) {
       const last = data[data.length - 1];
