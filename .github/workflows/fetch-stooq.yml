@@ -2,8 +2,8 @@ name: Fetch Stooq Data
 
 on:
   schedule:
-    # 毎日 日本時間10:00（UTC+9 → UTC 01:00）
-    - cron: '0 1 * * *'
+    # 毎日 日本時間 00:00
+    - cron: '0 10 * * *'
   workflow_dispatch:
 
 jobs:
