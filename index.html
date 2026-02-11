@@ -31,6 +31,12 @@
       background:#181818;
       border-bottom:1px solid #222;
     }
+    #ma {
+      padding: 6px 12px;
+      font-size: 13px;
+      background:#181818;
+      border-bottom:1px solid #222;
+    }
     
     #legend {
       padding: 4px 12px;
@@ -42,16 +48,16 @@
     #legend span {
       margin-right: 12px;
     }
-
-    .legend-ma5 {
+    
+    .ma5 {
       color: #ff9800;
     }
 
-    .legend-ma25 {
+    .ma25 {
       color: #03a9f4;
     }
 
-    .legend-ma75 {
+    .ma75 {
       color: #e91e63;
     }
 
@@ -108,16 +114,14 @@
   安値: <span id="ohlc-low">-</span>
   終値: <span id="ohlc-close">-</span>
   出来高: <span id="ohlc-volume">-</span>
-  乖離率(5): <span id="ohlc-div5">-</span>
-  乖離率(25): <span id="ohlc-div25">-</span>
-  乖離率(75): <span id="ohlc-div75">-</span>
+</div>
+<div id="ma">
+  <span class="ma5">■ 移動平均値(5)</span>: <span id="ma-5">-</span>(<span id="ma-div5">-</span>)
+  <span class="ma25">■ 移動平均値(25)</span>: <span id="ma-25">-</span>(<span id="ma-div25">-</span>)
+  <span class="ma75">■ 移動平均値(75)</span>: <span id="ma-75">-</span>(<span id="ma-div75">-</span>)
 </div>
 
-<div id="legend">
-  <span class="legend-ma5">■ 移動平均線(5)</span>
-  <span class="legend-ma25">■ 移動平均線(25)</span>
-  <span class="legend-ma75">■ 移動平均線(75)</span>
-</div>
+
 
 <div id="chart"></div>
 
@@ -130,15 +134,20 @@
   let currentSymbol;
   let currentInterval = 'daily';
   
+  let markerPrimitive = null;
+  
   const ohlcDate  = document.getElementById('ohlc-date');
   const ohlcOpen  = document.getElementById('ohlc-open');
   const ohlcHigh  = document.getElementById('ohlc-high');
   const ohlcLow   = document.getElementById('ohlc-low');
   const ohlcClose = document.getElementById('ohlc-close');
   const ohlcVolume = document.getElementById('ohlc-volume');
-  const ohlcDiv5 = document.getElementById('ohlc-div5');
-  const ohlcDiv25 = document.getElementById('ohlc-div25');
-  const ohlcDiv75 = document.getElementById('ohlc-div75');
+  const ma5 = document.getElementById('ma-5');
+  const ma25 = document.getElementById('ma-25');
+  const ma75 = document.getElementById('ma-75');
+  const maDiv5 = document.getElementById('ma-div5');
+  const maDiv25 = document.getElementById('ma-div25');
+  const maDiv75 = document.getElementById('ma-div75');
   
   const tooltip = document.getElementById('tooltip');
 
@@ -181,9 +190,9 @@
 
     const candle = param.seriesData.get(candleSeries);
     const volume = param.seriesData.get(volumeSeries);
-    const ma5 = param.seriesData.get(ma5Series);
-    const ma25 = param.seriesData.get(ma25Series);
-    const ma75 = param.seriesData.get(ma75Series);
+    const move_ave_5 = param.seriesData.get(ma5Series);
+    const move_ave_25 = param.seriesData.get(ma25Series);
+    const move_ave_75 = param.seriesData.get(ma75Series);
 
     if (!candle) {
       tooltip.style.display = 'none';
@@ -194,77 +203,63 @@
 	let div5 = null;
 	let div25 = null;
 	let div75 = null;
-	if (ma5) {
-	  div5 = calcDeviation(candle.close, ma5.value);
+	let val5 = null;
+	let val25 = null;
+	let val75 = null;
+	if (move_ave_5) {
+	  div5 = calcDeviation(candle.close, move_ave_5.value);
+      val5  = move_ave_5.value.toFixed(0);
 	}
-	if (ma25) {
-	  div25 = calcDeviation(candle.close, ma25.value);
+	if (move_ave_25) {
+	  div25 = calcDeviation(candle.close, move_ave_25.value);
+      val25  = move_ave_25.value.toFixed(0);
 	}
-	if (ma75) {
-	  div75 = calcDeviation(candle.close, ma75.value);
+
+	if (move_ave_75) {
+	  div75 = calcDeviation(candle.close, move_ave_75.value);
+      val75  = move_ave_75.value.toFixed(0);
 	}
+
 	
-	const f5  = formatDeviation(div5);
-    const f25 = formatDeviation(div25);
-    const f75 = formatDeviation(div75);
+	const f5  = formatMoveAverage(val5, div5);
+    const f25 = formatMoveAverage(val25, div25);
+    const f75 = formatMoveAverage(val75, div75);
 
-    ohlcDiv5.textContent  = f5.text;
-    ohlcDiv5.style.color  = f5.color;
-
-    ohlcDiv25.textContent = f25.text;
-    ohlcDiv25.style.color = f25.color;
-
-    ohlcDiv75.textContent = f75.text;
-    ohlcDiv75.style.color = f75.color;
-
-/*
-	if (div5 !== null) {
-	  const text = (div5 >= 0 ? '+' : '') + div5.toFixed(1) + '%';
-	  ohlcDiv5.textContent = text;
-	  ohlcDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
-	} else {
-	  ohlcDiv5.textContent = '-';
-	}
-	if (div25 !== null) {
-	  const text = (div25 >= 0 ? '+' : '') + div25.toFixed(1) + '%';
-	  ohlcDiv25.textContent = text;
-	  ohlcDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
-	} else {
-	  ohlcDiv25.textContent = '-';
-	}
-	if (div75 !== null) {
-	  const text = (div75 >= 0 ? '+' : '') + div75.toFixed(1) + '%';
-	  ohlcDiv75.textContent = text;
-	  ohlcDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
-	} else {
-	  ohlcDiv75.textContent = '-';
-	}
-	*/
-
+    
+    ma5.textContent  = f5.value;
+    ma25.textContent  = f25.value;
+    ma75.textContent  = f75.value;
+    
+    maDiv5.textContent  = f5.deviation;
+    maDiv5.style.color  = f5.color;
+    maDiv25.textContent = f25.deviation;
+    maDiv25.style.color = f25.color;
+    maDiv75.textContent = f75.deviation;
+    maDiv75.style.color = f75.color;
 
     // 上部OHLC更新
     ohlcDate.textContent  = param.time;
-    ohlcOpen.textContent  = candle.open.toFixed(2);
-    ohlcHigh.textContent  = candle.high.toFixed(2);
-    ohlcLow.textContent   = candle.low.toFixed(2);
-    ohlcClose.textContent = candle.close.toFixed(2);
+    ohlcOpen.textContent  = candle.open.toFixed(0);
+    ohlcHigh.textContent  = candle.high.toFixed(0);
+    ohlcLow.textContent   = candle.low.toFixed(0);
+    ohlcClose.textContent = candle.close.toFixed(0);
     ohlcVolume.textContent =
       volume ? volume.value.toLocaleString() : '-';
 
-    // ===== Tooltip 内容 =====
-    const t5  = formatDeviation(div5);
-    const t25 = formatDeviation(div25);
-    const t75 = formatDeviation(div75);
+    // ===== Tooltip更新 =====
+    const t5  = formatMoveAverage(val5, div5);
+    const t25 = formatMoveAverage(val25, div25);
+    const t75 = formatMoveAverage(val75, div75);
     tooltip.innerHTML = `
       <div><strong>${param.time}</strong></div>
-      <div>始値: ${candle.open.toFixed(2)}</div>
-      <div>高値: ${candle.high.toFixed(2)}</div>
-      <div>安値: ${candle.low.toFixed(2)}</div>
-      <div>終値: ${candle.close.toFixed(2)}</div>
+      <div>始値: ${candle.open.toFixed(0)}</div>
+      <div>高値: ${candle.high.toFixed(0)}</div>
+      <div>安値: ${candle.low.toFixed(0)}</div>
+      <div>終値: ${candle.close.toFixed(0)}</div>
       <div>出来高: ${volume ? volume.value.toLocaleString() : '-'}</div>
-      <div>乖離率(5):  <span style="color:${t5.color}">${t5.text}</span></div>
-      <div>乖離率(25): <span style="color:${t25.color}">${t25.text}</span></div>
-      <div>乖離率(75): <span style="color:${t75.color}">${t75.text}</span></div>
+      <div>移動平均値(5):  <span>${t5.value}</span>(<span style="color:${t5.color}">${t5.deviation}</span>)</div>
+      <div>移動平均値(25): <span>${t25.value}</span>(<span style="color:${t25.color}">${t25.deviation}</span>)</div>
+      <div>移動平均値(75): <span>${t75.value}</span>(<span style="color:${t75.color}">${t75.deviation}</span>)</div>
     `;
 
     // ===== マウス位置へ移動 =====
@@ -356,13 +351,14 @@
     return ((close / ma - 1) * 100);
   }
   
-  function formatDeviation(div) {
+  function formatMoveAverage(val, div) {
     if (div === null || div === undefined || isNaN(div)) {
-      return { text: '-', color: '#aaa' };
+      return { value: '-', deviation: '-', color: '#aaa' };
     }
 
     return {
-      text: (div >= 0 ? '+' : '') + div.toFixed(1) + '%',
+      value: val,
+      deviation: (div >= 0 ? '+' : '') + div.toFixed(1) + '%',
       color: div >= 0 ? '#4caf50' : '#ef5350'
     };
   }
@@ -379,15 +375,18 @@
     volumeSeries.setData(
       data.map(d => ({
         time: d.time,
-        value: d.volume,
+        value: d.volume ? d.volume : 0,
         color: d.close >= d.open ? '#4caf50aa' : '#ef5350aa',
       }))
     );
 
-    ma5Series.setData(calcSMA(data, 5));
-    ma25Series.setData(calcSMA(data, 25));
-    ma75Series.setData(calcSMA(data, 75));
-
+    const ma5Data = calcSMA(data, 5);
+    const ma25Data = calcSMA(data, 25);
+    const ma75Data = calcSMA(data, 75);
+        
+    ma5Series.setData(ma5Data);
+    ma25Series.setData(ma25Data);
+    ma75Series.setData(ma75Data);
 	
     // ローソク足をN本表示
     let n = 150;
@@ -402,39 +401,40 @@
     }
     
     const last = data[data.length - 1];
-    const ma5Data = calcSMA(data, 5);
     const lastMA5 = ma5Data.length > 0 ? ma5Data[ma5Data.length - 1].value : null;
-    const ma25Data = calcSMA(data, 25);
     const lastMA25 = ma25Data.length > 0 ? ma25Data[ma25Data.length - 1].value : null;
-    const ma75Data = calcSMA(data, 75);
     const lastMA75 = ma75Data.length > 0 ? ma75Data[ma75Data.length - 1].value : null;
     
     if (data.length > 0) {
       ohlcDate.textContent  = last.time;
-      ohlcOpen.textContent  = last.open.toFixed(2);
-      ohlcHigh.textContent  = last.high.toFixed(2);
-      ohlcLow.textContent   = last.low.toFixed(2);
-      ohlcClose.textContent = last.close.toFixed(2);
+      ohlcOpen.textContent  = last.open.toFixed(0);
+      ohlcHigh.textContent  = last.high.toFixed(0);
+      ohlcLow.textContent   = last.low.toFixed(0);
+      ohlcClose.textContent = last.close.toFixed(0);
       ohlcVolume.textContent = last.volume.toLocaleString();
     }
     
-    if (lastMA5) {
+    ma5.textContent  = lastMA5 ? lastMA5.toFixed(0) : '-';
+    ma25.textContent  = lastMA25 ? lastMA25.toFixed(0) : '-';
+    ma75.textContent  = lastMA75 ? lastMA75.toFixed(0) : '-';
+    
+    if (lastMA5 !== null) {
       const div5 = calcDeviation(last.close, lastMA5);
       const text = (div5 >= 0 ? '+' : '') + div5.toFixed(1) + '%';
-      ohlcDiv5.textContent = text;
-      ohlcDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
+      maDiv5.textContent = text;
+      maDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
     }
-    if (lastMA25) {
+    if (lastMA25 !== null) {
       const div25 = calcDeviation(last.close, lastMA25);
       const text = (div25 >= 0 ? '+' : '') + div25.toFixed(1) + '%';
-      ohlcDiv25.textContent = text;
-      ohlcDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
+      maDiv25.textContent = text;
+      maDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
     }
-    if (lastMA75) {
+    if (lastMA75 !== null) {
       const div75 = calcDeviation(last.close, lastMA75);
       const text = (div75 >= 0 ? '+' : '') + div75.toFixed(1) + '%';
-      ohlcDiv75.textContent = text;
-      ohlcDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
+      maDiv75.textContent = text;
+      maDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
     }
   }
 
