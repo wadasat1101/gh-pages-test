@@ -4,7 +4,9 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>株価チャート(branch1)（Stooq）</title>
+
 	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+
 	<style>
 		body {
 			margin: 0;
@@ -25,41 +27,15 @@
 			align-items: center;
 		}
 
-		#ohlc {
+		.info-bar {
 			padding: 6px 12px;
 			font-size: 13px;
 			background: #181818;
 			border-bottom: 1px solid #222;
 		}
 
-		#ma {
-			padding: 6px 12px;
-			font-size: 13px;
-			background: #181818;
-			border-bottom: 1px solid #222;
-		}
-
-		#legend {
-			padding: 4px 12px;
-			font-size: 12px;
-			background: #141414;
-			border-bottom: 1px solid #222;
-		}
-
-		#legend span {
-			margin-right: 12px;
-		}
-
-		.ma5 {
-			color: #ff9800;
-		}
-
-		.ma25 {
-			color: #03a9f4;
-		}
-
-		.ma75 {
-			color: #e91e63;
+		#chart {
+			flex: 1;
 		}
 
 		select,
@@ -76,15 +52,11 @@
 			color: #000;
 		}
 
-		#chart {
-			flex: 1;
-		}
-
 		#tooltip {
 			position: absolute;
 			display: none;
 			pointer-events: none;
-			background: rgba(0, 0, 0, 0.85);
+			background: rgba(0, 0, 0, .85);
 			border: 1px solid #444;
 			padding: 8px;
 			font-size: 12px;
@@ -108,434 +80,336 @@
 		<button data-interval="monthly">月足</button>
 	</div>
 
-	<div id="ohlc">
-		<span id="ohlc-date">----</span> ｜ 始値: <span id="ohlc-open">-</span> 高値: <span id="ohlc-high">-</span> 安値: <span id="ohlc-low">-</span> 終値: <span id="ohlc-close">-</span> 出来高: <span id="ohlc-volume">-</span>
-	</div>
-	<div id="ma">
-		<span class="ma5">■ 移動平均値(5)</span>: <span id="ma-5">-</span>(<span id="ma-div5">-</span>)
-		<span class="ma25">■ 移動平均値(25)</span>: <span id="ma-25">-</span>(<span id="ma-div25">-</span>)
-		<span class="ma75">■ 移動平均値(75)</span>: <span id="ma-75">-</span>(<span id="ma-div75">-</span>)
+	<div id="ohlcBar" class="info-bar">
+		<span id="dateLabel">----</span> ｜ 始値:<span id="openLabel">-</span> 高値:
+		<span id="highLabel">-</span> 安値:
+		<span id="lowLabel">-</span> 終値:
+		<span id="closeLabel">-</span> 出来高:
+		<span id="volumeLabel">-</span>
 	</div>
 
-
+	<div id="maBar" class="info-bar">
+		<span id="maLegend"></span>
+	</div>
 
 	<div id="chart"></div>
-
 	<div id="tooltip"></div>
 
 	<script>
-		let config;
-		let currentMarket;
-		let currentSector;
-		let currentSymbol;
-		let currentInterval = 'daily';
-
-		let markerPrimitive = null;
-
-		const ohlcDate = document.getElementById('ohlc-date');
-		const ohlcOpen = document.getElementById('ohlc-open');
-		const ohlcHigh = document.getElementById('ohlc-high');
-		const ohlcLow = document.getElementById('ohlc-low');
-		const ohlcClose = document.getElementById('ohlc-close');
-		const ohlcVolume = document.getElementById('ohlc-volume');
-		const ma5 = document.getElementById('ma-5');
-		const ma25 = document.getElementById('ma-25');
-		const ma75 = document.getElementById('ma-75');
-		const maDiv5 = document.getElementById('ma-div5');
-		const maDiv25 = document.getElementById('ma-div25');
-		const maDiv75 = document.getElementById('ma-div75');
-
-		const tooltip = document.getElementById('tooltip');
-
-
-
-		/* ===== チャート初期化 ===== */
-		const chart = LightweightCharts.createChart(
-			document.getElementById('chart'), {
-				layout: {
-					background: {
-						color: '#111'
-					},
-					textColor: '#ddd',
-				},
-				grid: {
-					vertLines: {
-						color: '#222'
-					},
-					horzLines: {
-						color: '#222'
-					},
-				},
-				rightPriceScale: {
-					scaleMargins: {
-						top: 0.1,
-						bottom: 0.3
-					},
-				},
-				timeScale: {
-					timeVisible: true
-				},
-				crosshair: {
-					mode: LightweightCharts.CrosshairMode.Normal,
-				},
+		/* ========= 可変設定 ========= */
+		/* ★ここだけ変えれば本数変更OK */
+		const MA_CONFIG = [
+			{
+				period: 5,
+				color: "#ff88FF"
+			},
+			{
+				period: 12,
+				color: "#ff9800"
+			},
+			{
+				period: 25,
+				color: "#03a9f4"
+			},
+			{
+				period: 50,
+				color: "#e91e63"
 			}
-		);
+		];
+		/* ============================ */
 
-		chart.subscribeCrosshairMove(param => {
+		const el = id => document.getElementById(id);
 
-			// マウスがチャート外に出たら非表示
-			if (!param || !param.time || !param.point) {
-				tooltip.style.display = 'none';
-				return;
-			}
+		/* ========= DOM ========= */
+		const labels = {
+			date: el("dateLabel"),
+			open: el("openLabel"),
+			high: el("highLabel"),
+			low: el("lowLabel"),
+			close: el("closeLabel"),
+			volume: el("volumeLabel"),
+			tooltip: el("tooltip"),
+			legend: el("maLegend"),
+			marketSelect: el("marketSelect"),
+			sectorSelect: el("sectorSelect"),
+			symbolSelect: el("symbolSelect"),
+			maVals: [],
+			maDevs: []
+		};
 
-			if (!param.seriesData) {
-				tooltip.style.display = 'none';
-				return;
-			}
-
-			const candle = param.seriesData.get(candleSeries);
-			const volume = param.seriesData.get(volumeSeries);
-			const move_ave_5 = param.seriesData.get(ma5Series);
-			const move_ave_25 = param.seriesData.get(ma25Series);
-			const move_ave_75 = param.seriesData.get(ma75Series);
-
-			if (!candle) {
-				tooltip.style.display = 'none';
-				return;
-			}
-
-
-			let div5 = null;
-			let div25 = null;
-			let div75 = null;
-			let val5 = null;
-			let val25 = null;
-			let val75 = null;
-			if (move_ave_5) {
-				div5 = calcDeviation(candle.close, move_ave_5.value);
-				val5 = move_ave_5.value.toFixed(0);
-			}
-			if (move_ave_25) {
-				div25 = calcDeviation(candle.close, move_ave_25.value);
-				val25 = move_ave_25.value.toFixed(0);
-			}
-
-			if (move_ave_75) {
-				div75 = calcDeviation(candle.close, move_ave_75.value);
-				val75 = move_ave_75.value.toFixed(0);
-			}
-
-
-			const f5 = formatMoveAverage(val5, div5);
-			const f25 = formatMoveAverage(val25, div25);
-			const f75 = formatMoveAverage(val75, div75);
-
-
-			ma5.textContent = f5.value;
-			ma25.textContent = f25.value;
-			ma75.textContent = f75.value;
-
-			maDiv5.textContent = f5.deviation;
-			maDiv5.style.color = f5.color;
-			maDiv25.textContent = f25.deviation;
-			maDiv25.style.color = f25.color;
-			maDiv75.textContent = f75.deviation;
-			maDiv75.style.color = f75.color;
-
-			// 上部OHLC更新
-			ohlcDate.textContent = param.time;
-			ohlcOpen.textContent = candle.open.toFixed(0);
-			ohlcHigh.textContent = candle.high.toFixed(0);
-			ohlcLow.textContent = candle.low.toFixed(0);
-			ohlcClose.textContent = candle.close.toFixed(0);
-			ohlcVolume.textContent =
-				volume ? volume.value.toLocaleString() : '-';
-
-			// ===== Tooltip更新 =====
-			const t5 = formatMoveAverage(val5, div5);
-			const t25 = formatMoveAverage(val25, div25);
-			const t75 = formatMoveAverage(val75, div75);
-			tooltip.innerHTML = `
-	  <div><strong>${param.time}</strong></div>
-	  <div>始値: ${candle.open.toFixed(0)}</div>
-	  <div>高値: ${candle.high.toFixed(0)}</div>
-	  <div>安値: ${candle.low.toFixed(0)}</div>
-	  <div>終値: ${candle.close.toFixed(0)}</div>
-	  <div>出来高: ${volume ? volume.value.toLocaleString() : '-'}</div>
-	  <div>移動平均値(5):  <span>${t5.value}</span>(<span style="color:${t5.color}">${t5.deviation}</span>)</div>
-	  <div>移動平均値(25): <span>${t25.value}</span>(<span style="color:${t25.color}">${t25.deviation}</span>)</div>
-	  <div>移動平均値(75): <span>${t75.value}</span>(<span style="color:${t75.color}">${t75.deviation}</span>)</div>
-	`;
-
-			// ===== マウス位置へ移動 =====
-			const chartRect = document
-				.getElementById('chart')
-				.getBoundingClientRect();
-
-			tooltip.style.left =
-				chartRect.left + param.point.x + 15 + 'px';
-
-			tooltip.style.top =
-				chartRect.top + param.point.y + 15 + 'px';
-
-			tooltip.style.display = 'block';
+		/* Legend生成（自動） */
+		MA_CONFIG.forEach((m, i) => {
+			const idx = i + 1;
+			labels.legend.insertAdjacentHTML("beforeend",
+				`<span style="color:${m.color}">
+		■移動平均(${m.period})
+		</span>:<span id="ma${idx}Val">-</span>
+		(<span id="ma${idx}Dev">-</span>) `
+			);
+			labels.maVals.push(el(`ma${idx}Val`));
+			labels.maDevs.push(el(`ma${idx}Dev`));
 		});
 
+		/* ========= State ========= */
+		const state = {
+			config: null,
+			market: null,
+			sector: null,
+			symbol: null,
+			interval: "daily"
+		};
 
-
-		// ===== ローソク足 =====
-		const candleSeries = chart.addSeries(
-			LightweightCharts.CandlestickSeries, {
-				upColor: '#4caf50',
-				downColor: '#ef5350',
-				borderUpColor: '#4caf50',
-				borderDownColor: '#ef5350',
-				wickUpColor: '#4caf50',
-				wickDownColor: '#ef5350',
-			}
-		);
-
-		// ===== 出来高 =====
-		const volumeSeries = chart.addSeries(
-			LightweightCharts.HistogramSeries, {
-				priceFormat: {
-					type: 'volume'
+		/* ========= Chart ========= */
+		const chart = LightweightCharts.createChart(el("chart"), {
+			layout: {
+				background: {
+					color: "#111"
 				},
-				priceScaleId: '',
+				textColor: "#ddd"
+			},
+			grid: {
+				vertLines: {
+					color: "#222"
+				},
+				horzLines: {
+					color: "#222"
+				}
+			},
+			rightPriceScale: {
+				scaleMargins: {
+					top: .1,
+					bottom: .3
+				}
+			},
+			timeScale: {
+				timeVisible: true
+			},
+			crosshair: {
+				mode: LightweightCharts.CrosshairMode.Normal
 			}
-		);
+		});
 
+		const candleSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {
+			upColor: "#4caf50",
+			downColor: "#ef5350",
+			borderUpColor: "#4caf50",
+			borderDownColor: "#ef5350",
+			wickUpColor: "#4caf50",
+			wickDownColor: "#ef5350"
+		});
+
+		const volumeSeries = chart.addSeries(LightweightCharts.HistogramSeries, {
+			priceFormat: {
+				type: "volume"
+			},
+			priceScaleId: ""
+		});
 		volumeSeries.priceScale().applyOptions({
 			scaleMargins: {
-				top: 0.75,
+				top: .75,
 				bottom: 0
-			},
+			}
 		});
 
-		// ===== 移動平均線 =====
-		const ma5Series = chart.addSeries(
-			LightweightCharts.LineSeries, {
-				color: '#ff9800',
+		/* MA Series生成 */
+		const maSeries = MA_CONFIG.map(cfg =>
+			chart.addSeries(LightweightCharts.LineSeries, {
+				color: cfg.color,
 				lineWidth: 1,
 				lastValueVisible: false,
 				priceLineVisible: false
-			}
+			})
 		);
 
-		const ma25Series = chart.addSeries(
-			LightweightCharts.LineSeries, {
-				color: '#03a9f4',
-				lineWidth: 1,
-				lastValueVisible: false,
-				priceLineVisible: false
-			}
-		);
-
-		const ma75Series = chart.addSeries(
-			LightweightCharts.LineSeries, {
-				color: '#e91e63',
-				lineWidth: 1,
-				lastValueVisible: false,
-				priceLineVisible: false
-			}
-		);
-
-
+		/* ========= Utils ========= */
 		function calcSMA(data, period) {
-			const result = [];
+			const out = [];
 			for (let i = period - 1; i < data.length; i++) {
-				const slice = data.slice(i - period + 1, i + 1);
-				const avg = slice.reduce((s, d) => s + d.close, 0) / period;
-				result.push({
+				const avg = data.slice(i - period + 1, i + 1)
+					.reduce((s, d) => s + d.close, 0) / period;
+				out.push({
 					time: data[i].time,
 					value: avg
 				});
 			}
-			return result;
+			return out;
 		}
 
-		function calcDeviation(close, ma) {
-			if (!ma) return null;
-			return ((close / ma - 1) * 100);
-		}
+		const deviation = (c, m) => m ? ((c / m - 1) * 100) : null;
 
-		function formatMoveAverage(val, div) {
-			if (div === null || div === undefined || isNaN(div)) {
+		function formatMA(val, dev) {
+			if (dev === null || isNaN(dev))
 				return {
-					value: '-',
-					deviation: '-',
-					color: '#aaa'
+					v: "-",
+					d: "-",
+					c: "#aaa"
 				};
-			}
-
 			return {
-				value: val,
-				deviation: (div >= 0 ? '+' : '') + div.toFixed(1) + '%',
-				color: div >= 0 ? '#4caf50' : '#ef5350'
+				v: val,
+				d: (dev >= 0 ? "+" : "") + dev.toFixed(1) + "%",
+				c: dev >= 0 ? "#4caf50" : "#ef5350"
 			};
 		}
 
-		async function loadData() {
-			if (!currentSymbol) return;
+		/* ========= Crosshair ========= */
+		chart.subscribeCrosshairMove(param => {
+			if (!param?.time || !param?.point) {
+				labels.tooltip.style.display = "none";
+				return;
+			}
+			const candle = param.seriesData.get(candleSeries);
+			if (!candle) {
+				labels.tooltip.style.display = "none";
+				return;
+			}
+			const volume = param.seriesData.get(volumeSeries);
 
-			const path = `./data/${currentMarket}/${currentInterval}/${currentSymbol}.json`;
+			let tooltipHTML = `
+<div><strong>${param.time}</strong></div>
+<div>始値:${candle.open.toFixed(0)}</div>
+<div>高値:${candle.high.toFixed(0)}</div>
+<div>安値:${candle.low.toFixed(0)}</div>
+<div>終値:${candle.close.toFixed(0)}</div>
+<div>出来高:${volume?volume.value.toLocaleString():"-"}</div>
+`;
+
+			MA_CONFIG.forEach((cfg, i) => {
+				const val = param.seriesData.get(maSeries[i])?.value;
+				const f = formatMA(
+					val ? val.toFixed(0) : null,
+					val ? deviation(candle.close, val) : null
+				);
+				labels.maVals[i].textContent = f.v;
+				labels.maDevs[i].textContent = f.d;
+				labels.maDevs[i].style.color = f.c;
+
+				tooltipHTML += `<div>MA${cfg.period}:${f.v}
+	(<span style="color:${f.c}">${f.d}</span>)</div>`;
+			});
+
+			labels.date.textContent = param.time;
+			labels.open.textContent = candle.open.toFixed(0);
+			labels.high.textContent = candle.high.toFixed(0);
+			labels.low.textContent = candle.low.toFixed(0);
+			labels.close.textContent = candle.close.toFixed(0);
+			labels.volume.textContent = volume ? volume.value.toLocaleString() : "-";
+
+			labels.tooltip.innerHTML = tooltipHTML;
+
+			const rect = el("chart").getBoundingClientRect();
+			labels.tooltip.style.left = rect.left + param.point.x + 15 + "px";
+			labels.tooltip.style.top = rect.top + param.point.y + 15 + "px";
+			labels.tooltip.style.display = "block";
+		});
+
+		/* ========= Data Loading ========= */
+		async function loadChartData() {
+			if (!state.symbol) return;
+			const path = `./data/${state.market}/${state.interval}/${state.symbol}.json`;
 			const res = await fetch(path);
 			const data = await res.json();
 
 			candleSeries.setData(data);
+			volumeSeries.setData(data.map(d => ({
+				time: d.time,
+				value: d.volume || 0,
+				color: d.close >= d.open ? "#4caf50aa" : "#ef5350aa"
+			})));
 
-			volumeSeries.setData(
-				data.map(d => ({
-					time: d.time,
-					value: d.volume ? d.volume : 0,
-					color: d.close >= d.open ? '#4caf50aa' : '#ef5350aa',
-				}))
-			);
+			const maData = MA_CONFIG.map(cfg => calcSMA(data, cfg.period));
+			maData.forEach((m, i) => maSeries[i].setData(m));
 
-			const ma5Data = calcSMA(data, 5);
-			const ma25Data = calcSMA(data, 25);
-			const ma75Data = calcSMA(data, 75);
-
-			ma5Series.setData(ma5Data);
-			ma25Series.setData(ma25Data);
-			ma75Series.setData(ma75Data);
-
-			// ローソク足をN本表示
-			let n = 150;
-			if (data.length > n) {
-				const from = data[data.length - n].time;
-				const to = data[data.length - 1].time;
-
+			if (data.length > 150)
 				chart.timeScale().setVisibleRange({
-					from,
-					to,
+					from: data[data.length - 150].time,
+					to: data[data.length - 1].time
 				});
-			}
 
-			const last = data[data.length - 1];
-			const lastMA5 = ma5Data.length > 0 ? ma5Data[ma5Data.length - 1].value : null;
-			const lastMA25 = ma25Data.length > 0 ? ma25Data[ma25Data.length - 1].value : null;
-			const lastMA75 = ma75Data.length > 0 ? ma75Data[ma75Data.length - 1].value : null;
+			const last = data.at(-1);
+			if (!last) return;
 
-			if (data.length > 0) {
-				ohlcDate.textContent = last.time;
-				ohlcOpen.textContent = last.open.toFixed(0);
-				ohlcHigh.textContent = last.high.toFixed(0);
-				ohlcLow.textContent = last.low.toFixed(0);
-				ohlcClose.textContent = last.close.toFixed(0);
-				ohlcVolume.textContent = last.volume.toLocaleString();
-			}
+			labels.date.textContent = last.time;
+			labels.open.textContent = last.open.toFixed(0);
+			labels.high.textContent = last.high.toFixed(0);
+			labels.low.textContent = last.low.toFixed(0);
+			labels.close.textContent = last.close.toFixed(0);
+			labels.volume.textContent = last.volume.toLocaleString();
 
-			ma5.textContent = lastMA5 ? lastMA5.toFixed(0) : '-';
-			ma25.textContent = lastMA25 ? lastMA25.toFixed(0) : '-';
-			ma75.textContent = lastMA75 ? lastMA75.toFixed(0) : '-';
-
-			if (lastMA5 !== null) {
-				const div5 = calcDeviation(last.close, lastMA5);
-				const text = (div5 >= 0 ? '+' : '') + div5.toFixed(1) + '%';
-				maDiv5.textContent = text;
-				maDiv5.style.color = div5 >= 0 ? '#4caf50' : '#ef5350';
-			}
-			if (lastMA25 !== null) {
-				const div25 = calcDeviation(last.close, lastMA25);
-				const text = (div25 >= 0 ? '+' : '') + div25.toFixed(1) + '%';
-				maDiv25.textContent = text;
-				maDiv25.style.color = div25 >= 0 ? '#4caf50' : '#ef5350';
-			}
-			if (lastMA75 !== null) {
-				const div75 = calcDeviation(last.close, lastMA75);
-				const text = (div75 >= 0 ? '+' : '') + div75.toFixed(1) + '%';
-				maDiv75.textContent = text;
-				maDiv75.style.color = div75 >= 0 ? '#4caf50' : '#ef5350';
-			}
-		}
-
-		/* ===== プルダウン制御 ===== */
-		const marketSelect = document.getElementById('marketSelect');
-		const sectorSelect = document.getElementById('sectorSelect');
-		const symbolSelect = document.getElementById('symbolSelect');
-
-		function refreshMarket() {
-			marketSelect.innerHTML = '';
-			config.markets.forEach(m => {
-				const opt = document.createElement('option');
-				opt.value = m.market;
-				opt.textContent = m.name;
-				marketSelect.appendChild(opt);
+			MA_CONFIG.forEach((cfg, i) => {
+				const lastMA = maData[i].at(-1)?.value;
+				const f = formatMA(
+					lastMA ? lastMA.toFixed(0) : null,
+					lastMA ? deviation(last.close, lastMA) : null
+				);
+				labels.maVals[i].textContent = f.v;
+				labels.maDevs[i].textContent = f.d;
+				labels.maDevs[i].style.color = f.c;
 			});
-			currentMarket = config.markets[0].market;
-			marketSelect.value = currentMarket;
-			refreshSector();
 		}
 
-		function refreshSector() {
-			sectorSelect.innerHTML = '';
-			const market = config.markets.find(m => m.market === currentMarket);
+		/* ========= Dropdown (変更なし) ========= */
+		function populateMarkets() {
+			labels.marketSelect.innerHTML = "";
+			state.config.markets.forEach(m => {
+				labels.marketSelect.appendChild(new Option(m.name, m.market));
+			});
+			state.market = state.config.markets[0].market;
+			populateSectors();
+		}
 
+		function populateSectors() {
+			const market = state.config.markets.find(m => m.market === state.market);
+			labels.sectorSelect.innerHTML = "";
 			market.sectors.forEach(s => {
-				const opt = document.createElement('option');
-				opt.value = s.code;
-				opt.textContent = s.name;
-				sectorSelect.appendChild(opt);
+				labels.sectorSelect.appendChild(new Option(s.name, s.code));
 			});
-
-			currentSector = market.sectors[0].code;
-			sectorSelect.value = currentSector;
-			refreshSymbol();
+			state.sector = market.sectors[0].code;
+			populateSymbols();
 		}
 
-		function refreshSymbol() {
-			symbolSelect.innerHTML = '';
-			const market = config.markets.find(m => m.market === currentMarket);
-			const sector = market.sectors.find(s => s.code === currentSector);
-
+		function populateSymbols() {
+			const market = state.config.markets.find(m => m.market === state.market);
+			const sector = market.sectors.find(s => s.code === state.sector);
+			labels.symbolSelect.innerHTML = "";
 			sector.symbols.forEach(sym => {
-				const opt = document.createElement('option');
-				opt.value = sym.code;
-				opt.textContent = `${sym.code} ${sym.name}`;
-				symbolSelect.appendChild(opt);
+				labels.symbolSelect.appendChild(new Option(`${sym.code} ${sym.name}`, sym.code));
 			});
-
-			currentSymbol = sector.symbols[0].code;
-			symbolSelect.value = currentSymbol;
-			loadData();
+			state.symbol = sector.symbols[0].code;
+			loadChartData();
 		}
 
-		marketSelect.addEventListener('change', () => {
-			currentMarket = marketSelect.value;
-			refreshSector();
+		/* ========= Events ========= */
+		labels.marketSelect.onchange = e => {
+			state.market = e.target.value;
+			populateSectors();
+		};
+		labels.sectorSelect.onchange = e => {
+			state.sector = e.target.value;
+			populateSymbols();
+		};
+		labels.symbolSelect.onchange = e => {
+			state.symbol = e.target.value;
+			loadChartData();
+		};
+
+		document.querySelectorAll("button[data-interval]").forEach(btn => {
+			btn.onclick = () => {
+				document.querySelectorAll("button[data-interval]")
+					.forEach(b => b.classList.remove("active"));
+				btn.classList.add("active");
+				state.interval = btn.dataset.interval;
+				loadChartData();
+			};
 		});
 
-		sectorSelect.addEventListener('change', () => {
-			currentSector = sectorSelect.value;
-			refreshSymbol();
-		});
-
-		symbolSelect.addEventListener('change', () => {
-			currentSymbol = symbolSelect.value;
-			loadData();
-		});
-
-		document.querySelectorAll('button[data-interval]').forEach(btn => {
-			btn.addEventListener('click', () => {
-				document.querySelectorAll('button[data-interval]')
-					.forEach(b => b.classList.remove('active'));
-				btn.classList.add('active');
-				currentInterval = btn.dataset.interval;
-				loadData();
-			});
-		});
-
-		/* ===== symbols.json 読み込み ===== */
-		fetch('./symbols.json')
-			.then(res => res.json())
-			.then(json => {
-				config = json;
-				refreshMarket();
+		/* ========= Init ========= */
+		fetch("./symbols.json")
+			.then(r => r.json())
+			.then(cfg => {
+				state.config = cfg;
+				populateMarkets();
 			});
 	</script>
-
 </body>
 
 </html>
