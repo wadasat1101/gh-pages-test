@@ -87,14 +87,32 @@ jobs:
                                       })
                                   except Exception:
                                       continue
-                              # ===== 5本移動平均計算 =====
+                              
+
+
+                              # ---- 移動平均計算 ----
+                              periods = [12, 24, 36]
+                              sums = {p: 0 for p in periods}
+
                               closes = [r["close"] for r in records]
+
                               for i in range(len(records)):
-                                  if i < 4:
-                                      records[i]["ma5"] = "-"
-                                  else:
-                                      ma = sum(closes[i-4:i+1]) / 5
-                                      records[i]["ma5"] = round(ma, 4)
+                                  price = closes[i]
+
+                                  for p in periods:
+                                      sums[p] += price
+
+                                      if i >= p:
+                                          sums[p] -= closes[i - p]
+
+                                          key = f"ma{p}"
+                                      if i < p - 1:
+                                          records[i][key] = "-"
+                                      else:
+                                          records[i][key] = round(sums[p] / p, 4)
+
+
+                              
 
                               with open(json_path, 'w', encoding='utf-8') as f:
                                   json.dump(records, f, indent=2, ensure_ascii=False)
