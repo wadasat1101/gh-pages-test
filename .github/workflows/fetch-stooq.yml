@@ -103,16 +103,22 @@ jobs:
                                   price = closes[i]
 
                                   for p in periods:
-                                      key = f"ma{p}"
+                                      ma_key = f"ma{p}"
+									  dev_key = f"dev{p}"
                                       sums[p] += price
 
                                       if i >= p:
                                           sums[p] -= closes[i - p]
 
                                       if i < p - 1:
-                                          records[i][key] = "-"
+                                          records[i][ma_key] = "-"
+										  records[i][dev_key] = "-"
                                       else:
-                                          records[i][key] = round(sums[p] / p, 4)
+                                          ma = sums[p] / p
+                                          records[i][ma_key] = round(ma, 0)
+                                          
+                                          deviation = (price - ma) / ma * 100
+                                          records[i][dev_key] = round(deviation, 1)
 
 
                               
