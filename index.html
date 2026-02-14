@@ -1,413 +1,339 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-	<meta charset="UTF-8" />
-	<title>株価チャート(branch1)（Stooq）</title>
+<meta charset="UTF-8" />
+<title>株価チャート(branch1)</title>
 
-	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
 
-	<style>
-		body {
-			margin: 0;
-			font-family: system-ui, sans-serif;
-			background: #111;
-			color: #ddd;
-			display: flex;
-			flex-direction: column;
-			height: 100vh;
-			overflow: hidden;
-		}
+<style>
+body{
+    margin:0;
+    font-family:system-ui,sans-serif;
+    background:#111;
+    color:#ddd;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    overflow:hidden;
+}
 
-		#toolbar {
-			padding: 8px;
-			display: flex;
-			gap: 8px;
-			background: #1a1a1a;
-			align-items: center;
-		}
+#toolbar{
+    padding:8px;
+    display:flex;
+    gap:8px;
+    background:#1a1a1a;
+    align-items:center;
+}
 
-		.info-bar {
-			padding: 6px 12px;
-			font-size: 13px;
-			background: #181818;
-			border-bottom: 1px solid #222;
-		}
+.info-bar{
+    padding:6px 12px;
+    font-size:13px;
+    background:#181818;
+    border-bottom:1px solid #222;
+}
 
-		#chart {
-			flex: 1;
-		}
+#chart{ flex:1; }
 
-		select,
-		button {
-			background: #333;
-			color: #ddd;
-			border: none;
-			padding: 6px 12px;
-			border-radius: 4px;
-		}
+select,button{
+    background:#333;
+    color:#ddd;
+    border:none;
+    padding:6px 12px;
+    border-radius:4px;
+}
 
-		button.active {
-			background: #4caf50;
-			color: #000;
-		}
+button.active{
+    background:#4caf50;
+    color:#000;
+}
 
-		#tooltip {
-			position: absolute;
-			display: none;
-			pointer-events: none;
-			background: rgba(0, 0, 0, .85);
-			border: 1px solid #444;
-			padding: 8px;
-			font-size: 12px;
-			color: #ddd;
-			border-radius: 6px;
-			white-space: nowrap;
-			z-index: 1000;
-		}
-	</style>
+#tooltip{
+    position:absolute;
+    display:none;
+    pointer-events:none;
+    background:rgba(0,0,0,.85);
+    border:1px solid #444;
+    padding:8px;
+    font-size:12px;
+    color:#ddd;
+    border-radius:6px;
+    white-space:nowrap;
+    z-index:1000;
+}
+</style>
 </head>
 
 <body>
 
-	<div id="toolbar">
-		<select id="marketSelect"></select>
-		<select id="sectorSelect"></select>
-		<select id="symbolSelect"></select>
+<div id="toolbar">
+    <select id="marketSelect"></select>
+    <select id="sectorSelect"></select>
+    <select id="symbolSelect"></select>
 
-		<button data-interval="daily" class="active">日足</button>
-		<button data-interval="weekly">週足</button>
-		<button data-interval="monthly">月足</button>
-	</div>
+    <button data-interval="daily" class="active">日足</button>
+    <button data-interval="weekly">週足</button>
+    <button data-interval="monthly">月足</button>
+</div>
 
-	<div id="ohlcBar" class="info-bar">
-		<span id="dateLabel">----</span> ｜ 始値:<span id="openLabel">-</span> 高値:
-		<span id="highLabel">-</span> 安値:
-		<span id="lowLabel">-</span> 終値:
-		<span id="closeLabel">-</span> 出来高:
-		<span id="volumeLabel">-</span>
-	</div>
+<div class="info-bar">
+<span id="dateLabel">----</span>｜
+始値:<span id="openLabel">-</span>
+高値:<span id="highLabel">-</span>
+安値:<span id="lowLabel">-</span>
+終値:<span id="closeLabel">-</span>
+出来高:<span id="volumeLabel">-</span>
+</div>
 
-	<div id="maBar" class="info-bar">
-		<span id="maLegend"></span>
-	</div>
+<div class="info-bar">
+<span id="maLegend"></span>
+</div>
 
-	<div id="chart"></div>
-	<div id="tooltip"></div>
+<div id="chart"></div>
+<div id="tooltip"></div>
 
-	<script>
-		/* ========= 可変設定 ========= */
-		/* ★ここだけ変えれば本数変更OK */
-		const MA_CONFIG = [
-			/*
-			{
-				period: 12,
-				color: "#ff9800"
-			},
-			{
-				period: 24,
-				color: "#03a9f4"
-			},
-			*/
-			{
-				period: 5,
-				color: "#e91e63"
-			}
-		];
-		/* ============================ */
+<script>
 
-		const el = id => document.getElementById(id);
+/* ========= CONFIG ========= */
+const MA_CONFIG = [
+    { period:12, color:"#e91e63" },
+    { period:24, color:"#03a9f4" },
+    { period:36, color:"#ff9800" }
+];
 
-		/* ========= DOM ========= */
-		const labels = {
-			date: el("dateLabel"),
-			open: el("openLabel"),
-			high: el("highLabel"),
-			low: el("lowLabel"),
-			close: el("closeLabel"),
-			volume: el("volumeLabel"),
-			tooltip: el("tooltip"),
-			legend: el("maLegend"),
-			marketSelect: el("marketSelect"),
-			sectorSelect: el("sectorSelect"),
-			symbolSelect: el("symbolSelect"),
-			maVals: [],
-			maDevs: []
-		};
+/* ========= HELPERS ========= */
+const $ = id => document.getElementById(id);
+const isValid = v => v !== "-" && v !== undefined && v !== null;
+const formatDev = d => ({
+    text:(d>=0?"+":"")+d.toFixed(1)+"%",
+    color:d>=0?"#4caf50":"#ef5350"
+});
 
-		/* Legend生成（自動） */
-		MA_CONFIG.forEach((m, i) => {
-			const idx = i + 1;
-			labels.legend.insertAdjacentHTML("beforeend",
-				`<span style="color:${m.color}">
-		■移動平均(${m.period})
-		</span>:<span id="ma${idx}Val">-</span>
-		(<span id="ma${idx}Dev">-</span>) `
-			);
-			labels.maVals.push(el(`ma${idx}Val`));
-			labels.maDevs.push(el(`ma${idx}Dev`));
-		});
+/* ========= DOM CACHE ========= */
+const UI={
+    date:$("dateLabel"),
+    open:$("openLabel"),
+    high:$("highLabel"),
+    low:$("lowLabel"),
+    close:$("closeLabel"),
+    volume:$("volumeLabel"),
+    tooltip:$("tooltip"),
+    legend:$("maLegend"),
+    market:$("marketSelect"),
+    sector:$("sectorSelect"),
+    symbol:$("symbolSelect"),
+    maVals:[],
+    maDevs:[]
+};
 
-		/* ========= State ========= */
-		const state = {
-			config: null,
-			market: null,
-			sector: null,
-			symbol: null,
-			interval: "daily"
-		};
+/* Legend生成 */
+MA_CONFIG.forEach((m,i)=>{
+    const idx=i+1;
+    UI.legend.insertAdjacentHTML("beforeend",
+`<span style="color:${m.color}">■MA(${m.period})</span>:
+<span id="ma${idx}Val">-</span>
+(<span id="ma${idx}Dev">-</span>) `
+    );
+    UI.maVals.push($(`ma${idx}Val`));
+    UI.maDevs.push($(`ma${idx}Dev`));
+});
 
-		/* ========= Chart ========= */
-		const chart = LightweightCharts.createChart(el("chart"), {
-			layout: {
-				background: {
-					color: "#111"
-				},
-				textColor: "#ddd"
-			},
-			grid: {
-				vertLines: {
-					color: "#222"
-				},
-				horzLines: {
-					color: "#222"
-				}
-			},
-			rightPriceScale: {
-				scaleMargins: {
-					top: .1,
-					bottom: .3
-				}
-			},
-			timeScale: {
-				timeVisible: true
-			},
-			crosshair: {
-				mode: LightweightCharts.CrosshairMode.Normal
-			}
-		});
+/* ========= STATE ========= */
+const STATE={
+    config:null,
+    market:null,
+    sector:null,
+    symbol:null,
+    interval:"daily",
+    rawData:null
+};
 
-		const candleSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {
-			upColor: "#4caf50",
-			downColor: "#ef5350",
-			borderUpColor: "#4caf50",
-			borderDownColor: "#ef5350",
-			wickUpColor: "#4caf50",
-			wickDownColor: "#ef5350"
-		});
+/* ========= CHART ========= */
+const chart=LightweightCharts.createChart($("chart"),{
+    layout:{background:{color:"#111"},textColor:"#ddd"},
+    grid:{vertLines:{color:"#222"},horzLines:{color:"#222"}},
+    rightPriceScale:{scaleMargins:{top:.1,bottom:.3}},
+    timeScale:{timeVisible:true},
+    crosshair:{mode:LightweightCharts.CrosshairMode.Normal}
+});
 
-		const volumeSeries = chart.addSeries(LightweightCharts.HistogramSeries, {
-			priceFormat: {
-				type: "volume"
-			},
-			priceScaleId: ""
-		});
-		volumeSeries.priceScale().applyOptions({
-			scaleMargins: {
-				top: .75,
-				bottom: 0
-			}
-		});
+const candleSeries=chart.addSeries(LightweightCharts.CandlestickSeries,{
+    upColor:"#4caf50",
+    downColor:"#ef5350",
+    borderUpColor:"#4caf50",
+    borderDownColor:"#ef5350",
+    wickUpColor:"#4caf50",
+    wickDownColor:"#ef5350"
+});
 
-		/* MA Series生成 */
-		const maSeries = MA_CONFIG.map(cfg =>
-			chart.addSeries(LightweightCharts.LineSeries, {
-				color: cfg.color,
-				lineWidth: 1,
-				lastValueVisible: false,
-				priceLineVisible: false
-			})
-		);
+const volumeSeries=chart.addSeries(LightweightCharts.HistogramSeries,{
+    priceFormat:{type:"volume"},
+    priceScaleId:""
+});
+volumeSeries.priceScale().applyOptions({scaleMargins:{top:.75,bottom:0}});
 
-		/* ========= Utils ========= */
-		function calcSMA(data, period) {
-			const out = [];
-			for (let i = period - 1; i < data.length; i++) {
-				const avg = data.slice(i - period + 1, i + 1)
-					.reduce((s, d) => s + d.close, 0) / period;
-				out.push({
-					time: data[i].time,
-					value: avg
-				});
-			}
-			return out;
-		}
+const maSeries=MA_CONFIG.map(cfg =>
+    chart.addSeries(LightweightCharts.LineSeries,{
+        color:cfg.color,
+        lineWidth:1,
+        lastValueVisible:false,
+        priceLineVisible:false
+    })
+);
 
-		const deviation = (c, m) => m ? ((c / m - 1) * 100) : null;
+/* ========= JSON→MAライン変換 ========= */
+function buildMALine(data,period){
+    const key="ma"+period;
+    return data
+        .filter(d=>isValid(d[key]))
+        .map(d=>({time:d.time,value:d[key]}));
+}
 
-		function formatMA(val, dev) {
-			if (dev === null || isNaN(dev))
-				return {
-					v: "-",
-					d: "-",
-					c: "#aaa"
-				};
-			return {
-				v: val,
-				d: (dev >= 0 ? "+" : "") + dev.toFixed(1) + "%",
-				c: dev >= 0 ? "#4caf50" : "#ef5350"
-			};
-		}
+/* ========= UI更新 ========= */
+function updateHeader(row){
+    UI.date.textContent=row.time;
+    UI.open.textContent=row.open;
+    UI.high.textContent=row.high;
+    UI.low.textContent=row.low;
+    UI.close.textContent=row.close;
+    UI.volume.textContent=row.volume.toLocaleString();
 
-		/* ========= Crosshair ========= */
-		chart.subscribeCrosshairMove(param => {
-			if (!param?.time || !param?.point) {
-				labels.tooltip.style.display = "none";
-				return;
-			}
-			const candle = param.seriesData.get(candleSeries);
-			if (!candle) {
-				labels.tooltip.style.display = "none";
-				return;
-			}
-			const volume = param.seriesData.get(volumeSeries);
+    MA_CONFIG.forEach((cfg,i)=>{
+        const v=row["ma"+cfg.period];
+        const d=row["dev"+cfg.period];
 
-			let tooltipHTML = `
-<div><strong>${param.time}</strong></div>
-<div>始値:${candle.open.toFixed(0)}</div>
-<div>高値:${candle.high.toFixed(0)}</div>
-<div>安値:${candle.low.toFixed(0)}</div>
-<div>終値:${candle.close.toFixed(0)}</div>
-<div>出来高:${volume?volume.value.toLocaleString():"-"}</div>
+        if(isValid(v) && isValid(d)){
+            const f=formatDev(d);
+            UI.maVals[i].textContent=v;
+            UI.maDevs[i].textContent=f.text;
+            UI.maDevs[i].style.color=f.color;
+        }else{
+            UI.maVals[i].textContent="-";
+            UI.maDevs[i].textContent="-";
+        }
+    });
+}
+
+/* ========= TOOLTIP ========= */
+chart.subscribeCrosshairMove(param=>{
+    if(!param?.time||!param?.point){ UI.tooltip.style.display="none"; return;}
+
+    const idx=STATE.rawData.findIndex(d=>d.time===param.time);
+    if(idx<0) return;
+
+    const row=STATE.rawData[idx];
+    updateHeader(row);
+
+    let html=`
+<div><strong>${row.time}</strong></div>
+<div>始値:${row.open}</div>
+<div>高値:${row.high}</div>
+<div>安値:${row.low}</div>
+<div>終値:${row.close}</div>
+<div>出来高:${row.volume.toLocaleString()}</div>
 `;
 
-			MA_CONFIG.forEach((cfg, i) => {
-				const val = param.seriesData.get(maSeries[i])?.value;
-				const f = formatMA(
-					val ? val.toFixed(0) : null,
-					val ? deviation(candle.close, val) : null
-				);
-				labels.maVals[i].textContent = f.v;
-				labels.maDevs[i].textContent = f.d;
-				labels.maDevs[i].style.color = f.c;
+    MA_CONFIG.forEach(cfg=>{
+        const v=row["ma"+cfg.period];
+        const d=row["dev"+cfg.period];
+        if(isValid(v)&&isValid(d)){
+            const f=formatDev(d);
+            html+=`<div>MA${cfg.period}:${v}
+(<span style="color:${f.color}">${f.text}</span>)</div>`;
+        }
+    });
 
-				tooltipHTML += `<div>MA${cfg.period}:${f.v}
-	(<span style="color:${f.c}">${f.d}</span>)</div>`;
-			});
+    UI.tooltip.innerHTML=html;
 
-			labels.date.textContent = param.time;
-			labels.open.textContent = candle.open.toFixed(0);
-			labels.high.textContent = candle.high.toFixed(0);
-			labels.low.textContent = candle.low.toFixed(0);
-			labels.close.textContent = candle.close.toFixed(0);
-			labels.volume.textContent = volume ? volume.value.toLocaleString() : "-";
+    const rect=$("chart").getBoundingClientRect();
+    UI.tooltip.style.left=rect.left+param.point.x+15+"px";
+    UI.tooltip.style.top=rect.top+param.point.y+15+"px";
+    UI.tooltip.style.display="block";
+});
 
-			labels.tooltip.innerHTML = tooltipHTML;
+/* ========= DATA LOAD ========= */
+async function loadChart(){
+    if(!STATE.symbol) return;
 
-			const rect = el("chart").getBoundingClientRect();
-			labels.tooltip.style.left = rect.left + param.point.x + 15 + "px";
-			labels.tooltip.style.top = rect.top + param.point.y + 15 + "px";
-			labels.tooltip.style.display = "block";
-		});
+    const path=`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`;
+    const data=await (await fetch(path)).json();
+    STATE.rawData=data;
 
-		/* ========= Data Loading ========= */
-		async function loadChartData() {
-			if (!state.symbol) return;
-			const path = `./data/${state.market}/${state.interval}/${state.symbol}.json`;
-			const res = await fetch(path);
-			const data = await res.json();
+    candleSeries.setData(data);
 
-			candleSeries.setData(data);
-			volumeSeries.setData(data.map(d => ({
-				time: d.time,
-				value: d.volume || 0,
-				color: d.close >= d.open ? "#4caf50aa" : "#ef5350aa"
-			})));
+    volumeSeries.setData(data.map(d=>({
+        time:d.time,
+        value:d.volume||0,
+        color:d.close>=d.open?"#4caf50aa":"#ef5350aa"
+    })));
 
-			const maData = MA_CONFIG.map(cfg => calcSMA(data, cfg.period));
-			maData.forEach((m, i) => maSeries[i].setData(m));
+    MA_CONFIG.forEach((cfg,i)=>{
+        maSeries[i].setData(buildMALine(data,cfg.period));
+    });
 
-			if (data.length > 150)
-				chart.timeScale().setVisibleRange({
-					from: data[data.length - 150].time,
-					to: data[data.length - 1].time
-				});
+    if(data.length>150){
+        chart.timeScale().setVisibleRange({
+            from:data.at(-150).time,
+            to:data.at(-1).time
+        });
+    }
 
-			const last = data.at(-1);
-			if (!last) return;
+    updateHeader(data.at(-1));
+}
 
-			labels.date.textContent = last.time;
-			labels.open.textContent = last.open.toFixed(0);
-			labels.high.textContent = last.high.toFixed(0);
-			labels.low.textContent = last.low.toFixed(0);
-			labels.close.textContent = last.close.toFixed(0);
-			labels.volume.textContent = last.volume.toLocaleString();
+/* ========= DROPDOWN ========= */
+function populateMarkets(){
+    UI.market.innerHTML="";
+    STATE.config.markets.forEach(m=>{
+        UI.market.appendChild(new Option(m.name,m.market));
+    });
+    STATE.market=STATE.config.markets[0].market;
+    populateSectors();
+}
 
-			MA_CONFIG.forEach((cfg, i) => {
-				const lastMA = maData[i].at(-1)?.value;
-				const f = formatMA(
-					lastMA ? lastMA.toFixed(0) : null,
-					lastMA ? deviation(last.close, lastMA) : null
-				);
-				labels.maVals[i].textContent = f.v;
-				labels.maDevs[i].textContent = f.d;
-				labels.maDevs[i].style.color = f.c;
-			});
-		}
+function populateSectors(){
+    const m=STATE.config.markets.find(x=>x.market===STATE.market);
+    UI.sector.innerHTML="";
+    m.sectors.forEach(s=>{
+        UI.sector.appendChild(new Option(s.name,s.code));
+    });
+    STATE.sector=m.sectors[0].code;
+    populateSymbols();
+}
 
-		/* ========= Dropdown (変更なし) ========= */
-		function populateMarkets() {
-			labels.marketSelect.innerHTML = "";
-			state.config.markets.forEach(m => {
-				labels.marketSelect.appendChild(new Option(m.name, m.market));
-			});
-			state.market = state.config.markets[0].market;
-			populateSectors();
-		}
+function populateSymbols(){
+    const m=STATE.config.markets.find(x=>x.market===STATE.market);
+    const s=m.sectors.find(x=>x.code===STATE.sector);
+    UI.symbol.innerHTML="";
+    s.symbols.forEach(sym=>{
+        UI.symbol.appendChild(new Option(`${sym.code} ${sym.name}`,sym.code));
+    });
+    STATE.symbol=s.symbols[0].code;
+    loadChart();
+}
 
-		function populateSectors() {
-			const market = state.config.markets.find(m => m.market === state.market);
-			labels.sectorSelect.innerHTML = "";
-			market.sectors.forEach(s => {
-				labels.sectorSelect.appendChild(new Option(s.name, s.code));
-			});
-			state.sector = market.sectors[0].code;
-			populateSymbols();
-		}
+/* ========= EVENTS ========= */
+UI.market.onchange=e=>{STATE.market=e.target.value;populateSectors();};
+UI.sector.onchange=e=>{STATE.sector=e.target.value;populateSymbols();};
+UI.symbol.onchange=e=>{STATE.symbol=e.target.value;loadChart();};
 
-		function populateSymbols() {
-			const market = state.config.markets.find(m => m.market === state.market);
-			const sector = market.sectors.find(s => s.code === state.sector);
-			labels.symbolSelect.innerHTML = "";
-			sector.symbols.forEach(sym => {
-				labels.symbolSelect.appendChild(new Option(`${sym.code} ${sym.name}`, sym.code));
-			});
-			state.symbol = sector.symbols[0].code;
-			loadChartData();
-		}
+document.querySelectorAll("button[data-interval]").forEach(btn=>{
+    btn.onclick=()=>{
+        document.querySelectorAll("button[data-interval]").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        STATE.interval=btn.dataset.interval;
+        loadChart();
+    };
+});
 
-		/* ========= Events ========= */
-		labels.marketSelect.onchange = e => {
-			state.market = e.target.value;
-			populateSectors();
-		};
-		labels.sectorSelect.onchange = e => {
-			state.sector = e.target.value;
-			populateSymbols();
-		};
-		labels.symbolSelect.onchange = e => {
-			state.symbol = e.target.value;
-			loadChartData();
-		};
+/* ========= INIT ========= */
+fetch("./symbols.json")
+.then(r=>r.json())
+.then(cfg=>{
+    STATE.config=cfg;
+    populateMarkets();
+});
 
-		document.querySelectorAll("button[data-interval]").forEach(btn => {
-			btn.onclick = () => {
-				document.querySelectorAll("button[data-interval]")
-					.forEach(b => b.classList.remove("active"));
-				btn.classList.add("active");
-				state.interval = btn.dataset.interval;
-				loadChartData();
-			};
-		});
-
-		/* ========= Init ========= */
-		fetch("./symbols.json")
-			.then(r => r.json())
-			.then(cfg => {
-				state.config = cfg;
-				populateMarkets();
-			});
-	</script>
+</script>
 </body>
-
 </html>
