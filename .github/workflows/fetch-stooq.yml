@@ -93,8 +93,8 @@ jobs:
                                   if i < 4:
                                       records[i]["ma5"] = "-"
                                   else:
-                                  ma = sum(closes[i-4:i+1]) / 5
-                                  records[i]["ma5"] = round(ma, 4)
+                                      ma = sum(closes[i-4:i+1]) / 5
+                                      records[i]["ma5"] = round(ma, 4)
 
                               with open(json_path, 'w', encoding='utf-8') as f:
                                   json.dump(records, f, indent=2, ensure_ascii=False)
