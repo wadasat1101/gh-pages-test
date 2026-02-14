@@ -7,6 +7,14 @@
       "suffix": ".jp",
       "sectors": [
 
+        { "code": "FISH", "name": "水産・農林業", "symbols": [
+          { "code": "1332", "name": "ニッスイ" },
+          { "code": "1333", "name": "マルハニチロ" },
+          { "code": "1377", "name": "サカタのタネ" },
+          { "code": "1379", "name": "ホクト" },
+          { "code": "1381", "name": "アクシーズ" }
+        ]},
+        
         { "code": "SERVICE", "name": "サービス業", "symbols": [
           { "code": "4751", "name": "サイバーエージェント" }
         ]}
