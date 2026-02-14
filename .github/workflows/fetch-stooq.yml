@@ -83,7 +83,8 @@ jobs:
                                           "high": float(row["Najwyzszy"]),
                                           "low": float(row["Najnizszy"]),
                                           "close": float(row["Zamkniecie"]),
-                                          "volume": int(row["Wolumen"])
+                                          "volume": int(row["Wolumen"]),
+                                          "ma5": float("100")
                                       })
                                   except Exception:
                                       continue
