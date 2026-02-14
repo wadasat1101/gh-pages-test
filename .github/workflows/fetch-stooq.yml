@@ -90,8 +90,11 @@ jobs:
                                       continue
                               
 
-
                               # ---- 移動平均計算 ----
+                              if not records:
+                                  print("No data returned")
+                                  continue;
+                              
                               periods = [12, 24, 36]
                               sums = {p: 0 for p in periods}
 
@@ -101,12 +104,12 @@ jobs:
                                   price = closes[i]
 
                                   for p in periods:
+                                      key = f"ma{p}"
                                       sums[p] += price
 
                                       if i >= p:
                                           sums[p] -= closes[i - p]
 
-                                          key = f"ma{p}"
                                       if i < p - 1:
                                           records[i][key] = "-"
                                       else:
@@ -135,4 +138,4 @@ jobs:
           git config user.email "github-actions@github.com"
           git add data/
           git commit -m "Update stock data (JP & US / daily weekly monthly)" || echo "No changes"
-          git push origin HEAD --force
+          git push
