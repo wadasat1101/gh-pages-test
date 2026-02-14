@@ -79,10 +79,10 @@ jobs:
                                   try:
                                       records.append({
                                           "time": row["Data"],
-                                          "open": int(row["Otwarcie"]),
-                                          "high": int(row["Najwyzszy"]),
-                                          "low": int(row["Najnizszy"]),
-                                          "close": int(row["Zamkniecie"]),
+                                          "open": float(row["Otwarcie"]),
+                                          "high": float(row["Najwyzszy"]),
+                                          "low": float(row["Najnizszy"]),
+                                          "close": float(row["Zamkniecie"]),
                                           "volume": int(row["Wolumen"])
                                       })
                                   except Exception:
