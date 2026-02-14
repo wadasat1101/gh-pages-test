@@ -109,5 +109,4 @@ jobs:
           git config user.email "github-actions@github.com"
           git add data/
           git commit -m "Update stock data (JP & US / daily weekly monthly)" || echo "No changes"
-          git pull --rebase origin main
-          git push origin main
+          git push origin HEAD --force
