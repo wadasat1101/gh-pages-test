@@ -90,9 +90,9 @@ jobs:
                               
 
                               # ---- 移動平均計算 ----
-                              if not records:
-                                  print("No data returned")
-                                  continue;
+                              #if not records:
+                              #    print("No data returned")
+                              #    continue;
                               
                               periods = [12, 24, 36]
                               sums = {p: 0 for p in periods}
