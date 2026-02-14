@@ -83,14 +83,6 @@ jobs:
                                           "high": int(row["Najwyzszy"]),
                                           "low": int(row["Najnizszy"]),
                                           "close": int(row["Zamkniecie"]),
-                                          #"open": float(row["Otwarcie"]),
-                                          #"high": float(row["Najwyzszy"]),
-                                          #"low": float(row["Najnizszy"]),
-                                          #"close": float(row["Zamkniecie"]),
-                                          #"open": round(float(row["Otwarcie"]), 0),
-                                          #"high": round(float(row["Najwyzszy"]), 0),
-                                          #"low": round(float(row["Najnizszy"]), 0),
-                                          #"close": round(float(row["Zamkniecie"]), 0),
                                           "volume": int(row["Wolumen"])
                                       })
                                   except Exception:
