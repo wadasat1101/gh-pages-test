@@ -104,7 +104,7 @@ jobs:
 
                                   for p in periods:
                                       ma_key = f"ma{p}"
-									  dev_key = f"dev{p}"
+                                      dev_key = f"dev{p}"
                                       sums[p] += price
 
                                       if i >= p:
@@ -112,7 +112,7 @@ jobs:
 
                                       if i < p - 1:
                                           records[i][ma_key] = "-"
-										  records[i][dev_key] = "-"
+                                          records[i][dev_key] = "-"
                                       else:
                                           ma = sums[p] / p
                                           records[i][ma_key] = round(ma, 0)
