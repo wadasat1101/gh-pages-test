@@ -1,0 +1,284 @@
+{
+  "source": "stooq",
+  "markets": [
+    {
+      "market": "JP",
+      "name": "日本株",
+      "suffix": ".jp",
+      "sectors": [
+
+        { "code": "FISH", "name": "水産・農林業", "symbols": [
+          { "code": "1301", "name": "極洋" },
+          { "code": "1375", "name": "雪国まいたけ" },
+          { "code": "1382", "name": "ホーブ" },
+          { "code": "1383", "name": "ベルグアース" },
+          { "code": "1384", "name": "ホクリヨウ" }
+        ]},
+
+        { "code": "MINING", "name": "鉱業", "symbols": [
+          { "code": "1515", "name": "日鉄鉱業" },
+          { "code": "1518", "name": "三井松島HD" },
+          { "code": "1514", "name": "住石HD" },
+          { "code": "1606", "name": "日本海洋掘削" },
+          { "code": "1660", "name": "石油資源開発系開発" }
+        ]},
+
+        { "code": "CONSTRUCTION", "name": "建設業", "symbols": [
+          { "code": "1721", "name": "コムシスHD" },
+          { "code": "1808", "name": "長谷工コーポ" },
+          { "code": "1820", "name": "西松建設" },
+          { "code": "1833", "name": "奥村組" },
+          { "code": "1861", "name": "熊谷組" }
+        ]},
+
+        { "code": "FOOD", "name": "食料品", "symbols": [
+          { "code": "2801", "name": "キッコーマン" },
+          { "code": "2810", "name": "ハウス食品G本社" },
+          { "code": "2269", "name": "明治HD" },
+          { "code": "2282", "name": "日本ハム" },
+          { "code": "2897", "name": "日清食品HD" }
+        ]},
+
+        { "code": "TEXTILE", "name": "繊維製品", "symbols": [
+          { "code": "3401", "name": "帝人" },
+          { "code": "3105", "name": "日清紡HD" },
+          { "code": "3529", "name": "アツギ" },
+          { "code": "3608", "name": "TSI HD" },
+          { "code": "3580", "name": "小松マテーレ" }
+        ]},
+
+        { "code": "PAPER", "name": "パルプ・紙", "symbols": [
+          { "code": "3950", "name": "ザ・パック" },
+          { "code": "3955", "name": "イムラ封筒" },
+          { "code": "3896", "name": "阿波製紙" },
+          { "code": "3891", "name": "ニッポン高度紙工業" },
+          { "code": "3877", "name": "中越パルプ工業" }
+        ]},
+
+        { "code": "CHEM", "name": "化学", "symbols": [
+          { "code": "4005", "name": "住友化学" },
+          { "code": "4021", "name": "日産化学" },
+          { "code": "4042", "name": "東ソー" },
+          { "code": "4183", "name": "三井化学" },
+          { "code": "4204", "name": "積水化学工業" }
+        ]},
+
+        { "code": "PHARMA", "name": "医薬品", "symbols": [
+          { "code": "4506", "name": "住友ファーマ" },
+          { "code": "4578", "name": "大塚HD" },
+          { "code": "4552", "name": "JCRファーマ" },
+          { "code": "4592", "name": "サンバイオ" },
+          { "code": "4574", "name": "大幸薬品" }
+        ]},
+
+        { "code": "OIL", "name": "石油・石炭製品", "symbols": [
+          { "code": "5015", "name": "ビーピー・カストロール" },
+          { "code": "5013", "name": "ユシロ化学" },
+          { "code": "5008", "name": "東亜石油" },
+          { "code": "5010", "name": "日本精蝋" },
+          { "code": "5023", "name": "コスモHD系" }
+        ]},
+
+        { "code": "RUBBER", "name": "ゴム製品", "symbols": [
+          { "code": "5121", "name": "藤倉コンポジット" },
+          { "code": "5161", "name": "西川ゴム工業" },
+          { "code": "5185", "name": "フコク" },
+          { "code": "5162", "name": "朝日ラバー" },
+          { "code": "5192", "name": "三ツ星ベルト" }
+        ]},
+
+        { "code": "GLASS", "name": "ガラス・土石製品", "symbols": [
+          { "code": "5214", "name": "日本電気硝子" },
+          { "code": "5210", "name": "日本山村硝子" },
+          { "code": "5301", "name": "東海カーボン" },
+          { "code": "5357", "name": "ヨータイ" },
+          { "code": "5367", "name": "ニッカトー" }
+        ]},
+
+        { "code": "STEEL", "name": "鉄鋼", "symbols": [
+          { "code": "5423", "name": "東京製鐵" },
+          { "code": "5440", "name": "共英製鋼" },
+          { "code": "5463", "name": "丸一鋼管" },
+          { "code": "5471", "name": "大同特殊鋼" },
+          { "code": "5481", "name": "山陽特殊製鋼" }
+        ]},
+
+        { "code": "NONFERROUS", "name": "非鉄金属", "symbols": [
+          { "code": "5714", "name": "DOWA HD" },
+          { "code": "5726", "name": "大阪チタニウム" },
+          { "code": "5727", "name": "東邦チタニウム" },
+          { "code": "5741", "name": "UACJ" },
+          { "code": "5757", "name": "CKサンエツ" }
+        ]},
+
+        { "code": "MACHINERY", "name": "機械", "symbols": [
+          { "code": "6103", "name": "オークマ" },
+          { "code": "6113", "name": "アマダ" },
+          { "code": "6135", "name": "牧野フライス" },
+          { "code": "6141", "name": "DMG森精機" },
+          { "code": "6201", "name": "豊田自動織機" }
+        ]},
+
+        { "code": "ELEC", "name": "電気機器", "symbols": [
+          { "code": "6503", "name": "三菱電機" },
+          { "code": "6702", "name": "富士通" },
+          { "code": "6752", "name": "パナソニックHD" },
+          { "code": "6762", "name": "TDK" },
+          { "code": "6841", "name": "横河電機" }
+        ]},
+
+        { "code": "AUTO", "name": "輸送用機器", "symbols": [
+          { "code": "7270", "name": "SUBARU" },
+          { "code": "7240", "name": "NOK" },
+          { "code": "7259", "name": "アイシン" },
+          { "code": "7272", "name": "ヤマハ発動機" },
+          { "code": "7282", "name": "豊田合成" }
+        ]},
+
+        { "code": "PRECISION", "name": "精密機器", "symbols": [
+          { "code": "7701", "name": "島津製作所" },
+          { "code": "7716", "name": "ナカニシ" },
+          { "code": "7721", "name": "東京計器" },
+          { "code": "7747", "name": "朝日インテック" },
+          { "code": "7752", "name": "リコー" }
+        ]},
+
+        { "code": "OTHERPROD", "name": "その他製品", "symbols": [
+          { "code": "7817", "name": "パラマウントベッドHD" },
+          { "code": "7846", "name": "パイロット" },
+          { "code": "7856", "name": "萩原工業" },
+          { "code": "7888", "name": "三光合成" },
+          { "code": "7990", "name": "グローブライド" }
+        ]},
+
+        { "code": "POWER", "name": "電気・ガス業", "symbols": [
+          { "code": "9504", "name": "中国電力" },
+          { "code": "9506", "name": "東北電力" },
+          { "code": "9513", "name": "電源開発" },
+          { "code": "9543", "name": "静岡ガス" },
+          { "code": "9551", "name": "メタウォーター" }
+        ]},
+
+        { "code": "RAIL", "name": "陸運業", "symbols": [
+          { "code": "9001", "name": "東武鉄道" },
+          { "code": "9003", "name": "相鉄HD" },
+          { "code": "9008", "name": "京王電鉄" },
+          { "code": "9031", "name": "西日本鉄道" },
+          { "code": "9064", "name": "ヤマトHD" }
+        ]},
+
+        { "code": "MARINE", "name": "海運業", "symbols": [
+          { "code": "9105", "name": "商船三井系LNG" },
+          { "code": "9127", "name": "玉井商船" },
+          { "code": "9130", "name": "共栄タンカー" },
+          { "code": "9131", "name": "日本海運" },
+          { "code": "9142", "name": "九州旅客船" }
+        ]},
+
+        { "code": "AIR", "name": "空運業", "symbols": [
+          { "code": "9203", "name": "AIRDO" },
+          { "code": "9205", "name": "JALUX" },
+          { "code": "9232", "name": "パスコ" },
+          { "code": "9234", "name": "国際航業" },
+          { "code": "9235", "name": "売航空支援" }
+        ]},
+
+        { "code": "WAREHOUSE", "name": "倉庫・運輸関連業", "symbols": [
+          { "code": "9310", "name": "日本トランスシティ" },
+          { "code": "9312", "name": "ケイヒン" },
+          { "code": "9324", "name": "安田倉庫" },
+          { "code": "9351", "name": "東洋埠頭" },
+          { "code": "9375", "name": "近鉄エクスプレス" }
+        ]},
+
+        { "code": "TECH", "name": "情報・通信業", "symbols": [
+          { "code": "9613", "name": "NTTデータG" },
+          { "code": "9697", "name": "カプコン" },
+          { "code": "9766", "name": "コナミG" },
+          { "code": "4307", "name": "野村総研" },
+          { "code": "3626", "name": "TIS" }
+        ]},
+
+        { "code": "WHOLESALE", "name": "卸売業", "symbols": [
+          { "code": "8002", "name": "丸紅" },
+          { "code": "8012", "name": "長瀬産業" },
+          { "code": "8020", "name": "兼松" },
+          { "code": "8078", "name": "阪和興業" },
+          { "code": "8129", "name": "東邦HD" }
+        ]},
+
+        { "code": "RETAIL", "name": "小売業", "symbols": [
+          { "code": "2651", "name": "ローソン" },
+          { "code": "2670", "name": "ABCマート" },
+          { "code": "2730", "name": "エディオン" },
+          { "code": "3048", "name": "ビックカメラ" },
+          { "code": "3197", "name": "すかいらーくHD" }
+        ]},
+
+        { "code": "BANK", "name": "銀行業", "symbols": [
+          { "code": "8331", "name": "千葉銀行" },
+          { "code": "8354", "name": "ふくおかFG" },
+          { "code": "8304", "name": "あおぞら銀行" },
+          { "code": "8369", "name": "京都銀行" },
+          { "code": "8385", "name": "伊予銀行" }
+        ]},
+
+        { "code": "SECURITY", "name": "証券・商品先物取引業", "symbols": [
+          { "code": "8707", "name": "岩井コスモHD" },
+          { "code": "8739", "name": "スパークスG" },
+          { "code": "8742", "name": "小林洋行" },
+          { "code": "8706", "name": "極東証券" },
+          { "code": "8737", "name": "あかつき本社" }
+        ]},
+
+        { "code": "INSURANCE", "name": "保険業", "symbols": [
+          { "code": "7157", "name": "ライフネット生命" },
+          { "code": "7181", "name": "かんぽ生命" },
+          { "code": "7325", "name": "アイリック" },
+          { "code": "7326", "name": "SBIインシュアランスG" },
+          { "code": "7342", "name": "ウェルスナビ保険系" }
+        ]},
+
+        { "code": "OTHERFIN", "name": "その他金融業", "symbols": [
+          { "code": "8515", "name": "アイフル" },
+          { "code": "8566", "name": "リコーリース" },
+          { "code": "8591", "name": "オリックス" },
+          { "code": "8593", "name": "三菱HCキャピタル" },
+          { "code": "8600", "name": "トモニHD" }
+        ]},
+
+        { "code": "REALESTATE", "name": "不動産業", "symbols": [
+          { "code": "8848", "name": "レオパレス21" },
+          { "code": "8897", "name": "MIRARTH HD" },
+          { "code": "8923", "name": "トーセイ" },
+          { "code": "8972", "name": "KDX不動産投資法人" },
+          { "code": "8984", "name": "大和ハウスREIT" }
+        ]},
+
+        { "code": "SERVICE", "name": "サービス業", "symbols": [
+          { "code": "2127", "name": "日本M&Aセンター" },
+          { "code": "2371", "name": "カカクコム" },
+          { "code": "2471", "name": "エスプール" },
+          { "code": "4348", "name": "インフォコム" },
+          { "code": "6028", "name": "テクノプロHD" }
+        ]}
+
+      ]
+    },
+
+    {
+      "market": "US",
+      "name": "米国市場",
+      "suffix": "",
+      "sectors": [
+        {
+          "code": "INDEX",
+          "name": "株価指数",
+          "symbols": [
+            { "code": "^SPX", "name": "S&P 500", "stooq": "^spx" }
+          ]
+        }
+      ]
+    }
+  ]
+}

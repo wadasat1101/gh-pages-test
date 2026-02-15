@@ -26,7 +26,7 @@ jobs:
           import os
           import io
 
-          SYMBOLS_FILE = 'symbols.json'
+          SYMBOLS_FILE = 'symbols1.json'
           OUTPUT_DIR = 'data'
           SLEEP_SEC = 5
           INTERVALS = {

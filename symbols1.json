@@ -275,11 +275,7 @@
           "code": "INDEX",
           "name": "株価指数",
           "symbols": [
-            {
-              "code": "^SPX",
-              "name": "S&P 500",
-              "stooq": "^spx"
-            }
+            { "code": "^DJI", "name": "NYダウ", "stooq": "^dji" }
           ]
         }
       ]
