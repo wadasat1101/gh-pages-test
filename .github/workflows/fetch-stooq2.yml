@@ -1,4 +1,4 @@
-name: Fetch Stooq Data
+name: Fetch Stooq Data 2
 
 on:
   schedule:
