@@ -16,6 +16,22 @@
     "dev36": -44.6
   },
   {
+    "symbol": "3901",
+    "market": "JP",
+    "timeframe": "monthly",
+    "date": "2026-02-28",
+    "close": 1464,
+    "dev36": -41.3
+  },
+  {
+    "symbol": "4849",
+    "market": "JP",
+    "timeframe": "monthly",
+    "date": "2026-02-28",
+    "close": 1424,
+    "dev36": -34.2
+  },
+  {
     "symbol": "4568",
     "market": "JP",
     "timeframe": "monthly",
