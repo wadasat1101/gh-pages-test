@@ -535,19 +535,48 @@ SELL ${row.time} @${price}
 					loadChart();
 				};
 			});
+		
+		Promise.all([
+			fetch("./symbols1.json").then(r => r.json()),
+			fetch("./symbols2.json").then(r => r.json()),
+		])
+		.then((configs) => {
+			// configs は [cfg1, cfg2, cfg3] の配列
+			const mergedMarketsMap = new Map();
 
-		fetch("./symbols1.json")
-			.then(r => r.json())
-			.then(cfg => {
-				STATE.config = cfg;
-				populateMarkets();
+			configs.forEach(cfg => {
+				cfg.markets.forEach(m => {
+					if (mergedMarketsMap.has(m.market)) {
+						const existing = mergedMarketsMap.get(m.market);
+
+						// sectorsをコードでマージ
+						const sectorMap = new Map();
+						existing.sectors.forEach(s => sectorMap.set(s.code, {...s}));
+						m.sectors.forEach(s => {
+							if (sectorMap.has(s.code)) {
+								// symbols をマージ（code で重複排除）
+								const existingSymbols = sectorMap.get(s.code).symbols || [];
+								const symbolMap = new Map();
+								existingSymbols.forEach(sym => symbolMap.set(sym.code, sym));
+								s.symbols.forEach(sym => symbolMap.set(sym.code, sym));
+								sectorMap.get(s.code).symbols = Array.from(symbolMap.values());
+							} else {
+								sectorMap.set(s.code, {...s});
+							}
+						});
+
+						existing.sectors = Array.from(sectorMap.values());
+					} else {
+						mergedMarketsMap.set(m.market, {...m});
+					}
+				});
 			});
-		fetch("./symbols1.json")
-			.then(r => r.json())
-			.then(cfg => {
-				STATE.config = cfg;
-				populateMarkets();
-			});
+
+			STATE.config = { markets: Array.from(mergedMarketsMap.values()) };
+			populateMarkets();  // 1回だけ呼ぶ
+		})
+		.catch(err => console.error("JSON読み込みエラー:", err));
+
 	</script>
 </body>
 </html>
