@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "symbol": "9204",
+    "market": "JP",
+    "timeframe": "monthly",
+    "date": "2026-02-28",
+    "close": 379,
+    "dev36": -50.2
+  },
+  {
+    "symbol": "9235",
+    "market": "JP",
+    "timeframe": "weekly",
+    "date": "2026-02-15",
+    "close": 615,
+    "dev36": -44.6
+  },
+  {
+    "symbol": "4568",
+    "market": "JP",
+    "timeframe": "monthly",
+    "date": "2026-02-28",
+    "close": 2906,
+    "dev36": -32.1
+  },
+  {
+    "symbol": "4661",
+    "market": "JP",
+    "timeframe": "monthly",
+    "date": "2026-02-28",
+    "close": 2813.5,
+    "dev36": -30.8
+  }
+]
