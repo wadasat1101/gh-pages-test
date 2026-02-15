@@ -124,6 +124,36 @@
 			white-space: nowrap;
 			z-index: 1000
 		}
+		
+		/* ===== TAB UI ===== */
+		.tab-bar{
+			display:flex;
+			gap:4px;
+			margin-bottom:8px;
+		}
+
+		.tab-btn{
+			flex:1;
+			padding:6px;
+			cursor:pointer;
+			background:#222;
+			border-radius:4px;
+			text-align:center;
+		}
+
+		.tab-btn.active{
+			background:#4caf50;
+			color:#000;
+		}
+
+		.tab-content{
+			display:none;
+		}
+
+		.tab-content.active{
+			display:block;
+		}
+
 	</style>
 </head>
 
@@ -153,28 +183,45 @@
 
 	<div id="main">
 		<div id="chart"></div>
-
 		<div id="simPanel">
-			<h3>売買シミュレーション</h3>
-
-			<div class="sim-group">
-				<label>購入条件（36MA乖離率 ≤ %）</label>
-				<input id="buyDev" value="-30">
+			<!-- ===== タブ切り替え ===== -->
+			<div class="tab-bar">
+				<div class="tab-btn active" data-tab="simTab">売買シミュ</div>
+				<div class="tab-btn" data-tab="signalTab">シグナル</div>
 			</div>
-
-			<div class="sim-group">
-				<label>購入金額（円）</label>
-				<input id="buyAmount" value="10000">
+			<!-- ===== シミュ ===== -->
+			<div id="simTab" class="tab-content active">
+				<h3>売買シミュレーション</h3>
+				<div class="sim-group">
+					<label>購入条件（36MA乖離率 ≤ %）</label>
+					<input id="buyDev" value="-30">
+				</div>
+				<div class="sim-group">
+					<label>購入金額（円）</label>
+					<input id="buyAmount" value="10000">
+				</div>
+				<div class="sim-group">
+					<label>売却条件（36MA乖離率 ≥ %）</label>
+					<input id="sellDev" value="30">
+				</div>
+				<button id="runSim">シミュレーション開始</button>
+				<button id="clearSim">クリア</button>
+				<div id="result"></div>
 			</div>
-
-			<div class="sim-group">
-				<label>売却条件（36MA乖離率 ≥ %）</label>
-				<input id="sellDev" value="30">
+			<!-- ===== シグナル ===== -->
+			<div id="signalTab" class="tab-content">
+				<h3>シグナル銘柄</h3>
+				<div id="signalPanel">
+					<div>
+						<b style="color:#4caf50">買い</b>
+						<div id="buyList"></div>
+					</div>
+					<div style="margin-top:10px">
+						<b style="color:#ff9800">売り</b>
+						<div id="sellList"></div>
+					</div>
+				</div>
 			</div>
-
-			<button id="runSim">シミュレーション開始</button>
-			<button id="clearSim">クリア</button>
-			<div id="result"></div>
 		</div>
 	</div>
 
@@ -235,7 +282,11 @@
 			symbol: null,
 			interval: "daily",
 			rawData: null,
-			tradeLines: []
+			tradeLines: [],
+			signals: {
+				buy:[],
+				sell:[]
+			}
 		};
 
 		const chart = LightweightCharts.createChart($("chart"), {
@@ -490,26 +541,105 @@ SELL ${row.time} @${price}
 			STATE.market = STATE.config.markets[0].market;
 			populateSectors();
 		}
+		
+		function populateSectors(preserve=false) {
 
-		function populateSectors() {
 			const m = STATE.config.markets.find(x => x.market === STATE.market);
-			UI.sector.innerHTML = "";
-			m.sectors.forEach(s =>
-				UI.sector.appendChild(new Option(s.name, s.code)));
-			STATE.sector = m.sectors[0].code;
-			populateSymbols();
-		}
 
-		function populateSymbols() {
+			UI.sector.innerHTML = "";
+
+			m.sectors.forEach(s =>
+				UI.sector.appendChild(new Option(s.name, s.code))
+			);
+
+			if(!preserve || !m.sectors.some(s=>s.code===STATE.sector)){
+				STATE.sector = m.sectors[0].code;
+			}
+
+			UI.sector.value = STATE.sector;
+
+			populateSymbols(preserve);
+		}
+		
+		function populateSymbols(preserve=false) {
+
 			const m = STATE.config.markets.find(x => x.market === STATE.market);
 			const s = m.sectors.find(x => x.code === STATE.sector);
+
 			UI.symbol.innerHTML = "";
+
 			s.symbols.forEach(sym =>
 				UI.symbol.appendChild(
 					new Option(`${sym.code} ${sym.name}`, sym.code)
-				));
-			STATE.symbol = s.symbols[0].code;
+				)
+			);
+
+			if(!preserve || !s.symbols.some(sym=>sym.code===STATE.symbol)){
+				STATE.symbol = s.symbols[0].code;
+			}
+
+			UI.symbol.value = STATE.symbol;
+
 			loadChart();
+		}
+		
+		function renderSignalLists() {
+
+			const buyDiv = $("buyList");
+			const sellDiv = $("sellList");
+
+			buyDiv.innerHTML = "";
+			sellDiv.innerHTML = "";
+
+			const makeRow = s => {
+
+				const el = document.createElement("div");
+
+				el.style.cursor="pointer";
+				el.style.fontSize="12px";
+				el.style.padding="2px";
+
+				el.textContent =
+					`${s.symbol} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
+
+				el.onclick = () => {
+
+					STATE.market = s.market;
+					STATE.interval = s.timeframe;
+					STATE.symbol = s.symbol;
+
+					// sector逆引き
+					const marketObj = STATE.config.markets.find(m=>m.market===s.market);
+
+					for(const sec of marketObj.sectors){
+						if(sec.symbols.some(sym=>sym.code===s.symbol)){
+							STATE.sector = sec.code;
+							break;
+						}
+					}
+
+					// UI同期
+					UI.market.value = STATE.market;
+
+					populateSectors(true);   // ← preserveモード
+
+					// interval同期
+					document.querySelectorAll("button[data-interval]")
+						.forEach(b=>{
+							b.classList.toggle(
+								"active",
+								b.dataset.interval === s.timeframe
+							)
+						});
+				};
+				return el;
+			};
+
+			STATE.signals.buy.forEach(s =>
+				buyDiv.appendChild(makeRow(s)));
+
+			STATE.signals.sell.forEach(s =>
+				sellDiv.appendChild(makeRow(s)));
 		}
 
 		UI.market.onchange = e => {
@@ -576,7 +706,40 @@ SELL ${row.time} @${price}
 			populateMarkets();  // 1回だけ呼ぶ
 		})
 		.catch(err => console.error("JSON読み込みエラー:", err));
+		
+		async function loadSignals() {
 
+			try {
+				const [buy, sell] = await Promise.all([
+					fetch("./signals/buySignals.json").then(r=>r.json()),
+					fetch("./signals/sellSignals.json").then(r=>r.json())
+				]);
+
+				STATE.signals.buy = buy;
+				STATE.signals.sell = sell;
+
+				renderSignalLists();
+
+			} catch(e) {
+				console.log("signal load failed");
+			}
+		}
+		
+		document.querySelectorAll(".tab-btn").forEach(btn=>{
+			btn.onclick = () => {
+
+				document.querySelectorAll(".tab-btn")
+					.forEach(b=>b.classList.remove("active"));
+
+				document.querySelectorAll(".tab-content")
+					.forEach(c=>c.classList.remove("active"));
+
+				btn.classList.add("active");
+				$(btn.dataset.tab).classList.add("active");
+			};
+		});
+		
+		loadSignals();
 	</script>
 </body>
 </html>
