@@ -1,339 +1,547 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<title>株価チャート(branch1)</title>
+	<meta charset="UTF-8" />
+	<title>株価チャート(branch1)</title>
+	<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+	<style>
+		body {
+			margin: 0;
+			font-family: system-ui, sans-serif;
+			background: #111;
+			color: #ddd;
+			display: flex;
+			flex-direction: column;
+			height: 100vh;
+			overflow: hidden
+		}
 
-<script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
+		#toolbar {
+			padding: 8px;
+			display: flex;
+			gap: 8px;
+			background: #1a1a1a;
+			align-items: center
+		}
 
-<style>
-body{
-    margin:0;
-    font-family:system-ui,sans-serif;
-    background:#111;
-    color:#ddd;
-    display:flex;
-    flex-direction:column;
-    height:100vh;
-    overflow:hidden;
-}
+		.info-bar {
+			padding: 6px 12px;
+			font-size: 13px;
+			background: #181818;
+			border-bottom: 1px solid #222
+		}
 
-#toolbar{
-    padding:8px;
-    display:flex;
-    gap:8px;
-    background:#1a1a1a;
-    align-items:center;
-}
+		#main {
+			flex: 1;
+			display: flex;
+			overflow: hidden
+		}
 
-.info-bar{
-    padding:6px 12px;
-    font-size:13px;
-    background:#181818;
-    border-bottom:1px solid #222;
-}
+		#chart {
+			flex: 3
+		}
 
-#chart{ flex:1; }
+		#simPanel {
+			flex: 1;
+			background: #151515;
+			border-left: 1px solid #333;
+			padding: 12px;
+			overflow: auto
+		}
 
-select,button{
-    background:#333;
-    color:#ddd;
-    border:none;
-    padding:6px 12px;
-    border-radius:4px;
-}
+		.sim-group {
+			margin-bottom: 12px
+		}
 
-button.active{
-    background:#4caf50;
-    color:#000;
-}
+		.sim-group label {
+			font-size: 12px;
+			color: #aaa;
+			display: block
+		}
 
-#tooltip{
-    position:absolute;
-    display:none;
-    pointer-events:none;
-    background:rgba(0,0,0,.85);
-    border:1px solid #444;
-    padding:8px;
-    font-size:12px;
-    color:#ddd;
-    border-radius:6px;
-    white-space:nowrap;
-    z-index:1000;
-}
-</style>
+		.sim-group input {
+			width: 100%;
+			padding: 6px;
+			background: #222;
+			color: #ddd;
+			border: none;
+			border-radius: 4px
+		}
+
+		#runSim {
+			width: 100%;
+			padding: 8px;
+			background: #4caf50;
+			border: none;
+			border-radius: 4px;
+			margin-top: 8px;
+			cursor: pointer
+		}
+
+		#result {
+			margin-top: 12px;
+			font-size: 13px
+		}
+
+		.log {
+			font-family: monospace;
+			font-size: 12px;
+			padding: 2px
+		}
+
+		.buy {
+			color: #4caf50
+		}
+
+		.sell {
+			color: #ff9800
+		}
+
+		select,
+		button {
+			background: #333;
+			color: #ddd;
+			border: none;
+			padding: 6px 12px;
+			border-radius: 4px
+		}
+
+		button.active {
+			background: #4caf50;
+			color: #000
+		}
+
+		#tooltip {
+			position: absolute;
+			display: none;
+			pointer-events: none;
+			background: rgba(0, 0, 0, .85);
+			border: 1px solid #444;
+			padding: 8px;
+			font-size: 12px;
+			color: #ddd;
+			border-radius: 6px;
+			white-space: nowrap;
+			z-index: 1000
+		}
+	</style>
 </head>
 
 <body>
 
-<div id="toolbar">
-    <select id="marketSelect"></select>
-    <select id="sectorSelect"></select>
-    <select id="symbolSelect"></select>
+	<div id="toolbar">
+		<select id="marketSelect"></select>
+		<select id="sectorSelect"></select>
+		<select id="symbolSelect"></select>
+		<button data-interval="daily" class="active">日足</button>
+		<button data-interval="weekly">週足</button>
+		<button data-interval="monthly">月足</button>
+	</div>
 
-    <button data-interval="daily" class="active">日足</button>
-    <button data-interval="weekly">週足</button>
-    <button data-interval="monthly">月足</button>
-</div>
+	<div class="info-bar">
+		<span id="dateLabel">----</span>｜ 始値:
+		<span id="openLabel">-</span> 高値:
+		<span id="highLabel">-</span> 安値:
+		<span id="lowLabel">-</span> 終値:
+		<span id="closeLabel">-</span> 出来高:
+		<span id="volumeLabel">-</span>
+	</div>
 
-<div class="info-bar">
-<span id="dateLabel">----</span>｜
-始値:<span id="openLabel">-</span>
-高値:<span id="highLabel">-</span>
-安値:<span id="lowLabel">-</span>
-終値:<span id="closeLabel">-</span>
-出来高:<span id="volumeLabel">-</span>
-</div>
+	<div class="info-bar">
+		<span id="maLegend"></span>
+	</div>
 
-<div class="info-bar">
-<span id="maLegend"></span>
-</div>
+	<div id="main">
+		<div id="chart"></div>
 
-<div id="chart"></div>
-<div id="tooltip"></div>
+		<div id="simPanel">
+			<h3>売買シミュレーション</h3>
 
-<script>
+			<div class="sim-group">
+				<label>購入条件（36MA乖離率 ≤ %）</label>
+				<input id="buyDev" value="-30">
+			</div>
 
-/* ========= CONFIG ========= */
-const MA_CONFIG = [
-    { period:12, color:"#e91e63" },
-    { period:24, color:"#03a9f4" },
-    { period:36, color:"#ff9800" }
-];
+			<div class="sim-group">
+				<label>購入金額（円）</label>
+				<input id="buyAmount" value="10000">
+			</div>
 
-/* ========= HELPERS ========= */
-const $ = id => document.getElementById(id);
-const isValid = v => v !== "-" && v !== undefined && v !== null;
-const formatDev = d => ({
-    text:(d>=0?"+":"")+d.toFixed(1)+"%",
-    color:d>=0?"#4caf50":"#ef5350"
-});
+			<div class="sim-group">
+				<label>売却条件（36MA乖離率 ≥ %）</label>
+				<input id="sellDev" value="30">
+			</div>
 
-/* ========= DOM CACHE ========= */
-const UI={
-    date:$("dateLabel"),
-    open:$("openLabel"),
-    high:$("highLabel"),
-    low:$("lowLabel"),
-    close:$("closeLabel"),
-    volume:$("volumeLabel"),
-    tooltip:$("tooltip"),
-    legend:$("maLegend"),
-    market:$("marketSelect"),
-    sector:$("sectorSelect"),
-    symbol:$("symbolSelect"),
-    maVals:[],
-    maDevs:[]
-};
+			<button id="runSim">シミュレーション開始</button>
+			<button id="clearSim">クリア</button>
+			<div id="result"></div>
+		</div>
+	</div>
 
-/* Legend生成 */
-MA_CONFIG.forEach((m,i)=>{
-    const idx=i+1;
-    UI.legend.insertAdjacentHTML("beforeend",
-`<span style="color:${m.color}">■MA(${m.period})</span>:
-<span id="ma${idx}Val">-</span>
-(<span id="ma${idx}Dev">-</span>) `
-    );
-    UI.maVals.push($(`ma${idx}Val`));
-    UI.maDevs.push($(`ma${idx}Dev`));
-});
+	<div id="tooltip"></div>
 
-/* ========= STATE ========= */
-const STATE={
-    config:null,
-    market:null,
-    sector:null,
-    symbol:null,
-    interval:"daily",
-    rawData:null
-};
+	<script>
+		const MA_CONFIG = [{
+				period: 12,
+				color: "#e91e63"
+			},
+			{
+				period: 24,
+				color: "#03a9f4"
+			},
+			{
+				period: 36,
+				color: "#ff9800"
+			}
+		];
 
-/* ========= CHART ========= */
-const chart=LightweightCharts.createChart($("chart"),{
-    layout:{background:{color:"#111"},textColor:"#ddd"},
-    grid:{vertLines:{color:"#222"},horzLines:{color:"#222"}},
-    rightPriceScale:{scaleMargins:{top:.1,bottom:.3}},
-    timeScale:{timeVisible:true},
-    crosshair:{mode:LightweightCharts.CrosshairMode.Normal}
-});
+		const $ = id => document.getElementById(id);
+		const isValid = v => v !== "-" && v !== undefined && v !== null;
+		const formatDev = d => ({
+			text: (d >= 0 ? "+" : "") + d.toFixed(1) + "%",
+			color: d >= 0 ? "#4caf50" : "#ef5350"
+		});
 
-const candleSeries=chart.addSeries(LightweightCharts.CandlestickSeries,{
-    upColor:"#4caf50",
-    downColor:"#ef5350",
-    borderUpColor:"#4caf50",
-    borderDownColor:"#ef5350",
-    wickUpColor:"#4caf50",
-    wickDownColor:"#ef5350"
-});
+		const UI = {
+			date: $("dateLabel"),
+			open: $("openLabel"),
+			high: $("highLabel"),
+			low: $("lowLabel"),
+			close: $("closeLabel"),
+			volume: $("volumeLabel"),
+			tooltip: $("tooltip"),
+			legend: $("maLegend"),
+			market: $("marketSelect"),
+			sector: $("sectorSelect"),
+			symbol: $("symbolSelect"),
+			result: $("result"),
+			maVals: [],
+			maDevs: []
+		};
 
-const volumeSeries=chart.addSeries(LightweightCharts.HistogramSeries,{
-    priceFormat:{type:"volume"},
-    priceScaleId:""
-});
-volumeSeries.priceScale().applyOptions({scaleMargins:{top:.75,bottom:0}});
+		MA_CONFIG.forEach((m, i) => {
+			UI.legend.insertAdjacentHTML(
+				"beforeend",
+				`<span style="color:${m.color}">■MA(${m.period})</span>:<span id="ma${i+1}Val">-</span>(<span id="ma${i+1}Dev">-</span>) `
+			);
+			UI.maVals.push($(`ma${i+1}Val`));
+			UI.maDevs.push($(`ma${i+1}Dev`));
+		});
 
-const maSeries=MA_CONFIG.map(cfg =>
-    chart.addSeries(LightweightCharts.LineSeries,{
-        color:cfg.color,
-        lineWidth:1,
-        lastValueVisible:false,
-        priceLineVisible:false
-    })
-);
+		const STATE = {
+			config: null,
+			market: null,
+			sector: null,
+			symbol: null,
+			interval: "daily",
+			rawData: null,
+			tradeLines: []
+		};
 
-/* ========= JSON→MAライン変換 ========= */
-function buildMALine(data,period){
-    const key="ma"+period;
-    return data
-        .filter(d=>isValid(d[key]))
-        .map(d=>({time:d.time,value:d[key]}));
-}
+		const chart = LightweightCharts.createChart($("chart"), {
+			layout: {
+				background: {
+					color: "#111"
+				},
+				textColor: "#ddd"
+			},
+			grid: {
+				vertLines: {
+					color: "#222"
+				},
+				horzLines: {
+					color: "#222"
+				}
+			},
+			rightPriceScale: {
+				scaleMargins: {
+					top: .1,
+					bottom: .3
+				}
+			},
+			timeScale: {
+				timeVisible: true
+			},
+			crosshair: {
+				mode: LightweightCharts.CrosshairMode.Normal
+			}
+		});
 
-/* ========= UI更新 ========= */
-function updateHeader(row){
-    UI.date.textContent=row.time;
-    UI.open.textContent=row.open;
-    UI.high.textContent=row.high;
-    UI.low.textContent=row.low;
-    UI.close.textContent=row.close;
-    UI.volume.textContent=row.volume.toLocaleString();
+		let candleSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {
+			upColor: "#4caf50",
+			downColor: "#ef5350",
+			borderUpColor: "#4caf50",
+			borderDownColor: "#ef5350",
+			wickUpColor: "#4caf50",
+			wickDownColor: "#ef5350"
+		});
 
-    MA_CONFIG.forEach((cfg,i)=>{
-        const v=row["ma"+cfg.period];
-        const d=row["dev"+cfg.period];
+		const volumeSeries = chart.addSeries(LightweightCharts.HistogramSeries, {
+			priceFormat: {
+				type: "volume"
+			},
+			priceScaleId: ""
+		});
+		volumeSeries.priceScale().applyOptions({
+			scaleMargins: {
+				top: .75,
+				bottom: 0
+			}
+		});
 
-        if(isValid(v) && isValid(d)){
-            const f=formatDev(d);
-            UI.maVals[i].textContent=v;
-            UI.maDevs[i].textContent=f.text;
-            UI.maDevs[i].style.color=f.color;
-        }else{
-            UI.maVals[i].textContent="-";
-            UI.maDevs[i].textContent="-";
-        }
-    });
-}
+		const maSeries = MA_CONFIG.map(cfg => chart.addSeries(
+			LightweightCharts.LineSeries, {
+				color: cfg.color,
+				lineWidth: 1,
+				lastValueVisible: false,
+				priceLineVisible: false
+			}));
 
-/* ========= TOOLTIP ========= */
-chart.subscribeCrosshairMove(param=>{
-    if(!param?.time||!param?.point){ UI.tooltip.style.display="none"; return;}
+		const buildMALine = (data, p) =>
+			data.filter(d => isValid(d["ma" + p]))
+			.map(d => ({
+				time: d.time,
+				value: d["ma" + p]
+			}));
 
-    const idx=STATE.rawData.findIndex(d=>d.time===param.time);
-    if(idx<0) return;
+		function clearSim() {
+			STATE.tradeLines.forEach(l => candleSeries.removePriceLine(l));
+			STATE.tradeLines.length = 0;
+		}
 
-    const row=STATE.rawData[idx];
-    updateHeader(row);
+		function updateHeader(row) {
+			UI.date.textContent = row.time;
+			UI.open.textContent = row.open;
+			UI.high.textContent = row.high;
+			UI.low.textContent = row.low;
+			UI.close.textContent = row.close;
+			UI.volume.textContent = row.volume.toLocaleString();
 
-    let html=`
-<div><strong>${row.time}</strong></div>
+			MA_CONFIG.forEach((cfg, i) => {
+				const v = row["ma" + cfg.period];
+				const d = row["dev" + cfg.period];
+				if (isValid(v) && isValid(d)) {
+					const f = formatDev(d);
+					UI.maVals[i].textContent = v;
+					UI.maDevs[i].textContent = f.text;
+					UI.maDevs[i].style.color = f.color;
+				} else {
+					UI.maVals[i].textContent = "-";
+					UI.maDevs[i].textContent = "-";
+				}
+			});
+		}
+
+		chart.subscribeCrosshairMove(param => {
+			if (!param?.time || !param?.point) {
+				UI.tooltip.style.display = "none";
+				return;
+			}
+			const row = STATE.rawData.find(d => d.time === param.time);
+			if (!row) return;
+
+			updateHeader(row);
+
+			let html = `<div><strong>${row.time}</strong></div>
 <div>始値:${row.open}</div>
 <div>高値:${row.high}</div>
 <div>安値:${row.low}</div>
 <div>終値:${row.close}</div>
-<div>出来高:${row.volume.toLocaleString()}</div>
-`;
+<div>出来高:${row.volume.toLocaleString()}</div>`;
 
-    MA_CONFIG.forEach(cfg=>{
-        const v=row["ma"+cfg.period];
-        const d=row["dev"+cfg.period];
-        if(isValid(v)&&isValid(d)){
-            const f=formatDev(d);
-            html+=`<div>MA${cfg.period}:${v}
+			MA_CONFIG.forEach(cfg => {
+				const v = row["ma" + cfg.period];
+				const d = row["dev" + cfg.period];
+				if (isValid(v) && isValid(d)) {
+					const f = formatDev(d);
+					html += `<div>MA${cfg.period}:${v}
 (<span style="color:${f.color}">${f.text}</span>)</div>`;
-        }
-    });
+				}
+			});
 
-    UI.tooltip.innerHTML=html;
+			UI.tooltip.innerHTML = html;
+			const rect = $("chart").getBoundingClientRect();
+			UI.tooltip.style.left = rect.left + param.point.x + 15 + "px";
+			UI.tooltip.style.top = rect.top + param.point.y + 15 + "px";
+			UI.tooltip.style.display = "block";
+		});
 
-    const rect=$("chart").getBoundingClientRect();
-    UI.tooltip.style.left=rect.left+param.point.x+15+"px";
-    UI.tooltip.style.top=rect.top+param.point.y+15+"px";
-    UI.tooltip.style.display="block";
-});
+		async function loadChart() {
+			if (!STATE.symbol) return;
 
-/* ========= DATA LOAD ========= */
-async function loadChart(){
-    if(!STATE.symbol) return;
+			clearSim();
+			UI.result.innerHTML = "";
 
-    const path=`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`;
-    const data=await (await fetch(path)).json();
-    STATE.rawData=data;
+			const data = await (await fetch(
+				`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`
+			)).json();
 
-    candleSeries.setData(data);
+			STATE.rawData = data;
 
-    volumeSeries.setData(data.map(d=>({
-        time:d.time,
-        value:d.volume||0,
-        color:d.close>=d.open?"#4caf50aa":"#ef5350aa"
-    })));
+			candleSeries.setData(data);
+			volumeSeries.setData(data.map(d => ({
+				time: d.time,
+				value: d.volume || 0,
+				color: d.close >= d.open ? "#4caf50aa" : "#ef5350aa"
+			})));
 
-    MA_CONFIG.forEach((cfg,i)=>{
-        maSeries[i].setData(buildMALine(data,cfg.period));
-    });
+			MA_CONFIG.forEach((cfg, i) =>
+				maSeries[i].setData(buildMALine(data, cfg.period)));
 
-    if(data.length>150){
-        chart.timeScale().setVisibleRange({
-            from:data.at(-150).time,
-            to:data.at(-1).time
-        });
-    }
+			if (data.length > 150) {
+				chart.timeScale().setVisibleRange({
+					from: data.at(-150).time,
+					to: data.at(-1).time
+				});
+			}
 
-    updateHeader(data.at(-1));
-}
+			updateHeader(data.at(-1));
+		}
 
-/* ========= DROPDOWN ========= */
-function populateMarkets(){
-    UI.market.innerHTML="";
-    STATE.config.markets.forEach(m=>{
-        UI.market.appendChild(new Option(m.name,m.market));
-    });
-    STATE.market=STATE.config.markets[0].market;
-    populateSectors();
-}
+		$("runSim").onclick = () => {
+			clearSim();
 
-function populateSectors(){
-    const m=STATE.config.markets.find(x=>x.market===STATE.market);
-    UI.sector.innerHTML="";
-    m.sectors.forEach(s=>{
-        UI.sector.appendChild(new Option(s.name,s.code));
-    });
-    STATE.sector=m.sectors[0].code;
-    populateSymbols();
-}
+			const buyDev = parseFloat($("buyDev").value);
+			const sellDev = parseFloat($("sellDev").value);
+			const amount = parseFloat($("buyAmount").value);
 
-function populateSymbols(){
-    const m=STATE.config.markets.find(x=>x.market===STATE.market);
-    const s=m.sectors.find(x=>x.code===STATE.sector);
-    UI.symbol.innerHTML="";
-    s.symbols.forEach(sym=>{
-        UI.symbol.appendChild(new Option(`${sym.code} ${sym.name}`,sym.code));
-    });
-    STATE.symbol=s.symbols[0].code;
-    loadChart();
-}
+			let qty = 0,
+				cost = 0;
+			let realized = 0;
+			let logs = [];
 
-/* ========= EVENTS ========= */
-UI.market.onchange=e=>{STATE.market=e.target.value;populateSectors();};
-UI.sector.onchange=e=>{STATE.sector=e.target.value;populateSymbols();};
-UI.symbol.onchange=e=>{STATE.symbol=e.target.value;loadChart();};
+			for (const row of STATE.rawData) {
+				const dev = row.dev36;
+				if (!isValid(dev)) continue;
 
-document.querySelectorAll("button[data-interval]").forEach(btn=>{
-    btn.onclick=()=>{
-        document.querySelectorAll("button[data-interval]").forEach(b=>b.classList.remove("active"));
-        btn.classList.add("active");
-        STATE.interval=btn.dataset.interval;
-        loadChart();
-    };
-});
+				const price = row.close;
 
-/* ========= INIT ========= */
-fetch("./symbols.json")
-.then(r=>r.json())
-.then(cfg=>{
-    STATE.config=cfg;
-    populateMarkets();
-});
+				if (dev <= buyDev) {
+					const buyQty = Math.floor(amount / price);
+					if (buyQty > 0) {
+						qty += buyQty;
+						cost += buyQty * price;
 
-</script>
+						logs.push(`<div class="log buy">
+BUY ${row.time} @${price} x${buyQty}
+乖離:${dev.toFixed(1)}% 保有:${qty}
+</div>`);
+
+						STATE.tradeLines.push(
+							candleSeries.createPriceLine({
+								price,
+								color: "#4caf50",
+								lineWidth: 1,
+								lineStyle: 2,
+								axisLabelVisible: true,
+								title: "BUY"
+							}));
+					}
+				} else if (qty > 0 && dev >= sellDev) {
+					const avg = cost / qty;
+					const pnl = (price - avg) * qty;
+					realized += pnl;
+
+					logs.push(`<div class="log sell">
+SELL ${row.time} @${price}
+株数:${qty} 損益:${pnl.toFixed(0)}
+乖離:${dev.toFixed(1)}%
+</div>`);
+
+					STATE.tradeLines.push(
+						candleSeries.createPriceLine({
+							price,
+							color: "#ff9800",
+							lineWidth: 1,
+							lineStyle: 2,
+							axisLabelVisible: true,
+							title: "SELL"
+						}));
+
+					qty = 0;
+					cost = 0;
+				}
+			}
+
+			let unrealized = 0;
+			if (qty > 0) {
+				const last = STATE.rawData.at(-1).close;
+				unrealized = (last - (cost / qty)) * qty;
+			}
+
+			const total = realized + unrealized;
+
+			UI.result.innerHTML =
+				`<b>実現損益: ${realized.toFixed(0)} 円</b><br>
+<b>評価損益: ${unrealized.toFixed(0)} 円</b><br>
+<b>総損益: ${total.toFixed(0)} 円</b>
+<hr>` + logs.join("");
+		};
+
+		$("clearSim").onclick = () => {
+			clearSim();
+			UI.result.innerHTML =``;
+		};
+
+		function populateMarkets() {
+			UI.market.innerHTML = "";
+			STATE.config.markets.forEach(m =>
+				UI.market.appendChild(new Option(m.name, m.market)));
+			STATE.market = STATE.config.markets[0].market;
+			populateSectors();
+		}
+
+		function populateSectors() {
+			const m = STATE.config.markets.find(x => x.market === STATE.market);
+			UI.sector.innerHTML = "";
+			m.sectors.forEach(s =>
+				UI.sector.appendChild(new Option(s.name, s.code)));
+			STATE.sector = m.sectors[0].code;
+			populateSymbols();
+		}
+
+		function populateSymbols() {
+			const m = STATE.config.markets.find(x => x.market === STATE.market);
+			const s = m.sectors.find(x => x.code === STATE.sector);
+			UI.symbol.innerHTML = "";
+			s.symbols.forEach(sym =>
+				UI.symbol.appendChild(
+					new Option(`${sym.code} ${sym.name}`, sym.code)
+				));
+			STATE.symbol = s.symbols[0].code;
+			loadChart();
+		}
+
+		UI.market.onchange = e => {
+			STATE.market = e.target.value;
+			populateSectors();
+		};
+		UI.sector.onchange = e => {
+			STATE.sector = e.target.value;
+			populateSymbols();
+		};
+		UI.symbol.onchange = e => {
+			STATE.symbol = e.target.value;
+			loadChart();
+		};
+
+		document.querySelectorAll("button[data-interval]")
+			.forEach(btn => {
+				btn.onclick = () => {
+					document.querySelectorAll("button[data-interval]")
+						.forEach(b => b.classList.remove("active"));
+					btn.classList.add("active");
+					STATE.interval = btn.dataset.interval;
+					loadChart();
+				};
+			});
+
+		fetch("./symbols.json")
+			.then(r => r.json())
+			.then(cfg => {
+				STATE.config = cfg;
+				populateMarkets();
+			});
+	</script>
 </body>
 </html>
