@@ -2,8 +2,8 @@ name: Build Trade Signals
 
 on:
   schedule:
-    # 毎週土曜 02:00 JST
-    - cron: '0 17 * * 5'
+    # 毎週土曜 07:00 JST
+    - cron: '0 22 * * 5'
   workflow_dispatch:
 
 jobs:
