@@ -536,7 +536,13 @@ SELL ${row.time} @${price}
 				};
 			});
 
-		fetch("./symbols.json")
+		fetch("./symbols1.json")
+			.then(r => r.json())
+			.then(cfg => {
+				STATE.config = cfg;
+				populateMarkets();
+			});
+		fetch("./symbols1.json")
 			.then(r => r.json())
 			.then(cfg => {
 				STATE.config = cfg;
