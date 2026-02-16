@@ -86,6 +86,7 @@ jobs:
                                           "volume": int(row["Wolumen"])
                                       })
                                   except Exception:
+                                      logger.exception("Row parse failed: %s", row)
                                       continue
                               
 
