@@ -25,6 +25,7 @@ jobs:
           import subprocess
           import os
           import io
+          import logging
 
           SYMBOLS_FILE = 'symbols_test.json'
           OUTPUT_DIR = 'data'
@@ -34,6 +35,8 @@ jobs:
               "weekly": "w",
               "monthly": "m"
           }
+          
+          logger = logging.getLogger(__name__)
 
           with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
               config = json.load(f)
