@@ -1,0 +1,17 @@
+{
+  "source": "stooq",
+  "markets": [
+    {
+      "market": "JP",
+      "name": "日本株",
+      "suffix": ".jp",
+      "sectors": [
+	  
+        { "code": "TECH", "name": "情報・通信業", "symbols": [
+          { "code": "4051", "name": "ＧＭＯ－ＦＧ" }
+        ]}
+
+      ]
+    }
+  ]
+}
