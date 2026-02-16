@@ -1,9 +1,9 @@
-name: Fetch Stooq Data 3
+name: Fetch Stooq Data 4
 
 on:
   schedule:
-    # 毎週土曜 02:00 JST
-    - cron: '0 17 * * 5'
+    # 毎週土曜 03:00 JST
+    - cron: '0 18 * * 5'
   workflow_dispatch:
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
           import os
           import io
 
-          SYMBOLS_FILE = 'symbols3.json'
+          SYMBOLS_FILE = 'symbols4.json'
           OUTPUT_DIR = 'data'
           SLEEP_SEC = 5
           INTERVALS = {
