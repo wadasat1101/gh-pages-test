@@ -2,8 +2,8 @@ name: Fetch Stooq Data 4
 
 on:
   schedule:
-    # 毎週土曜 03:00 JST
-    - cron: '0 18 * * 5'
+    # 毎週土曜 10:30 JST
+    - cron: '30 1 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -28,7 +28,7 @@ jobs:
 
           SYMBOLS_FILE = 'symbols4.json'
           OUTPUT_DIR = 'data'
-          SLEEP_SEC = 5
+          SLEEP_SEC = 3
           INTERVALS = {
               "daily": "d",
               "weekly": "w",
