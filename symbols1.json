@@ -171,21 +171,6 @@
         ]}
 
       ]
-    },
-
-    {
-      "market": "JP",
-      "name": "日本市場",
-      "suffix": ".JP",
-      "sectors": [
-        {
-          "code": "INDEX",
-          "name": "株価指数",
-          "symbols": [
-            { "code": "^NKX", "name": "日経平均", "stooq": "^nkx" }
-          ]
-        }
-      ]
     }
   ]
 }

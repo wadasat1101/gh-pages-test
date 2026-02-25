@@ -161,21 +161,6 @@
           { "code": "8801", "name": "三井不" }
         ]}
       ]
-    },
-
-    {
-      "market": "US",
-      "name": "米国市場",
-      "suffix": "",
-      "sectors": [
-        {
-          "code": "INDEX",
-          "name": "株価指数",
-          "symbols": [
-            { "code": "^NDX", "name": "NASDAQ100", "stooq": "^ndx" }
-          ]
-        }
-      ]
     }
   ]
 }

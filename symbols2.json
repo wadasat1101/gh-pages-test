@@ -173,21 +173,6 @@
         ]}
 		
       ]
-    },
-
-    {
-      "market": "US",
-      "name": "米国市場",
-      "suffix": "",
-      "sectors": [
-        {
-          "code": "INDEX",
-          "name": "株価指数",
-          "symbols": [
-            { "code": "^SPX", "name": "S&P 500", "stooq": "^spx" }
-          ]
-        }
-      ]
     }
   ]
 }
