@@ -1,0 +1,146 @@
+name: Fetch Stooq Data 7
+
+on:
+  schedule:
+    # 毎週土曜 20:00 JST
+    - cron: '0 11 * * 6'
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch & Convert Stooq Data (Daily / Weekly / Monthly)
+        run: |
+          python << 'EOF'
+          import csv
+          import json
+          import time
+          import subprocess
+          import os
+          import io
+
+          SYMBOLS_FILE = 'symbols7.json'
+          OUTPUT_DIR = 'data'
+          SLEEP_SEC = 3
+          INTERVALS = {
+              "daily": "d",
+              "weekly": "w",
+              "monthly": "m"
+          }
+
+          with open(SYMBOLS_FILE, 'r', encoding='utf-8') as f:
+              config = json.load(f)
+
+          for market in config['markets']:
+              market_code = market['market']
+              suffix = market.get('suffix', '')
+
+              print(f"=== Market: {market_code} ===")
+
+              for interval_name, interval_code in INTERVALS.items():
+                  interval_dir = f"{OUTPUT_DIR}/{market_code}/{interval_name}"
+                  os.makedirs(interval_dir, exist_ok=True)
+
+                  print(f"-- Interval: {interval_name}")
+
+                  for sector in market['sectors']:
+                      sector_name = sector['name']
+
+                      for symbol_info in sector['symbols']:
+                          code = symbol_info['code']
+                          stooq_symbol = symbol_info.get('stooq')
+
+                          if stooq_symbol:
+                              symbol = stooq_symbol
+                          else:
+                              symbol = f"{code}{suffix}"
+
+                          json_path = f"{interval_dir}/{code}.json"
+                          url = f"https://stooq.pl/q/d/l/?s={symbol}&i={interval_code}"
+
+                          print(f"Fetching {symbol} [{market_code} / {sector_name} / {interval_name}]")
+
+                          try:
+                              result = subprocess.check_output(
+                                  ["curl", "-s", url]
+                              ).decode("utf-8")
+
+                              records = []
+
+                              reader = csv.DictReader(io.StringIO(result))
+                              for row in reader:
+                                  try:
+                                      records.append({
+                                          "time": row["Data"],
+                                          "open": float(row["Otwarcie"]),
+                                          "high": float(row["Najwyzszy"]),
+                                          "low": float(row["Najnizszy"]),
+                                          "close": float(row["Zamkniecie"]),
+                                          "volume": float(row["Wolumen"])
+                                      })
+                                  except Exception:
+                                      continue
+                              
+
+                              # ---- 移動平均計算 ----
+                              #if not records:
+                              #    print("No data returned")
+                              #    continue;
+                              
+                              periods = [12, 24, 36]
+                              sums = {p: 0 for p in periods}
+
+                              closes = [r["close"] for r in records]
+
+                              for i in range(len(records)):
+                                  price = closes[i]
+
+                                  for p in periods:
+                                      ma_key = f"ma{p}"
+                                      dev_key = f"dev{p}"
+                                      sums[p] += price
+
+                                      if i >= p:
+                                          sums[p] -= closes[i - p]
+
+                                      if i < p - 1:
+                                          records[i][ma_key] = "-"
+                                          records[i][dev_key] = "-"
+                                      else:
+                                          ma = sums[p] / p
+                                          records[i][ma_key] = round(ma, 0)
+                                          
+                                          deviation = (price - ma) / ma * 100
+                                          records[i][dev_key] = round(deviation, 1)
+
+
+                              
+
+                              with open(json_path, 'w', encoding='utf-8') as f:
+                                  json.dump(records, f, indent=2, ensure_ascii=False)
+
+                              print(f"Saved {json_path} ({len(records)} records)")
+
+                          except Exception as e:
+                              print(f"Error fetching {symbol}: {e}")
+
+                          time.sleep(SLEEP_SEC)
+
+          print("All markets processed.")
+          EOF
+
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/
+          git commit -m "Update stock data (JP & US / daily weekly monthly)" || echo "No changes"
+          git push
