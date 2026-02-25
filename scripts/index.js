@@ -441,6 +441,7 @@ Promise.all([
 	fetch("./symbols2.json").then(r => r.json()),
 	fetch("./symbols3.json").then(r => r.json()),
 	fetch("./symbols4.json").then(r => r.json()),
+	fetch("./symbols99.json").then(r => r.json()),
 ])
 .then((configs) => {
 	// configs は [cfg1, cfg2, cfg3] の配列
