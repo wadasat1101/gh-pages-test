@@ -9,8 +9,9 @@ const path = require("path");
 const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -30);
 const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 30);
 
-// ⭐ 対応する interval
-const INTERVALS = ["daily", "weekly", "monthly"];
+// interval
+//const INTERVALS = ["daily", "weekly", "monthly"];
+const INTERVALS = ["monthly"];
 
 const DATA_ROOT = path.join(__dirname, "..", "data");
 const OUT_DIR = path.join(__dirname, "..", "signals");
@@ -82,7 +83,7 @@ INTERVALS.forEach(interval => {
                 const entry = {
                     symbol,
                     market,
-                    timeframe: interval,   // ⭐ 追加（超重要）
+                    timeframe: interval,
                     date: last.time,
                     close: last.close,
                     dev36: dev
