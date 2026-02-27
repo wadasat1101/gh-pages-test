@@ -50,7 +50,7 @@ const STATE = {
 	market: null,
 	sector: null,
 	symbol: null,
-	interval: "daily",
+	interval: "monthly",
 	rawData: null,
 	tradeLines: [],
 	signals: {
@@ -193,30 +193,38 @@ async function loadChart() {
 	clearSim();
 	UI.result.innerHTML = "";
 
-	const data = await (await fetch(
-		`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`
-	)).json();
+	try {
+		const data = await (await fetch(
+			`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`
+		)).json();		
+		
+		STATE.rawData = data;
 
-	STATE.rawData = data;
+		candleSeries.setData(data);
+		volumeSeries.setData(data.map(d => ({
+			time: d.time,
+			value: d.volume || 0,
+			color: d.close >= d.open ? "#4caf50aa" : "#ef5350aa"
+		})));
 
-	candleSeries.setData(data);
-	volumeSeries.setData(data.map(d => ({
-		time: d.time,
-		value: d.volume || 0,
-		color: d.close >= d.open ? "#4caf50aa" : "#ef5350aa"
-	})));
+		MA_CONFIG.forEach((cfg, i) =>
+			maSeries[i].setData(buildMALine(data, cfg.period)));
 
-	MA_CONFIG.forEach((cfg, i) =>
-		maSeries[i].setData(buildMALine(data, cfg.period)));
+		if (data.length > 150) {
+			chart.timeScale().setVisibleRange({
+				from: data.at(-150).time,
+				to: data.at(-1).time
+			});
+		}
 
-	if (data.length > 150) {
-		chart.timeScale().setVisibleRange({
-			from: data.at(-150).time,
-			to: data.at(-1).time
-		});
+		updateHeader(data.at(-1));
+		
+	} catch (error) {
+		console.error("Fetch error:", error);
+		return null;
 	}
 
-	updateHeader(data.at(-1));
+
 }
 
 $("runSim").onclick = () => {
