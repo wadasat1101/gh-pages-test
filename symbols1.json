@@ -278,7 +278,7 @@
 		  { "code": "8113", "name": "ユニ･チャーム" }
         ]},
 
-       { "code": "PHARMA", "name": "医薬品", "symbols": [
+        { "code": "PHARMA", "name": "医薬品", "symbols": [
 		  { "code": "197A", "name": "タウンズ" },
 		  { "code": "2160", "name": "ジーエヌアイグループ" },
 		  { "code": "4151", "name": "協和キリン" },
@@ -321,7 +321,7 @@
 		  { "code": "9273", "name": "コーア商事ホールディングス" }
         ]},
 
-       { "code": "OIL", "name": "石油・石炭製品", "symbols": [
+        { "code": "OIL", "name": "石油・石炭製品", "symbols": [
 		  { "code": "3315", "name": "日本コークス工業" },
 		  { "code": "5010", "name": "日本精蠟" },
 		  { "code": "5011", "name": "ニチレキグループ" },
@@ -333,7 +333,7 @@
 		  { "code": "5021", "name": "コスモエネルギーホールディングス" }
         ]},
 
-       { "code": "RUBBER", "name": "ゴム製品", "symbols": [
+        { "code": "RUBBER", "name": "ゴム製品", "symbols": [
 		  { "code": "5101", "name": "横浜ゴム" },
 		  { "code": "5103", "name": "昭和ホールディングス" },
 		  { "code": "5105", "name": "ＴＯＹＯ　ＴＩＲＥ" },
@@ -351,7 +351,7 @@
 		  { "code": "5194", "name": "相模ゴム工業" },
 		  { "code": "5195", "name": "バンドー化学" },
 		  { "code": "5199", "name": "不二ラテックス" }
-        ]}
+        ]},
 		
 		{ "code": "GLASS", "name": "ガラス・土石製品", "symbols": [
 		  { "code": "3110", "name": "日東紡績" },
@@ -386,7 +386,7 @@
 		  { "code": "7943", "name": "ニチハ" }
         ]},
 
-       { "code": "STEEL", "name": "鉄鋼", "symbols": [
+        { "code": "STEEL", "name": "鉄鋼", "symbols": [
 		  { "code": "5401", "name": "日本製鉄" },
 		  { "code": "5406", "name": "神戸製鋼所" },
 		  { "code": "5408", "name": "中山製鋼所" },
@@ -435,7 +435,7 @@
 		  { "code": "5851", "name": "リョービ" },
 		  { "code": "5852", "name": "アーレスティ" },
 		  { "code": "5857", "name": "AREHD" }
-        ]}
+        ]},
 		
 		{ "code": "NONFERROUS", "name": "金属製品", "symbols": [
 		  { "code": "3421", "name": "稲葉製作所" },
@@ -477,7 +477,7 @@
 		  { "code": "5992", "name": "中央発條" },
 		  { "code": "5994", "name": "ファインシンター" },
 		  { "code": "7989", "name": "立川ブラインド工業" }
-        ]}
+        ]},
 		
 		{ "code": "MACHINERY", "name": "機械", "symbols": [
 		  { "code": "1909", "name": "日本ドライケミカル" },
