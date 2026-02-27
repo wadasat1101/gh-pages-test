@@ -7,30 +7,27 @@
       "suffix": ".jp",
       "sectors": [
 
-		x12
         { "code": "FISH", "name": "水産・農林業", "symbols": [
-		  { "code": "1301", "name": "極洋" },
-		  { "code": "1332", "name": "ニッスイ" },
-		  { "code": "1333", "name": "マルハニチロ" },
-		  { "code": "1375", "name": "ユキグニファクトリー" },
-		  { "code": "1376", "name": "カネコ種苗" },
-		  { "code": "1377", "name": "サカタのタネ" },
-		  { "code": "1379", "name": "ホクト" },
-		  { "code": "1380", "name": "秋川牧園" },
-		  { "code": "1381", "name": "アクシーズ" },
-		  { "code": "1382", "name": "ホーブ" },
-		  { "code": "1383", "name": "ベルグアース" },
-		  { "code": "1384", "name": "ホクリヨウ" }
+		  { "code": "1301", "name": "極洋", "segment": "p" },
+		  { "code": "1332", "name": "ニッスイ", "segment": "p" },
+		  { "code": "1333", "name": "マルハニチロ", "segment": "p" },
+		  { "code": "1375", "name": "ユキグニファクトリー", "segment": "p" },
+		  { "code": "1376", "name": "カネコ種苗", "segment": "s" },
+		  { "code": "1377", "name": "サカタのタネ", "segment": "p" },
+		  { "code": "1379", "name": "ホクト", "segment": "p" },
+		  { "code": "1380", "name": "秋川牧園", "segment": "s" },
+		  { "code": "1381", "name": "アクシーズ", "segment": "s" },
+		  { "code": "1382", "name": "ホーブ", "segment": "s" },
+		  { "code": "1383", "name": "ベルグアース", "segment": "s" },
+		  { "code": "1384", "name": "ホクリヨウ", "segment": "s" }
         ]},
 
-		x5+1
         { "code": "MINING", "name": "鉱業", "symbols": [
-		  { "code": "1514", "name": "住石HD" },
-		  { "code": "1515", "name": "日鉄鉱業" },
-		  { "code": "1518", "name": "三井松島HD" },
-		  { "code": "1605", "name": "INPEX" },
-		  { "code": "1662", "name": "石油資源開発" },
-		  { "code": "1663", "name": "K&OエナジーG" }
+		  { "code": "1514", "name": "住石ホールディングス", "segment": "s" },
+		  { "code": "1515", "name": "日鉄鉱業", "segment": "p" },
+		  { "code": "1605", "name": "ＩＮＰＥＸ", "segment": "p" },
+		  { "code": "1662", "name": "石油資源開発", "segment": "p" },
+		  { "code": "1663", "name": "Ｋ＆Ｏエナジーグループ", "segment": "p" }
         ]},
 
 		x53
