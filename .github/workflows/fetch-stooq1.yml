@@ -30,7 +30,7 @@ jobs:
           SYMBOLS_FILE = 'symbols1.json'
           OUTPUT_DIR = 'data'
           SLEEP_SEC = 3
-          # INTERVALS = {
+          #INTERVALS = {
           #    "daily": "d",
           #    "weekly": "w",
           #    "monthly": "m"
@@ -92,12 +92,6 @@ jobs:
                                   except Exception:
                                       continue
                               
-
-                              # ---- 移動平均計算 ----
-                              #if not records:
-                              #    print("No data returned")
-                              #    continue;
-                              
                               periods = [12, 24, 36]
                               sums = {p: 0 for p in periods}
 
@@ -124,9 +118,6 @@ jobs:
                                           deviation = (price - ma) / ma * 100
                                           records[i][dev_key] = round(deviation, 1)
 
-
-                              
-
                               with open(json_path, 'w', encoding='utf-8') as f:
                                   json.dump(records, f, indent=2, ensure_ascii=False)
 
@@ -146,6 +137,5 @@ jobs:
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add data/
-          git commit -m "Update stock data (JP & US / daily weekly monthly)" || echo "No changes"
+          git commit -m "Update stock data (JP & US)" || echo "No changes"
           git push
-
