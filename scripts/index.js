@@ -20,6 +20,8 @@ const formatDev = d => ({
 });
 
 const UI = {
+	symbolName: $("symbolNameLabel"),
+	segmentName: $("segmentNameLabel"),
 	date: $("dateLabel"),
 	open: $("openLabel"),
 	high: $("highLabel"),
@@ -36,6 +38,12 @@ const UI = {
 	maDevs: []
 };
 
+const SEGMENTS = new Map([
+	["p", "東証プライム"],
+	["s", "東証スタンダード"],
+	["g", "東証グロース"]
+]);
+
 MA_CONFIG.forEach((m, i) => {
 	UI.legend.insertAdjacentHTML(
 		"beforeend",
@@ -49,7 +57,10 @@ const STATE = {
 	config: null,
 	market: null,
 	sector: null,
-	symbol: null,
+	symbolCode: null,
+	symbolName: null,
+	segmentCode: null,
+	segmentName: null,
 	interval: "monthly",
 	rawData: null,
 	tradeLines: [],
@@ -188,14 +199,14 @@ chart.subscribeCrosshairMove(param => {
 });
 
 async function loadChart() {
-	if (!STATE.symbol) return;
+	if (!STATE.symbolCode) return;
 
 	clearSim();
 	UI.result.innerHTML = "";
 
 	try {
 		const data = await (await fetch(
-			`./data/${STATE.market}/${STATE.interval}/${STATE.symbol}.json`
+			`./data/${STATE.market}/${STATE.interval}/${STATE.symbolCode}.json`
 		)).json();		
 		
 		STATE.rawData = data;
@@ -352,11 +363,16 @@ function populateSymbols(preserve=false) {
 		)
 	);
 
-	if(!preserve || !s.symbols.some(sym=>sym.code===STATE.symbol)){
-		STATE.symbol = s.symbols[0].code;
+	if(!preserve || !s.symbols.some(sym=>sym.code===STATE.symbolCode)){
+		STATE.symbolCode = s.symbols[0].code;
+		STATE.symbolName = s.symbols[0].name;
 	}
 
-	UI.symbol.value = STATE.symbol;
+	UI.symbol.value = STATE.symbolCode;
+	UI.symbolName.textContent = STATE.symbolName;
+	
+	const sy = s.symbols.find(x => x.code === STATE.symbolCode);
+	UI.segmentName.textContent = SEGMENTS.get(sy.segment);
 
 	loadChart();
 }
@@ -384,7 +400,7 @@ function renderSignalLists() {
 
 			STATE.market = s.market;
 			STATE.interval = s.timeframe;
-			STATE.symbol = s.symbol;
+			STATE.symbolCode = s.symbol;
 
 			// sector逆引き
 			const marketObj = STATE.config.markets.find(m=>m.market===s.market);
@@ -429,7 +445,7 @@ UI.sector.onchange = e => {
 	populateSymbols();
 };
 UI.symbol.onchange = e => {
-	STATE.symbol = e.target.value;
+	STATE.symbolCode = e.target.value;
 	loadChart();
 };
 
