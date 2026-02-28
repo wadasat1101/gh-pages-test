@@ -44,6 +44,8 @@ const SEGMENTS = new Map([
 	["g", "東証グロース"]
 ]);
 
+const SYMBOLS = new Map();
+
 MA_CONFIG.forEach((m, i) => {
 	UI.legend.insertAdjacentHTML(
 		"beforeend",
@@ -391,15 +393,17 @@ function renderSignalLists() {
 	sellDiv.innerHTML = "";
 
 	const makeRow = s => {
-
+		
 		const el = document.createElement("div");
 
 		el.style.cursor="pointer";
 		el.style.fontSize="12px";
 		el.style.padding="2px";
-
+		
+		const symbolName = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).name : "";
+		const segmentName = SYMBOLS.get(s.symbol) != null ? SEGMENTS.get(SYMBOLS.get(s.symbol).segment) : "";
 		el.textContent =
-			`${s.symbol} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
+			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
 
 		el.onclick = () => {
 
@@ -499,8 +503,14 @@ Promise.all([
 					} else {
 						sectorMap.set(s.code, {...s});
 					}
+					
+					s.symbols.forEach(sym => {
+						SYMBOLS.set(sym.code, {
+							name: sym.name,
+							segment: sym.segment
+						});
+					});
 				});
-
 				existing.sectors = Array.from(sectorMap.values());
 			} else {
 				mergedMarketsMap.set(m.market, {...m});
@@ -527,7 +537,7 @@ async function loadSignals() {
 		renderSignalLists();
 
 	} catch(e) {
-		console.log("signal load failed");
+		console.log("signal load failed", e);
 	}
 }
 
