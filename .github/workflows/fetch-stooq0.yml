@@ -138,4 +138,5 @@ jobs:
           git config user.email "github-actions@github.com"
           git add data/
           git commit -m "Update stock data (JP & US)" || echo "No changes"
-          git push
+          git pull --rebase origin main
+          git push origin main

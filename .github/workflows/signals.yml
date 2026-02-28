@@ -26,8 +26,9 @@ jobs:
 
       - name: Commit Signals
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git add signals/
-          git commit -m "auto update signals" || exit 0
-          git push
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/
+          git commit -m "Update stock data (JP & US)" || echo "No changes"
+          git pull --rebase origin main
+          git push origin main
