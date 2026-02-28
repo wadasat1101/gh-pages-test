@@ -227,6 +227,17 @@ async function loadChart() {
 				to: data.at(-1).time
 			});
 		}
+		
+		
+		const m = STATE.config.markets.find(x => x.market === STATE.market);
+		const s = m.sectors.find(x => x.code === STATE.sector);
+		const sy = s.symbols.find(x => x.code === STATE.symbolCode);
+		
+		UI.symbolName.textContent = sy.name;
+		UI.segmentName.textContent = SEGMENTS.get(sy.segment);
+		
+		STATE.symbolCode = sy.code;
+		STATE.symbolName = sy.name
 
 		updateHeader(data.at(-1));
 		
@@ -365,15 +376,9 @@ function populateSymbols(preserve=false) {
 
 	if(!preserve || !s.symbols.some(sym=>sym.code===STATE.symbolCode)){
 		STATE.symbolCode = s.symbols[0].code;
-		STATE.symbolName = s.symbols[0].name;
 	}
 
 	UI.symbol.value = STATE.symbolCode;
-	UI.symbolName.textContent = STATE.symbolName;
-	
-	const sy = s.symbols.find(x => x.code === STATE.symbolCode);
-	UI.segmentName.textContent = SEGMENTS.get(sy.segment);
-
 	loadChart();
 }
 
