@@ -91,12 +91,15 @@ INTERVALS.forEach(interval => {
                     dev36: dev
                 };
 
+				// 購入条件 (300 <= close)
 				// 購入条件 (-40 < dev <= -25)
-				if (BUY_DEV_IGNORE < dev) {
-					if (dev <= BUY_DEV) {
-						buySignals.push(entry);
+				if(300 <= close){
+					if (BUY_DEV_IGNORE < dev) {
+						if (dev <= BUY_DEV) {
+							buySignals.push(entry);
+						}
 					}
-                }
+				}
 
 				// 購入条件 (10 <= dev)
                 if (SELL_DEV <= dev) {
