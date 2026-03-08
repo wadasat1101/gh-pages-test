@@ -6,8 +6,9 @@ const fs = require("fs");
 const path = require("path");
 
 // ---- 設定（YAMLのenvを利用）
-const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -30);
-const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 30);
+const BUY_DEV_IGNORE = -40;
+const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -25);
+const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 10);
 
 // interval
 //const INTERVALS = ["daily", "weekly", "monthly"];
@@ -73,6 +74,7 @@ INTERVALS.forEach(interval => {
 
                 const last = data[data.length - 1];
                 const dev = last.dev36;
+				const close = last.close;
 
                 if (dev === undefined || dev === null) return;
 
@@ -85,15 +87,19 @@ INTERVALS.forEach(interval => {
                     market,
                     timeframe: interval,
                     date: last.time,
-                    close: last.close,
+                    close: close,
                     dev36: dev
                 };
 
-                if (dev <= BUY_DEV) {
-                    buySignals.push(entry);
+				// 購入条件 (-40 < dev <= -25)
+				if (BUY_DEV_IGNORE < dev) {
+					if (dev <= BUY_DEV) {
+						buySignals.push(entry);
+					}
                 }
 
-                if (dev >= SELL_DEV) {
+				// 購入条件 (10 <= dev)
+                if (SELL_DEV <= dev) {
                     sellSignals.push(entry);
                 }
 
