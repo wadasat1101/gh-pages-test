@@ -400,8 +400,9 @@ function renderSignalLists() {
 		el.style.fontSize="12px";
 		el.style.padding="2px";
 		
+		const seg = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).segment : "";
 		const symbolName = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).name : "";
-		const segmentName = SYMBOLS.get(s.symbol) != null ? SEGMENTS.get(SYMBOLS.get(s.symbol).segment) : "";
+		const segmentName = SEGMENTS.get(seg);
 		el.textContent =
 			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
 
@@ -438,11 +439,13 @@ function renderSignalLists() {
 		return el;
 	};
 
-	STATE.signals.buy.forEach(s =>
-		buyDiv.appendChild(makeRow(s)));
+	STATE.signals.buy
+		.filter(s => SYMBOLS.get(s.symbol)?.segment !== "g") // 東証グロースは除外
+		.forEach(s => buyDiv.appendChild(makeRow(s)));
 
-	STATE.signals.sell.forEach(s =>
-		sellDiv.appendChild(makeRow(s)));
+	STATE.signals.sell
+		.filter(s => SYMBOLS.get(s.symbol)?.segment !== "g")// 東証グロースは除外
+		.forEach(s => sellDiv.appendChild(makeRow(s)));
 }
 
 UI.market.onchange = e => {
