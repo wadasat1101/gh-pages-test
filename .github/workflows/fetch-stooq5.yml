@@ -93,30 +93,43 @@ jobs:
                                       continue
                               
                               periods = [12, 24, 36]
-                              sums = {p: 0 for p in periods}
+
+                              close_sums = {p: 0 for p in periods}
+                              turnover_sums = {p: 0 for p in periods}
 
                               closes = [r["close"] for r in records]
+                              turnovers = [r["close"] * r["volume"] for r in records]
 
                               for i in range(len(records)):
                                   price = closes[i]
+                                  turnover = turnovers[i]
 
                                   for p in periods:
+
                                       ma_key = f"ma{p}"
                                       dev_key = f"dev{p}"
-                                      sums[p] += price
+                                      tav_key = f"tav{p}"
+
+                                      close_sums[p] += price
+                                      turnover_sums[p] += turnover
 
                                       if i >= p:
-                                          sums[p] -= closes[i - p]
+                                          close_sums[p] -= closes[i - p]
+                                          turnover_sums[p] -= turnovers[i - p]
 
                                       if i < p - 1:
                                           records[i][ma_key] = "-"
                                           records[i][dev_key] = "-"
+                                          records[i][tav_key] = "-"
                                       else:
-                                          ma = sums[p] / p
+                                          ma = close_sums[p] / p
                                           records[i][ma_key] = round(ma, 0)
-                                          
+
                                           deviation = (price - ma) / ma * 100
                                           records[i][dev_key] = round(deviation, 1)
+
+                                          tav = turnover_sums[p] / p
+                                          records[i][tav_key] = round(tav, 0)
 
                               with open(json_path, 'w', encoding='utf-8') as f:
                                   json.dump(records, f, indent=2, ensure_ascii=False)
