@@ -1,13 +1,5 @@
 [
   {
-    "symbol": "6085",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 1891,
-    "dev36": 529.1
-  },
-  {
     "symbol": "3103",
     "market": "JP",
     "timeframe": "monthly",
@@ -1750,14 +1742,6 @@
     "date": "2026-03-31",
     "close": 8920,
     "dev36": 88.4
-  },
-  {
-    "symbol": "6083",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 4610,
-    "dev36": 88.2
   },
   {
     "symbol": "7167",
@@ -5800,14 +5784,6 @@
     "dev36": 44.3
   },
   {
-    "symbol": "4935",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 340,
-    "dev36": 44.3
-  },
-  {
     "symbol": "5644",
     "market": "JP",
     "timeframe": "monthly",
@@ -5949,14 +5925,6 @@
     "timeframe": "monthly",
     "date": "2026-03-31",
     "close": 689,
-    "dev36": 43.5
-  },
-  {
-    "symbol": "6091",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 917,
     "dev36": 43.5
   },
   {
@@ -6616,14 +6584,6 @@
     "dev36": 40.6
   },
   {
-    "symbol": "6086",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 1180,
-    "dev36": 40.6
-  },
-  {
     "symbol": "7192",
     "market": "JP",
     "timeframe": "monthly",
@@ -7253,14 +7213,6 @@
     "timeframe": "monthly",
     "date": "2026-03-31",
     "close": 1467,
-    "dev36": 37.5
-  },
-  {
-    "symbol": "6176",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 974,
     "dev36": 37.5
   },
   {
@@ -9093,14 +9045,6 @@
     "timeframe": "monthly",
     "date": "2026-03-31",
     "close": 11340,
-    "dev36": 30.7
-  },
-  {
-    "symbol": "6178",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 1882,
     "dev36": 30.7
   },
   {
@@ -11904,14 +11848,6 @@
     "dev36": 21.7
   },
   {
-    "symbol": "6093",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 178,
-    "dev36": 21.7
-  },
-  {
     "symbol": "7203",
     "market": "JP",
     "timeframe": "monthly",
@@ -12669,22 +12605,6 @@
     "timeframe": "monthly",
     "date": "2026-03-31",
     "close": 7440,
-    "dev36": 19.3
-  },
-  {
-    "symbol": "6089",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 1263,
-    "dev36": 19.3
-  },
-  {
-    "symbol": "6171",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 429,
     "dev36": 19.3
   },
   {
@@ -14328,14 +14248,6 @@
     "dev36": 14.9
   },
   {
-    "symbol": "6092",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 712,
-    "dev36": 14.8
-  },
-  {
     "symbol": "6810",
     "market": "JP",
     "timeframe": "monthly",
@@ -14573,14 +14485,6 @@
     "timeframe": "monthly",
     "date": "2026-03-31",
     "close": 2049,
-    "dev36": 14.2
-  },
-  {
-    "symbol": "6180",
-    "market": "JP",
-    "timeframe": "monthly",
-    "date": "2026-03-31",
-    "close": 4350,
     "dev36": 14.2
   },
   {
