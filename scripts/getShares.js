@@ -11,16 +11,11 @@ async function getShares() {
     }
   });
 
-  const data = await res.json();
+  const text = await res.text();
 
-  const shares =
-    data.quoteSummary.result[0]
-      .defaultKeyStatistics
-      .sharesOutstanding
-      .raw;
+  console.log("raw response:");
+  console.log(text);
 
-  console.log("symbol:", symbol);
-  console.log("sharesOutstanding:", shares);
 }
 
 getShares();
