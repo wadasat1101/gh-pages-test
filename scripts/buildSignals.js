@@ -6,8 +6,10 @@ const fs = require("fs");
 const path = require("path");
 
 // ---- 設定（YAMLのenvを利用）
-const BUY_DEV_IGNORE = -40;
+const BUY_CLOSE = parseFloat(process.env.BUY_CLOSE ?? 300);
+const BUY_DEV_IGNORE = parseFloat(process.env.BUY_DEV_IGNORE ?? -40);
 const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -25);
+const BUY_TAV = parseFloat(process.env.BUY_TAV ?? 100000000);
 const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 10);
 
 // interval
@@ -73,8 +75,9 @@ INTERVALS.forEach(interval => {
                 if (!data.length) return;
 
                 const last = data[data.length - 1];
-                const dev = last.dev36;
 				const close = last.close;
+                const dev = last.dev36;
+                const tav = last.tav36;
 
                 if (dev === undefined || dev === null) return;
 
@@ -88,15 +91,19 @@ INTERVALS.forEach(interval => {
                     timeframe: interval,
                     date: last.time,
                     close: close,
-                    dev36: dev
+                    dev36: dev,
+                    tav36: tav
                 };
 
 				// 購入条件 (300 <= close)
 				// 購入条件 (-40 < dev <= -25)
-				if(300 <= close){
+				// 購入条件 (100000000 < tav)
+				if(BUY_CLOSE <= close){
 					if (BUY_DEV_IGNORE < dev) {
 						if (dev <= BUY_DEV) {
-							buySignals.push(entry);
+							if (BUY_TAV <= tav) {
+								buySignals.push(entry);
+							}
 						}
 					}
 				}
