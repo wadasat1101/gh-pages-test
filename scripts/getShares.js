@@ -3,7 +3,7 @@ const symbol = "7203.T";
 async function getShares() {
 
   const url =
-    `https://query2.finance.yahoo.com/v10/finance/quoteSummary/${symbol}?modules=defaultKeyStatistics`;
+    `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`;
 
   const res = await fetch(url, {
     headers: {
@@ -11,11 +11,15 @@ async function getShares() {
     }
   });
 
-  const text = await res.text();
+  const json = await res.json();
 
-  console.log("raw response:");
-  console.log(text);
+  console.log(JSON.stringify(json, null, 2));
 
+  const shares =
+    json.quoteResponse.result[0].sharesOutstanding;
+
+  console.log("symbol:", symbol);
+  console.log("sharesOutstanding:", shares);
 }
 
 getShares();
