@@ -1,0 +1,20 @@
+name: Get Shares Outstanding
+
+on:
+  workflow_dispatch:
+
+jobs:
+  get-shares:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run script
+        run: node scripts/getShares.js
