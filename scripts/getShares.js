@@ -10,14 +10,9 @@ async function getShares() {
     }
   });
 
-  let html = await res.text();
-  
-  console.log(html.includes("発行済株式数"));
+  const html = await res.text();
 
-  // HTMLタグ除去
-  const text = html.replace(/<[^>]*>/g, "");
-
-  const match = text.match(/発行済株式数\s*([0-9,]+)/);
+  const match = html.match(/発行済株式数[\s\S]*?([0-9,]+)<\/span>\s*<span[^>]*>株/);
 
   if (match) {
 
