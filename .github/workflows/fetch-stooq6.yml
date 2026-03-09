@@ -29,7 +29,7 @@ jobs:
 
           SYMBOLS_FILE = 'symbols6.json'
           OUTPUT_DIR = 'data'
-          SLEEP_SEC = 3
+          SLEEP_SEC = 2
           #INTERVALS = {
           #    "daily": "d",
           #    "weekly": "w",
