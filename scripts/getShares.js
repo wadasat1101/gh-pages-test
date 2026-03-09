@@ -2,8 +2,7 @@ const symbol = "7203.T";
 
 async function getShares() {
 
-  const url =
-    `https://query1.finance.yahoo.com/v7/finance/quote?symbols=${symbol}`;
+  const url = `https://finance.yahoo.co.jp/quote/${symbol}`;
 
   const res = await fetch(url, {
     headers: {
@@ -11,15 +10,17 @@ async function getShares() {
     }
   });
 
-  const json = await res.json();
+  const html = await res.text();
 
-  console.log(JSON.stringify(json, null, 2));
+  const match = html.match(/発行済株式数.*?([0-9,]+)株/);
 
-  const shares =
-    json.quoteResponse.result[0].sharesOutstanding;
-
-  console.log("symbol:", symbol);
-  console.log("sharesOutstanding:", shares);
+  if (match) {
+    const shares = match[1].replace(/,/g, "");
+    console.log("symbol:", symbol);
+    console.log("sharesOutstanding:", shares);
+  } else {
+    console.log("shares not found");
+  }
 }
 
 getShares();
