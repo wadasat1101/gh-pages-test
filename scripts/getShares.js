@@ -11,6 +11,8 @@ async function getShares() {
   });
 
   let html = await res.text();
+  
+  console.log(html.includes("発行済株式数"));
 
   // HTMLタグ除去
   const text = html.replace(/<[^>]*>/g, "");
