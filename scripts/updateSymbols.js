@@ -65,6 +65,49 @@ async function run(){
   );
 
   console.log("done:",Object.keys(stocks).length);
+  
+  // ===== symbols1.json作成 =====
+
+  const sectors = buildSectorJSON(stocks,"symbols.json");
+
+  fs.writeFileSync(
+	"symbols1_x.json",
+	JSON.stringify(sectors,null,2)
+  );
+
+  console.log("symbols_x.json done");
+}
+
+function marketToSegment(market){
+
+  if(!market) return null;
+
+  if(market.includes("プライム")) return "p";
+  if(market.includes("スタンダード")) return "s";
+  if(market.includes("グロース")) return "g";
+
+  return null;
+}
+
+function buildSectorJSON(master, sectorFile){
+
+  const sectors = JSON.parse(fs.readFileSync(sectorFile,"utf8"));
+
+  for(const sec of sectors){
+
+    for(const sym of sec.symbols){
+
+      const m = master[sym.code];
+
+      if(!m) continue;
+
+      sym.name = m.name;
+      sym.segment = marketToSegment(m.market);
+    }
+  }
+
+  return sectors;
 }
 
 run();
+
