@@ -91,25 +91,55 @@ async function run(){
 		await sleep(500);
 
 		count++;
-		if(count >= 100) break;
+		// if(count >= 100) break;
 	}
 
-	const result = {
-		source: "stooq",
-		markets: [
-			{
-				market: "JP",
-				name: "日本株",
-				suffix: ".jp",
-				sectors: Array.from(sectorMap.values())
-			}
-		]
-	};
+	// ===== symbols をフラット配列に変換 =====
 
-	fs.writeFileSync(
-		"symbols.json",
-		JSON.stringify(result,null,2)
-	);
+	const allSymbols = [];
+
+	for(const sector of sectorMap.values()){
+		for(const sym of sector.symbols){
+			allSymbols.push(sym);
+		}
+	}
+
+	console.log("total symbols:", allSymbols.length);
+
+
+	// ===== 500件ごとに分割 =====
+
+	const CHUNK_SIZE = 500;
+
+	let fileIndex = 1;
+
+	for(let i = 0; i < allSymbols.length; i += CHUNK_SIZE){
+
+		const chunk = allSymbols.slice(i, i + CHUNK_SIZE);
+
+		const result = {
+			source: "stooq",
+			markets: [
+				{
+					market: "JP",
+					name: "日本株",
+					suffix: ".jp",
+					symbols: chunk
+				}
+			]
+		};
+
+		const filename = `_symbols${fileIndex}.json`;
+
+		fs.writeFileSync(
+			filename,
+			JSON.stringify(result, null, 2)
+		);
+
+		console.log("write:", filename, "records:", chunk.length);
+
+		fileIndex++;
+	}
 
 	console.log("done");
 }
