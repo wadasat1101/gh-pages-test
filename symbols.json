@@ -13,62 +13,74 @@
             {
               "code": "1301",
               "name": "極洋",
-              "segment": "p"
+              "segment": "p",
+              "shares": 12078283
             },
             {
               "code": "1332",
               "name": "ニッスイ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 312430277
             },
             {
               "code": "1333",
               "name": "マルハニチロ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 151736511
             },
             {
               "code": "1375",
               "name": "ユキグニファクトリー",
-              "segment": "p"
+              "segment": "p",
+              "shares": 39910700
             },
             {
               "code": "1376",
               "name": "カネコ種苗",
-              "segment": "s"
+              "segment": "s",
+              "shares": 11772626
             },
             {
               "code": "1377",
               "name": "サカタのタネ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 45410750
             },
             {
               "code": "1379",
               "name": "ホクト",
-              "segment": "p"
+              "segment": "p",
+              "shares": 33359040
             },
             {
               "code": "1380",
               "name": "秋川牧園",
-              "segment": "s"
+              "segment": "s",
+              "shares": 4179000
             },
             {
               "code": "1381",
               "name": "アクシーズ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 5617500
             },
             {
               "code": "1382",
               "name": "ホーブ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 762000
             },
             {
               "code": "1383",
               "name": "ベルグアース",
-              "segment": "s"
+              "segment": "s",
+              "shares": 1613580
             },
             {
               "code": "1384",
               "name": "ホクリヨウ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 8459000
             }
           ]
         },
@@ -79,392 +91,470 @@
             {
               "code": "1401",
               "name": "エムビーエス",
-              "segment": "g"
+              "segment": "g",
+              "shares": 7732000
             },
             {
               "code": "1407",
               "name": "ウエストホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 46027488
             },
             {
               "code": "1414",
               "name": "ショーボンドホールディングス",
-              "segment": "p"
+              "segment": "p",
+              "shares": 218980720
             },
             {
               "code": "1417",
               "name": "ミライト・ワン",
-              "segment": "p"
+              "segment": "p",
+              "shares": 91325329
             },
             {
               "code": "1418",
               "name": "インターライフホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 17010529
             },
             {
               "code": "1419",
               "name": "タマホーム",
-              "segment": "p"
+              "segment": "p",
+              "shares": 29455800
             },
             {
               "code": "1420",
               "name": "サンヨーホームズ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 13090000
             },
             {
               "code": "1429",
               "name": "日本アクア",
-              "segment": "p"
+              "segment": "p",
+              "shares": 34760000
             },
             {
               "code": "1430",
               "name": "ファーストコーポレーション",
-              "segment": "s"
+              "segment": "s",
+              "shares": 13363540
             },
             {
               "code": "1431",
               "name": "Ｌｉｂ　Ｗｏｒｋ",
-              "segment": "g"
-            },
-            {
-              "code": "1432",
-              "name": "動力",
-              "segment": null
+              "segment": "g",
+              "shares": 24151540
             },
             {
               "code": "1433",
               "name": "ベステラ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 9297200
             },
             {
               "code": "1434",
               "name": "ＪＥＳＣＯホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 6975400
             },
             {
               "code": "1436",
               "name": "グリーンエナジー＆カンパニー",
-              "segment": "g"
+              "segment": "g",
+              "shares": 4286000
             },
             {
               "code": "1438",
               "name": "岐阜造園",
-              "segment": "s"
+              "segment": "s",
+              "shares": 3244600
             },
             {
               "code": "1443",
               "name": "技研ホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 16237977
             },
             {
               "code": "1444",
               "name": "ニッソウ",
-              "segment": "g"
-            },
-            {
-              "code": "1445",
-              "name": "ひかりホールディングス",
-              "segment": null
+              "segment": "g",
+              "shares": 1088700
             },
             {
               "code": "1446",
               "name": "キャンディル",
-              "segment": "s"
+              "segment": "s",
+              "shares": 10734200
             },
             {
               "code": "1447",
               "name": "ＳＡＡＦホールディングス",
-              "segment": "g"
+              "segment": "g",
+              "shares": 24446958
             },
             {
               "code": "1450",
               "name": "ＴＡＮＡＫＥＮ",
-              "segment": "s"
-            },
-            {
-              "code": "1452",
-              "name": "横浜ライト工業",
-              "segment": null
+              "segment": "s",
+              "shares": 8699600
             },
             {
               "code": "1711",
               "name": "ＳＤＳホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 10432773
             },
             {
               "code": "1716",
               "name": "第一カッター興業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 12000000
             },
             {
               "code": "1718",
               "name": "美樹工業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 1153263
             },
             {
               "code": "1719",
               "name": "安藤・間",
-              "segment": "p"
+              "segment": "p",
+              "shares": 181021197
             },
             {
               "code": "1720",
               "name": "東急建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 106761205
             },
             {
               "code": "1721",
               "name": "コムシスホールディングス",
-              "segment": "p"
+              "segment": "p",
+              "shares": 133000000
             },
             {
               "code": "1723",
               "name": "日本電技",
-              "segment": "s"
+              "segment": "s",
+              "shares": 16395000
             },
             {
               "code": "1724",
               "name": "シンクレイヤ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 4943780
             },
             {
               "code": "1726",
               "name": "ビーアールホールディングス",
-              "segment": "p"
+              "segment": "p",
+              "shares": 45795000
             },
             {
               "code": "1736",
               "name": "オーテック",
-              "segment": "s"
+              "segment": "s",
+              "shares": 17100000
             },
             {
               "code": "1758",
               "name": "太洋基礎工業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 2458800
             },
             {
               "code": "1762",
               "name": "高松コンストラクショングループ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 34818578
             },
             {
               "code": "1764",
               "name": "工藤建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 1331220
             },
             {
               "code": "1766",
               "name": "東建コーポレーション",
-              "segment": "p"
+              "segment": "p",
+              "shares": 13472000
             },
             {
               "code": "1768",
               "name": "ソネック",
-              "segment": "s"
+              "segment": "s",
+              "shares": 7500000
             },
             {
               "code": "1770",
               "name": "藤田エンジニアリング",
-              "segment": "s"
+              "segment": "s",
+              "shares": 10200000
             },
             {
               "code": "1773",
               "name": "ワイ・ティー・エル・コーポレーション・バーハッド",
-              "segment": "p"
+              "segment": "p",
+              "shares": 0
             },
             {
               "code": "1776",
               "name": "三井住建道路",
-              "segment": "s"
+              "segment": "s",
+              "shares": 9277500
             },
             {
               "code": "1780",
               "name": "ヤマウラ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 21103514
             },
             {
               "code": "1786",
               "name": "オリエンタル白石",
-              "segment": "p"
+              "segment": "p",
+              "shares": 138809400
             },
             {
               "code": "1787",
               "name": "ナカボーテック",
-              "segment": "s"
+              "segment": "s",
+              "shares": 2602500
             },
             {
               "code": "1788",
               "name": "三東工業社",
-              "segment": "s"
+              "segment": "s",
+              "shares": 686000
             },
             {
               "code": "1793",
               "name": "大本組",
-              "segment": "s"
+              "segment": "s",
+              "shares": 26794280
             },
             {
               "code": "1795",
               "name": "マサル",
-              "segment": "s"
+              "segment": "s",
+              "shares": 901151
             },
             {
               "code": "1798",
               "name": "守谷商会",
-              "segment": "s"
+              "segment": "s",
+              "shares": 2260000
             },
             {
               "code": "1799",
               "name": "第一建設工業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 20858491
             },
             {
               "code": "1801",
               "name": "大成建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 163185872
             },
             {
               "code": "1802",
               "name": "大林組",
-              "segment": "p"
+              "segment": "p",
+              "shares": 691811346
             },
             {
               "code": "1803",
               "name": "清水建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 716689413
             },
             {
               "code": "1807",
               "name": "佐藤渡辺",
-              "segment": "s"
+              "segment": "s",
+              "shares": 6391400
             },
             {
               "code": "1808",
               "name": "長谷工コーポレーション",
-              "segment": "p"
+              "segment": "p",
+              "shares": 292479897
             },
             {
               "code": "1810",
               "name": "松井建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 30580000
             },
             {
               "code": "1811",
               "name": "錢高組",
-              "segment": "s"
+              "segment": "s",
+              "shares": 7353140
             },
             {
               "code": "1812",
               "name": "鹿島建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 528656011
             },
             {
               "code": "1813",
               "name": "不動テトラ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 16489522
             },
             {
               "code": "1814",
               "name": "大末建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 10614225
             },
             {
               "code": "1815",
               "name": "鉄建建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 14973956
             },
             {
               "code": "1820",
               "name": "西松建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 41791502
             },
             {
               "code": "1822",
               "name": "大豊建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 90415815
             },
             {
               "code": "1826",
               "name": "佐田建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 13386233
             },
             {
               "code": "1827",
               "name": "ナカノフドー建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 34498097
             },
             {
               "code": "1828",
               "name": "田辺工業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 10728000
             },
             {
               "code": "1833",
               "name": "奥村組",
-              "segment": "p"
+              "segment": "p",
+              "shares": 38665226
             },
             {
               "code": "1835",
               "name": "東鉄工業",
-              "segment": "p"
+              "segment": "p",
+              "shares": 36100000
             },
             {
               "code": "1840",
               "name": "土屋ホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 25775118
             },
             {
               "code": "1841",
               "name": "サンユー建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 4000000
             },
             {
               "code": "1844",
               "name": "大盛工業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 18735209
             },
             {
               "code": "1847",
               "name": "イチケン",
-              "segment": "s"
+              "segment": "s",
+              "shares": 7284400
             },
             {
               "code": "1848",
               "name": "富士ピー・エス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 18602244
             },
             {
               "code": "1850",
               "name": "南海辰村建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 28835730
             },
             {
               "code": "1852",
               "name": "淺沼組",
-              "segment": "p"
+              "segment": "p",
+              "shares": 80786290
             },
             {
               "code": "1853",
               "name": "森組",
-              "segment": "s"
+              "segment": "s",
+              "shares": 32800000
             },
             {
               "code": "1860",
               "name": "戸田建設",
-              "segment": "p"
+              "segment": "p",
+              "shares": 322656796
             },
             {
               "code": "1861",
               "name": "熊谷組",
-              "segment": "p"
+              "segment": "p",
+              "shares": 173142240
             },
             {
               "code": "1866",
               "name": "北野建設",
-              "segment": "s"
+              "segment": "s",
+              "shares": 25347412
             },
             {
               "code": "1867",
               "name": "植木組",
-              "segment": "s"
+              "segment": "s",
+              "shares": 6873528
+            },
+            {
+              "code": "1870",
+              "name": "矢作建設工業",
+              "segment": "p",
+              "shares": 44607457
+            },
+            {
+              "code": "1871",
+              "name": "ピーエス・コンストラクション",
+              "segment": "p",
+              "shares": 47486029
+            },
+            {
+              "code": "1873",
+              "name": "日本ハウスホールディングス",
+              "segment": "p",
+              "shares": 40000000
             }
           ]
         },
@@ -475,12 +565,14 @@
             {
               "code": "1435",
               "name": "ｒｏｂｏｔ　ｈｏｍｅ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 91127000
             },
             {
               "code": "1783",
               "name": "ｆａｎｔａｓｉｓｔａ",
-              "segment": "s"
+              "segment": "s",
+              "shares": 170042851
             }
           ]
         },
@@ -491,7 +583,8 @@
             {
               "code": "1491",
               "name": "中外鉱業",
-              "segment": "s"
+              "segment": "s",
+              "shares": 14487399
             }
           ]
         },
@@ -502,27 +595,32 @@
             {
               "code": "1514",
               "name": "住石ホールディングス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 67222853
             },
             {
               "code": "1515",
               "name": "日鉄鉱業",
-              "segment": "p"
+              "segment": "p",
+              "shares": 80000000
             },
             {
               "code": "1605",
               "name": "ＩＮＰＥＸ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 1259136067
             },
             {
               "code": "1662",
               "name": "石油資源開発",
-              "segment": "p"
+              "segment": "p",
+              "shares": 257000380
             },
             {
               "code": "1663",
               "name": "Ｋ＆Ｏエナジーグループ",
-              "segment": "p"
+              "segment": "p",
+              "shares": 28336061
             }
           ]
         },
@@ -533,7 +631,8 @@
             {
               "code": "1518",
               "name": "三井松島ホールディングス",
-              "segment": "p"
+              "segment": "p",
+              "shares": 65322000
             }
           ]
         },
@@ -544,7 +643,8 @@
             {
               "code": "1717",
               "name": "明豊ファシリティワークス",
-              "segment": "s"
+              "segment": "s",
+              "shares": 12775900
             }
           ]
         }
