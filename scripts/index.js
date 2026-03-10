@@ -22,6 +22,8 @@ const formatDev = d => ({
 const UI = {
 	symbolName: $("symbolNameLabel"),
 	segmentName: $("segmentNameLabel"),
+	shares: $("shares"),
+	marketCap: $("marketCap"),
 	date: $("dateLabel"),
 	open: $("openLabel"),
 	high: $("highLabel"),
@@ -237,6 +239,11 @@ async function loadChart() {
 		
 		UI.symbolName.textContent = sy.name;
 		UI.segmentName.textContent = SEGMENTS.get(sy.segment);
+		UI.shares.textContent = sy.shares.toLocaleString();
+		let marketCap = Math.round(data.at(-1).close * sy.shares / 1000000);
+		UI.marketCap.textContent = marketCap.toLocaleString();
+		
+		data.at(-1).time
 		
 		STATE.symbolCode = sy.code;
 		STATE.symbolName = sy.name
@@ -400,11 +407,27 @@ function renderSignalLists() {
 		el.style.fontSize="12px";
 		el.style.padding="2px";
 		
-		const seg = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).segment : "";
-		const symbolName = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).name : "";
-		const segmentName = SEGMENTS.get(seg);
+		//const shares = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).shares : "";
+		//const seg = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).segment : "";
+		//const symbolName = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).name : "";
+		//const segmentName = SEGMENTS.get(seg);
+		
+		let shares = "";
+		let seg = "";
+		let symbolName = "";
+		let segmentName = "";
+		let marketCap = "";
+		
+		if(SYMBOLS.get(s.symbol) != null){
+			shares = SYMBOLS.get(s.symbol).shares;
+			seg = SYMBOLS.get(s.symbol).segment;
+			symbolName = SYMBOLS.get(s.symbol).name;
+			segmentName = SEGMENTS.get(seg);
+			marketCap = s.close * shares;
+		}
+		
 		el.textContent =
-			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
+			`${s.symbol} ${symbolName} ${segmentName} ${shares} ${marketCap} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
 
 		el.onclick = () => {
 
@@ -510,7 +533,8 @@ Promise.all([
 					s.symbols.forEach(sym => {
 						SYMBOLS.set(sym.code, {
 							name: sym.name,
-							segment: sym.segment
+							segment: sym.segment,
+							shares: sym.shares
 						});
 					});
 				});
