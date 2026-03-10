@@ -38,6 +38,7 @@ async function run(){
 
   const stocks = {};
 
+  let count = 0;
   for(const r of rows){
 
     const code = String(r["コード"]);
@@ -57,6 +58,9 @@ async function run(){
     };
 
     await sleep(500);
+	
+	count++;
+	if(count >= 100) break;
   }
 
   fs.writeFileSync(
