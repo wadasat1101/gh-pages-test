@@ -135,7 +135,7 @@ async function run(){
 					]
 				};
 
-				const filename = `_symbols${fileIndex}.json`;
+				const filename = `symbols${fileIndex}.json`;
 
 				fs.writeFileSync(
 					filename,
