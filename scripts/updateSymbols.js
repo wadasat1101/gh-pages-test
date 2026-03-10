@@ -91,12 +91,12 @@ async function run(){
 		await sleep(500);
 
 		count++;
-		if(count >= 100) break;
+		// if(count >= 100) break;
 	}
 
-	// ===== sectors構造を維持したまま30件ごとに分割 =====
+	// ===== sectors構造を維持したまま500件ごとに分割 =====
 
-	const CHUNK_SIZE = 30;
+	const CHUNK_SIZE = 500;
 
 	let fileIndex = 1;
 	let symbolCount = 0;
@@ -167,7 +167,7 @@ async function run(){
 			]
 		};
 
-		const filename = `_symbols${fileIndex}.json`;
+		const filename = `symbols${fileIndex}.json`;
 
 		fs.writeFileSync(
 			filename,
