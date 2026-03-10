@@ -1,0 +1,554 @@
+{
+  "source": "stooq",
+  "markets": [
+    {
+      "market": "JP",
+      "name": "日本株",
+      "suffix": ".jp",
+      "sectors": [
+        {
+          "code": "50",
+          "name": "水産・農林業",
+          "symbols": [
+            {
+              "code": "1301",
+              "name": "極洋",
+              "segment": "p"
+            },
+            {
+              "code": "1332",
+              "name": "ニッスイ",
+              "segment": "p"
+            },
+            {
+              "code": "1333",
+              "name": "マルハニチロ",
+              "segment": "p"
+            },
+            {
+              "code": "1375",
+              "name": "ユキグニファクトリー",
+              "segment": "p"
+            },
+            {
+              "code": "1376",
+              "name": "カネコ種苗",
+              "segment": "s"
+            },
+            {
+              "code": "1377",
+              "name": "サカタのタネ",
+              "segment": "p"
+            },
+            {
+              "code": "1379",
+              "name": "ホクト",
+              "segment": "p"
+            },
+            {
+              "code": "1380",
+              "name": "秋川牧園",
+              "segment": "s"
+            },
+            {
+              "code": "1381",
+              "name": "アクシーズ",
+              "segment": "s"
+            },
+            {
+              "code": "1382",
+              "name": "ホーブ",
+              "segment": "s"
+            },
+            {
+              "code": "1383",
+              "name": "ベルグアース",
+              "segment": "s"
+            },
+            {
+              "code": "1384",
+              "name": "ホクリヨウ",
+              "segment": "s"
+            }
+          ]
+        },
+        {
+          "code": "2050",
+          "name": "建設業",
+          "symbols": [
+            {
+              "code": "1401",
+              "name": "エムビーエス",
+              "segment": "g"
+            },
+            {
+              "code": "1407",
+              "name": "ウエストホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1414",
+              "name": "ショーボンドホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "1417",
+              "name": "ミライト・ワン",
+              "segment": "p"
+            },
+            {
+              "code": "1418",
+              "name": "インターライフホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1419",
+              "name": "タマホーム",
+              "segment": "p"
+            },
+            {
+              "code": "1420",
+              "name": "サンヨーホームズ",
+              "segment": "s"
+            },
+            {
+              "code": "1429",
+              "name": "日本アクア",
+              "segment": "p"
+            },
+            {
+              "code": "1430",
+              "name": "ファーストコーポレーション",
+              "segment": "s"
+            },
+            {
+              "code": "1431",
+              "name": "Ｌｉｂ　Ｗｏｒｋ",
+              "segment": "g"
+            },
+            {
+              "code": "1432",
+              "name": "動力",
+              "segment": null
+            },
+            {
+              "code": "1433",
+              "name": "ベステラ",
+              "segment": "p"
+            },
+            {
+              "code": "1434",
+              "name": "ＪＥＳＣＯホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1436",
+              "name": "グリーンエナジー＆カンパニー",
+              "segment": "g"
+            },
+            {
+              "code": "1438",
+              "name": "岐阜造園",
+              "segment": "s"
+            },
+            {
+              "code": "1443",
+              "name": "技研ホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1444",
+              "name": "ニッソウ",
+              "segment": "g"
+            },
+            {
+              "code": "1445",
+              "name": "ひかりホールディングス",
+              "segment": null
+            },
+            {
+              "code": "1446",
+              "name": "キャンディル",
+              "segment": "s"
+            },
+            {
+              "code": "1447",
+              "name": "ＳＡＡＦホールディングス",
+              "segment": "g"
+            },
+            {
+              "code": "1450",
+              "name": "ＴＡＮＡＫＥＮ",
+              "segment": "s"
+            },
+            {
+              "code": "1452",
+              "name": "横浜ライト工業",
+              "segment": null
+            },
+            {
+              "code": "1711",
+              "name": "ＳＤＳホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1716",
+              "name": "第一カッター興業",
+              "segment": "s"
+            },
+            {
+              "code": "1718",
+              "name": "美樹工業",
+              "segment": "s"
+            },
+            {
+              "code": "1719",
+              "name": "安藤・間",
+              "segment": "p"
+            },
+            {
+              "code": "1720",
+              "name": "東急建設",
+              "segment": "p"
+            },
+            {
+              "code": "1721",
+              "name": "コムシスホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "1723",
+              "name": "日本電技",
+              "segment": "s"
+            },
+            {
+              "code": "1724",
+              "name": "シンクレイヤ",
+              "segment": "s"
+            },
+            {
+              "code": "1726",
+              "name": "ビーアールホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "1736",
+              "name": "オーテック",
+              "segment": "s"
+            },
+            {
+              "code": "1758",
+              "name": "太洋基礎工業",
+              "segment": "s"
+            },
+            {
+              "code": "1762",
+              "name": "高松コンストラクショングループ",
+              "segment": "p"
+            },
+            {
+              "code": "1764",
+              "name": "工藤建設",
+              "segment": "s"
+            },
+            {
+              "code": "1766",
+              "name": "東建コーポレーション",
+              "segment": "p"
+            },
+            {
+              "code": "1768",
+              "name": "ソネック",
+              "segment": "s"
+            },
+            {
+              "code": "1770",
+              "name": "藤田エンジニアリング",
+              "segment": "s"
+            },
+            {
+              "code": "1773",
+              "name": "ワイ・ティー・エル・コーポレーション・バーハッド",
+              "segment": "p"
+            },
+            {
+              "code": "1776",
+              "name": "三井住建道路",
+              "segment": "s"
+            },
+            {
+              "code": "1780",
+              "name": "ヤマウラ",
+              "segment": "p"
+            },
+            {
+              "code": "1786",
+              "name": "オリエンタル白石",
+              "segment": "p"
+            },
+            {
+              "code": "1787",
+              "name": "ナカボーテック",
+              "segment": "s"
+            },
+            {
+              "code": "1788",
+              "name": "三東工業社",
+              "segment": "s"
+            },
+            {
+              "code": "1793",
+              "name": "大本組",
+              "segment": "s"
+            },
+            {
+              "code": "1795",
+              "name": "マサル",
+              "segment": "s"
+            },
+            {
+              "code": "1798",
+              "name": "守谷商会",
+              "segment": "s"
+            },
+            {
+              "code": "1799",
+              "name": "第一建設工業",
+              "segment": "s"
+            },
+            {
+              "code": "1801",
+              "name": "大成建設",
+              "segment": "p"
+            },
+            {
+              "code": "1802",
+              "name": "大林組",
+              "segment": "p"
+            },
+            {
+              "code": "1803",
+              "name": "清水建設",
+              "segment": "p"
+            },
+            {
+              "code": "1807",
+              "name": "佐藤渡辺",
+              "segment": "s"
+            },
+            {
+              "code": "1808",
+              "name": "長谷工コーポレーション",
+              "segment": "p"
+            },
+            {
+              "code": "1810",
+              "name": "松井建設",
+              "segment": "s"
+            },
+            {
+              "code": "1811",
+              "name": "錢高組",
+              "segment": "s"
+            },
+            {
+              "code": "1812",
+              "name": "鹿島建設",
+              "segment": "p"
+            },
+            {
+              "code": "1813",
+              "name": "不動テトラ",
+              "segment": "p"
+            },
+            {
+              "code": "1814",
+              "name": "大末建設",
+              "segment": "p"
+            },
+            {
+              "code": "1815",
+              "name": "鉄建建設",
+              "segment": "p"
+            },
+            {
+              "code": "1820",
+              "name": "西松建設",
+              "segment": "p"
+            },
+            {
+              "code": "1822",
+              "name": "大豊建設",
+              "segment": "s"
+            },
+            {
+              "code": "1826",
+              "name": "佐田建設",
+              "segment": "s"
+            },
+            {
+              "code": "1827",
+              "name": "ナカノフドー建設",
+              "segment": "s"
+            },
+            {
+              "code": "1828",
+              "name": "田辺工業",
+              "segment": "s"
+            },
+            {
+              "code": "1833",
+              "name": "奥村組",
+              "segment": "p"
+            },
+            {
+              "code": "1835",
+              "name": "東鉄工業",
+              "segment": "p"
+            },
+            {
+              "code": "1840",
+              "name": "土屋ホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1841",
+              "name": "サンユー建設",
+              "segment": "s"
+            },
+            {
+              "code": "1844",
+              "name": "大盛工業",
+              "segment": "s"
+            },
+            {
+              "code": "1847",
+              "name": "イチケン",
+              "segment": "s"
+            },
+            {
+              "code": "1848",
+              "name": "富士ピー・エス",
+              "segment": "s"
+            },
+            {
+              "code": "1850",
+              "name": "南海辰村建設",
+              "segment": "s"
+            },
+            {
+              "code": "1852",
+              "name": "淺沼組",
+              "segment": "p"
+            },
+            {
+              "code": "1853",
+              "name": "森組",
+              "segment": "s"
+            },
+            {
+              "code": "1860",
+              "name": "戸田建設",
+              "segment": "p"
+            },
+            {
+              "code": "1861",
+              "name": "熊谷組",
+              "segment": "p"
+            },
+            {
+              "code": "1866",
+              "name": "北野建設",
+              "segment": "s"
+            },
+            {
+              "code": "1867",
+              "name": "植木組",
+              "segment": "s"
+            }
+          ]
+        },
+        {
+          "code": "8050",
+          "name": "不動産業",
+          "symbols": [
+            {
+              "code": "1435",
+              "name": "ｒｏｂｏｔ　ｈｏｍｅ",
+              "segment": "s"
+            },
+            {
+              "code": "1783",
+              "name": "ｆａｎｔａｓｉｓｔａ",
+              "segment": "s"
+            }
+          ]
+        },
+        {
+          "code": "3500",
+          "name": "非鉄金属",
+          "symbols": [
+            {
+              "code": "1491",
+              "name": "中外鉱業",
+              "segment": "s"
+            }
+          ]
+        },
+        {
+          "code": "1050",
+          "name": "鉱業",
+          "symbols": [
+            {
+              "code": "1514",
+              "name": "住石ホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "1515",
+              "name": "日鉄鉱業",
+              "segment": "p"
+            },
+            {
+              "code": "1605",
+              "name": "ＩＮＰＥＸ",
+              "segment": "p"
+            },
+            {
+              "code": "1662",
+              "name": "石油資源開発",
+              "segment": "p"
+            },
+            {
+              "code": "1663",
+              "name": "Ｋ＆Ｏエナジーグループ",
+              "segment": "p"
+            }
+          ]
+        },
+        {
+          "code": "3800",
+          "name": "その他製品",
+          "symbols": [
+            {
+              "code": "1518",
+              "name": "三井松島ホールディングス",
+              "segment": "p"
+            }
+          ]
+        },
+        {
+          "code": "9050",
+          "name": "サービス業",
+          "symbols": [
+            {
+              "code": "1717",
+              "name": "明豊ファシリティワークス",
+              "segment": "s"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
