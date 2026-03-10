@@ -25,63 +25,6 @@ async function getShares(symbol){
   return Number(match[1].replace(/,/g,""));
 }
 
-async function run(){
-
-  console.log("download JPX list...");
-
-  const res = await fetch(JPX_URL);
-  const buffer = Buffer.from(await res.arrayBuffer());
-
-  const wb = XLSX.read(buffer);
-  const sheet = wb.Sheets[wb.SheetNames[0]];
-  const rows = XLSX.utils.sheet_to_json(sheet);
-
-  const stocks = {};
-
-  let count = 0;
-  for(const r of rows){
-
-    const code = String(r["コード"]);
-
-    if(!/^[0-9]{4}$/.test(code)) continue;
-
-    const symbol = `${code}.T`;
-
-    console.log("fetch:",symbol);
-
-    const shares = await getShares(symbol);
-
-    stocks[code] = {
-      name: r["銘柄名"],
-      market: r["市場・商品区分"],
-      shares
-    };
-
-    await sleep(500);
-	
-	count++;
-	if(count >= 100) break;
-  }
-
-  fs.writeFileSync(
-    "symbols_master.json",
-    JSON.stringify(stocks,null,2)
-  );
-
-  console.log("done:",Object.keys(stocks).length);
-  
-  // ===== symbols1.json作成 =====
-
-  const sectors = buildSectorJSON(stocks,"symbols.json");
-
-  fs.writeFileSync(
-	"symbols1_x.json",
-	JSON.stringify(sectors,null,2)
-  );
-
-  console.log("symbols_x.json done");
-}
-
 function marketToSegment(market){
 
   if(!market) return null;
@@ -93,25 +36,78 @@ function marketToSegment(market){
   return null;
 }
 
-function buildSectorJSON(master, sectorFile){
+async function run(){
 
-  const sectors = JSON.parse(fs.readFileSync(sectorFile,"utf8"));
+  console.log("download JPX list...");
 
-  for(const sec of sectors){
+  const res = await fetch(JPX_URL);
+  const buffer = Buffer.from(await res.arrayBuffer());
 
-    for(const sym of sec.symbols){
+  const wb = XLSX.read(buffer);
+  const sheet = wb.Sheets[wb.SheetNames[0]];
+  const rows = XLSX.utils.sheet_to_json(sheet);
 
-      const m = master[sym.code];
+  const sectorMap = new Map();
 
-      if(!m) continue;
+  let count = 0;
 
-      sym.name = m.name;
-      sym.segment = marketToSegment(m.market);
+  for(const r of rows){
+
+    const code = String(r["コード"]);
+
+    if(!/^[0-9]{4}$/.test(code)) continue;
+
+    const sectorCode = String(r["33業種コード"]);
+    const sectorName = r["33業種区分"];
+
+    if(sectorCode === "-" || !sectorCode) continue;
+
+    const symbol = `${code}.T`;
+
+    console.log("fetch:",symbol);
+
+    const shares = await getShares(symbol);
+
+    const segment = marketToSegment(r["市場・商品区分"]);
+
+    if(!sectorMap.has(sectorCode)){
+      sectorMap.set(sectorCode,{
+        code: sectorCode,
+        name: sectorName,
+        symbols:[]
+      });
     }
+
+    sectorMap.get(sectorCode).symbols.push({
+      code,
+      name: r["銘柄名"],
+      segment
+    });
+
+    await sleep(500);
+
+    count++;
+    if(count >= 100) break;   // テスト用
   }
 
-  return sectors;
+  const result = {
+    source: "stooq",
+    markets: [
+      {
+        market: "JP",
+        name: "日本株",
+        suffix: ".jp",
+        sectors: Array.from(sectorMap.values())
+      }
+    ]
+  };
+
+  fs.writeFileSync(
+    "symbols.json",
+    JSON.stringify(result,null,2)
+  );
+
+  console.log("done");
 }
 
 run();
-
