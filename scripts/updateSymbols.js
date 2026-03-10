@@ -91,31 +91,69 @@ async function run(){
 		await sleep(500);
 
 		count++;
-		// if(count >= 100) break;
+		if(count >= 100) break;
 	}
 
-	// ===== symbols をフラット配列に変換 =====
+	// ===== sectors構造を維持したまま30件ごとに分割 =====
 
-	const allSymbols = [];
+	const CHUNK_SIZE = 30;
+
+	let fileIndex = 1;
+	let symbolCount = 0;
+
+	let currentSectors = [];
+	let currentSector = null;
 
 	for(const sector of sectorMap.values()){
+
 		for(const sym of sector.symbols){
-			allSymbols.push(sym);
+
+			if(!currentSector || currentSector.code !== sector.code){
+				currentSector = {
+					code: sector.code,
+					name: sector.name,
+					symbols: []
+				};
+				currentSectors.push(currentSector);
+			}
+
+			currentSector.symbols.push(sym);
+
+			symbolCount++;
+
+			if(symbolCount >= CHUNK_SIZE){
+
+				const result = {
+					source: "stooq",
+					markets: [
+						{
+							market: "JP",
+							name: "日本株",
+							suffix: ".jp",
+							sectors: currentSectors
+						}
+					]
+				};
+
+				const filename = `_symbols${fileIndex}.json`;
+
+				fs.writeFileSync(
+					filename,
+					JSON.stringify(result, null, 2)
+				);
+
+				console.log("write:", filename);
+
+				fileIndex++;
+				symbolCount = 0;
+				currentSectors = [];
+				currentSector = null;
+			}
 		}
 	}
 
-	console.log("total symbols:", allSymbols.length);
-
-
-	// ===== 500件ごとに分割 =====
-
-	const CHUNK_SIZE = 500;
-
-	let fileIndex = 1;
-
-	for(let i = 0; i < allSymbols.length; i += CHUNK_SIZE){
-
-		const chunk = allSymbols.slice(i, i + CHUNK_SIZE);
+	// 残りを書き込み
+	if(symbolCount > 0){
 
 		const result = {
 			source: "stooq",
@@ -124,7 +162,7 @@ async function run(){
 					market: "JP",
 					name: "日本株",
 					suffix: ".jp",
-					symbols: chunk
+					sectors: currentSectors
 				}
 			]
 		};
@@ -136,9 +174,7 @@ async function run(){
 			JSON.stringify(result, null, 2)
 		);
 
-		console.log("write:", filename, "records:", chunk.length);
-
-		fileIndex++;
+		console.log("write:", filename);
 	}
 
 	console.log("done");
