@@ -45,28 +45,34 @@ function addIndicators(data){
 
 	const N = 36;
 
+	let sumClose = 0;
+	let sumValue = 0;
+
 	for(let i=0;i<data.length;i++){
 
+		const close = data[i].close;
+		const value = data[i].close * data[i].volume;
+
+		sumClose += close;
+		sumValue += value;
+
+		if(i >= N){
+			sumClose -= data[i-N].close;
+			sumValue -= data[i-N].close * data[i-N].volume;
+		}
+
 		if(i < N-1){
-			data[i].ma36  = null;
+			data[i].ma36 = null;
 			data[i].dev36 = null;
 			data[i].tav36 = null;
 			continue;
 		}
 
-		let sumClose = 0;
-		let sumValue = 0;
-
-		for(let j=i-N+1;j<=i;j++){
-			sumClose += data[j].close;
-			sumValue += data[j].close * data[j].volume;
-		}
-
-		const ma  = sumClose / N;
+		const ma = sumClose / N;
 		const tav = sumValue / N;
-		const dev = (data[i].close - ma) / ma * 100;
+		const dev = (close - ma) / ma * 100;
 
-		data[i].ma36  = Number(ma.toFixed(1));
+		data[i].ma36 = Number(ma.toFixed(1));
 		data[i].dev36 = Number(dev.toFixed(1));
 		data[i].tav36 = Number(tav.toFixed(1));
 
