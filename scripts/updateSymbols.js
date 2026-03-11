@@ -78,7 +78,7 @@ async function run(){
 
 	// ===== 全体JSON作成 =====
 
-	const allSectors = [...sectorMap.values()];
+	const allSectors = [...sectorMap.values()].sort((a,b)=>a.code-b.code);
 
 	const allResult = {
 		source:"stooq",
