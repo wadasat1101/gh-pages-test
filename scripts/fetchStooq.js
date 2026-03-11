@@ -2,9 +2,9 @@ const fs = require("fs");
 const path = require("path");
 
 // ---- 設定（YAMLのenvを利用）
-const SYMBOLS_FILE = parseFloat(process.env.SYMBOLS_FILE ?? "data/symbols/symbolsX.json");
-const OUTPUT_DIR = parseFloat(process.env.OUTPUT_DIR ?? "data/ohlc");
-const SLEEP_SEC = parseFloat(process.env.SLEEP_SEC ?? 2000);
+const SYMBOLS_FILE = process.env.SYMBOLS_FILE ?? "data/symbols/symbolsX.json";
+const OUTPUT_DIR = process.env.OUTPUT_DIR ?? "data/ohlc";
+const SLEEP_SEC = Number(process.env.SLEEP_SEC ?? 2000);
 
 const INTERVALS = {
 	monthly: "m"
