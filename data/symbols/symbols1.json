@@ -1,0 +1,3054 @@
+{
+  "source": "stooq",
+  "markets": [
+    {
+      "market": "JP",
+      "name": "日本株",
+      "suffix": ".jp",
+      "sectors": [
+        {
+          "code": "50",
+          "name": "水産・農林業",
+          "symbols": [
+            {
+              "code": "1301",
+              "name": "極洋",
+              "segment": "p",
+              "shares": 12078283
+            },
+            {
+              "code": "1332",
+              "name": "ニッスイ",
+              "segment": "p",
+              "shares": 312430277
+            },
+            {
+              "code": "1333",
+              "name": "マルハニチロ",
+              "segment": "p",
+              "shares": 151736511
+            },
+            {
+              "code": "1375",
+              "name": "ユキグニファクトリー",
+              "segment": "p",
+              "shares": 39910700
+            },
+            {
+              "code": "1376",
+              "name": "カネコ種苗",
+              "segment": "s",
+              "shares": 11772626
+            },
+            {
+              "code": "1377",
+              "name": "サカタのタネ",
+              "segment": "p",
+              "shares": 45410750
+            },
+            {
+              "code": "1379",
+              "name": "ホクト",
+              "segment": "p",
+              "shares": 33359040
+            },
+            {
+              "code": "1380",
+              "name": "秋川牧園",
+              "segment": "s",
+              "shares": 4179000
+            },
+            {
+              "code": "1381",
+              "name": "アクシーズ",
+              "segment": "s",
+              "shares": 5617500
+            },
+            {
+              "code": "1382",
+              "name": "ホーブ",
+              "segment": "s",
+              "shares": 762000
+            },
+            {
+              "code": "1383",
+              "name": "ベルグアース",
+              "segment": "s",
+              "shares": 1613580
+            },
+            {
+              "code": "1384",
+              "name": "ホクリヨウ",
+              "segment": "s",
+              "shares": 8459000
+            }
+          ]
+        },
+        {
+          "code": "2050",
+          "name": "建設業",
+          "symbols": [
+            {
+              "code": "1401",
+              "name": "エムビーエス",
+              "segment": "g",
+              "shares": 7732000
+            },
+            {
+              "code": "1407",
+              "name": "ウエストホールディングス",
+              "segment": "s",
+              "shares": 46027488
+            },
+            {
+              "code": "1414",
+              "name": "ショーボンドホールディングス",
+              "segment": "p",
+              "shares": 218980720
+            },
+            {
+              "code": "1417",
+              "name": "ミライト・ワン",
+              "segment": "p",
+              "shares": 91325329
+            },
+            {
+              "code": "1418",
+              "name": "インターライフホールディングス",
+              "segment": "s",
+              "shares": 17010529
+            },
+            {
+              "code": "1419",
+              "name": "タマホーム",
+              "segment": "p",
+              "shares": 29455800
+            },
+            {
+              "code": "1420",
+              "name": "サンヨーホームズ",
+              "segment": "s",
+              "shares": 13090000
+            },
+            {
+              "code": "1429",
+              "name": "日本アクア",
+              "segment": "p",
+              "shares": 34760000
+            },
+            {
+              "code": "1430",
+              "name": "ファーストコーポレーション",
+              "segment": "s",
+              "shares": 13363540
+            },
+            {
+              "code": "1431",
+              "name": "Ｌｉｂ　Ｗｏｒｋ",
+              "segment": "g",
+              "shares": 24151540
+            },
+            {
+              "code": "1433",
+              "name": "ベステラ",
+              "segment": "p",
+              "shares": 9297200
+            },
+            {
+              "code": "1434",
+              "name": "ＪＥＳＣＯホールディングス",
+              "segment": "s",
+              "shares": 6975400
+            },
+            {
+              "code": "1436",
+              "name": "グリーンエナジー＆カンパニー",
+              "segment": "g",
+              "shares": 4286000
+            },
+            {
+              "code": "1438",
+              "name": "岐阜造園",
+              "segment": "s",
+              "shares": 3244600
+            },
+            {
+              "code": "1443",
+              "name": "技研ホールディングス",
+              "segment": "s",
+              "shares": 16237977
+            },
+            {
+              "code": "1444",
+              "name": "ニッソウ",
+              "segment": "g",
+              "shares": 1088700
+            },
+            {
+              "code": "1446",
+              "name": "キャンディル",
+              "segment": "s",
+              "shares": 10734200
+            },
+            {
+              "code": "1447",
+              "name": "ＳＡＡＦホールディングス",
+              "segment": "g",
+              "shares": 24446958
+            },
+            {
+              "code": "1450",
+              "name": "ＴＡＮＡＫＥＮ",
+              "segment": "s",
+              "shares": 8699600
+            },
+            {
+              "code": "1711",
+              "name": "ＳＤＳホールディングス",
+              "segment": "s",
+              "shares": 10432773
+            },
+            {
+              "code": "1716",
+              "name": "第一カッター興業",
+              "segment": "s",
+              "shares": 12000000
+            },
+            {
+              "code": "1718",
+              "name": "美樹工業",
+              "segment": "s",
+              "shares": 1153263
+            },
+            {
+              "code": "1719",
+              "name": "安藤・間",
+              "segment": "p",
+              "shares": 181021197
+            },
+            {
+              "code": "1720",
+              "name": "東急建設",
+              "segment": "p",
+              "shares": 106761205
+            },
+            {
+              "code": "1721",
+              "name": "コムシスホールディングス",
+              "segment": "p",
+              "shares": 133000000
+            },
+            {
+              "code": "1723",
+              "name": "日本電技",
+              "segment": "s",
+              "shares": 16395000
+            },
+            {
+              "code": "1724",
+              "name": "シンクレイヤ",
+              "segment": "s",
+              "shares": 4943780
+            },
+            {
+              "code": "1726",
+              "name": "ビーアールホールディングス",
+              "segment": "p",
+              "shares": 45795000
+            },
+            {
+              "code": "1736",
+              "name": "オーテック",
+              "segment": "s",
+              "shares": 17100000
+            },
+            {
+              "code": "1758",
+              "name": "太洋基礎工業",
+              "segment": "s",
+              "shares": 2458800
+            },
+            {
+              "code": "1762",
+              "name": "高松コンストラクショングループ",
+              "segment": "p",
+              "shares": 34818578
+            },
+            {
+              "code": "1764",
+              "name": "工藤建設",
+              "segment": "s",
+              "shares": 1331220
+            },
+            {
+              "code": "1766",
+              "name": "東建コーポレーション",
+              "segment": "p",
+              "shares": 13472000
+            },
+            {
+              "code": "1768",
+              "name": "ソネック",
+              "segment": "s",
+              "shares": 7500000
+            },
+            {
+              "code": "1770",
+              "name": "藤田エンジニアリング",
+              "segment": "s",
+              "shares": 10200000
+            },
+            {
+              "code": "1773",
+              "name": "ワイ・ティー・エル・コーポレーション・バーハッド",
+              "segment": "p",
+              "shares": 0
+            },
+            {
+              "code": "1776",
+              "name": "三井住建道路",
+              "segment": "s",
+              "shares": 9277500
+            },
+            {
+              "code": "1780",
+              "name": "ヤマウラ",
+              "segment": "p",
+              "shares": 21103514
+            },
+            {
+              "code": "1786",
+              "name": "オリエンタル白石",
+              "segment": "p",
+              "shares": 138809400
+            },
+            {
+              "code": "1787",
+              "name": "ナカボーテック",
+              "segment": "s",
+              "shares": 2602500
+            },
+            {
+              "code": "1788",
+              "name": "三東工業社",
+              "segment": "s",
+              "shares": 686000
+            },
+            {
+              "code": "1793",
+              "name": "大本組",
+              "segment": "s",
+              "shares": 26794280
+            },
+            {
+              "code": "1795",
+              "name": "マサル",
+              "segment": "s",
+              "shares": 901151
+            },
+            {
+              "code": "1798",
+              "name": "守谷商会",
+              "segment": "s",
+              "shares": 2260000
+            },
+            {
+              "code": "1799",
+              "name": "第一建設工業",
+              "segment": "s",
+              "shares": 20858491
+            },
+            {
+              "code": "1801",
+              "name": "大成建設",
+              "segment": "p",
+              "shares": 163185872
+            },
+            {
+              "code": "1802",
+              "name": "大林組",
+              "segment": "p",
+              "shares": 691811346
+            },
+            {
+              "code": "1803",
+              "name": "清水建設",
+              "segment": "p",
+              "shares": 716689413
+            },
+            {
+              "code": "1807",
+              "name": "佐藤渡辺",
+              "segment": "s",
+              "shares": 6391400
+            },
+            {
+              "code": "1808",
+              "name": "長谷工コーポレーション",
+              "segment": "p",
+              "shares": 292479897
+            },
+            {
+              "code": "1810",
+              "name": "松井建設",
+              "segment": "s",
+              "shares": 30580000
+            },
+            {
+              "code": "1811",
+              "name": "錢高組",
+              "segment": "s",
+              "shares": 7353140
+            },
+            {
+              "code": "1812",
+              "name": "鹿島建設",
+              "segment": "p",
+              "shares": 528656011
+            },
+            {
+              "code": "1813",
+              "name": "不動テトラ",
+              "segment": "p",
+              "shares": 16489522
+            },
+            {
+              "code": "1814",
+              "name": "大末建設",
+              "segment": "p",
+              "shares": 10614225
+            },
+            {
+              "code": "1815",
+              "name": "鉄建建設",
+              "segment": "p",
+              "shares": 14973956
+            },
+            {
+              "code": "1820",
+              "name": "西松建設",
+              "segment": "p",
+              "shares": 41791502
+            },
+            {
+              "code": "1822",
+              "name": "大豊建設",
+              "segment": "s",
+              "shares": 90415815
+            },
+            {
+              "code": "1826",
+              "name": "佐田建設",
+              "segment": "s",
+              "shares": 13386233
+            },
+            {
+              "code": "1827",
+              "name": "ナカノフドー建設",
+              "segment": "s",
+              "shares": 34498097
+            },
+            {
+              "code": "1828",
+              "name": "田辺工業",
+              "segment": "s",
+              "shares": 10728000
+            },
+            {
+              "code": "1833",
+              "name": "奥村組",
+              "segment": "p",
+              "shares": 38665226
+            },
+            {
+              "code": "1835",
+              "name": "東鉄工業",
+              "segment": "p",
+              "shares": 36100000
+            },
+            {
+              "code": "1840",
+              "name": "土屋ホールディングス",
+              "segment": "s",
+              "shares": 25775118
+            },
+            {
+              "code": "1841",
+              "name": "サンユー建設",
+              "segment": "s",
+              "shares": 4000000
+            },
+            {
+              "code": "1844",
+              "name": "大盛工業",
+              "segment": "s",
+              "shares": 18735209
+            },
+            {
+              "code": "1847",
+              "name": "イチケン",
+              "segment": "s",
+              "shares": 7284400
+            },
+            {
+              "code": "1848",
+              "name": "富士ピー・エス",
+              "segment": "s",
+              "shares": 18602244
+            },
+            {
+              "code": "1850",
+              "name": "南海辰村建設",
+              "segment": "s",
+              "shares": 28835730
+            },
+            {
+              "code": "1852",
+              "name": "淺沼組",
+              "segment": "p",
+              "shares": 80786290
+            },
+            {
+              "code": "1853",
+              "name": "森組",
+              "segment": "s",
+              "shares": 32800000
+            },
+            {
+              "code": "1860",
+              "name": "戸田建設",
+              "segment": "p",
+              "shares": 322656796
+            },
+            {
+              "code": "1861",
+              "name": "熊谷組",
+              "segment": "p",
+              "shares": 173142240
+            },
+            {
+              "code": "1866",
+              "name": "北野建設",
+              "segment": "s",
+              "shares": 25347412
+            },
+            {
+              "code": "1867",
+              "name": "植木組",
+              "segment": "s",
+              "shares": 6873528
+            },
+            {
+              "code": "1870",
+              "name": "矢作建設工業",
+              "segment": "p",
+              "shares": 44607457
+            },
+            {
+              "code": "1871",
+              "name": "ピーエス・コンストラクション",
+              "segment": "p",
+              "shares": 47486029
+            },
+            {
+              "code": "1873",
+              "name": "日本ハウスホールディングス",
+              "segment": "p",
+              "shares": 40000000
+            },
+            {
+              "code": "1879",
+              "name": "新日本建設",
+              "segment": "p",
+              "shares": 61360720
+            },
+            {
+              "code": "1882",
+              "name": "東亜道路工業",
+              "segment": "p",
+              "shares": 50394730
+            },
+            {
+              "code": "1885",
+              "name": "東亜建設工業",
+              "segment": "p",
+              "shares": 87978516
+            },
+            {
+              "code": "1887",
+              "name": "日本国土開発",
+              "segment": "p",
+              "shares": 89255000
+            },
+            {
+              "code": "1888",
+              "name": "若築建設",
+              "segment": "p",
+              "shares": 12964993
+            },
+            {
+              "code": "1893",
+              "name": "五洋建設",
+              "segment": "p",
+              "shares": 286013910
+            },
+            {
+              "code": "1897",
+              "name": "金下建設",
+              "segment": "s",
+              "shares": 3806660
+            },
+            {
+              "code": "1898",
+              "name": "世紀東急工業",
+              "segment": "p",
+              "shares": 37424507
+            },
+            {
+              "code": "1899",
+              "name": "福田組",
+              "segment": "p",
+              "shares": 8988111
+            },
+            {
+              "code": "1904",
+              "name": "大成温調",
+              "segment": "s",
+              "shares": 6882487
+            },
+            {
+              "code": "1905",
+              "name": "テノックス",
+              "segment": "s",
+              "shares": 7347680
+            },
+            {
+              "code": "1911",
+              "name": "住友林業",
+              "segment": "p",
+              "shares": 618555804
+            },
+            {
+              "code": "1914",
+              "name": "日本基礎技術",
+              "segment": "s",
+              "shares": 29346400
+            },
+            {
+              "code": "1921",
+              "name": "巴コーポレーション",
+              "segment": "s",
+              "shares": 40763046
+            },
+            {
+              "code": "1925",
+              "name": "大和ハウス工業",
+              "segment": "p",
+              "shares": 659636182
+            },
+            {
+              "code": "1926",
+              "name": "ライト工業",
+              "segment": "p",
+              "shares": 42970450
+            },
+            {
+              "code": "1928",
+              "name": "積水ハウス",
+              "segment": "p",
+              "shares": 663122166
+            },
+            {
+              "code": "1929",
+              "name": "日特建設",
+              "segment": "p",
+              "shares": 41774899
+            },
+            {
+              "code": "1930",
+              "name": "北陸電気工事",
+              "segment": "p",
+              "shares": 29963991
+            },
+            {
+              "code": "1934",
+              "name": "ユアテック",
+              "segment": "p",
+              "shares": 69191462
+            },
+            {
+              "code": "1938",
+              "name": "日本リーテック",
+              "segment": "p",
+              "shares": 25617717
+            },
+            {
+              "code": "1939",
+              "name": "四電工",
+              "segment": "p",
+              "shares": 48766410
+            },
+            {
+              "code": "1941",
+              "name": "中電工",
+              "segment": "p",
+              "shares": 58138117
+            },
+            {
+              "code": "1942",
+              "name": "関電工",
+              "segment": "p",
+              "shares": 205288338
+            },
+            {
+              "code": "1944",
+              "name": "きんでん",
+              "segment": "p",
+              "shares": 199954180
+            },
+            {
+              "code": "1945",
+              "name": "東京エネシス",
+              "segment": "p",
+              "shares": 33223752
+            },
+            {
+              "code": "1946",
+              "name": "トーエネック",
+              "segment": "p",
+              "shares": 96649950
+            },
+            {
+              "code": "1948",
+              "name": "弘電社",
+              "segment": "s",
+              "shares": 8970000
+            },
+            {
+              "code": "1949",
+              "name": "住友電設",
+              "segment": "p",
+              "shares": 35635879
+            },
+            {
+              "code": "1950",
+              "name": "日本電設工業",
+              "segment": "p",
+              "shares": 61537219
+            },
+            {
+              "code": "1951",
+              "name": "エクシオグループ",
+              "segment": "p",
+              "shares": 205624838
+            },
+            {
+              "code": "1952",
+              "name": "新日本空調",
+              "segment": "p",
+              "shares": 48564450
+            },
+            {
+              "code": "1959",
+              "name": "クラフティア",
+              "segment": "p",
+              "shares": 70864961
+            },
+            {
+              "code": "1960",
+              "name": "サンテック",
+              "segment": "s",
+              "shares": 16000000
+            },
+            {
+              "code": "1961",
+              "name": "三機工業",
+              "segment": "p",
+              "shares": 53661156
+            },
+            {
+              "code": "1963",
+              "name": "日揮ホールディングス",
+              "segment": "p",
+              "shares": 244293008
+            },
+            {
+              "code": "1964",
+              "name": "中外炉工業",
+              "segment": "p",
+              "shares": 7800000
+            },
+            {
+              "code": "1965",
+              "name": "テクノ菱和",
+              "segment": "s",
+              "shares": 21228604
+            },
+            {
+              "code": "1966",
+              "name": "高田工業所",
+              "segment": "s",
+              "shares": 7334350
+            },
+            {
+              "code": "1967",
+              "name": "ヤマト",
+              "segment": "s",
+              "shares": 24127652
+            },
+            {
+              "code": "1968",
+              "name": "太平電業",
+              "segment": "p",
+              "shares": 65195940
+            },
+            {
+              "code": "1969",
+              "name": "高砂熱学工業",
+              "segment": "p",
+              "shares": 140478804
+            },
+            {
+              "code": "1972",
+              "name": "三晃金属工業",
+              "segment": "s",
+              "shares": 19800000
+            },
+            {
+              "code": "1975",
+              "name": "朝日工業社",
+              "segment": "p",
+              "shares": 27200000
+            },
+            {
+              "code": "1976",
+              "name": "明星工業",
+              "segment": "p",
+              "shares": 55117218
+            },
+            {
+              "code": "1979",
+              "name": "大氣社",
+              "segment": "p",
+              "shares": 63464018
+            },
+            {
+              "code": "1980",
+              "name": "ダイダン",
+              "segment": "p",
+              "shares": 137891406
+            },
+            {
+              "code": "1981",
+              "name": "協和日成",
+              "segment": "s",
+              "shares": 10746300
+            },
+            {
+              "code": "1982",
+              "name": "日比谷総合設備",
+              "segment": "p",
+              "shares": 23756321
+            },
+            {
+              "code": "1992",
+              "name": "神田通信機",
+              "segment": "s",
+              "shares": 2623227
+            },
+            {
+              "code": "1994",
+              "name": "高橋カーテンウォール工業",
+              "segment": "s",
+              "shares": 9553011
+            },
+            {
+              "code": "1997",
+              "name": "暁飯島工業",
+              "segment": "s",
+              "shares": 2200000
+            },
+            {
+              "code": "3267",
+              "name": "フィル・カンパニー",
+              "segment": "s",
+              "shares": 5778000
+            },
+            {
+              "code": "5074",
+              "name": "テスホールディングス",
+              "segment": "p",
+              "shares": 70649130
+            },
+            {
+              "code": "5076",
+              "name": "インフロニア・ホールディングス",
+              "segment": "p",
+              "shares": 274845024
+            },
+            {
+              "code": "5078",
+              "name": "セレコーポレーション",
+              "segment": "s",
+              "shares": 3491900
+            },
+            {
+              "code": "5079",
+              "name": "ノバック",
+              "segment": "s",
+              "shares": 5202800
+            },
+            {
+              "code": "6330",
+              "name": "東洋エンジニアリング",
+              "segment": "p",
+              "shares": 38558507
+            },
+            {
+              "code": "6366",
+              "name": "千代田化工建設",
+              "segment": "s",
+              "shares": 260324529
+            },
+            {
+              "code": "6379",
+              "name": "レイズネクスト",
+              "segment": "p",
+              "shares": 54168053
+            }
+          ]
+        },
+        {
+          "code": "8050",
+          "name": "不動産業",
+          "symbols": [
+            {
+              "code": "1435",
+              "name": "ｒｏｂｏｔ　ｈｏｍｅ",
+              "segment": "s",
+              "shares": 91127000
+            },
+            {
+              "code": "1783",
+              "name": "ｆａｎｔａｓｉｓｔａ",
+              "segment": "s",
+              "shares": 170042851
+            },
+            {
+              "code": "1878",
+              "name": "大東建託",
+              "segment": "p",
+              "shares": 344594895
+            },
+            {
+              "code": "2337",
+              "name": "いちご",
+              "segment": "p",
+              "shares": 415822012
+            },
+            {
+              "code": "2353",
+              "name": "日本駐車場開発",
+              "segment": "p",
+              "shares": 348398600
+            },
+            {
+              "code": "2970",
+              "name": "ＧＬＣ　ＧＲＯＵＰ",
+              "segment": "s",
+              "shares": 17344800
+            },
+            {
+              "code": "2975",
+              "name": "スター・マイカ・ホールディングス",
+              "segment": "p",
+              "shares": 34755900
+            },
+            {
+              "code": "2978",
+              "name": "ツクルバ",
+              "segment": "g",
+              "shares": 11736200
+            },
+            {
+              "code": "2980",
+              "name": "ＳＲＥホールディングス",
+              "segment": "p",
+              "shares": 16250935
+            },
+            {
+              "code": "2981",
+              "name": "ランディックス",
+              "segment": "g",
+              "shares": 5675586
+            },
+            {
+              "code": "2982",
+              "name": "ＡＤワークスグループ",
+              "segment": "p",
+              "shares": 50427364
+            },
+            {
+              "code": "2983",
+              "name": "アールプランナー",
+              "segment": "g",
+              "shares": 10798960
+            },
+            {
+              "code": "2984",
+              "name": "ヤマイチエステート",
+              "segment": "s",
+              "shares": 8672012
+            },
+            {
+              "code": "2986",
+              "name": "ＬＡホールディングス",
+              "segment": "g",
+              "shares": 7630075
+            },
+            {
+              "code": "2991",
+              "name": "ランドネット",
+              "segment": "s",
+              "shares": 23955200
+            },
+            {
+              "code": "2993",
+              "name": "長栄",
+              "segment": "s",
+              "shares": 4473400
+            },
+            {
+              "code": "2997",
+              "name": "ストレージ王",
+              "segment": "g",
+              "shares": 1853500
+            },
+            {
+              "code": "2998",
+              "name": "クリアル",
+              "segment": "g",
+              "shares": 36053200
+            },
+            {
+              "code": "2999",
+              "name": "ホームポジション",
+              "segment": "s",
+              "shares": 9395400
+            },
+            {
+              "code": "3003",
+              "name": "ヒューリック",
+              "segment": "p",
+              "shares": 767907735
+            },
+            {
+              "code": "3231",
+              "name": "野村不動産ホールディングス",
+              "segment": "p",
+              "shares": 917927685
+            },
+            {
+              "code": "3232",
+              "name": "三重交通グループホールディングス",
+              "segment": "p",
+              "shares": 107301583
+            },
+            {
+              "code": "3236",
+              "name": "プロパスト",
+              "segment": "s",
+              "shares": 35147915
+            },
+            {
+              "code": "3237",
+              "name": "イントランス",
+              "segment": "g",
+              "shares": 46552784
+            },
+            {
+              "code": "3238",
+              "name": "セントラル総合開発",
+              "segment": "s",
+              "shares": 9681600
+            },
+            {
+              "code": "3241",
+              "name": "ウィル",
+              "segment": "s",
+              "shares": 11548000
+            },
+            {
+              "code": "3242",
+              "name": "アーバネットコーポレーション",
+              "segment": "s",
+              "shares": 37574100
+            },
+            {
+              "code": "3245",
+              "name": "ディア・ライフ",
+              "segment": "p",
+              "shares": 51626800
+            },
+            {
+              "code": "3246",
+              "name": "コーセーアールイー",
+              "segment": "s",
+              "shares": 10368000
+            },
+            {
+              "code": "3248",
+              "name": "アールエイジ",
+              "segment": "s",
+              "shares": 3181000
+            },
+            {
+              "code": "3252",
+              "name": "地主",
+              "segment": "p",
+              "shares": 21569700
+            },
+            {
+              "code": "3261",
+              "name": "グランディーズ",
+              "segment": "g",
+              "shares": 4100874
+            },
+            {
+              "code": "3266",
+              "name": "ファンドクリエーショングループ",
+              "segment": "s",
+              "shares": 37686371
+            },
+            {
+              "code": "3271",
+              "name": "ＴＨＥグローバル社",
+              "segment": "s",
+              "shares": 28306000
+            },
+            {
+              "code": "3276",
+              "name": "ＪＰＭＣ",
+              "segment": "p",
+              "shares": 17725600
+            },
+            {
+              "code": "3277",
+              "name": "サンセイランディック",
+              "segment": "s",
+              "shares": 8584900
+            },
+            {
+              "code": "3280",
+              "name": "エストラスト",
+              "segment": "s",
+              "shares": 6167000
+            },
+            {
+              "code": "3284",
+              "name": "フージャースホールディングス",
+              "segment": "p",
+              "shares": 41766775
+            },
+            {
+              "code": "3286",
+              "name": "トラストホールディングス",
+              "segment": "s",
+              "shares": 5204500
+            },
+            {
+              "code": "3288",
+              "name": "オープンハウスグループ",
+              "segment": "p",
+              "shares": 116714500
+            },
+            {
+              "code": "3289",
+              "name": "東急不動産ホールディングス",
+              "segment": "p",
+              "shares": 719830974
+            },
+            {
+              "code": "3291",
+              "name": "飯田グループホールディングス",
+              "segment": "p",
+              "shares": 280379057
+            },
+            {
+              "code": "3293",
+              "name": "アズマハウス",
+              "segment": "s",
+              "shares": 8063400
+            },
+            {
+              "code": "3294",
+              "name": "イーグランド",
+              "segment": "s",
+              "shares": 6379100
+            },
+            {
+              "code": "3297",
+              "name": "東武住販",
+              "segment": "s",
+              "shares": 2712400
+            },
+            {
+              "code": "3299",
+              "name": "ムゲンエステート",
+              "segment": "s",
+              "shares": 24361000
+            },
+            {
+              "code": "3300",
+              "name": "アンビション　ＤＸ　ホールディングス",
+              "segment": "g",
+              "shares": 7399200
+            },
+            {
+              "code": "3452",
+              "name": "ビーロット",
+              "segment": "s",
+              "shares": 20032400
+            },
+            {
+              "code": "3454",
+              "name": "ファーストブラザーズ",
+              "segment": "s",
+              "shares": 14445000
+            },
+            {
+              "code": "3457",
+              "name": "Ａｎｄ　Ｄｏホールディングス",
+              "segment": "p",
+              "shares": 19969200
+            },
+            {
+              "code": "3461",
+              "name": "パルマ",
+              "segment": "s",
+              "shares": 6765489
+            },
+            {
+              "code": "3465",
+              "name": "ケイアイスター不動産",
+              "segment": "p",
+              "shares": 15866400
+            },
+            {
+              "code": "3467",
+              "name": "アグレ都市デザイン",
+              "segment": "s",
+              "shares": 5754000
+            },
+            {
+              "code": "3469",
+              "name": "デュアルタップ",
+              "segment": "s",
+              "shares": 4376750
+            },
+            {
+              "code": "3474",
+              "name": "Ｇ－ＦＡＣＴＯＲＹ",
+              "segment": "g",
+              "shares": 6839000
+            },
+            {
+              "code": "3475",
+              "name": "グッドコムアセット",
+              "segment": "p",
+              "shares": 30543200
+            },
+            {
+              "code": "3477",
+              "name": "フォーライフ",
+              "segment": "g",
+              "shares": 4000000
+            },
+            {
+              "code": "3479",
+              "name": "ティーケーピー",
+              "segment": "g",
+              "shares": 42476485
+            },
+            {
+              "code": "3480",
+              "name": "ジェイ・エス・ビー",
+              "segment": "p",
+              "shares": 21957600
+            },
+            {
+              "code": "3482",
+              "name": "ロードスターキャピタル",
+              "segment": "p",
+              "shares": 21444000
+            },
+            {
+              "code": "3484",
+              "name": "イノベーションホールディングス",
+              "segment": "p",
+              "shares": 17674400
+            },
+            {
+              "code": "3486",
+              "name": "グローバル・リンク・マネジメント",
+              "segment": "p",
+              "shares": 16043516
+            },
+            {
+              "code": "3489",
+              "name": "フェイスネットワーク",
+              "segment": "s",
+              "shares": 29880000
+            },
+            {
+              "code": "3490",
+              "name": "アズ企画設計",
+              "segment": "s",
+              "shares": 1508000
+            },
+            {
+              "code": "3491",
+              "name": "ＧＡ　ｔｅｃｈｎｏｌｏｇｉｅｓ",
+              "segment": "g",
+              "shares": 41053315
+            },
+            {
+              "code": "3494",
+              "name": "マリオン",
+              "segment": "s",
+              "shares": 8011000
+            },
+            {
+              "code": "3495",
+              "name": "香陵住販",
+              "segment": "s",
+              "shares": 2778918
+            },
+            {
+              "code": "3496",
+              "name": "アズーム",
+              "segment": "p",
+              "shares": 12272400
+            },
+            {
+              "code": "3498",
+              "name": "霞ヶ関キャピタル",
+              "segment": "p",
+              "shares": 24563130
+            },
+            {
+              "code": "3772",
+              "name": "ウェルス・マネジメント",
+              "segment": "s",
+              "shares": 19179800
+            },
+            {
+              "code": "4666",
+              "name": "パーク２４",
+              "segment": "p",
+              "shares": 171048369
+            },
+            {
+              "code": "4809",
+              "name": "パラカ",
+              "segment": "p",
+              "shares": 10440600
+            },
+            {
+              "code": "5280",
+              "name": "ヨシコン",
+              "segment": "s",
+              "shares": 8030248
+            },
+            {
+              "code": "5527",
+              "name": "ｐｒｏｐｅｒｔｙ　ｔｅｃｈｎｏｌｏｇｉｅｓ",
+              "segment": "g",
+              "shares": 12454353
+            },
+            {
+              "code": "5532",
+              "name": "リアルゲイト",
+              "segment": "g",
+              "shares": 5777150
+            },
+            {
+              "code": "5533",
+              "name": "エリッツホールディングス",
+              "segment": "s",
+              "shares": 3511200
+            },
+            {
+              "code": "5535",
+              "name": "ミガロホールディングス",
+              "segment": "p",
+              "shares": 64623900
+            },
+            {
+              "code": "5537",
+              "name": "ＡｌｂａＬｉｎｋ",
+              "segment": "g",
+              "shares": 8183200
+            },
+            {
+              "code": "6620",
+              "name": "宮越ホールディングス",
+              "segment": "p",
+              "shares": 40014943
+            },
+            {
+              "code": "6625",
+              "name": "ＪＡＬＣＯホールディングス",
+              "segment": "s",
+              "shares": 117238618
+            },
+            {
+              "code": "8801",
+              "name": "三井不動産",
+              "segment": "p",
+              "shares": 2755914511
+            },
+            {
+              "code": "8802",
+              "name": "三菱地所",
+              "segment": "p",
+              "shares": 1217233706
+            },
+            {
+              "code": "8803",
+              "name": "平和不動産",
+              "segment": "p",
+              "shares": 71019992
+            },
+            {
+              "code": "8804",
+              "name": "東京建物",
+              "segment": "p",
+              "shares": 207978574
+            },
+            {
+              "code": "8818",
+              "name": "京阪神ビルディング",
+              "segment": "p",
+              "shares": 48811498
+            },
+            {
+              "code": "8830",
+              "name": "住友不動産",
+              "segment": "p",
+              "shares": 936000000
+            },
+            {
+              "code": "8836",
+              "name": "ＲＩＳＥ",
+              "segment": "s",
+              "shares": 96013277
+            },
+            {
+              "code": "8841",
+              "name": "テーオーシー",
+              "segment": "s",
+              "shares": 93849352
+            },
+            {
+              "code": "8844",
+              "name": "コスモスイニシア",
+              "segment": "s",
+              "shares": 33911219
+            },
+            {
+              "code": "8848",
+              "name": "レオパレス２１",
+              "segment": "p",
+              "shares": 334415678
+            },
+            {
+              "code": "8850",
+              "name": "スターツコーポレーション",
+              "segment": "p",
+              "shares": 53998205
+            },
+            {
+              "code": "8860",
+              "name": "フジ住宅",
+              "segment": "p",
+              "shares": 36849912
+            },
+            {
+              "code": "8864",
+              "name": "空港施設",
+              "segment": "s",
+              "shares": 52006350
+            },
+            {
+              "code": "8869",
+              "name": "明和地所",
+              "segment": "s",
+              "shares": 23447684
+            },
+            {
+              "code": "8871",
+              "name": "ゴールドクレスト",
+              "segment": "s",
+              "shares": 35784000
+            },
+            {
+              "code": "8877",
+              "name": "エスリード",
+              "segment": "p",
+              "shares": 15465600
+            },
+            {
+              "code": "8881",
+              "name": "日神グループホールディングス",
+              "segment": "p",
+              "shares": 46951260
+            },
+            {
+              "code": "8887",
+              "name": "シーラホールディングス",
+              "segment": "s",
+              "shares": 41730204
+            },
+            {
+              "code": "8891",
+              "name": "ＡＭＧホールディングス",
+              "segment": "s",
+              "shares": 2906048
+            },
+            {
+              "code": "8892",
+              "name": "エスコン",
+              "segment": "p",
+              "shares": 98580887
+            },
+            {
+              "code": "8894",
+              "name": "ＲＥＶＯＬＵＴＩＯＮ",
+              "segment": "s",
+              "shares": 146678357
+            },
+            {
+              "code": "8897",
+              "name": "ＭＩＲＡＲＴＨホールディングス",
+              "segment": "p",
+              "shares": 140300000
+            },
+            {
+              "code": "8898",
+              "name": "センチュリー２１・ジャパン",
+              "segment": "s",
+              "shares": 11325000
+            },
+            {
+              "code": "8904",
+              "name": "ＡＶＡＮＴＩＡ",
+              "segment": "s",
+              "shares": 14884300
+            },
+            {
+              "code": "8908",
+              "name": "毎日コムネット",
+              "segment": "s",
+              "shares": 18000000
+            },
+            {
+              "code": "8912",
+              "name": "エリアクエスト",
+              "segment": "s",
+              "shares": 17145800
+            },
+            {
+              "code": "8914",
+              "name": "エリアリンク",
+              "segment": "s",
+              "shares": 51763600
+            },
+            {
+              "code": "8917",
+              "name": "ファースト住建",
+              "segment": "s",
+              "shares": 16901900
+            },
+            {
+              "code": "8918",
+              "name": "ランド",
+              "segment": "s",
+              "shares": 1545140000
+            },
+            {
+              "code": "8919",
+              "name": "カチタス",
+              "segment": "p",
+              "shares": 78650640
+            },
+            {
+              "code": "8923",
+              "name": "トーセイ",
+              "segment": "p",
+              "shares": 97367600
+            },
+            {
+              "code": "8927",
+              "name": "明豊エンタープライズ",
+              "segment": "s",
+              "shares": 31584600
+            },
+            {
+              "code": "8928",
+              "name": "穴吹興産",
+              "segment": "s",
+              "shares": 11535600
+            },
+            {
+              "code": "8929",
+              "name": "青山財産ネットワークス",
+              "segment": "s",
+              "shares": 25123859
+            },
+            {
+              "code": "8931",
+              "name": "和田興産",
+              "segment": "s",
+              "shares": 11100000
+            },
+            {
+              "code": "8934",
+              "name": "サンフロンティア不動産",
+              "segment": "p",
+              "shares": 48755500
+            },
+            {
+              "code": "8935",
+              "name": "ＦＪネクストホールディングス",
+              "segment": "p",
+              "shares": 34646500
+            },
+            {
+              "code": "8938",
+              "name": "グローム・ホールディングス",
+              "segment": "g",
+              "shares": 9051000
+            },
+            {
+              "code": "8944",
+              "name": "ランドビジネス",
+              "segment": "s",
+              "shares": 23346115
+            },
+            {
+              "code": "8945",
+              "name": "サンネクスタグループ",
+              "segment": "s",
+              "shares": 10853000
+            },
+            {
+              "code": "8946",
+              "name": "ＡＳＩＡＮ　ＳＴＡＲ",
+              "segment": "s",
+              "shares": 23808200
+            },
+            {
+              "code": "8995",
+              "name": "誠建設工業",
+              "segment": "s",
+              "shares": 2012000
+            },
+            {
+              "code": "8996",
+              "name": "ハウスフリーダム",
+              "segment": "s",
+              "shares": 4110000
+            },
+            {
+              "code": "8999",
+              "name": "グランディハウス",
+              "segment": "p",
+              "shares": 30823200
+            },
+            {
+              "code": "9633",
+              "name": "東京テアトル",
+              "segment": "s",
+              "shares": 8013000
+            },
+            {
+              "code": "9706",
+              "name": "日本空港ビルデング",
+              "segment": "p",
+              "shares": 93145400
+            },
+            {
+              "code": "9816",
+              "name": "ストライダーズ",
+              "segment": "s",
+              "shares": 9712089
+            },
+            {
+              "code": "9820",
+              "name": "エムティジェネックス",
+              "segment": "s",
+              "shares": 1079600
+            }
+          ]
+        },
+        {
+          "code": "3500",
+          "name": "非鉄金属",
+          "symbols": [
+            {
+              "code": "1491",
+              "name": "中外鉱業",
+              "segment": "s",
+              "shares": 14487399
+            },
+            {
+              "code": "5016",
+              "name": "ＪＸ金属",
+              "segment": "p",
+              "shares": 928463102
+            },
+            {
+              "code": "5702",
+              "name": "大紀アルミニウム工業所",
+              "segment": "p",
+              "shares": 43629235
+            },
+            {
+              "code": "5703",
+              "name": "日本軽金属ホールディングス",
+              "segment": "p",
+              "shares": 61993750
+            },
+            {
+              "code": "5704",
+              "name": "ＪＭＣ",
+              "segment": "g",
+              "shares": 5598500
+            },
+            {
+              "code": "5706",
+              "name": "三井金属",
+              "segment": "p",
+              "shares": 57415430
+            },
+            {
+              "code": "5707",
+              "name": "東邦亜鉛",
+              "segment": "p",
+              "shares": 13585521
+            },
+            {
+              "code": "5711",
+              "name": "三菱マテリアル",
+              "segment": "p",
+              "shares": 131489535
+            },
+            {
+              "code": "5713",
+              "name": "住友金属鉱山",
+              "segment": "p",
+              "shares": 290814015
+            },
+            {
+              "code": "5714",
+              "name": "ＤＯＷＡホールディングス",
+              "segment": "p",
+              "shares": 61989206
+            },
+            {
+              "code": "5715",
+              "name": "古河機械金属",
+              "segment": "p",
+              "shares": 32545568
+            },
+            {
+              "code": "5721",
+              "name": "エス・サイエンス",
+              "segment": "s",
+              "shares": 175145749
+            },
+            {
+              "code": "5724",
+              "name": "アサカ理研",
+              "segment": "s",
+              "shares": 5144600
+            },
+            {
+              "code": "5726",
+              "name": "大阪チタニウムテクノロジーズ",
+              "segment": "p",
+              "shares": 36800000
+            },
+            {
+              "code": "5727",
+              "name": "東邦チタニウム",
+              "segment": "p",
+              "shares": 71270910
+            },
+            {
+              "code": "5729",
+              "name": "日本精鉱",
+              "segment": "s",
+              "shares": 2605900
+            },
+            {
+              "code": "5741",
+              "name": "ＵＡＣＪ",
+              "segment": "p",
+              "shares": 185312772
+            },
+            {
+              "code": "5742",
+              "name": "エヌアイシ・オートテック",
+              "segment": "s",
+              "shares": 5500000
+            },
+            {
+              "code": "5753",
+              "name": "日本伸銅",
+              "segment": "s",
+              "shares": 2370000
+            },
+            {
+              "code": "5757",
+              "name": "ＣＫサンエツ",
+              "segment": "p",
+              "shares": 8867000
+            },
+            {
+              "code": "5801",
+              "name": "古河電気工業",
+              "segment": "p",
+              "shares": 70666917
+            },
+            {
+              "code": "5802",
+              "name": "住友電気工業",
+              "segment": "p",
+              "shares": 793940571
+            },
+            {
+              "code": "5803",
+              "name": "フジクラ",
+              "segment": "p",
+              "shares": 295863421
+            },
+            {
+              "code": "5805",
+              "name": "ＳＷＣＣ",
+              "segment": "p",
+              "shares": 30826861
+            },
+            {
+              "code": "5816",
+              "name": "オーナンバ",
+              "segment": "s",
+              "shares": 12558251
+            },
+            {
+              "code": "5817",
+              "name": "ＪＭＡＣＳ",
+              "segment": "s",
+              "shares": 5791555
+            },
+            {
+              "code": "5819",
+              "name": "カナレ電気",
+              "segment": "s",
+              "shares": 7028060
+            },
+            {
+              "code": "5820",
+              "name": "三ッ星",
+              "segment": "s",
+              "shares": 3959965
+            },
+            {
+              "code": "5821",
+              "name": "平河ヒューテック",
+              "segment": "p",
+              "shares": 17627800
+            },
+            {
+              "code": "5851",
+              "name": "リョービ",
+              "segment": "p",
+              "shares": 31809471
+            },
+            {
+              "code": "5852",
+              "name": "アーレスティ",
+              "segment": "p",
+              "shares": 25546717
+            },
+            {
+              "code": "5857",
+              "name": "ＡＲＥホールディングス",
+              "segment": "p",
+              "shares": 79708688
+            },
+            {
+              "code": "5858",
+              "name": "ＳＴＧ",
+              "segment": "g",
+              "shares": 2117000
+            }
+          ]
+        },
+        {
+          "code": "1050",
+          "name": "鉱業",
+          "symbols": [
+            {
+              "code": "1514",
+              "name": "住石ホールディングス",
+              "segment": "s",
+              "shares": 67222853
+            },
+            {
+              "code": "1515",
+              "name": "日鉄鉱業",
+              "segment": "p",
+              "shares": 80000000
+            },
+            {
+              "code": "1605",
+              "name": "ＩＮＰＥＸ",
+              "segment": "p",
+              "shares": 1259136067
+            },
+            {
+              "code": "1662",
+              "name": "石油資源開発",
+              "segment": "p",
+              "shares": 257000380
+            },
+            {
+              "code": "1663",
+              "name": "Ｋ＆Ｏエナジーグループ",
+              "segment": "p",
+              "shares": 28336061
+            }
+          ]
+        },
+        {
+          "code": "3800",
+          "name": "その他製品",
+          "symbols": [
+            {
+              "code": "1518",
+              "name": "三井松島ホールディングス",
+              "segment": "p",
+              "shares": 65322000
+            },
+            {
+              "code": "5962",
+              "name": "浅香工業",
+              "segment": "s",
+              "shares": 1037080
+            },
+            {
+              "code": "7791",
+              "name": "ドリームベッド",
+              "segment": "s",
+              "shares": 4152820
+            },
+            {
+              "code": "7792",
+              "name": "コラントッテ",
+              "segment": "g",
+              "shares": 9095300
+            },
+            {
+              "code": "7793",
+              "name": "イメージ・マジック",
+              "segment": "g",
+              "shares": 2572235
+            },
+            {
+              "code": "7794",
+              "name": "イーディーピー",
+              "segment": "g",
+              "shares": 14994600
+            },
+            {
+              "code": "7795",
+              "name": "ＫＹＯＲＩＴＳＵ",
+              "segment": "s",
+              "shares": 49235000
+            },
+            {
+              "code": "7800",
+              "name": "アミファ",
+              "segment": "s",
+              "shares": 3235000
+            },
+            {
+              "code": "7803",
+              "name": "ブシロード",
+              "segment": "g",
+              "shares": 137321100
+            },
+            {
+              "code": "7804",
+              "name": "ビーアンドピー",
+              "segment": "s",
+              "shares": 2328600
+            },
+            {
+              "code": "7805",
+              "name": "プリントネット",
+              "segment": "s",
+              "shares": 5460400
+            },
+            {
+              "code": "7806",
+              "name": "ＭＴＧ",
+              "segment": "g",
+              "shares": 40161392
+            },
+            {
+              "code": "7807",
+              "name": "幸和製作所",
+              "segment": "s",
+              "shares": 5032630
+            },
+            {
+              "code": "7808",
+              "name": "シー・エス・ランバー",
+              "segment": "s",
+              "shares": 1850100
+            },
+            {
+              "code": "7809",
+              "name": "壽屋",
+              "segment": "s",
+              "shares": 8550900
+            },
+            {
+              "code": "7810",
+              "name": "クロスフォー",
+              "segment": "s",
+              "shares": 17845000
+            },
+            {
+              "code": "7811",
+              "name": "中本パックス",
+              "segment": "s",
+              "shares": 8920791
+            },
+            {
+              "code": "7812",
+              "name": "クレステック",
+              "segment": "s",
+              "shares": 3248900
+            },
+            {
+              "code": "7813",
+              "name": "プラッツ",
+              "segment": "s",
+              "shares": 3726000
+            },
+            {
+              "code": "7814",
+              "name": "日本創発グループ",
+              "segment": "s",
+              "shares": 51000000
+            },
+            {
+              "code": "7815",
+              "name": "東京ボード工業",
+              "segment": "s",
+              "shares": 3660369
+            },
+            {
+              "code": "7818",
+              "name": "トランザクション",
+              "segment": "p",
+              "shares": 57550800
+            },
+            {
+              "code": "7819",
+              "name": "粧美堂",
+              "segment": "s",
+              "shares": 13410000
+            },
+            {
+              "code": "7820",
+              "name": "ニホンフラッシュ",
+              "segment": "p",
+              "shares": 25060000
+            },
+            {
+              "code": "7821",
+              "name": "前田工繊",
+              "segment": "p",
+              "shares": 68080612
+            },
+            {
+              "code": "7822",
+              "name": "永大産業",
+              "segment": "s",
+              "shares": 46783800
+            },
+            {
+              "code": "7823",
+              "name": "アートネイチャー",
+              "segment": "s",
+              "shares": 34393200
+            },
+            {
+              "code": "7826",
+              "name": "フルヤ金属",
+              "segment": "p",
+              "shares": 25389636
+            },
+            {
+              "code": "7827",
+              "name": "オービス",
+              "segment": "s",
+              "shares": 1775469
+            },
+            {
+              "code": "7831",
+              "name": "ウイルコホールディングス",
+              "segment": "s",
+              "shares": 15522250
+            },
+            {
+              "code": "7832",
+              "name": "バンダイナムコホールディングス",
+              "segment": "p",
+              "shares": 650000000
+            },
+            {
+              "code": "7833",
+              "name": "アイフィスジャパン",
+              "segment": "s",
+              "shares": 10242000
+            },
+            {
+              "code": "7836",
+              "name": "アビックス",
+              "segment": "s",
+              "shares": 35129566
+            },
+            {
+              "code": "7837",
+              "name": "アールシーコア",
+              "segment": "s",
+              "shares": 4536400
+            },
+            {
+              "code": "7839",
+              "name": "ＳＨＯＥＩ",
+              "segment": "p",
+              "shares": 53713716
+            },
+            {
+              "code": "7840",
+              "name": "フランスベッドホールディングス",
+              "segment": "p",
+              "shares": 34747500
+            },
+            {
+              "code": "7841",
+              "name": "遠藤製作所",
+              "segment": "s",
+              "shares": 9441800
+            },
+            {
+              "code": "7846",
+              "name": "パイロットコーポレーション",
+              "segment": "p",
+              "shares": 40905200
+            },
+            {
+              "code": "7847",
+              "name": "グラファイトデザイン",
+              "segment": "s",
+              "shares": 6945600
+            },
+            {
+              "code": "7850",
+              "name": "総合商研",
+              "segment": "s",
+              "shares": 3060110
+            },
+            {
+              "code": "7851",
+              "name": "カワセコンピュータサプライ",
+              "segment": "s",
+              "shares": 5160000
+            },
+            {
+              "code": "7856",
+              "name": "萩原工業",
+              "segment": "p",
+              "shares": 14897600
+            },
+            {
+              "code": "7857",
+              "name": "セキ",
+              "segment": "s",
+              "shares": 4508000
+            },
+            {
+              "code": "7859",
+              "name": "アルメディオ",
+              "segment": "s",
+              "shares": 20806316
+            },
+            {
+              "code": "7863",
+              "name": "平賀",
+              "segment": "s",
+              "shares": 4015585
+            },
+            {
+              "code": "7864",
+              "name": "フジシールインターナショナル",
+              "segment": "p",
+              "shares": 60161956
+            },
+            {
+              "code": "7865",
+              "name": "ピープル",
+              "segment": "s",
+              "shares": 4437500
+            },
+            {
+              "code": "7867",
+              "name": "タカラトミー",
+              "segment": "p",
+              "shares": 93616650
+            },
+            {
+              "code": "7868",
+              "name": "広済堂ホールディングス",
+              "segment": "p",
+              "shares": 144340045
+            },
+            {
+              "code": "7872",
+              "name": "エステールホールディングス",
+              "segment": "s",
+              "shares": 11459223
+            },
+            {
+              "code": "7875",
+              "name": "竹田ｉＰホールディングス",
+              "segment": "s",
+              "shares": 8781000
+            },
+            {
+              "code": "7878",
+              "name": "光・彩",
+              "segment": "s",
+              "shares": 1584000
+            },
+            {
+              "code": "7879",
+              "name": "ノダ",
+              "segment": "s",
+              "shares": 17339200
+            },
+            {
+              "code": "7883",
+              "name": "サンメッセ",
+              "segment": "s",
+              "shares": 17825050
+            },
+            {
+              "code": "7885",
+              "name": "タカノ",
+              "segment": "s",
+              "shares": 15721000
+            },
+            {
+              "code": "7887",
+              "name": "南海プライウッド",
+              "segment": "s",
+              "shares": 1009580
+            },
+            {
+              "code": "7893",
+              "name": "プロネクサス",
+              "segment": "p",
+              "shares": 27716688
+            },
+            {
+              "code": "7896",
+              "name": "セブン工業",
+              "segment": "s",
+              "shares": 4673250
+            },
+            {
+              "code": "7897",
+              "name": "ホクシン",
+              "segment": "s",
+              "shares": 28373005
+            },
+            {
+              "code": "7898",
+              "name": "ウッドワン",
+              "segment": "s",
+              "shares": 9841969
+            },
+            {
+              "code": "7901",
+              "name": "マツモト",
+              "segment": "s",
+              "shares": 1143900
+            },
+            {
+              "code": "7902",
+              "name": "ソノコム",
+              "segment": "s",
+              "shares": 5000000
+            },
+            {
+              "code": "7906",
+              "name": "ヨネックス",
+              "segment": "s",
+              "shares": 92870800
+            },
+            {
+              "code": "7911",
+              "name": "ＴＯＰＰＡＮホールディングス",
+              "segment": "p",
+              "shares": 294706240
+            },
+            {
+              "code": "7912",
+              "name": "大日本印刷",
+              "segment": "p",
+              "shares": 524480692
+            },
+            {
+              "code": "7914",
+              "name": "共同印刷",
+              "segment": "p",
+              "shares": 30000000
+            },
+            {
+              "code": "7915",
+              "name": "ＮＩＳＳＨＡ",
+              "segment": "p",
+              "shares": 48016100
+            },
+            {
+              "code": "7916",
+              "name": "光村印刷",
+              "segment": "s",
+              "shares": 3103420
+            },
+            {
+              "code": "7919",
+              "name": "野崎印刷紙業",
+              "segment": "s",
+              "shares": 21460000
+            },
+            {
+              "code": "7921",
+              "name": "ＴＡＫＡＲＡ　＆　ＣＯＭＰＡＮＹ",
+              "segment": "p",
+              "shares": 13153293
+            },
+            {
+              "code": "7922",
+              "name": "三光産業",
+              "segment": "s",
+              "shares": 7878800
+            },
+            {
+              "code": "7923",
+              "name": "トーイン",
+              "segment": "s",
+              "shares": 6377500
+            },
+            {
+              "code": "7932",
+              "name": "ニッピ",
+              "segment": "s",
+              "shares": 2889000
+            },
+            {
+              "code": "7936",
+              "name": "アシックス",
+              "segment": "p",
+              "shares": 734482236
+            },
+            {
+              "code": "7937",
+              "name": "ツツミ",
+              "segment": "s",
+              "shares": 15630000
+            },
+            {
+              "code": "7938",
+              "name": "リーガルコーポレーション",
+              "segment": "s",
+              "shares": 3250000
+            },
+            {
+              "code": "7939",
+              "name": "研創",
+              "segment": "s",
+              "shares": 4022774
+            },
+            {
+              "code": "7944",
+              "name": "ローランド",
+              "segment": "p",
+              "shares": 26580659
+            },
+            {
+              "code": "7946",
+              "name": "光陽社",
+              "segment": "s",
+              "shares": 4250500
+            },
+            {
+              "code": "7949",
+              "name": "小松ウオール工業",
+              "segment": "p",
+              "shares": 19721980
+            },
+            {
+              "code": "7951",
+              "name": "ヤマハ",
+              "segment": "p",
+              "shares": 503000000
+            },
+            {
+              "code": "7952",
+              "name": "河合楽器製作所",
+              "segment": "p",
+              "shares": 9011560
+            },
+            {
+              "code": "7953",
+              "name": "菊水化学工業",
+              "segment": "s",
+              "shares": 12744054
+            },
+            {
+              "code": "7955",
+              "name": "クリナップ",
+              "segment": "p",
+              "shares": 36442374
+            },
+            {
+              "code": "7956",
+              "name": "ピジョン",
+              "segment": "p",
+              "shares": 121653486
+            },
+            {
+              "code": "7957",
+              "name": "フジコピアン",
+              "segment": "s",
+              "shares": 1789487
+            },
+            {
+              "code": "7962",
+              "name": "キングジム",
+              "segment": "p",
+              "shares": 31459692
+            },
+            {
+              "code": "7963",
+              "name": "興研",
+              "segment": "s",
+              "shares": 5104003
+            },
+            {
+              "code": "7966",
+              "name": "リンテック",
+              "segment": "p",
+              "shares": 72488740
+            },
+            {
+              "code": "7972",
+              "name": "イトーキ",
+              "segment": "p",
+              "shares": 53382850
+            },
+            {
+              "code": "7974",
+              "name": "任天堂",
+              "segment": "p",
+              "shares": 1298690000
+            },
+            {
+              "code": "7975",
+              "name": "リヒトラブ",
+              "segment": "s",
+              "shares": 3815700
+            },
+            {
+              "code": "7976",
+              "name": "三菱鉛筆",
+              "segment": "p",
+              "shares": 60042592
+            },
+            {
+              "code": "7980",
+              "name": "重松製作所",
+              "segment": "s",
+              "shares": 7200000
+            },
+            {
+              "code": "7981",
+              "name": "タカラスタンダード",
+              "segment": "p",
+              "shares": 67252994
+            },
+            {
+              "code": "7983",
+              "name": "ミロク",
+              "segment": "s",
+              "shares": 3005441
+            },
+            {
+              "code": "7984",
+              "name": "コクヨ",
+              "segment": "p",
+              "shares": 440969852
+            },
+            {
+              "code": "7986",
+              "name": "日本アイ・エス・ケイ",
+              "segment": "s",
+              "shares": 1776000
+            },
+            {
+              "code": "7987",
+              "name": "ナカバヤシ",
+              "segment": "s",
+              "shares": 28794294
+            },
+            {
+              "code": "7990",
+              "name": "グローブライド",
+              "segment": "p",
+              "shares": 22800000
+            },
+            {
+              "code": "7992",
+              "name": "セーラー万年筆",
+              "segment": "s",
+              "shares": 29659554
+            },
+            {
+              "code": "7994",
+              "name": "オカムラ",
+              "segment": "p",
+              "shares": 100621021
+            },
+            {
+              "code": "7997",
+              "name": "くろがね工作所",
+              "segment": "s",
+              "shares": 1857113
+            },
+            {
+              "code": "8022",
+              "name": "美津濃",
+              "segment": "p",
+              "shares": 79734729
+            }
+          ]
+        },
+        {
+          "code": "9050",
+          "name": "サービス業",
+          "symbols": [
+            {
+              "code": "1717",
+              "name": "明豊ファシリティワークス",
+              "segment": "s",
+              "shares": 12775900
+            },
+            {
+              "code": "2120",
+              "name": "ＬＩＦＵＬＬ",
+              "segment": "p",
+              "shares": 134563532
+            },
+            {
+              "code": "2122",
+              "name": "インタースペース",
+              "segment": "s",
+              "shares": 6967200
+            },
+            {
+              "code": "2124",
+              "name": "ジェイエイシーリクルートメント",
+              "segment": "p",
+              "shares": 165557200
+            },
+            {
+              "code": "2127",
+              "name": "日本Ｍ＆Ａセンターホールディングス",
+              "segment": "p",
+              "shares": 336934800
+            },
+            {
+              "code": "2130",
+              "name": "メンバーズ",
+              "segment": "p",
+              "shares": 13423300
+            },
+            {
+              "code": "2134",
+              "name": "北浜キャピタルパートナーズ",
+              "segment": "s",
+              "shares": 547690993
+            },
+            {
+              "code": "2136",
+              "name": "ヒップ",
+              "segment": "s",
+              "shares": 3975300
+            },
+            {
+              "code": "2139",
+              "name": "中広",
+              "segment": "s",
+              "shares": 7044000
+            },
+            {
+              "code": "2146",
+              "name": "ＵＴグループ",
+              "segment": "p",
+              "shares": 599498745
+            },
+            {
+              "code": "2148",
+              "name": "アイティメディア",
+              "segment": "p",
+              "shares": 21077300
+            },
+            {
+              "code": "2152",
+              "name": "幼児活動研究会",
+              "segment": "s",
+              "shares": 11784000
+            },
+            {
+              "code": "2153",
+              "name": "Ｅ・Ｊホールディングス",
+              "segment": "p",
+              "shares": 18378920
+            },
+            {
+              "code": "2154",
+              "name": "オープンアップグループ",
+              "segment": "p",
+              "shares": 90822812
+            },
+            {
+              "code": "2156",
+              "name": "セーラー広告",
+              "segment": "s",
+              "shares": 6078000
+            },
+            {
+              "code": "2157",
+              "name": "コシダカホールディングス",
+              "segment": "p",
+              "shares": 83781480
+            },
+            {
+              "code": "2158",
+              "name": "ＦＲＯＮＴＥＯ",
+              "segment": "g",
+              "shares": 39412362
+            },
+            {
+              "code": "2162",
+              "name": "ｎｍｓ　ホールディングス",
+              "segment": "s",
+              "shares": 21611000
+            },
+            {
+              "code": "2163",
+              "name": "アルトナー",
+              "segment": "p",
+              "shares": 10627920
+            },
+            {
+              "code": "2164",
+              "name": "地域新聞社",
+              "segment": "g",
+              "shares": 7529828
+            },
+            {
+              "code": "2168",
+              "name": "パソナグループ",
+              "segment": "p",
+              "shares": 40190300
+            },
+            {
+              "code": "2169",
+              "name": "ＣＤＳ",
+              "segment": "s",
+              "shares": 6924400
+            },
+            {
+              "code": "2170",
+              "name": "リンクアンドモチベーション",
+              "segment": "p",
+              "shares": 110937011
+            },
+            {
+              "code": "2173",
+              "name": "博展",
+              "segment": "g",
+              "shares": 16248520
+            },
+            {
+              "code": "2175",
+              "name": "エス・エム・エス",
+              "segment": "p",
+              "shares": 87561600
+            },
+            {
+              "code": "2179",
+              "name": "成学社",
+              "segment": "s",
+              "shares": 5876000
+            },
+            {
+              "code": "2180",
+              "name": "サニーサイドアップグループ",
+              "segment": "s",
+              "shares": 15197600
+            },
+            {
+              "code": "2181",
+              "name": "パーソルホールディングス",
+              "segment": "p",
+              "shares": 2278437810
+            },
+            {
+              "code": "2183",
+              "name": "リニカル",
+              "segment": "s",
+              "shares": 24740000
+            },
+            {
+              "code": "2185",
+              "name": "シイエム・シイ",
+              "segment": "s",
+              "shares": 14364000
+            },
+            {
+              "code": "2186",
+              "name": "ソーバル",
+              "segment": "s",
+              "shares": 8167498
+            },
+            {
+              "code": "2193",
+              "name": "クックパッド",
+              "segment": "s",
+              "shares": 107429400
+            },
+            {
+              "code": "2195",
+              "name": "アミタホールディングス",
+              "segment": "g",
+              "shares": 17556360
+            },
+            {
+              "code": "2196",
+              "name": "エスクリ",
+              "segment": "s",
+              "shares": 23756352
+            },
+            {
+              "code": "2198",
+              "name": "アイ・ケイ・ケイホールディングス",
+              "segment": "p",
+              "shares": 29956800
+            },
+            {
+              "code": "2300",
+              "name": "きょくとう",
+              "segment": "s",
+              "shares": 5551230
+            },
+            {
+              "code": "2301",
+              "name": "学情",
+              "segment": "p",
+              "shares": 15560000
+            },
+            {
+              "code": "2304",
+              "name": "ＣＳＳホールディングス",
+              "segment": "s",
+              "shares": 5285600
+            },
+            {
+              "code": "2305",
+              "name": "スタジオアリス",
+              "segment": "s",
+              "shares": 17185650
+            },
+            {
+              "code": "2311",
+              "name": "エプコ",
+              "segment": "s",
+              "shares": 9316000
+            },
+            {
+              "code": "2325",
+              "name": "ＮＪＳ",
+              "segment": "p",
+              "shares": 10048000
+            },
+            {
+              "code": "2331",
+              "name": "ＡＬＳＯＫ",
+              "segment": "p",
+              "shares": 510200210
+            },
+            {
+              "code": "2334",
+              "name": "イオレ",
+              "segment": "g",
+              "shares": 38858920
+            },
+            {
+              "code": "2340",
+              "name": "極楽湯ホールディングス",
+              "segment": "s",
+              "shares": 31534100
+            },
+            {
+              "code": "2341",
+              "name": "アルバイトタイムス",
+              "segment": "s",
+              "shares": 27437249
+            },
+            {
+              "code": "2342",
+              "name": "トランスジェニックグループ",
+              "segment": "s",
+              "shares": 16999141
+            },
+            {
+              "code": "2344",
+              "name": "平安レイサービス",
+              "segment": "s",
+              "shares": 12306795
+            },
+            {
+              "code": "2370",
+              "name": "メディネット",
+              "segment": "g",
+              "shares": 266617319
+            },
+            {
+              "code": "2371",
+              "name": "カカクコム",
+              "segment": "p",
+              "shares": 198218300
+            },
+            {
+              "code": "2373",
+              "name": "ケア２１",
+              "segment": "s",
+              "shares": 14844000
+            },
+            {
+              "code": "2374",
+              "name": "セントケア・ホールディング",
+              "segment": "p",
+              "shares": 25003233
+            },
+            {
+              "code": "2375",
+              "name": "ギグワークス",
+              "segment": "s",
+              "shares": 22127985
+            },
+            {
+              "code": "2376",
+              "name": "サイネックス",
+              "segment": "s",
+              "shares": 6470660
+            },
+            {
+              "code": "2378",
+              "name": "ルネサンス",
+              "segment": "p",
+              "shares": 21379000
+            },
+            {
+              "code": "2379",
+              "name": "ディップ",
+              "segment": "p",
+              "shares": 60140000
+            },
+            {
+              "code": "2385",
+              "name": "総医研ホールディングス",
+              "segment": "g",
+              "shares": 26158200
+            },
+            {
+              "code": "2389",
+              "name": "デジタルホールディングス",
+              "segment": "p",
+              "shares": 18675907
+            },
+            {
+              "code": "2391",
+              "name": "プラネット",
+              "segment": "s",
+              "shares": 6632800
+            },
+            {
+              "code": "2393",
+              "name": "日本ケアサプライ",
+              "segment": "s",
+              "shares": 16237693
+            },
+            {
+              "code": "2395",
+              "name": "新日本科学",
+              "segment": "p",
+              "shares": 41632400
+            },
+            {
+              "code": "2404",
+              "name": "鉄人化ホールディングス",
+              "segment": "s",
+              "shares": 13817362
+            },
+            {
+              "code": "2408",
+              "name": "ＫＧ情報",
+              "segment": "s",
+              "shares": 7398000
+            },
+            {
+              "code": "2410",
+              "name": "キャリアデザインセンター",
+              "segment": "p",
+              "shares": 5497921
+            },
+            {
+              "code": "2413",
+              "name": "エムスリー",
+              "segment": "p",
+              "shares": 679120300
+            },
+            {
+              "code": "2415",
+              "name": "ヒューマンホールディングス",
+              "segment": "s",
+              "shares": 10377999
+            },
+            {
+              "code": "2418",
+              "name": "ツカダ・グローバルホールディング",
+              "segment": "s",
+              "shares": 48960000
+            },
+            {
+              "code": "2424",
+              "name": "ブラス",
+              "segment": "s",
+              "shares": 5709300
+            },
+            {
+              "code": "2425",
+              "name": "ケアサービス",
+              "segment": "s",
+              "shares": 4200000
+            },
+            {
+              "code": "2428",
+              "name": "ウェルネット",
+              "segment": "s",
+              "shares": 19400000
+            },
+            {
+              "code": "2429",
+              "name": "ワールドホールディングス",
+              "segment": "p",
+              "shares": 18012500
+            },
+            {
+              "code": "2433",
+              "name": "博報堂ＤＹホールディングス",
+              "segment": "p",
+              "shares": 389559436
+            },
+            {
+              "code": "2435",
+              "name": "シダー",
+              "segment": "s",
+              "shares": 11476000
+            },
+            {
+              "code": "2436",
+              "name": "共同ピーアール",
+              "segment": "s",
+              "shares": 8814992
+            },
+            {
+              "code": "2437",
+              "name": "Ｓｈｉｎｗａ　Ｗｉｓｅ　Ｈｏｌｄｉｎｇｓ",
+              "segment": "s",
+              "shares": 11017818
+            },
+            {
+              "code": "2438",
+              "name": "アスカネット",
+              "segment": "g",
+              "shares": 17464000
+            },
+            {
+              "code": "2440",
+              "name": "ぐるなび",
+              "segment": "s",
+              "shares": 56903800
+            },
+            {
+              "code": "2445",
+              "name": "タカミヤ",
+              "segment": "p",
+              "shares": 46585600
+            },
+            {
+              "code": "2449",
+              "name": "プラップジャパン",
+              "segment": "s",
+              "shares": 4679010
+            },
+            {
+              "code": "2454",
+              "name": "オールアバウト",
+              "segment": "s",
+              "shares": 14223916
+            },
+            {
+              "code": "2459",
+              "name": "アウンコンサルティング",
+              "segment": "s",
+              "shares": 7502800
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
