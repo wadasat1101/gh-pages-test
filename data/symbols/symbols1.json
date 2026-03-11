@@ -1670,25 +1670,25 @@
               "code": "9633",
               "name": "東京テアトル",
               "segment": "s",
-              "shares": 8013000
+              "shares": null
             },
             {
               "code": "9706",
               "name": "日本空港ビルデング",
               "segment": "p",
-              "shares": 93145400
+              "shares": null
             },
             {
               "code": "9816",
               "name": "ストライダーズ",
               "segment": "s",
-              "shares": 9712089
+              "shares": null
             },
             {
               "code": "9820",
               "name": "エムティジェネックス",
               "segment": "s",
-              "shares": 1079600
+              "shares": null
             }
           ]
         },

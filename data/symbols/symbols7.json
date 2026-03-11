@@ -890,7 +890,7 @@
               "code": "9880",
               "name": "イノテック",
               "segment": "p",
-              "shares": 13700000
+              "shares": null
             }
           ]
         },
@@ -1964,145 +1964,145 @@
               "code": "9501",
               "name": "東京電力ホールディングス",
               "segment": "p",
-              "shares": 1607017531
+              "shares": null
             },
             {
               "code": "9502",
               "name": "中部電力",
               "segment": "p",
-              "shares": 758000000
+              "shares": null
             },
             {
               "code": "9503",
               "name": "関西電力",
               "segment": "p",
-              "shares": 1114927528
+              "shares": null
             },
             {
               "code": "9504",
               "name": "中国電力",
               "segment": "p",
-              "shares": 387154692
+              "shares": null
             },
             {
               "code": "9505",
               "name": "北陸電力",
               "segment": "p",
-              "shares": 210333694
+              "shares": null
             },
             {
               "code": "9506",
               "name": "東北電力",
               "segment": "p",
-              "shares": 502882585
+              "shares": null
             },
             {
               "code": "9507",
               "name": "四国電力",
               "segment": "p",
-              "shares": 207528202
+              "shares": null
             },
             {
               "code": "9508",
               "name": "九州電力",
               "segment": "p",
-              "shares": 474183951
+              "shares": null
             },
             {
               "code": "9509",
               "name": "北海道電力",
               "segment": "p",
-              "shares": 215291912
+              "shares": null
             },
             {
               "code": "9511",
               "name": "沖縄電力",
               "segment": "p",
-              "shares": 56927965
+              "shares": null
             },
             {
               "code": "9513",
               "name": "電源開発",
               "segment": "p",
-              "shares": 183051100
+              "shares": null
             },
             {
               "code": "9514",
               "name": "エフオン",
               "segment": "s",
-              "shares": 21635144
+              "shares": null
             },
             {
               "code": "9517",
               "name": "イーレックス",
               "segment": "p",
-              "shares": 78161608
+              "shares": null
             },
             {
               "code": "9519",
               "name": "レノバ",
               "segment": "p",
-              "shares": 91245900
+              "shares": null
             },
             {
               "code": "9531",
               "name": "東京瓦斯",
               "segment": "p",
-              "shares": 371090859
+              "shares": null
             },
             {
               "code": "9532",
               "name": "大阪瓦斯",
               "segment": "p",
-              "shares": 397881800
+              "shares": null
             },
             {
               "code": "9533",
               "name": "東邦瓦斯",
               "segment": "p",
-              "shares": 98220085
+              "shares": null
             },
             {
               "code": "9534",
               "name": "北海道瓦斯",
               "segment": "p",
-              "shares": 88689030
+              "shares": null
             },
             {
               "code": "9535",
               "name": "広島ガス",
               "segment": "p",
-              "shares": 68737429
+              "shares": null
             },
             {
               "code": "9536",
               "name": "西部ガスホールディングス",
               "segment": "p",
-              "shares": 37187567
+              "shares": null
             },
             {
               "code": "9537",
               "name": "北陸瓦斯",
               "segment": "s",
-              "shares": 4800000
+              "shares": null
             },
             {
               "code": "9539",
               "name": "京葉瓦斯",
               "segment": "s",
-              "shares": 32805000
+              "shares": null
             },
             {
               "code": "9543",
               "name": "静岡ガス",
               "segment": "p",
-              "shares": 76192950
+              "shares": null
             },
             {
               "code": "9551",
               "name": "メタウォーター",
               "segment": "p",
-              "shares": 44258500
+              "shares": null
             }
           ]
         },

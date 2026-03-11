@@ -1484,409 +1484,409 @@
               "code": "9360",
               "name": "鈴与シンワート",
               "segment": "s",
-              "shares": 3000000
+              "shares": null
             },
             {
               "code": "9399",
               "name": "ビート・ホールディングス・リミテッド",
               "segment": "s",
-              "shares": 183335567
+              "shares": null
             },
             {
               "code": "9401",
               "name": "ＴＢＳホールディングス",
               "segment": "p",
-              "shares": 165591065
+              "shares": null
             },
             {
               "code": "9404",
               "name": "日本テレビホールディングス",
               "segment": "p",
-              "shares": 261220180
+              "shares": null
             },
             {
               "code": "9405",
               "name": "朝日放送グループホールディングス",
               "segment": "p",
-              "shares": 41833000
+              "shares": null
             },
             {
               "code": "9408",
               "name": "ＢＳＮメディアホールディングス",
               "segment": "s",
-              "shares": 6000000
+              "shares": null
             },
             {
               "code": "9409",
               "name": "テレビ朝日ホールディングス",
               "segment": "p",
-              "shares": 108529000
+              "shares": null
             },
             {
               "code": "9412",
               "name": "スカパーＪＳＡＴホールディングス",
               "segment": "p",
-              "shares": 297681264
+              "shares": null
             },
             {
               "code": "9413",
               "name": "テレビ東京ホールディングス",
               "segment": "p",
-              "shares": 27579500
+              "shares": null
             },
             {
               "code": "9414",
               "name": "日本ＢＳ放送",
               "segment": "s",
-              "shares": 17834232
+              "shares": null
             },
             {
               "code": "9416",
               "name": "ビジョン",
               "segment": "p",
-              "shares": 50938600
+              "shares": null
             },
             {
               "code": "9417",
               "name": "スマートバリュー",
               "segment": "s",
-              "shares": 10679800
+              "shares": null
             },
             {
               "code": "9418",
               "name": "Ｕ－ＮＥＸＴ　ＨＯＬＤＩＮＧＳ",
               "segment": "p",
-              "shares": 180375333
+              "shares": null
             },
             {
               "code": "9419",
               "name": "ワイヤレスゲート",
               "segment": "s",
-              "shares": 10938574
+              "shares": null
             },
             {
               "code": "9421",
               "name": "エヌジェイホールディングス",
               "segment": "s",
-              "shares": 5350400
+              "shares": null
             },
             {
               "code": "9423",
               "name": "フォーバル・リアルストレート",
               "segment": "s",
-              "shares": 24277800
+              "shares": null
             },
             {
               "code": "9424",
               "name": "日本通信",
               "segment": "p",
-              "shares": 166838739
+              "shares": null
             },
             {
               "code": "9425",
               "name": "ＲｅＹｕｕ　Ｊａｐａｎ",
               "segment": "s",
-              "shares": 7106900
+              "shares": null
             },
             {
               "code": "9428",
               "name": "クロップス",
               "segment": "s",
-              "shares": 9597400
+              "shares": null
             },
             {
               "code": "9432",
               "name": "ＮＴＴ",
               "segment": "p",
-              "shares": 90550316400
+              "shares": null
             },
             {
               "code": "9433",
               "name": "ＫＤＤＩ",
               "segment": "p",
-              "shares": 4187847474
+              "shares": null
             },
             {
               "code": "9434",
               "name": "ソフトバンク",
               "segment": "p",
-              "shares": 47945081700
+              "shares": null
             },
             {
               "code": "9435",
               "name": "光通信",
               "segment": "p",
-              "shares": 43989642
+              "shares": null
             },
             {
               "code": "9436",
               "name": "沖縄セルラー電話",
               "segment": "s",
-              "shares": 94178804
+              "shares": null
             },
             {
               "code": "9438",
               "name": "エムティーアイ",
               "segment": "p",
-              "shares": 60435200
+              "shares": null
             },
             {
               "code": "9441",
               "name": "ベルパーク",
               "segment": "s",
-              "shares": 12240712
+              "shares": null
             },
             {
               "code": "9444",
               "name": "トーシンホールディングス",
               "segment": "s",
-              "shares": 6536800
+              "shares": null
             },
             {
               "code": "9445",
               "name": "フォーバルテレコム",
               "segment": "s",
-              "shares": 16757700
+              "shares": null
             },
             {
               "code": "9446",
               "name": "サカイホールディングス",
               "segment": "s",
-              "shares": 10956500
+              "shares": null
             },
             {
               "code": "9449",
               "name": "ＧＭＯインターネットグループ",
               "segment": "p",
-              "shares": 108273680
+              "shares": null
             },
             {
               "code": "9450",
               "name": "ファイバーゲート",
               "segment": "s",
-              "shares": 20593600
+              "shares": null
             },
             {
               "code": "9466",
               "name": "アイドママーケティングコミュニケーション",
               "segment": "s",
-              "shares": 13520000
+              "shares": null
             },
             {
               "code": "9467",
               "name": "アルファポリス",
               "segment": "g",
-              "shares": 29062200
+              "shares": null
             },
             {
               "code": "9468",
               "name": "ＫＡＤＯＫＡＷＡ",
               "segment": "p",
-              "shares": 148990296
+              "shares": null
             },
             {
               "code": "9470",
               "name": "学研ホールディングス",
               "segment": "p",
-              "shares": 44633232
+              "shares": null
             },
             {
               "code": "9474",
               "name": "ゼンリン",
               "segment": "p",
-              "shares": 57301365
+              "shares": null
             },
             {
               "code": "9475",
               "name": "昭文社ホールディングス",
               "segment": "s",
-              "shares": 18178173
+              "shares": null
             },
             {
               "code": "9476",
               "name": "中央経済社ホールディングス",
               "segment": "s",
-              "shares": 4398464
+              "shares": null
             },
             {
               "code": "9478",
               "name": "ＳＥホールディングス・アンド・インキュベーションズ",
               "segment": "s",
-              "shares": 16284226
+              "shares": null
             },
             {
               "code": "9601",
               "name": "松竹",
               "segment": "p",
-              "shares": 13937857
+              "shares": null
             },
             {
               "code": "9602",
               "name": "東宝",
               "segment": "p",
-              "shares": 880000000
+              "shares": null
             },
             {
               "code": "9605",
               "name": "東映",
               "segment": "p",
-              "shares": 73844545
+              "shares": null
             },
             {
               "code": "9629",
               "name": "ピー・シー・エー",
               "segment": "p",
-              "shares": 22000000
+              "shares": null
             },
             {
               "code": "9640",
               "name": "セゾンテクノロジー",
               "segment": "s",
-              "shares": 16200000
+              "shares": null
             },
             {
               "code": "9651",
               "name": "日本プロセス",
               "segment": "s",
-              "shares": 10645020
+              "shares": null
             },
             {
               "code": "9658",
               "name": "ビジネスブレイン太田昭和",
               "segment": "p",
-              "shares": 11615200
+              "shares": null
             },
             {
               "code": "9682",
               "name": "ＤＴＳ",
               "segment": "p",
-              "shares": 163954928
+              "shares": null
             },
             {
               "code": "9684",
               "name": "スクウェア・エニックス・ホールディングス",
               "segment": "p",
-              "shares": 367594788
+              "shares": null
             },
             {
               "code": "9685",
               "name": "ＫＹＣＯＭホールディングス",
               "segment": "s",
-              "shares": 5115492
+              "shares": null
             },
             {
               "code": "9687",
               "name": "ＫＳＫ",
               "segment": "s",
-              "shares": 7636368
+              "shares": null
             },
             {
               "code": "9691",
               "name": "両毛システムズ",
               "segment": "s",
-              "shares": 3510000
+              "shares": null
             },
             {
               "code": "9692",
               "name": "シーイーシー",
               "segment": "p",
-              "shares": 35168200
+              "shares": null
             },
             {
               "code": "9697",
               "name": "カプコン",
               "segment": "p",
-              "shares": 533011246
+              "shares": null
             },
             {
               "code": "9698",
               "name": "クレオ",
               "segment": "s",
-              "shares": 8585688
+              "shares": null
             },
             {
               "code": "9702",
               "name": "アイ・エス・ビー",
               "segment": "p",
-              "shares": 11463141
+              "shares": null
             },
             {
               "code": "9709",
               "name": "ＮＣＳ＆Ａ",
               "segment": "s",
-              "shares": 18000000
+              "shares": null
             },
             {
               "code": "9719",
               "name": "ＳＣＳＫ",
               "segment": "p",
-              "shares": 313125263
+              "shares": null
             },
             {
               "code": "9739",
               "name": "ＮＳＷ",
               "segment": "p",
-              "shares": 14900000
+              "shares": null
             },
             {
               "code": "9742",
               "name": "アイネス",
               "segment": "p",
-              "shares": 20900000
+              "shares": null
             },
             {
               "code": "9746",
               "name": "ＴＫＣ",
               "segment": "p",
-              "shares": 50641466
+              "shares": null
             },
             {
               "code": "9753",
               "name": "アイエックス・ナレッジ",
               "segment": "s",
-              "shares": 10800000
+              "shares": null
             },
             {
               "code": "9759",
               "name": "ＮＳＤ",
               "segment": "p",
-              "shares": 86000000
+              "shares": null
             },
             {
               "code": "9766",
               "name": "コナミグループ",
               "segment": "p",
-              "shares": 143500000
+              "shares": null
             },
             {
               "code": "9790",
               "name": "福井コンピュータホールディングス",
               "segment": "p",
-              "shares": 20700000
+              "shares": null
             },
             {
               "code": "9799",
               "name": "旭情報サービス",
               "segment": "s",
-              "shares": 16529700
+              "shares": null
             },
             {
               "code": "9889",
               "name": "ＪＢＣＣホールディングス",
               "segment": "p",
-              "shares": 71094972
+              "shares": null
             },
             {
               "code": "9928",
               "name": "ミロク情報サービス",
               "segment": "p",
-              "shares": 32306286
+              "shares": null
             },
             {
               "code": "9984",
               "name": "ソフトバンクグループ",
               "segment": "p",
-              "shares": 5711848120
+              "shares": null
             }
           ]
         },
@@ -2258,7 +2258,7 @@
               "code": "4881",
               "name": "ファンペップ",
               "segment": "g",
-              "shares": 40563800
+              "shares": 40916700
             },
             {
               "code": "4882",
@@ -2486,211 +2486,211 @@
               "code": "9036",
               "name": "東部ネットワーク",
               "segment": "s",
-              "shares": 5749000
+              "shares": null
             },
             {
               "code": "9037",
               "name": "ハマキョウレックス",
               "segment": "p",
-              "shares": 76048000
+              "shares": null
             },
             {
               "code": "9039",
               "name": "サカイ引越センター",
               "segment": "p",
-              "shares": 42324000
+              "shares": null
             },
             {
               "code": "9041",
               "name": "近鉄グループホールディングス",
               "segment": "p",
-              "shares": 190662061
+              "shares": null
             },
             {
               "code": "9042",
               "name": "阪急阪神ホールディングス",
               "segment": "p",
-              "shares": 251498234
+              "shares": null
             },
             {
               "code": "9044",
               "name": "南海電気鉄道",
               "segment": "p",
-              "shares": 113402446
+              "shares": null
             },
             {
               "code": "9045",
               "name": "京阪ホールディングス",
               "segment": "p",
-              "shares": 106816403
+              "shares": null
             },
             {
               "code": "9046",
               "name": "神戸電鉄",
               "segment": "p",
-              "shares": 8061566
+              "shares": null
             },
             {
               "code": "9048",
               "name": "名古屋鉄道",
               "segment": "p",
-              "shares": 196700692
+              "shares": null
             },
             {
               "code": "9049",
               "name": "京福電気鉄道",
               "segment": "s",
-              "shares": 2000000
+              "shares": null
             },
             {
               "code": "9051",
               "name": "センコン物流",
               "segment": "s",
-              "shares": 5651000
+              "shares": null
             },
             {
               "code": "9052",
               "name": "山陽電気鉄道",
               "segment": "p",
-              "shares": 22330598
+              "shares": null
             },
             {
               "code": "9057",
               "name": "遠州トラック",
               "segment": "s",
-              "shares": 7546000
+              "shares": null
             },
             {
               "code": "9059",
               "name": "カンダホールディングス",
               "segment": "s",
-              "shares": 23308720
+              "shares": null
             },
             {
               "code": "9060",
               "name": "日本ロジテム",
               "segment": "s",
-              "shares": 1383310
+              "shares": null
             },
             {
               "code": "9063",
               "name": "岡山県貨物運送",
               "segment": "s",
-              "shares": 2200000
+              "shares": null
             },
             {
               "code": "9064",
               "name": "ヤマトホールディングス",
               "segment": "p",
-              "shares": 360496492
+              "shares": null
             },
             {
               "code": "9065",
               "name": "山九",
               "segment": "p",
-              "shares": 55470257
+              "shares": null
             },
             {
               "code": "9067",
               "name": "丸運",
               "segment": "s",
-              "shares": 28965449
+              "shares": null
             },
             {
               "code": "9068",
               "name": "丸全昭和運輸",
               "segment": "p",
-              "shares": 20618244
+              "shares": null
             },
             {
               "code": "9069",
               "name": "センコーグループホールディングス",
               "segment": "p",
-              "shares": 175692457
+              "shares": null
             },
             {
               "code": "9072",
               "name": "ニッコンホールディングス",
               "segment": "p",
-              "shares": 126479784
+              "shares": null
             },
             {
               "code": "9073",
               "name": "京極運輸商事",
               "segment": "s",
-              "shares": 3200000
+              "shares": null
             },
             {
               "code": "9074",
               "name": "日本石油輸送",
               "segment": "s",
-              "shares": 3322935
+              "shares": null
             },
             {
               "code": "9075",
               "name": "福山通運",
               "segment": "p",
-              "shares": 40194163
+              "shares": null
             },
             {
               "code": "9076",
               "name": "セイノーホールディングス",
               "segment": "p",
-              "shares": 187679783
+              "shares": null
             },
             {
               "code": "9081",
               "name": "神奈川中央交通",
               "segment": "p",
-              "shares": 12600000
+              "shares": null
             },
             {
               "code": "9082",
               "name": "大和自動車交通",
               "segment": "s",
-              "shares": 5250000
+              "shares": null
             },
             {
               "code": "9083",
               "name": "神姫バス",
               "segment": "s",
-              "shares": 12344000
+              "shares": null
             },
             {
               "code": "9087",
               "name": "タカセ",
               "segment": "s",
-              "shares": 2109026
+              "shares": null
             },
             {
               "code": "9090",
               "name": "ＡＺ－ＣＯＭ丸和ホールディングス",
               "segment": "p",
-              "shares": 137984520
+              "shares": null
             },
             {
               "code": "9142",
               "name": "九州旅客鉄道",
               "segment": "p",
-              "shares": 154649000
+              "shares": null
             },
             {
               "code": "9143",
               "name": "ＳＧホールディングス",
               "segment": "p",
-              "shares": 640394400
+              "shares": null
             },
             {
               "code": "9145",
               "name": "ビーイングホールディングス",
               "segment": "s",
-              "shares": 24100000
+              "shares": null
             },
             {
               "code": "9147",
               "name": "ＮＩＰＰＯＮ　ＥＸＰＲＥＳＳホールディングス",
               "segment": "p",
-              "shares": 243000000
+              "shares": null
             }
           ]
         },
@@ -2948,7 +2948,7 @@
               "code": "2656",
               "name": "ベクターホールディングス",
               "segment": "s",
-              "shares": 25851100
+              "shares": 28484400
             },
             {
               "code": "2659",

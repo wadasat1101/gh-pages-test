@@ -464,67 +464,67 @@
               "code": "9101",
               "name": "日本郵船",
               "segment": "p",
-              "shares": 434101600
+              "shares": null
             },
             {
               "code": "9104",
               "name": "商船三井",
               "segment": "p",
-              "shares": 362903427
+              "shares": null
             },
             {
               "code": "9107",
               "name": "川崎汽船",
               "segment": "p",
-              "shares": 639172067
+              "shares": null
             },
             {
               "code": "9110",
               "name": "ＮＳユナイテッド海運",
               "segment": "p",
-              "shares": 23970679
+              "shares": null
             },
             {
               "code": "9115",
               "name": "明海グループ",
               "segment": "s",
-              "shares": 36000000
+              "shares": null
             },
             {
               "code": "9119",
               "name": "飯野海運",
               "segment": "p",
-              "shares": 108900000
+              "shares": null
             },
             {
               "code": "9127",
               "name": "玉井商船",
               "segment": "s",
-              "shares": 1932000
+              "shares": null
             },
             {
               "code": "9130",
               "name": "共栄タンカー",
               "segment": "s",
-              "shares": 7650000
+              "shares": null
             },
             {
               "code": "9171",
               "name": "栗林商船",
               "segment": "s",
-              "shares": 12739696
+              "shares": null
             },
             {
               "code": "9173",
               "name": "東海汽船",
               "segment": "s",
-              "shares": 2200000
+              "shares": null
             },
             {
               "code": "9308",
               "name": "乾汽船",
               "segment": "s",
-              "shares": 26072960
+              "shares": null
             }
           ]
         },
@@ -536,187 +536,187 @@
               "code": "9193",
               "name": "東京汽船",
               "segment": "s",
-              "shares": 10010000
+              "shares": null
             },
             {
               "code": "9301",
               "name": "三菱倉庫",
               "segment": "p",
-              "shares": 378882295
+              "shares": null
             },
             {
               "code": "9302",
               "name": "三井倉庫ホールディングス",
               "segment": "p",
-              "shares": 77991106
+              "shares": null
             },
             {
               "code": "9303",
               "name": "住友倉庫",
               "segment": "p",
-              "shares": 77747315
+              "shares": null
             },
             {
               "code": "9304",
               "name": "澁澤倉庫",
               "segment": "p",
-              "shares": 60870988
+              "shares": null
             },
             {
               "code": "9306",
               "name": "東陽倉庫",
               "segment": "s",
-              "shares": 7864990
+              "shares": null
             },
             {
               "code": "9307",
               "name": "杉村倉庫",
               "segment": "s",
-              "shares": 16419110
+              "shares": null
             },
             {
               "code": "9310",
               "name": "日本トランスシティ",
               "segment": "p",
-              "shares": 67142417
+              "shares": null
             },
             {
               "code": "9311",
               "name": "アサガミ",
               "segment": "s",
-              "shares": 1418000
+              "shares": null
             },
             {
               "code": "9312",
               "name": "ケイヒン",
               "segment": "s",
-              "shares": 6536445
+              "shares": null
             },
             {
               "code": "9313",
               "name": "丸八倉庫",
               "segment": "s",
-              "shares": 7300000
+              "shares": null
             },
             {
               "code": "9319",
               "name": "中央倉庫",
               "segment": "p",
-              "shares": 19064897
+              "shares": null
             },
             {
               "code": "9322",
               "name": "川西倉庫",
               "segment": "s",
-              "shares": 8258322
+              "shares": null
             },
             {
               "code": "9324",
               "name": "安田倉庫",
               "segment": "p",
-              "shares": 30360000
+              "shares": null
             },
             {
               "code": "9325",
               "name": "ファイズホールディングス",
               "segment": "s",
-              "shares": 10822800
+              "shares": null
             },
             {
               "code": "9326",
               "name": "関通",
               "segment": "g",
-              "shares": 10308150
+              "shares": null
             },
             {
               "code": "9327",
               "name": "イー・ロジット",
               "segment": "s",
-              "shares": 15843000
+              "shares": null
             },
             {
               "code": "9351",
               "name": "東洋埠頭",
               "segment": "s",
-              "shares": 7740000
+              "shares": null
             },
             {
               "code": "9353",
               "name": "櫻島埠頭",
               "segment": "s",
-              "shares": 1540000
+              "shares": null
             },
             {
               "code": "9355",
               "name": "リンコーコーポレーション",
               "segment": "s",
-              "shares": 2700000
+              "shares": null
             },
             {
               "code": "9361",
               "name": "伏木海陸運送",
               "segment": "s",
-              "shares": 2615400
+              "shares": null
             },
             {
               "code": "9362",
               "name": "兵機海運",
               "segment": "s",
-              "shares": 1224000
+              "shares": null
             },
             {
               "code": "9363",
               "name": "大運",
               "segment": "s",
-              "shares": 6228039
+              "shares": null
             },
             {
               "code": "9364",
               "name": "上組",
               "segment": "p",
-              "shares": 106576837
+              "shares": null
             },
             {
               "code": "9365",
               "name": "トレーディア",
               "segment": "s",
-              "shares": 1470000
+              "shares": null
             },
             {
               "code": "9366",
               "name": "サンリツ",
               "segment": "s",
-              "shares": 6006373
+              "shares": null
             },
             {
               "code": "9367",
               "name": "大東港運",
               "segment": "s",
-              "shares": 9389000
+              "shares": null
             },
             {
               "code": "9368",
               "name": "キムラユニティー",
               "segment": "s",
-              "shares": 47087600
+              "shares": null
             },
             {
               "code": "9369",
               "name": "キユーソー流通システム",
               "segment": "s",
-              "shares": 25355800
+              "shares": null
             },
             {
               "code": "9380",
               "name": "東海運",
               "segment": "s",
-              "shares": 28923000
+              "shares": null
             },
             {
               "code": "9381",
               "name": "エーアイテイー",
               "segment": "p",
-              "shares": 23913600
+              "shares": null
             }
           ]
         },
@@ -728,31 +728,31 @@
               "code": "9201",
               "name": "日本航空",
               "segment": "p",
-              "shares": 437143500
+              "shares": null
             },
             {
               "code": "9202",
               "name": "ＡＮＡホールディングス",
               "segment": "p",
-              "shares": 484293561
+              "shares": null
             },
             {
               "code": "9204",
               "name": "スカイマーク",
               "segment": "g",
-              "shares": 60329400
+              "shares": null
             },
             {
               "code": "9206",
               "name": "スターフライヤー",
               "segment": "s",
-              "shares": 3784076
+              "shares": null
             },
             {
               "code": "9233",
               "name": "アジア航測",
               "segment": "s",
-              "shares": 18614000
+              "shares": null
             }
           ]
         }
