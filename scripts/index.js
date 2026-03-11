@@ -405,15 +405,17 @@ function renderSignalLists() {
 		let seg = "";
 		let symbolName = "";
 		let segmentName = "";
+		let tav36 = 0;
 		
 		if(SYMBOLS.get(s.symbol) != null){
 			seg = SYMBOLS.get(s.symbol).segment;
 			symbolName = SYMBOLS.get(s.symbol).name;
 			segmentName = SEGMENTS.get(seg);
+			tav36 = (s.tav36 / 100000000).toFixed(1) + "億";
 		}
 		
 		el.textContent =
-			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
+			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${tav36} ${s.dev36.toFixed(1)}%`;
 
 		el.onclick = () => {
 
