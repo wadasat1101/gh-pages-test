@@ -5,7 +5,10 @@
     "high": 1060,
     "low": 880,
     "close": 1060,
-    "volume": 1426800
+    "volume": 1426800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2022-08-31",
@@ -13,7 +16,10 @@
     "high": 1250,
     "low": 695,
     "close": 712,
-    "volume": 22943500
+    "volume": 22943500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2022-09-30",
@@ -21,7 +27,10 @@
     "high": 866,
     "low": 595,
     "close": 652,
-    "volume": 1698400
+    "volume": 1698400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2022-10-31",
@@ -29,7 +38,10 @@
     "high": 676,
     "low": 600,
     "close": 639,
-    "volume": 403100
+    "volume": 403100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2022-11-30",
@@ -37,7 +49,10 @@
     "high": 730,
     "low": 582,
     "close": 585,
-    "volume": 599800
+    "volume": 599800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2022-12-31",
@@ -45,7 +60,10 @@
     "high": 587,
     "low": 490,
     "close": 546,
-    "volume": 389200
+    "volume": 389200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-01-31",
@@ -53,7 +71,10 @@
     "high": 560,
     "low": 491,
     "close": 524,
-    "volume": 169400
+    "volume": 169400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-02-28",
@@ -61,7 +82,10 @@
     "high": 531,
     "low": 491,
     "close": 493,
-    "volume": 239900
+    "volume": 239900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-03-31",
@@ -69,7 +93,10 @@
     "high": 540,
     "low": 436,
     "close": 468,
-    "volume": 555800
+    "volume": 555800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-04-30",
@@ -77,7 +104,10 @@
     "high": 476,
     "low": 390,
     "close": 410,
-    "volume": 272700
+    "volume": 272700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-05-31",
@@ -85,7 +115,10 @@
     "high": 435,
     "low": 370,
     "close": 381,
-    "volume": 258700
+    "volume": 258700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-06-30",
@@ -93,7 +126,10 @@
     "high": 480,
     "low": 368,
     "close": 425,
-    "volume": 1107000
+    "volume": 1107000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-07-31",
@@ -101,7 +137,10 @@
     "high": 627,
     "low": 429,
     "close": 486,
-    "volume": 7658000
+    "volume": 7658000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-08-31",
@@ -109,7 +148,10 @@
     "high": 497,
     "low": 363,
     "close": 410,
-    "volume": 3585800
+    "volume": 3585800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-09-30",
@@ -117,7 +159,10 @@
     "high": 446,
     "low": 390,
     "close": 413,
-    "volume": 603300
+    "volume": 603300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-10-31",
@@ -125,7 +170,10 @@
     "high": 420,
     "low": 333,
     "close": 342,
-    "volume": 299100
+    "volume": 299100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-11-30",
@@ -133,7 +181,10 @@
     "high": 418,
     "low": 328,
     "close": 403,
-    "volume": 644600
+    "volume": 644600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2023-12-31",
@@ -141,7 +192,10 @@
     "high": 473,
     "low": 370,
     "close": 392,
-    "volume": 1405100
+    "volume": 1405100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-01-31",
@@ -149,7 +203,10 @@
     "high": 443,
     "low": 383,
     "close": 402,
-    "volume": 823700
+    "volume": 823700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-02-29",
@@ -157,7 +214,10 @@
     "high": 462,
     "low": 395,
     "close": 433,
-    "volume": 451100
+    "volume": 451100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-03-31",
@@ -165,7 +225,10 @@
     "high": 464,
     "low": 420,
     "close": 438,
-    "volume": 229700
+    "volume": 229700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-04-30",
@@ -173,7 +236,10 @@
     "high": 450,
     "low": 420,
     "close": 434,
-    "volume": 110200
+    "volume": 110200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-05-31",
@@ -181,7 +247,10 @@
     "high": 446,
     "low": 369,
     "close": 389,
-    "volume": 222700
+    "volume": 222700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-06-30",
@@ -189,7 +258,10 @@
     "high": 398,
     "low": 378,
     "close": 394,
-    "volume": 190800
+    "volume": 190800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-07-31",
@@ -197,7 +269,10 @@
     "high": 396,
     "low": 383,
     "close": 384,
-    "volume": 51100
+    "volume": 51100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-08-31",
@@ -205,7 +280,10 @@
     "high": 390,
     "low": 269,
     "close": 359,
-    "volume": 7851500
+    "volume": 7851500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-09-30",
@@ -213,7 +291,10 @@
     "high": 385,
     "low": 349,
     "close": 374,
-    "volume": 149100
+    "volume": 149100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-10-31",
@@ -221,7 +302,10 @@
     "high": 389,
     "low": 351,
     "close": 360,
-    "volume": 114400
+    "volume": 114400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-11-30",
@@ -229,7 +313,10 @@
     "high": 439,
     "low": 352,
     "close": 408,
-    "volume": 1283100
+    "volume": 1283100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2024-12-31",
@@ -237,7 +324,10 @@
     "high": 525,
     "low": 403,
     "close": 494,
-    "volume": 689700
+    "volume": 689700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-01-31",
@@ -245,7 +335,10 @@
     "high": 508,
     "low": 441,
     "close": 461,
-    "volume": 185700
+    "volume": 185700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-02-28",
@@ -253,7 +346,10 @@
     "high": 550,
     "low": 460,
     "close": 495,
-    "volume": 788100
+    "volume": 788100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-03-31",
@@ -261,7 +357,10 @@
     "high": 505,
     "low": 445,
     "close": 475,
-    "volume": 269400
+    "volume": 269400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-04-30",
@@ -269,7 +368,10 @@
     "high": 480,
     "low": 359,
     "close": 459,
-    "volume": 435000
+    "volume": 435000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-05-31",
@@ -277,7 +379,10 @@
     "high": 506,
     "low": 436,
     "close": 452,
-    "volume": 380800
+    "volume": 380800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   },
   {
     "time": "2025-06-30",
@@ -285,7 +390,10 @@
     "high": 516,
     "low": 452,
     "close": 470,
-    "volume": 483300
+    "volume": 483300,
+    "ma36": 472.8,
+    "dev36": -0.6,
+    "tav36": 919924575
   },
   {
     "time": "2025-07-31",
@@ -293,7 +401,10 @@
     "high": 494,
     "low": 442,
     "close": 490,
-    "volume": 239500
+    "volume": 239500,
+    "ma36": 457,
+    "dev36": 7.2,
+    "tav36": 881173102.8
   },
   {
     "time": "2025-08-31",
@@ -301,7 +412,10 @@
     "high": 494,
     "low": 399,
     "close": 402,
-    "volume": 808200
+    "volume": 808200,
+    "ma36": 448.4,
+    "dev36": -10.3,
+    "tav36": 436426558.3
   },
   {
     "time": "2025-09-30",
@@ -309,7 +423,10 @@
     "high": 419,
     "low": 361,
     "close": 368,
-    "volume": 621100
+    "volume": 621100,
+    "ma36": 440.5,
+    "dev36": -16.5,
+    "tav36": 412015669.4
   },
   {
     "time": "2025-10-31",
@@ -317,7 +434,10 @@
     "high": 368,
     "low": 323,
     "close": 348,
-    "volume": 630700
+    "volume": 630700,
+    "ma36": 432.4,
+    "dev36": -19.5,
+    "tav36": 410957411.1
   },
   {
     "time": "2025-11-30",
@@ -325,7 +445,10 @@
     "high": 356,
     "low": 260,
     "close": 290,
-    "volume": 685100
+    "volume": 685100,
+    "ma36": 424.2,
+    "dev36": -31.6,
+    "tav36": 406729522.2
   },
   {
     "time": "2025-12-31",
@@ -333,7 +456,10 @@
     "high": 291,
     "low": 243,
     "close": 247,
-    "volume": 486500
+    "volume": 486500,
+    "ma36": 415.9,
+    "dev36": -40.6,
+    "tav36": 404164586.1
   },
   {
     "time": "2026-01-31",
@@ -341,7 +467,10 @@
     "high": 321,
     "low": 251,
     "close": 256,
-    "volume": 1033900
+    "volume": 1033900,
+    "ma36": 408.5,
+    "dev36": -37.3,
+    "tav36": 409051052.8
   },
   {
     "time": "2026-02-28",
@@ -349,7 +478,10 @@
     "high": 298,
     "low": 215,
     "close": 244,
-    "volume": 4236400
+    "volume": 4236400,
+    "ma36": 401.6,
+    "dev36": -39.2,
+    "tav36": 434479133.3
   },
   {
     "time": "2026-03-31",
@@ -357,6 +489,9 @@
     "high": 255,
     "low": 218,
     "close": 240,
-    "volume": 314000
+    "volume": 314000,
+    "ma36": 395.2,
+    "dev36": -39.3,
+    "tav36": 429347066.7
   }
 ]
