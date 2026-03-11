@@ -4,7 +4,7 @@ const XLSX = require("xlsx");
 const JPX_URL =
 "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls";
 
-const PARALLEL = 10;
+const PARALLEL = 5;
 const CHUNK_SIZE = 500;
 
 async function sleep(ms){
@@ -100,7 +100,7 @@ async function run(){
 
 			item.shares = await getShares(symbol);
 
-			await sleep(200);
+			await sleep(300);
 
 		}));
 	}
@@ -237,3 +237,4 @@ async function run(){
 
 
 run();
+
