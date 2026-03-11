@@ -554,8 +554,8 @@ async function loadSignals() {
 
 	try {
 		const [buy, sell] = await Promise.all([
-			fetch("./signals/buySignals.json").then(r=>r.json()),
-			fetch("./signals/sellSignals.json").then(r=>r.json())
+			fetch("./data/signals/buySignals.json").then(r=>r.json()),
+			fetch("./data/signals/sellSignals.json").then(r=>r.json())
 		]);
 
 		STATE.signals.buy = buy;
