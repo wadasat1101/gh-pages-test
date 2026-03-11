@@ -100,7 +100,7 @@ async function run(){
 
 			item.shares = await getShares(symbol);
 
-			await sleep(100);
+			await sleep(200);
 
 		}));
 	}
@@ -234,5 +234,6 @@ async function run(){
 
 	console.log("done");
 }
+
 
 run();
