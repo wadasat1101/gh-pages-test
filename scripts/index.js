@@ -22,8 +22,6 @@ const formatDev = d => ({
 const UI = {
 	symbolName: $("symbolNameLabel"),
 	segmentName: $("segmentNameLabel"),
-	shares: $("shares"),
-	marketCap: $("marketCap"),
 	date: $("dateLabel"),
 	open: $("openLabel"),
 	high: $("highLabel"),
@@ -210,7 +208,7 @@ async function loadChart() {
 
 	try {
 		const data = await (await fetch(
-			`./data/${STATE.market}/${STATE.interval}/${STATE.symbolCode}.json`
+			`./data/ohlc/${STATE.market}/${STATE.interval}/${STATE.symbolCode}.json`
 		)).json();		
 		
 		STATE.rawData = data;
@@ -239,9 +237,6 @@ async function loadChart() {
 		
 		UI.symbolName.textContent = sy.name;
 		UI.segmentName.textContent = SEGMENTS.get(sy.segment);
-		UI.shares.textContent = sy.shares.toLocaleString();
-		let marketCap = Math.round(data.at(-1).close * sy.shares / 1000000);
-		UI.marketCap.textContent = marketCap.toLocaleString();
 		
 		data.at(-1).time
 		
@@ -407,27 +402,18 @@ function renderSignalLists() {
 		el.style.fontSize="12px";
 		el.style.padding="2px";
 		
-		//const shares = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).shares : "";
-		//const seg = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).segment : "";
-		//const symbolName = SYMBOLS.get(s.symbol) != null ? SYMBOLS.get(s.symbol).name : "";
-		//const segmentName = SEGMENTS.get(seg);
-		
-		let shares = "";
 		let seg = "";
 		let symbolName = "";
 		let segmentName = "";
-		let marketCap = "";
 		
 		if(SYMBOLS.get(s.symbol) != null){
-			shares = SYMBOLS.get(s.symbol).shares;
 			seg = SYMBOLS.get(s.symbol).segment;
 			symbolName = SYMBOLS.get(s.symbol).name;
 			segmentName = SEGMENTS.get(seg);
-			marketCap = s.close * shares;
 		}
 		
 		el.textContent =
-			`${s.symbol} ${symbolName} ${segmentName} ${shares} ${marketCap} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
+			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${s.dev36.toFixed(1)}%`;
 
 		el.onclick = () => {
 
@@ -463,11 +449,9 @@ function renderSignalLists() {
 	};
 
 	STATE.signals.buy
-		.filter(s => SYMBOLS.get(s.symbol)?.segment !== "g") // 東証グロースは除外
 		.forEach(s => buyDiv.appendChild(makeRow(s)));
 
 	STATE.signals.sell
-		.filter(s => SYMBOLS.get(s.symbol)?.segment !== "g")// 東証グロースは除外
 		.forEach(s => sellDiv.appendChild(makeRow(s)));
 }
 
@@ -533,8 +517,7 @@ Promise.all([
 					s.symbols.forEach(sym => {
 						SYMBOLS.set(sym.code, {
 							name: sym.name,
-							segment: sym.segment,
-							shares: sym.shares
+							segment: sym.segment
 						});
 					});
 				});

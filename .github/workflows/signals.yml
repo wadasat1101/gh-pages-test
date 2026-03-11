@@ -13,8 +13,8 @@ jobs:
     env:
       BUY_CLOSE: 300
       BUY_DEV_IGNORE: -40
-      BUY_DEV: -25
-      BUY_TAV: 100000000
+      BUY_DEV: -30
+      BUY_TAV: 6000000000
       SELL_DEV: 10
 
     steps:

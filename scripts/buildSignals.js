@@ -8,8 +8,8 @@ const path = require("path");
 // ---- 設定（YAMLのenvを利用）
 const BUY_CLOSE = parseFloat(process.env.BUY_CLOSE ?? 300);
 const BUY_DEV_IGNORE = parseFloat(process.env.BUY_DEV_IGNORE ?? -40);
-const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -25);
-const BUY_TAV = parseFloat(process.env.BUY_TAV ?? 100000000);
+const BUY_DEV = parseFloat(process.env.BUY_DEV ?? -30);
+const BUY_TAV = parseFloat(process.env.BUY_TAV ?? 6000000000);
 const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 10);
 
 // interval
