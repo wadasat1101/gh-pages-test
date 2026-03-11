@@ -4,38 +4,7 @@ const XLSX = require("xlsx");
 const JPX_URL =
 "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls";
 
-const PARALLEL = 5;
 const CHUNK_SIZE = 500;
-
-async function sleep(ms){
-	return new Promise(r=>setTimeout(r,ms));
-}
-
-async function getShares(symbol){
-
-	const url = `https://finance.yahoo.co.jp/quote/${symbol}`;
-
-	try{
-
-		const res = await fetch(url,{
-			headers:{ "User-Agent":"Mozilla/5.0" }
-		});
-
-		const html = await res.text();
-
-		const match = html.match(/発行済株式数[\s\S]*?([0-9,]+)<\/span>\s*<span[^>]*>株/);
-
-		if(!match) return null;
-
-		return Number(match[1].replace(/,/g,""));
-
-	}catch(e){
-
-		console.log("error:",symbol);
-
-		return null;
-	}
-}
 
 function marketToSegment(market){
 
@@ -86,25 +55,6 @@ async function run(){
 
 	console.log("symbols:",list.length);
 
-	// ===== 並列fetch =====
-
-	for(let i=0;i<list.length;i+=PARALLEL){
-
-		const batch = list.slice(i,i+PARALLEL);
-
-		await Promise.all(batch.map(async item=>{
-
-			const symbol = `${item.code}.T`;
-
-			console.log("fetch:",symbol);
-
-			item.shares = await getShares(symbol);
-
-			await sleep(300);
-
-		}));
-	}
-
 	// ===== sector構造作成 =====
 
 	const sectorMap = new Map();
@@ -122,8 +72,7 @@ async function run(){
 		sectorMap.get(r.sectorCode).symbols.push({
 			code:r.code,
 			name:r.name,
-			segment:r.segment,
-			shares:r.shares
+			segment:r.segment
 		});
 	}
 
@@ -235,6 +184,4 @@ async function run(){
 	console.log("done");
 }
 
-
 run();
-
