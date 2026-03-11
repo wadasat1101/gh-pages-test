@@ -17,7 +17,7 @@ const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 10);
 const INTERVALS = ["monthly"];
 
 const DATA_ROOT = path.join(__dirname, "..", "data");
-const OUT_DIR = path.join(__dirname, "..", "signals");
+const OUT_DIR = path.join(__dirname, "..", "data/signals");
 
 // 出力フォルダ作成
 if (!fs.existsSync(OUT_DIR)) {
