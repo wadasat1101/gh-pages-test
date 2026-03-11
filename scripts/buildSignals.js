@@ -16,7 +16,7 @@ const SELL_DEV = parseFloat(process.env.SELL_DEV ?? 10);
 //const INTERVALS = ["daily", "weekly", "monthly"];
 const INTERVALS = ["monthly"];
 
-const DATA_ROOT = path.join(__dirname, "..", "data");
+const DATA_ROOT = path.join(__dirname, "..", "data/ohlc");
 const OUT_DIR = path.join(__dirname, "..", "data/signals");
 
 // 出力フォルダ作成
@@ -96,8 +96,8 @@ INTERVALS.forEach(interval => {
                 };
 
 				// 購入条件 (300 <= close)
-				// 購入条件 (-40 < dev <= -25)
-				// 購入条件 (100000000 < tav)
+				// 購入条件 (-40 < dev <= -30)
+				// 購入条件 (6000000000 < tav)
 				if(BUY_CLOSE <= close){
 					if (BUY_DEV_IGNORE < dev) {
 						if (dev <= BUY_DEV) {
