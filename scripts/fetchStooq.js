@@ -38,6 +38,8 @@ function parseCSV(text) {
 
 (async () => {
 
+	console.log(`SYMBOLS_FILE -> ${SYMBOLS_FILE}`);
+
 	const config = JSON.parse(fs.readFileSync(SYMBOLS_FILE,"utf8"));
 
 	for (const market of config.markets) {
