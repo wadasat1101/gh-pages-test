@@ -4,6 +4,9 @@ const XLSX = require("xlsx");
 const JPX_URL =
 "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls";
 
+const PARALLEL = 10;
+const CHUNK_SIZE = 500;
+
 async function sleep(ms){
 	return new Promise(r=>setTimeout(r,ms));
 }
@@ -12,17 +15,26 @@ async function getShares(symbol){
 
 	const url = `https://finance.yahoo.co.jp/quote/${symbol}`;
 
-	const res = await fetch(url,{
-		headers:{ "User-Agent":"Mozilla/5.0" }
-	});
+	try{
 
-	const html = await res.text();
+		const res = await fetch(url,{
+			headers:{ "User-Agent":"Mozilla/5.0" }
+		});
 
-	const match = html.match(/発行済株式数[\s\S]*?([0-9,]+)<\/span>\s*<span[^>]*>株/);
+		const html = await res.text();
 
-	if(!match) return null;
+		const match = html.match(/発行済株式数[\s\S]*?([0-9,]+)<\/span>\s*<span[^>]*>株/);
 
-	return Number(match[1].replace(/,/g,""));
+		if(!match) return null;
+
+		return Number(match[1].replace(/,/g,""));
+
+	}catch(e){
+
+		console.log("error:",symbol);
+
+		return null;
+	}
 }
 
 function marketToSegment(market){
@@ -47,9 +59,7 @@ async function run(){
 	const sheet = wb.Sheets[wb.SheetNames[0]];
 	const rows = XLSX.utils.sheet_to_json(sheet);
 
-	const sectorMap = new Map();
-
-	let count = 0;
+	const list = [];
 
 	for(const r of rows){
 
@@ -63,40 +73,84 @@ async function run(){
 		if(sectorCode === "-" || !sectorCode) continue;
 
 		const segment = marketToSegment(r["市場・商品区分"]);
-
-		// segmentがnullなら除外
 		if(segment === null) continue;
 
-		const symbol = `${code}.T`;
+		list.push({
+			code,
+			name:r["銘柄名"],
+			sectorCode,
+			sectorName,
+			segment
+		});
+	}
 
-		console.log("fetch:",symbol);
+	console.log("symbols:",list.length);
 
-		const shares = await getShares(symbol);
+	// ===== 並列fetch =====
 
-		if(!sectorMap.has(sectorCode)){
-			sectorMap.set(sectorCode,{
-				code: sectorCode,
-				name: sectorName,
+	for(let i=0;i<list.length;i+=PARALLEL){
+
+		const batch = list.slice(i,i+PARALLEL);
+
+		await Promise.all(batch.map(async item=>{
+
+			const symbol = `${item.code}.T`;
+
+			console.log("fetch:",symbol);
+
+			item.shares = await getShares(symbol);
+
+			await sleep(100);
+
+		}));
+	}
+
+	// ===== sector構造作成 =====
+
+	const sectorMap = new Map();
+
+	for(const r of list){
+
+		if(!sectorMap.has(r.sectorCode)){
+			sectorMap.set(r.sectorCode,{
+				code:r.sectorCode,
+				name:r.sectorName,
 				symbols:[]
 			});
 		}
 
-		sectorMap.get(sectorCode).symbols.push({
-			code,
-			name: r["銘柄名"],
-			segment,
-			shares
+		sectorMap.get(r.sectorCode).symbols.push({
+			code:r.code,
+			name:r.name,
+			segment:r.segment,
+			shares:r.shares
 		});
-
-		await sleep(500);
-
-		count++;
-		// if(count >= 100) break;
 	}
 
-	// ===== sectors構造を維持したまま500件ごとに分割 =====
+	// ===== 全体JSON作成 =====
 
-	const CHUNK_SIZE = 500;
+	const allSectors = [...sectorMap.values()];
+
+	const allResult = {
+		source:"stooq",
+		markets:[
+			{
+				market:"JP",
+				name:"日本株",
+				suffix:".jp",
+				sectors:allSectors
+			}
+		]
+	};
+
+	fs.writeFileSync(
+		`data/symbols/symbols_all.json`,
+		JSON.stringify(allResult,null,2)
+	);
+
+	console.log("write: symbols_all.json");
+
+	// ===== 500件分割 =====
 
 	let fileIndex = 1;
 	let symbolCount = 0;
@@ -109,11 +163,13 @@ async function run(){
 		for(const sym of sector.symbols){
 
 			if(!currentSector || currentSector.code !== sector.code){
+
 				currentSector = {
-					code: sector.code,
-					name: sector.name,
-					symbols: []
+					code:sector.code,
+					name:sector.name,
+					symbols:[]
 				};
+
 				currentSectors.push(currentSector);
 			}
 
@@ -124,57 +180,56 @@ async function run(){
 			if(symbolCount >= CHUNK_SIZE){
 
 				const result = {
-					source: "stooq",
-					markets: [
+					source:"stooq",
+					markets:[
 						{
-							market: "JP",
-							name: "日本株",
-							suffix: ".jp",
-							sectors: currentSectors
+							market:"JP",
+							name:"日本株",
+							suffix:".jp",
+							sectors:currentSectors
 						}
 					]
 				};
 
-				const filename = `data/symbols/symbols${fileIndex}.json`;
+				const filename=`data/symbols/symbols${fileIndex}.json`;
 
 				fs.writeFileSync(
 					filename,
-					JSON.stringify(result, null, 2)
+					JSON.stringify(result,null,2)
 				);
 
-				console.log("write:", filename);
+				console.log("write:",filename);
 
 				fileIndex++;
-				symbolCount = 0;
-				currentSectors = [];
-				currentSector = null;
+				symbolCount=0;
+				currentSectors=[];
+				currentSector=null;
 			}
 		}
 	}
 
-	// 残りを書き込み
-	if(symbolCount > 0){
+	if(symbolCount>0){
 
-		const result = {
-			source: "stooq",
-			markets: [
+		const result={
+			source:"stooq",
+			markets:[
 				{
-					market: "JP",
-					name: "日本株",
-					suffix: ".jp",
-					sectors: currentSectors
+					market:"JP",
+					name:"日本株",
+					suffix:".jp",
+					sectors:currentSectors
 				}
 			]
 		};
 
-		const filename = `data/symbols/symbols${fileIndex}.json`;
+		const filename=`data/symbols/symbols${fileIndex}.json`;
 
 		fs.writeFileSync(
 			filename,
-			JSON.stringify(result, null, 2)
+			JSON.stringify(result,null,2)
 		);
 
-		console.log("write:", filename);
+		console.log("write:",filename);
 	}
 
 	console.log("done");
