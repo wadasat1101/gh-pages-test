@@ -3,6 +3,8 @@ const fs = require("fs");
 // ---------- 設定 ----------
 const SYMBOLS_FILE = process.env.SYMBOLS_FILE ?? "data/symbols/symbolsX.json";
 const OUTPUT_DIR   = process.env.OUTPUT_DIR   ?? "data/ohlc";
+
+const BATCH_SIZE   = Number(process.env.BATCH_SIZE ?? 10);
 const SLEEP_MS     = Number(process.env.SLEEP_SEC ?? 2000);
 
 const INTERVALS = {
@@ -14,7 +16,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 // ---------- CSV取得 ----------
 async function fetchCSV(url){
+
 	const res = await fetch(url);
+
+	if(!res.ok){
+		throw new Error(`HTTP ${res.status}`);
+	}
+
 	return await res.text();
 }
 
@@ -40,7 +48,7 @@ function parseCSV(text){
 	});
 }
 
-// ---------- 指標計算 ----------
+// ---------- 指標計算（高速移動平均） ----------
 function addIndicators(data){
 
 	const N = 36;
@@ -51,7 +59,7 @@ function addIndicators(data){
 	for(let i=0;i<data.length;i++){
 
 		const close = data[i].close;
-		const value = data[i].close * data[i].volume;
+		const value = close * data[i].volume;
 
 		sumClose += close;
 		sumValue += value;
@@ -62,9 +70,11 @@ function addIndicators(data){
 		}
 
 		if(i < N-1){
+
 			data[i].ma36 = null;
 			data[i].dev36 = null;
 			data[i].tav36 = null;
+
 			continue;
 		}
 
@@ -72,7 +82,7 @@ function addIndicators(data){
 		const tav = sumValue / N;
 		const dev = (close - ma) / ma * 100;
 
-		data[i].ma36 = Number(ma.toFixed(1));
+		data[i].ma36  = Number(ma.toFixed(1));
 		data[i].dev36 = Number(dev.toFixed(1));
 		data[i].tav36 = Number(tav.toFixed(1));
 
@@ -85,23 +95,33 @@ function addIndicators(data){
 }
 
 // ---------- symbol処理 ----------
-async function processSymbol(symbol, code, interval_dir){
+async function processSymbol(task){
 
-	const url = `https://stooq.pl/q/d/l/?s=${symbol}&i=m`;
+	const {symbol,code,interval_dir,interval_code} = task;
 
-	console.log("Fetching",symbol);
+	const url = `https://stooq.pl/q/d/l/?s=${symbol}&i=${interval_code}`;
 
-	const csv = await fetchCSV(url);
-	const rows = parseCSV(csv);
+	try{
 
-	addIndicators(rows);
+		console.log("Fetching",symbol);
 
-	fs.writeFileSync(
-		`${interval_dir}/${code}.json`,
-		JSON.stringify(rows,null,2)
-	);
+		const csv = await fetchCSV(url);
+		const rows = parseCSV(csv);
 
-	console.log("Saved",code);
+		addIndicators(rows);
+
+		fs.writeFileSync(
+			`${interval_dir}/${code}.json`,
+			JSON.stringify(rows,null,2)
+		);
+
+		console.log("Saved",code);
+
+	}catch(e){
+
+		console.log("Error",symbol,e.message);
+
+	}
 }
 
 // ---------- main ----------
@@ -109,44 +129,67 @@ async function processSymbol(symbol, code, interval_dir){
 
 	console.log("SYMBOLS_FILE ->",SYMBOLS_FILE);
 
-	const config = JSON.parse(fs.readFileSync(SYMBOLS_FILE,"utf8"));
+	const config = JSON.parse(
+		fs.readFileSync(SYMBOLS_FILE,"utf8")
+	);
 
 	for(const market of config.markets){
 
 		const market_code = market.market;
 		const suffix = market.suffix ?? "";
 
-		for(const interval_name in INTERVALS){
+		console.log(`=== Market ${market_code}`);
 
-			const interval_dir = `${OUTPUT_DIR}/${market_code}/${interval_name}`;
+		for(const [interval_name,interval_code] of Object.entries(INTERVALS)){
+
+			const interval_dir =
+				`${OUTPUT_DIR}/${market_code}/${interval_name}`;
 
 			fs.mkdirSync(interval_dir,{recursive:true});
+
+			// ---------- symbol配列作成 ----------
+			const tasks = [];
 
 			for(const sector of market.sectors){
 
 				for(const sym of sector.symbols){
 
 					const code = sym.code;
-					const symbol = sym.stooq ?? `${code}${suffix}`;
+					const symbol =
+						sym.stooq ?? `${code}${suffix}`;
 
-					try{
+					tasks.push({
+						symbol,
+						code,
+						interval_dir,
+						interval_code
+					});
+				}
+			}
 
-						await processSymbol(
-							symbol,
-							code,
-							interval_dir
-						);
+			console.log(`Total symbols: ${tasks.length}`);
 
-					}catch(e){
+			// ---------- バッチ処理 ----------
+			for(let i=0;i<tasks.length;i+=BATCH_SIZE){
 
-						console.log("Error",symbol,e);
+				const batch =
+					tasks.slice(i,i+BATCH_SIZE);
 
-					}
+				await Promise.all(
+					batch.map(processSymbol)
+				);
 
+				console.log(
+					`Progress ${Math.min(i+BATCH_SIZE,tasks.length)}/${tasks.length}`
+				);
+
+				if(i + BATCH_SIZE < tasks.length){
 					await sleep(SLEEP_MS);
 				}
 			}
 		}
 	}
+
+	console.log("All done");
 
 })();
