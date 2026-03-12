@@ -2,7 +2,7 @@ name: Fetch Stooq Data 2
 
 on:
   schedule:
-    - cron: '30 23 * * 5'
+    - cron: '20 23 * * 5'
   workflow_dispatch:
 
 jobs:
@@ -36,3 +36,4 @@ jobs:
           git pull --rebase origin main
 
           git push origin main
+
