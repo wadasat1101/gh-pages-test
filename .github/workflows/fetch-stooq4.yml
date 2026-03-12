@@ -2,7 +2,7 @@ name: Fetch Stooq Data 4
 
 on:
   schedule:
-    - cron: '0 7 * * 6'
+    - cron: '0 0 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -34,4 +34,5 @@ jobs:
           git add data/
           git commit -m "Update stock data" || echo "No changes"
           git pull --rebase origin main
+
           git push origin main
