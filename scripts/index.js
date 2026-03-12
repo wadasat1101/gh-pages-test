@@ -487,10 +487,12 @@ function renderSignalLists() {
 		.forEach(s => sellDiv.appendChild(makeRow(s)));
 }
 
-function renderPortfolio(){
+async function renderPortfolio(){
 	const div = $("portfolioList");
 	div.innerHTML = "";
-	STATE.portfolio.forEach(p=>{
+	for(const p of STATE.portfolio){
+		const data = await loadOhlcJson(p.code);
+		const last = data.at(-1);
 		const el = document.createElement("div");
 		let symbolName="";
 		let dev="";
@@ -498,18 +500,21 @@ function renderPortfolio(){
 			symbolName = SYMBOLS.get(p.code).name;
 		}
 		if(p.buyPrice){
-			const last = STATE.rawData?.at(-1)?.close;
+			//const last = STATE.rawData?.at(-1)?.close;
 			if(last){
-				dev = ((last - p.buyPrice)/p.buyPrice*100).toFixed(1)+"%";
+				dev = ((last.close - p.buyPrice)/p.buyPrice*100).toFixed(1)+"%";
 			}
 		}
 		el.innerHTML =
-		`${p.code} ${symbolName}
-		購入:${p.buyPrice ?? "-"}
-		乖離:${dev}
-		<button onclick="sellStock('${p.code}')">売却</button>`;
+		`${p.code} ${symbolName} 購入:${p.buyPrice ?? "-"} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
 		div.appendChild(el);
-	});
+	}
+}
+
+async function loadOhlcJson(code){
+	const response = await fetch(`./data/ohlc/JP/monthly/${code}.json`);
+	const data = await response.json();
+	return data;
 }
 
 UI.market.onchange = e => {

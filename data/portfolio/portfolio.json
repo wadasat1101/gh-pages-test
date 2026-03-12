@@ -1,16 +1,40 @@
 {
   "positions": [
     {
-      "code": "7203",
-      "buyPrice": 2800,
-      "buyDate": "2026-03-01",
-      "shares": 100
+      "code": "2491",
+      "buyPrice": 443,
+      "buyDate": "2026-03-02",
+      "shares": 11
     },
     {
-      "code": "6758",
-      "buyPrice": 13200
+      "code": "3697",
+      "buyPrice": 678,
       "buyDate": "2026-03-02",
-      "shares": 200
+      "shares": 7
+    },
+    {
+      "code": "6619",
+      "buyPrice": 173,
+      "buyDate": "2026-03-02",
+      "shares": 27
+    },
+    {
+      "code": "6869",
+      "buyPrice": 1500,
+      "buyDate": "2026-03-02",
+      "shares": 3
+    },
+    {
+      "code": "7071",
+      "buyPrice": 521,
+      "buyDate": "2026-03-02",
+      "shares": 9
+    },
+    {
+      "code": "9552",
+      "buyPrice": 747,
+      "buyDate": "2026-03-02",
+      "shares": 6
     }
   ]
 }
