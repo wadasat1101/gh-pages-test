@@ -2,7 +2,7 @@ name: Fetch Stooq Data 5
 
 on:
   schedule:
-    - cron: '0 9 * * 6'
+    - cron: '50 23 * * 5'
   workflow_dispatch:
 
 jobs:
