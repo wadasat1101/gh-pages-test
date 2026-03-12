@@ -1,0 +1,37 @@
+name: Fetch Stooq Data All
+
+on:
+  schedule:
+    - cron: '0 1 * * 6'
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    
+    env:
+      SYMBOLS_FILE: "data/symbols/symbols_all.json"
+      OUTPUT_DIR: "data/ohlc"
+      SLEEP_SEC: 2000
+      
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run script
+        run: node scripts/fetchStooq.js
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data/
+          git commit -m "Update stock data" || echo "No changes"
+          git pull --rebase origin main
+          git push origin main
