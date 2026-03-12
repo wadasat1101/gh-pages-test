@@ -1,1 +1,46 @@
-[]
+[
+  {
+    "time": "2025-12-31",
+    "open": 1586,
+    "high": 1890,
+    "low": 1570,
+    "close": 1740,
+    "volume": 330043200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-31",
+    "open": 1759,
+    "high": 2178,
+    "low": 1729,
+    "close": 1851.5,
+    "volume": 242434000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-28",
+    "open": 1871,
+    "high": 2200,
+    "low": 1800,
+    "close": 1878,
+    "volume": 145237900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-31",
+    "open": 1810,
+    "high": 1826.5,
+    "low": 1608,
+    "close": 1750,
+    "volume": 59992500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]
