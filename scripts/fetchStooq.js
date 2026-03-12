@@ -108,6 +108,12 @@ async function processSymbol(task){
 		const csv = await fetchCSV(url);
 		const rows = parseCSV(csv);
 
+		if(rows.length <= 0){
+			console.log(`WARNING ${symbol}　rows.length : ${rows.length}`);
+		} else {
+			console.log(`${symbol}　rows.length : ${rows.length}`);
+		}
+
 		addIndicators(rows);
 
 		fs.writeFileSync(
