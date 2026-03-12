@@ -2,10 +2,10 @@ const fs = require("fs");
 
 // ---------- 設定 ----------
 const SYMBOLS_FILE = process.env.SYMBOLS_FILE ?? "data/symbols/symbolsX.json";
-const OUTPUT_DIR   = process.env.OUTPUT_DIR   ?? "data/ohlc";
+const OUTPUT_DIR   = "data/ohlc";
 
-const BATCH_SIZE   = Number(process.env.BATCH_SIZE ?? 10);
-const SLEEP_MS     = Number(process.env.SLEEP_SEC ?? 2000);
+const BATCH_SIZE   = 5;
+const SLEEP_MS     = 1000;
 
 const INTERVALS = {
 	monthly: "m"
@@ -197,5 +197,6 @@ async function processSymbol(task){
 	}
 
 	console.log("All done");
+
 
 })();
