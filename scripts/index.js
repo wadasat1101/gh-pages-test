@@ -66,6 +66,7 @@ const STATE = {
 	interval: "monthly",
 	rawData: null,
 	tradeLines: [],
+	portfolio: [],
 	signals: {
 		buy:[],
 		sell:[]
@@ -338,6 +339,16 @@ $("clearSim").onclick = () => {
 	UI.result.innerHTML =``;
 };
 
+$("copyPortfolioBtn").onclick = ()=>{
+	const json = JSON.stringify(
+		{positions:STATE.portfolio},
+		null,
+		2
+	);
+	navigator.clipboard.writeText(json);
+	alert("portfolio.jsonをコピーしました");
+};
+
 function populateMarkets() {
 	UI.market.innerHTML = "";
 	STATE.config.markets.forEach(m =>
@@ -386,6 +397,20 @@ function populateSymbols(preserve=false) {
 	loadChart();
 }
 
+function buyStock(code,price){
+	STATE.portfolio.push({
+		code:code,
+		buyPrice:price
+	});
+	renderPortfolio();
+}
+
+function sellStock(code){
+	STATE.portfolio =
+	STATE.portfolio.filter(p=>p.code!==code);
+	renderPortfolio();
+}
+
 function renderSignalLists() {
 
 	const buyDiv = $("buyList");
@@ -414,9 +439,14 @@ function renderSignalLists() {
 			tav36 = (s.tav36 / 100000000).toFixed(1) + "億";
 		}
 		
-		el.textContent =
-			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${tav36} ${s.dev36.toFixed(1)}%`;
+		//el.textContent =
+		//	`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${tav36} ${s.dev36.toFixed(1)}%`;
 
+		el.innerHTML =
+			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe})
+			${tav36} ${s.dev36.toFixed(1)}%
+			<button onclick="buyStock('${s.symbol}',0)">購入</button>`;
+			
 		el.onclick = () => {
 
 			STATE.market = s.market;
@@ -455,6 +485,31 @@ function renderSignalLists() {
 
 	STATE.signals.sell
 		.forEach(s => sellDiv.appendChild(makeRow(s)));
+}
+
+function renderPortfolio(){
+	const div = $("portfolioList");
+	div.innerHTML = "";
+	STATE.portfolio.forEach(p=>{
+		const el = document.createElement("div");
+		let symbolName="";
+		let dev="";
+		if(SYMBOLS.get(p.code)){
+			symbolName = SYMBOLS.get(p.code).name;
+		}
+		if(p.buyPrice){
+			const last = STATE.rawData?.at(-1)?.close;
+			if(last){
+				dev = ((last - p.buyPrice)/p.buyPrice*100).toFixed(1)+"%";
+			}
+		}
+		el.innerHTML =
+		`${p.code} ${symbolName}
+		購入:${p.buyPrice ?? "-"}
+		乖離:${dev}
+		<button onclick="sellStock('${p.code}')">売却</button>`;
+		div.appendChild(el);
+	});
 }
 
 UI.market.onchange = e => {
@@ -553,6 +608,16 @@ async function loadSignals() {
 	}
 }
 
+async function loadPortfolio(){
+	try{
+		const json = await (await fetch("./data/portfolio/portfolio.json")).json();
+		STATE.portfolio = json.positions || [];
+		renderPortfolio();
+	}catch(e){
+		console.log("portfolio load failed",e);
+	}
+}
+
 document.querySelectorAll(".tab-btn").forEach(btn=>{
 	btn.onclick = () => {
 
@@ -568,3 +633,4 @@ document.querySelectorAll(".tab-btn").forEach(btn=>{
 });
 
 loadSignals();
+loadPortfolio();
