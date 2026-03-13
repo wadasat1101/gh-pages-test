@@ -2,7 +2,7 @@ name: Update Symbols Master
 
 on:
   schedule:
-    - cron: '0 0 1 * *'
+    - cron: '0 18 1 * *'
   workflow_dispatch:
 
 jobs:
@@ -28,4 +28,5 @@ jobs:
           git commit -m "update symbols master" || echo "no change"
           git pull --rebase origin main
           git push origin main
+
 
