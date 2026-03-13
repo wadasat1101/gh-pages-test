@@ -3,7 +3,7 @@ name: Build Trade Signals
 on:
   schedule:
     # 毎週日曜 02:00 JST
-    - cron: '0 17 * * 6'
+    - cron: '30 0 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -35,3 +35,4 @@ jobs:
           git commit -m "Update Trade Signals" || echo "No changes"
           git pull --rebase origin main
           git push origin main
+
