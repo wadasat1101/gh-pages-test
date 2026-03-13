@@ -491,22 +491,21 @@ async function renderPortfolio(){
 	const div = $("portfolioList");
 	div.innerHTML = "";
 	for(const p of STATE.portfolio){
-		const data = await loadOhlcJson(p.code);
-		const last = data.at(-1);
+		const ohlcList = await loadOhlcJson(p.code);
+		const last = ohlcList.at(-1);
+		let profit = (last.close - p.buyPrice) * p.shares;
+		profit = (profit > 0 ? "+" : "") + profit;
 		const el = document.createElement("div");
 		let symbolName="";
 		let dev="";
 		if(SYMBOLS.get(p.code)){
 			symbolName = SYMBOLS.get(p.code).name;
 		}
-		if(p.buyPrice){
-			//const last = STATE.rawData?.at(-1)?.close;
-			if(last){
-				dev = ((last.close - p.buyPrice)/p.buyPrice*100).toFixed(1)+"%";
-			}
+		if(last){
+			dev = last.dev36;
 		}
 		el.innerHTML =
-		`${p.code} ${symbolName} 購入:${p.buyPrice ?? "-"} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
+		`${p.code} ${symbolName} 終値:${Math.round(last.close)} 購入:${p.buyPrice ?? "-"} 保有数:${p.shares} 損益:${profit} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
 		div.appendChild(el);
 	}
 }
