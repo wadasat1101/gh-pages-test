@@ -146,3 +146,29 @@ button.active {
 .tab-content.active{
 	display:block;
 }
+
+.signal-table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:12px;
+}
+
+.signal-table th{
+	background:#222;
+	padding:4px;
+	text-align:left;
+	border-bottom:1px solid #333;
+}
+
+.signal-table td{
+	padding:4px;
+	border-bottom:1px solid #222;
+}
+
+.signal-table tr{
+	cursor:pointer;
+}
+
+.signal-table tr:hover{
+	background:#1e1e1e;
+}
