@@ -70,6 +70,24 @@
 			<div id="signalTab" class="tab-content">
 				<h3>シグナル銘柄</h3>
 				<div id="signalPanel">
+					<b style="color:#03a9f4">保有銘柄</b>
+					<table class="signal-table">
+						<thead>
+						<tr>
+							<th>コード</th>
+							<th>銘柄</th>
+							<th>終値</th>
+							<th>購入</th>
+							<th>株数</th>
+							<th>損益</th>
+							<th>乖離</th>
+							<th></th>
+						</tr>
+						</thead>
+						<tbody id="portfolioList"></tbody>
+					</table>
+					<button id="copyPortfolioBtn">JSONコピー</button>
+					<!--
 					<div style="margin-top:10px">
 						<b style="color:#03a9f4">保有銘柄</b>
 						<div id="portfolioList"></div>
@@ -83,6 +101,37 @@
 						<b style="color:#ff9800">売り</b>
 						<div id="sellList"></div>
 					</div>
+					-->
+					<b style="color:#4caf50">買い</b>
+					<table class="signal-table">
+						<thead>
+							<tr>
+								<th>コード</th>
+								<th>銘柄</th>
+								<th>市場</th>
+								<th>足</th>
+								<th>売買代金</th>
+								<th>乖離</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody id="buyList"></tbody>
+					</table>
+					<b style="color:#ff9800">売り</b>
+						<table class="signal-table">
+							<thead>
+								<tr>
+								<th>コード</th>
+								<th>銘柄</th>
+								<th>市場</th>
+								<th>足</th>
+								<th>売買代金</th>
+								<th>乖離</th>
+								<th></th>
+								</tr>
+							</thead>
+						<tbody id="sellList"></tbody>
+					</table>
 				</div>
 			</div>
 		</div>
