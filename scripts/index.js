@@ -496,6 +496,9 @@ async function renderPortfolio(){
 		let profit = (last.close - p.buyPrice) * p.shares;
 		profit = (profit > 0 ? "+" : "") + profit;
 		const el = document.createElement("div");
+		el.style.cursor="pointer";
+		el.style.fontSize="12px";
+		el.style.padding="2px";		
 		let symbolName="";
 		let dev="";
 		if(SYMBOLS.get(p.code)){
@@ -506,6 +509,35 @@ async function renderPortfolio(){
 		}
 		el.innerHTML =
 		`${p.code} ${symbolName} 終値:${Math.round(last.close)} 購入:${p.buyPrice ?? "-"} 保有数:${p.shares} 損益:${profit} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
+		
+		el.onclick = () => {
+
+			STATE.market = "JP";
+			STATE.interval = "monthly";
+			STATE.symbolCode = p.code;
+
+			// sector逆引き
+			const marketObj = STATE.config.markets.find(m=>m.market==="JP");
+
+			for(const sec of marketObj.sectors){
+				if(sec.symbols.some(sym=>sym.code===p.code)){
+					STATE.sector = sec.code;
+					break;
+				}
+			}
+
+			UI.market.value = STATE.market;
+
+			populateSectors(true);
+
+			document.querySelectorAll("button[data-interval]").forEach(b=>{
+				b.classList.toggle(
+					"active",
+					b.dataset.interval === "monthly"
+				)
+			});
+		};
+		
 		div.appendChild(el);
 	}
 }
