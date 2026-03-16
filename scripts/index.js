@@ -411,50 +411,50 @@ function sellStock(code){
 	renderPortfolio();
 }
 
-function renderSignalLists() {
+function renderSignalLists(){
 
-	const buyDiv = $("buyList");
-	const sellDiv = $("sellList");
+	const buyBody = $("buyList");
+	const sellBody = $("sellList");
 
-	buyDiv.innerHTML = "";
-	sellDiv.innerHTML = "";
+	buyBody.innerHTML = "";
+	sellBody.innerHTML = "";
 
 	const makeRow = s => {
-		
-		const el = document.createElement("div");
 
-		el.style.cursor="pointer";
-		el.style.fontSize="12px";
-		el.style.padding="2px";
-		
-		let seg = "";
-		let symbolName = "";
-		let segmentName = "";
-		let tav36 = 0;
-		
-		if(SYMBOLS.get(s.symbol) != null){
+		const tr = document.createElement("tr");
+
+		let seg="";
+		let symbolName="";
+		let segmentName="";
+		let tav36="";
+
+		if(SYMBOLS.get(s.symbol)){
 			seg = SYMBOLS.get(s.symbol).segment;
 			symbolName = SYMBOLS.get(s.symbol).name;
 			segmentName = SEGMENTS.get(seg);
-			tav36 = (s.tav36 / 100000000).toFixed(1) + "億";
+			tav36 = (s.tav36/100000000).toFixed(1)+"億";
 		}
-		
-		//el.textContent =
-		//	`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${tav36} ${s.dev36.toFixed(1)}%`;
 
-		el.innerHTML =
-			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe})
-			${tav36} ${s.dev36.toFixed(1)}%
-			<button onclick="buyStock('${s.symbol}',0)">購入</button>`;
-			
-		el.onclick = () => {
+		tr.innerHTML = `
+		<td>${s.symbol}</td>
+		<td>${symbolName}</td>
+		<td>${segmentName}</td>
+		<td>${s.timeframe}</td>
+		<td>${tav36}</td>
+		<td>${s.dev36.toFixed(1)}%</td>
+		<td>
+		<button onclick="event.stopPropagation(); buyStock('${s.symbol}',0)">購入</button>
+		</td>
+		`;
+
+		tr.onclick = ()=>{
 
 			STATE.market = s.market;
 			STATE.interval = s.timeframe;
 			STATE.symbolCode = s.symbol;
 
-			// sector逆引き
-			const marketObj = STATE.config.markets.find(m=>m.market===s.market);
+			const marketObj =
+			STATE.config.markets.find(m=>m.market===s.market);
 
 			for(const sec of marketObj.sectors){
 				if(sec.symbols.some(sym=>sym.code===s.symbol)){
@@ -463,61 +463,76 @@ function renderSignalLists() {
 				}
 			}
 
-			// UI同期
 			UI.market.value = STATE.market;
+			populateSectors(true);
 
-			populateSectors(true);   // ← preserveモード
-
-			// interval同期
 			document.querySelectorAll("button[data-interval]")
-				.forEach(b=>{
-					b.classList.toggle(
-						"active",
-						b.dataset.interval === s.timeframe
-					)
-				});
+			.forEach(b=>{
+				b.classList.toggle(
+					"active",
+					b.dataset.interval===s.timeframe
+				)
+			});
 		};
-		return el;
+
+		return tr;
 	};
 
-	STATE.signals.buy
-		.forEach(s => buyDiv.appendChild(makeRow(s)));
-
-	STATE.signals.sell
-		.forEach(s => sellDiv.appendChild(makeRow(s)));
+	STATE.signals.buy.forEach(s=>buyBody.appendChild(makeRow(s)));
+	STATE.signals.sell.forEach(s=>sellBody.appendChild(makeRow(s)));
 }
 
 async function renderPortfolio(){
-	const div = $("portfolioList");
-	div.innerHTML = "";
+
+	const body = $("portfolioList");
+	body.innerHTML = "";
+
 	for(const p of STATE.portfolio){
+
 		const ohlcList = await loadOhlcJson(p.code);
 		const last = ohlcList.at(-1);
-		let profit = (last.close - p.buyPrice) * p.shares;
-		profit = (profit > 0 ? "+" : "") + profit;
-		const el = document.createElement("div");
-		el.style.cursor="pointer";
-		el.style.fontSize="12px";
-		el.style.padding="2px";		
+
 		let symbolName="";
 		let dev="";
+		let close=0;
+
 		if(SYMBOLS.get(p.code)){
 			symbolName = SYMBOLS.get(p.code).name;
 		}
+
 		if(last){
-			dev = last.dev36;
+			dev = last.dev36?.toFixed(1);
+			close = Math.round(last.close);
 		}
-		el.innerHTML =
-		`${p.code} ${symbolName} 終値:${Math.round(last.close)} 購入:${p.buyPrice ?? "-"} 保有数:${p.shares} 損益:${profit} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
-		
-		el.onclick = () => {
+
+		let profit = (last.close - p.buyPrice) * p.shares;
+		let profitText = (profit>0?"+":"")+profit;
+
+		const tr = document.createElement("tr");
+
+		tr.innerHTML = `
+<td>${p.code}</td>
+<td>${symbolName}</td>
+<td>${close}</td>
+<td>${p.buyPrice ?? "-"}</td>
+<td>${p.shares}</td>
+<td style="color:${profit>=0?"#4caf50":"#ef5350"}">${profitText}</td>
+<td>${dev ?? "-"}</td>
+<td>
+<button onclick="event.stopPropagation(); sellStock('${p.code}')">
+売却
+</button>
+</td>
+`;
+
+		tr.onclick = ()=>{
 
 			STATE.market = "JP";
 			STATE.interval = "monthly";
 			STATE.symbolCode = p.code;
 
-			// sector逆引き
-			const marketObj = STATE.config.markets.find(m=>m.market==="JP");
+			const marketObj =
+			STATE.config.markets.find(m=>m.market==="JP");
 
 			for(const sec of marketObj.sectors){
 				if(sec.symbols.some(sym=>sym.code===p.code)){
@@ -530,15 +545,16 @@ async function renderPortfolio(){
 
 			populateSectors(true);
 
-			document.querySelectorAll("button[data-interval]").forEach(b=>{
+			document.querySelectorAll("button[data-interval]")
+			.forEach(b=>{
 				b.classList.toggle(
 					"active",
-					b.dataset.interval === "monthly"
+					b.dataset.interval==="monthly"
 				)
 			});
 		};
-		
-		div.appendChild(el);
+
+		body.appendChild(tr);
 	}
 }
 
