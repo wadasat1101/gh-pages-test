@@ -684,5 +684,12 @@ document.querySelectorAll(".tab-btn").forEach(btn=>{
 	};
 });
 
+const toggleBtn = $("togglePanelBtn");
+const simPanel = $("simPanel");
+
+toggleBtn.onclick = () => {
+	simPanel.classList.toggle("open");
+};
+
 loadSignals();
 loadPortfolio();
