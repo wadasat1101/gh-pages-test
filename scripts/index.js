@@ -237,7 +237,8 @@ async function loadChart() {
 		const sy = s.symbols.find(x => x.code === STATE.symbolCode);
 		
 		UI.symbolName.textContent = sy.name;
-		UI.segmentName.textContent = SEGMENTS.get(sy.segment);
+		let segmentName = SEGMENTS.get(sy.segment);
+		UI.segmentName.textContent = segmentName !== null ? segmentName : "----";
 		
 		data.at(-1).time
 		
@@ -411,50 +412,50 @@ function sellStock(code){
 	renderPortfolio();
 }
 
-function renderSignalLists(){
+function renderSignalLists() {
 
-	const buyBody = $("buyList");
-	const sellBody = $("sellList");
+	const buyDiv = $("buyList");
+	const sellDiv = $("sellList");
 
-	buyBody.innerHTML = "";
-	sellBody.innerHTML = "";
+	buyDiv.innerHTML = "";
+	sellDiv.innerHTML = "";
 
 	const makeRow = s => {
+		
+		const el = document.createElement("div");
 
-		const tr = document.createElement("tr");
-
-		let seg="";
-		let symbolName="";
-		let segmentName="";
-		let tav36="";
-
-		if(SYMBOLS.get(s.symbol)){
+		el.style.cursor="pointer";
+		el.style.fontSize="12px";
+		el.style.padding="2px";
+		
+		let seg = "";
+		let symbolName = "";
+		let segmentName = "";
+		let tav36 = 0;
+		
+		if(SYMBOLS.get(s.symbol) != null){
 			seg = SYMBOLS.get(s.symbol).segment;
 			symbolName = SYMBOLS.get(s.symbol).name;
 			segmentName = SEGMENTS.get(seg);
-			tav36 = (s.tav36/100000000).toFixed(1)+"億";
+			tav36 = (s.tav36 / 100000000).toFixed(1) + "億";
 		}
+		
+		//el.textContent =
+		//	`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe}) ${tav36} ${s.dev36.toFixed(1)}%`;
 
-		tr.innerHTML = `
-		<td>${s.symbol}</td>
-		<td>${symbolName}</td>
-		<td>${segmentName}</td>
-		<td>${s.timeframe}</td>
-		<td>${tav36}</td>
-		<td>${s.dev36.toFixed(1)}%</td>
-		<td>
-		<button onclick="event.stopPropagation(); buyStock('${s.symbol}',0)">購入</button>
-		</td>
-		`;
-
-		tr.onclick = ()=>{
+		el.innerHTML =
+			`${s.symbol} ${symbolName} ${segmentName} (${s.timeframe})
+			${tav36} ${s.dev36.toFixed(1)}%
+			<button onclick="buyStock('${s.symbol}',0)">購入</button>`;
+			
+		el.onclick = () => {
 
 			STATE.market = s.market;
 			STATE.interval = s.timeframe;
 			STATE.symbolCode = s.symbol;
 
-			const marketObj =
-			STATE.config.markets.find(m=>m.market===s.market);
+			// sector逆引き
+			const marketObj = STATE.config.markets.find(m=>m.market===s.market);
 
 			for(const sec of marketObj.sectors){
 				if(sec.symbols.some(sym=>sym.code===s.symbol)){
@@ -463,98 +464,50 @@ function renderSignalLists(){
 				}
 			}
 
+			// UI同期
 			UI.market.value = STATE.market;
-			populateSectors(true);
 
+			populateSectors(true);   // ← preserveモード
+
+			// interval同期
 			document.querySelectorAll("button[data-interval]")
-			.forEach(b=>{
-				b.classList.toggle(
-					"active",
-					b.dataset.interval===s.timeframe
-				)
-			});
+				.forEach(b=>{
+					b.classList.toggle(
+						"active",
+						b.dataset.interval === s.timeframe
+					)
+				});
 		};
-
-		return tr;
+		return el;
 	};
 
-	STATE.signals.buy.forEach(s=>buyBody.appendChild(makeRow(s)));
-	STATE.signals.sell.forEach(s=>sellBody.appendChild(makeRow(s)));
+	STATE.signals.buy
+		.forEach(s => buyDiv.appendChild(makeRow(s)));
+
+	STATE.signals.sell
+		.forEach(s => sellDiv.appendChild(makeRow(s)));
 }
 
 async function renderPortfolio(){
-
-	const body = $("portfolioList");
-	body.innerHTML = "";
-
+	const div = $("portfolioList");
+	div.innerHTML = "";
 	for(const p of STATE.portfolio){
-
 		const ohlcList = await loadOhlcJson(p.code);
 		const last = ohlcList.at(-1);
-
+		let profit = (last.close - p.buyPrice) * p.shares;
+		profit = (profit > 0 ? "+" : "") + profit;
+		const el = document.createElement("div");
 		let symbolName="";
 		let dev="";
-		let close=0;
-
 		if(SYMBOLS.get(p.code)){
 			symbolName = SYMBOLS.get(p.code).name;
 		}
-
 		if(last){
-			dev = last.dev36?.toFixed(1);
-			close = Math.round(last.close);
+			dev = last.dev36;
 		}
-
-		let profit = (last.close - p.buyPrice) * p.shares;
-		let profitText = (profit>0?"+":"")+profit;
-
-		const tr = document.createElement("tr");
-
-		tr.innerHTML = `
-<td>${p.code}</td>
-<td>${symbolName}</td>
-<td>${close}</td>
-<td>${p.buyPrice ?? "-"}</td>
-<td>${p.shares}</td>
-<td style="color:${profit>=0?"#4caf50":"#ef5350"}">${profitText}</td>
-<td>${dev ?? "-"}</td>
-<td>
-<button onclick="event.stopPropagation(); sellStock('${p.code}')">
-売却
-</button>
-</td>
-`;
-
-		tr.onclick = ()=>{
-
-			STATE.market = "JP";
-			STATE.interval = "monthly";
-			STATE.symbolCode = p.code;
-
-			const marketObj =
-			STATE.config.markets.find(m=>m.market==="JP");
-
-			for(const sec of marketObj.sectors){
-				if(sec.symbols.some(sym=>sym.code===p.code)){
-					STATE.sector = sec.code;
-					break;
-				}
-			}
-
-			UI.market.value = STATE.market;
-
-			populateSectors(true);
-
-			document.querySelectorAll("button[data-interval]")
-			.forEach(b=>{
-				b.classList.toggle(
-					"active",
-					b.dataset.interval==="monthly"
-				)
-			});
-		};
-
-		body.appendChild(tr);
+		el.innerHTML =
+		`${p.code} ${symbolName} 終値:${Math.round(last.close)} 購入:${p.buyPrice ?? "-"} 保有数:${p.shares} 損益:${profit} 乖離:${dev} <button onclick="sellStock('${p.code}')">売却</button>`;
+		div.appendChild(el);
 	}
 }
 
@@ -683,13 +636,6 @@ document.querySelectorAll(".tab-btn").forEach(btn=>{
 		$(btn.dataset.tab).classList.add("active");
 	};
 });
-
-const toggleBtn = $("togglePanelBtn");
-const simPanel = $("simPanel");
-
-toggleBtn.onclick = () => {
-	simPanel.classList.toggle("open");
-};
 
 loadSignals();
 loadPortfolio();
