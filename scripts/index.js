@@ -495,6 +495,9 @@ async function renderPortfolio(){
 		let symbolName="";
 		let dev="";
 		let close=0;
+		let buyDev=0;
+		let buyDevText=null;
+		
 
 		if(SYMBOLS.get(p.code)){
 			symbolName = SYMBOLS.get(p.code).name;
@@ -503,6 +506,9 @@ async function renderPortfolio(){
 		if(last){
 			dev = last.dev36?.toFixed(1);
 			close = Math.round(last.close);
+			buyDev = ((close - p.buyPrice) / p.buyPrice)*100;
+			buyDev = buyDev.toFixed(1);
+			buyDevText = (buyDev>0?"+":"")+buyDev;
 		}
 
 		let profit = (last.close - p.buyPrice) * p.shares;
@@ -517,7 +523,8 @@ async function renderPortfolio(){
 <td>${p.buyPrice ?? "-"}</td>
 <td>${p.shares}</td>
 <td style="color:${profit>=0?"#4caf50":"#ef5350"}">${profitText}</td>
-<td>${dev ?? "-"}</td>
+<td style="color:${buyDev>=0?"#4caf50":"#ef5350"}">${buyDevText}%</td>
+<td>${dev ?? "-"}%</td>
 <td>
 <button onclick="event.stopPropagation(); sellStock('${p.code}')">
 売却
