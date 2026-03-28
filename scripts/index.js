@@ -511,7 +511,7 @@ async function renderPortfolio(){
 			buyDevText = (buyDev>0?"+":"")+buyDev;
 		}
 
-		let profit = (last.close - p.buyPrice) * p.shares;
+		let profit = ((last.close - p.buyPrice) * p.shares).toFixed(0);
 		let profitText = (profit>0?"+":"")+profit;
 
 		const tr = document.createElement("tr");
