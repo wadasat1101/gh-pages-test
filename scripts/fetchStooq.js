@@ -17,7 +17,8 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 // ---------- CSV取得 ----------
 async function fetchCSV(url){
 
-	const res = await fetch(url);
+	//const res = await fetch(url);
+	const res = await fetch(url, {headers: {"User-Agent": "Mozilla/5.0", "Accept": "text/csv"}});
 
 	if(!res.ok){
 		throw new Error(`HTTP ${res.status}`);
