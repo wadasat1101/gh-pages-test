@@ -100,12 +100,17 @@ async function processSymbol(task){
 	const {symbol,code,interval_dir,interval_code} = task;
 
 	const url = `https://stooq.pl/q/d/l/?s=${symbol}&i=${interval_code}`;
-
+	
 	try{
 
 		console.log("Fetching",symbol);
 
+		console.log("url -> ",url);
+
 		const csv = await fetchCSV(url);
+		
+		console.log("csv -> ", csv);
+		
 		const rows = parseCSV(csv);
 
 		if(rows.length <= 0){
