@@ -1,0 +1,24 @@
+[
+  {
+    "time": "2023-09-01",
+    "open": 850,
+    "high": 850,
+    "low": 850,
+    "close": 850,
+    "volume": 100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-01-01",
+    "open": 850,
+    "high": 850,
+    "low": 850,
+    "close": 850,
+    "volume": 1000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

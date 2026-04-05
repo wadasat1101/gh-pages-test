@@ -1,0 +1,79 @@
+[
+  {
+    "time": "2025-10-01",
+    "open": 1862.09,
+    "high": 1862.09,
+    "low": 1552.11,
+    "close": 1567.89,
+    "volume": 6609393,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 1557.9,
+    "high": 1775.61,
+    "low": 1535.13,
+    "close": 1715.69,
+    "volume": 5735714,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-12-01",
+    "open": 1698.11,
+    "high": 1721.48,
+    "low": 1593.85,
+    "close": 1699.11,
+    "volume": 5335173,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 1702.3,
+    "high": 1833.53,
+    "low": 1688.72,
+    "close": 1773.41,
+    "volume": 5473364,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 1784.39,
+    "high": 1948.97,
+    "low": 1752.64,
+    "close": 1923.41,
+    "volume": 5377734,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 1925.4,
+    "high": 1932.99,
+    "low": 1767.62,
+    "close": 1851,
+    "volume": 6618761,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 1888.5,
+    "high": 1943,
+    "low": 1877,
+    "close": 1922,
+    "volume": 668400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

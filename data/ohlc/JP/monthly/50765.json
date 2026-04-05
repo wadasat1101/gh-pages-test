@@ -1,0 +1,233 @@
+[
+  {
+    "time": "2024-08-01",
+    "open": 4788,
+    "high": 4875,
+    "low": 4599,
+    "close": 4698,
+    "volume": 197200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-09-01",
+    "open": 4701,
+    "high": 4799,
+    "low": 4696,
+    "close": 4701,
+    "volume": 153700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-10-01",
+    "open": 4700,
+    "high": 4706,
+    "low": 4670,
+    "close": 4688,
+    "volume": 133100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-11-01",
+    "open": 4685,
+    "high": 4697,
+    "low": 4606,
+    "close": 4606,
+    "volume": 205100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-12-01",
+    "open": 4640,
+    "high": 4641,
+    "low": 4594,
+    "close": 4615,
+    "volume": 250800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-01-01",
+    "open": 4641,
+    "high": 4696,
+    "low": 4620,
+    "close": 4665,
+    "volume": 110300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-02-01",
+    "open": 4650,
+    "high": 4664,
+    "low": 4601,
+    "close": 4639,
+    "volume": 77400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-03-01",
+    "open": 4610,
+    "high": 4700,
+    "low": 4610,
+    "close": 4630,
+    "volume": 74200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-04-01",
+    "open": 4625,
+    "high": 4640,
+    "low": 4550,
+    "close": 4570,
+    "volume": 130500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-05-01",
+    "open": 4590,
+    "high": 4660,
+    "low": 4550,
+    "close": 4625,
+    "volume": 102100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-06-01",
+    "open": 4625,
+    "high": 4700,
+    "low": 4551,
+    "close": 4700,
+    "volume": 104300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-07-01",
+    "open": 4674,
+    "high": 4700,
+    "low": 4596,
+    "close": 4610,
+    "volume": 139900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-08-01",
+    "open": 4630,
+    "high": 4674,
+    "low": 4606,
+    "close": 4650,
+    "volume": 68900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-09-01",
+    "open": 4650,
+    "high": 4675,
+    "low": 4596,
+    "close": 4640,
+    "volume": 149400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-10-01",
+    "open": 4640,
+    "high": 4655,
+    "low": 4605,
+    "close": 4650,
+    "volume": 122300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 4650,
+    "high": 4665,
+    "low": 4644,
+    "close": 4651,
+    "volume": 102400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-12-01",
+    "open": 4650,
+    "high": 4655,
+    "low": 4613,
+    "close": 4630,
+    "volume": 167100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 4636,
+    "high": 4660,
+    "low": 4630,
+    "close": 4660,
+    "volume": 91900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 4650,
+    "high": 4680,
+    "low": 4649,
+    "close": 4671,
+    "volume": 82900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 4671,
+    "high": 4707,
+    "low": 4621,
+    "close": 4630,
+    "volume": 93200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 4633,
+    "high": 4659,
+    "low": 4632,
+    "close": 4632,
+    "volume": 12800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

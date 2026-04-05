@@ -1,0 +1,189 @@
+[
+  {
+    "time": "2024-12-01",
+    "open": 900,
+    "high": 1027,
+    "low": 875,
+    "close": 1014,
+    "volume": 31595700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-01-01",
+    "open": 1026,
+    "high": 1065,
+    "low": 990,
+    "close": 1000,
+    "volume": 9476200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-02-01",
+    "open": 997,
+    "high": 1151,
+    "low": 953,
+    "close": 1072,
+    "volume": 9509000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-03-01",
+    "open": 1090,
+    "high": 1104,
+    "low": 944,
+    "close": 955,
+    "volume": 8241500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-04-01",
+    "open": 955,
+    "high": 965,
+    "low": 733,
+    "close": 922,
+    "volume": 11218400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-05-01",
+    "open": 922,
+    "high": 969,
+    "low": 884,
+    "close": 941,
+    "volume": 5725100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-06-01",
+    "open": 940,
+    "high": 957,
+    "low": 910,
+    "close": 938,
+    "volume": 4342900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-07-01",
+    "open": 939,
+    "high": 943,
+    "low": 845,
+    "close": 881,
+    "volume": 20842400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-08-01",
+    "open": 880,
+    "high": 929,
+    "low": 867,
+    "close": 912,
+    "volume": 18166600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-09-01",
+    "open": 911,
+    "high": 917,
+    "low": 860,
+    "close": 860,
+    "volume": 16598000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-10-01",
+    "open": 858,
+    "high": 875,
+    "low": 831,
+    "close": 870,
+    "volume": 13361300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 872,
+    "high": 882,
+    "low": 855,
+    "close": 874,
+    "volume": 9346000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-12-01",
+    "open": 874,
+    "high": 943,
+    "low": 865,
+    "close": 938,
+    "volume": 9648600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 943,
+    "high": 1002,
+    "low": 930,
+    "close": 988,
+    "volume": 12540600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 992,
+    "high": 1124,
+    "low": 974,
+    "close": 1123,
+    "volume": 11756300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 1100,
+    "high": 1128,
+    "low": 950,
+    "close": 958,
+    "volume": 11231800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 965,
+    "high": 988,
+    "low": 956,
+    "close": 958,
+    "volume": 788100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "time": "2025-01-01",
+    "open": 1200,
+    "high": 1200,
+    "low": 1200,
+    "close": 1200,
+    "volume": 200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-07-01",
+    "open": 1200,
+    "high": 1200,
+    "low": 1200,
+    "close": 1200,
+    "volume": 9000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-08-01",
+    "open": 1200,
+    "high": 1200,
+    "low": 1200,
+    "close": 1200,
+    "volume": 100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-09-01",
+    "open": 1200,
+    "high": 1200,
+    "low": 1200,
+    "close": 1200,
+    "volume": 1000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 700,
+    "high": 700,
+    "low": 700,
+    "close": 700,
+    "volume": 400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 700,
+    "high": 700,
+    "low": 700,
+    "close": 700,
+    "volume": 600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

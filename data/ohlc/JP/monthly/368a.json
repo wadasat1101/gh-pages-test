@@ -1,0 +1,123 @@
+[
+  {
+    "time": "2025-06-01",
+    "open": 2001,
+    "high": 2158,
+    "low": 1628,
+    "close": 1716,
+    "volume": 28845600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-07-01",
+    "open": 1731,
+    "high": 1975,
+    "low": 1642,
+    "close": 1688,
+    "volume": 18685200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-08-01",
+    "open": 1673,
+    "high": 1685,
+    "low": 1445,
+    "close": 1536,
+    "volume": 10054500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-09-01",
+    "open": 1530,
+    "high": 1584,
+    "low": 1435,
+    "close": 1480,
+    "volume": 5161900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-10-01",
+    "open": 1490,
+    "high": 1537,
+    "low": 1335,
+    "close": 1359,
+    "volume": 3973600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 1360,
+    "high": 1623,
+    "low": 1305,
+    "close": 1566,
+    "volume": 4503400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-12-01",
+    "open": 1549,
+    "high": 1604,
+    "low": 1447,
+    "close": 1565,
+    "volume": 4077000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 1566,
+    "high": 1695,
+    "low": 1463,
+    "close": 1492,
+    "volume": 3511800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 1500,
+    "high": 1619,
+    "low": 1452,
+    "close": 1505,
+    "volume": 3362400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 1477,
+    "high": 1508,
+    "low": 1295,
+    "close": 1321,
+    "volume": 2632300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 1344,
+    "high": 1384,
+    "low": 1329,
+    "close": 1349,
+    "volume": 178800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

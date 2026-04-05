@@ -1,0 +1,233 @@
+[
+  {
+    "time": "2024-08-01",
+    "open": 1570,
+    "high": 1659,
+    "low": 1355,
+    "close": 1405,
+    "volume": 10467000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-09-01",
+    "open": 1424,
+    "high": 1424,
+    "low": 1150,
+    "close": 1295,
+    "volume": 686400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-10-01",
+    "open": 1288,
+    "high": 1469,
+    "low": 1037,
+    "close": 1214,
+    "volume": 911100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-11-01",
+    "open": 1184,
+    "high": 1477,
+    "low": 1184,
+    "close": 1421,
+    "volume": 379800,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2024-12-01",
+    "open": 1425,
+    "high": 1441,
+    "low": 1208,
+    "close": 1276,
+    "volume": 236900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-01-01",
+    "open": 1306,
+    "high": 1449,
+    "low": 1111,
+    "close": 1196,
+    "volume": 298000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-02-01",
+    "open": 1197,
+    "high": 1270,
+    "low": 1170,
+    "close": 1175,
+    "volume": 110400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-03-01",
+    "open": 1177,
+    "high": 1275,
+    "low": 1168,
+    "close": 1215,
+    "volume": 54200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-04-01",
+    "open": 1218,
+    "high": 1231,
+    "low": 960,
+    "close": 1200,
+    "volume": 92200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-05-01",
+    "open": 1184,
+    "high": 1420,
+    "low": 1158,
+    "close": 1356,
+    "volume": 179500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-06-01",
+    "open": 1342,
+    "high": 1396,
+    "low": 1297,
+    "close": 1395,
+    "volume": 50100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-07-01",
+    "open": 1395,
+    "high": 1610,
+    "low": 1351,
+    "close": 1520,
+    "volume": 117400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-08-01",
+    "open": 1505,
+    "high": 1876,
+    "low": 1496,
+    "close": 1822,
+    "volume": 104900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-09-01",
+    "open": 1821,
+    "high": 2897,
+    "low": 1821,
+    "close": 2393,
+    "volume": 546100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-10-01",
+    "open": 2420,
+    "high": 2494,
+    "low": 1970,
+    "close": 2303,
+    "volume": 596500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-11-01",
+    "open": 2271,
+    "high": 2449,
+    "low": 2121,
+    "close": 2375,
+    "volume": 130500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2025-12-01",
+    "open": 2375,
+    "high": 2430,
+    "low": 2051,
+    "close": 2380,
+    "volume": 162500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 2480,
+    "high": 2689,
+    "low": 1860,
+    "close": 1862,
+    "volume": 484300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 1742,
+    "high": 1791,
+    "low": 1352,
+    "close": 1422,
+    "volume": 365000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 1425,
+    "high": 1647,
+    "low": 1347,
+    "close": 1593,
+    "volume": 229100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 1547,
+    "high": 1580,
+    "low": 1541,
+    "close": 1554,
+    "volume": 9000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

@@ -1,0 +1,57 @@
+[
+  {
+    "time": "2025-12-01",
+    "open": 1655,
+    "high": 1738,
+    "low": 913,
+    "close": 956,
+    "volume": 17436600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-01-01",
+    "open": 963,
+    "high": 1084,
+    "low": 926,
+    "close": 1008,
+    "volume": 1259600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-02-01",
+    "open": 1020,
+    "high": 1036,
+    "low": 913,
+    "close": 987,
+    "volume": 590200,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-03-01",
+    "open": 984,
+    "high": 994,
+    "low": 645,
+    "close": 656,
+    "volume": 839600,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-04-01",
+    "open": 658,
+    "high": 696,
+    "low": 656,
+    "close": 670,
+    "volume": 40500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]
