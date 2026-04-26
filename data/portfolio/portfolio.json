@@ -7,15 +7,75 @@
       "shares": 11
     },
     {
+      "code": "2678",
+      "buyPrice": 1150,
+      "buyDate": "2026-04-13",
+      "shares": 3
+    },
+    {
       "code": "3697",
       "buyPrice": 678,
       "buyDate": "2026-03-02",
       "shares": 7
     },
     {
+      "code": "4180",
+      "buyPrice": 840,
+      "buyDate": "2026-04-13",
+      "shares": 4
+    },
+    {
+      "code": "4568",
+      "buyPrice": 2750,
+      "buyDate": "2026-04-13",
+      "shares": 1
+    },
+    {
+      "code": "4587",
+      "buyPrice": 1183,
+      "buyDate": "2026-04-13",
+      "shares": 3
+    },
+    {
+      "code": "4661",
+      "buyPrice": 2609,
+      "buyDate": "2026-04-13",
+      "shares": 1
+    },
+    {
+      "code": "4819",
+      "buyPrice": 2132,
+      "buyDate": "2026-04-13",
+      "shares": 2
+    },
+    {
+      "code": "6036",
+      "buyPrice": 2981,
+      "buyDate": "2026-04-13",
+      "shares": 1
+    },
+    {
+      "code": "6526",
+      "buyPrice": 1788,
+      "buyDate": "2026-04-13",
+      "shares": 2
+    },
+    {
       "code": "6869",
       "buyPrice": 1500,
       "buyDate": "2026-03-02",
+      "shares": 3
+    },
+    {
+      "code": "6966",
+      "buyPrice": 661,
+      "buyDate": "2026-04-13",
+      "shares": 5
+    },
+    {
+      "code": "7033",
+      "buyPrice": 1313,
+      "buyDate": "2026-04-13",
       "shares": 3
     },
     {
