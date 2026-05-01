@@ -11,36 +11,6 @@
           "name": "サービス業",
           "symbols": [
             {
-              "code": "2461",
-              "name": "ファンコミュニケーションズ",
-              "segment": "p"
-            },
-            {
-              "code": "2462",
-              "name": "ライク",
-              "segment": "p"
-            },
-            {
-              "code": "2464",
-              "name": "Ａｏｂａ‐ＢＢＴ",
-              "segment": "s"
-            },
-            {
-              "code": "2469",
-              "name": "ヒビノ",
-              "segment": "s"
-            },
-            {
-              "code": "2471",
-              "name": "エスプール",
-              "segment": "p"
-            },
-            {
-              "code": "2475",
-              "name": "ＷＤＢホールディングス",
-              "segment": "p"
-            },
-            {
               "code": "2479",
               "name": "ジェイテック",
               "segment": "s"
@@ -508,7 +478,7 @@
             {
               "code": "6035",
               "name": "アイ・アールジャパンホールディングス",
-              "segment": "p"
+              "segment": "s"
             },
             {
               "code": "6036",
@@ -2307,11 +2277,6 @@
               "segment": "p"
             },
             {
-              "code": "6210",
-              "name": "ＴＯＹＯイノベックス",
-              "segment": "s"
-            },
-            {
               "code": "6217",
               "name": "津田駒工業",
               "segment": "s"
@@ -2514,6 +2479,41 @@
             {
               "code": "6282",
               "name": "オイレス工業",
+              "segment": "p"
+            },
+            {
+              "code": "6284",
+              "name": "日精エー・エス・ビー機械",
+              "segment": "p"
+            },
+            {
+              "code": "6286",
+              "name": "靜甲",
+              "segment": "s"
+            },
+            {
+              "code": "6287",
+              "name": "サトー",
+              "segment": "p"
+            },
+            {
+              "code": "6289",
+              "name": "技研製作所",
+              "segment": "p"
+            },
+            {
+              "code": "6291",
+              "name": "日本エアーテック",
+              "segment": "s"
+            },
+            {
+              "code": "6292",
+              "name": "カワタ",
+              "segment": "s"
+            },
+            {
+              "code": "6294",
+              "name": "オカダアイヨン",
               "segment": "p"
             }
           ]

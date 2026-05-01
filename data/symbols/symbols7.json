@@ -11,121 +11,6 @@
           "name": "電気機器",
           "symbols": [
             {
-              "code": "6721",
-              "name": "ウインテスト",
-              "segment": "s"
-            },
-            {
-              "code": "6723",
-              "name": "ルネサスエレクトロニクス",
-              "segment": "p"
-            },
-            {
-              "code": "6724",
-              "name": "セイコーエプソン",
-              "segment": "p"
-            },
-            {
-              "code": "6727",
-              "name": "ワコム",
-              "segment": "p"
-            },
-            {
-              "code": "6728",
-              "name": "アルバック",
-              "segment": "p"
-            },
-            {
-              "code": "6730",
-              "name": "アクセル",
-              "segment": "s"
-            },
-            {
-              "code": "6731",
-              "name": "ピクセラ",
-              "segment": "s"
-            },
-            {
-              "code": "6734",
-              "name": "ニューテック",
-              "segment": "s"
-            },
-            {
-              "code": "6736",
-              "name": "サン電子",
-              "segment": "s"
-            },
-            {
-              "code": "6737",
-              "name": "ＥＩＺＯ",
-              "segment": "p"
-            },
-            {
-              "code": "6740",
-              "name": "ジャパンディスプレイ",
-              "segment": "p"
-            },
-            {
-              "code": "6741",
-              "name": "日本信号",
-              "segment": "p"
-            },
-            {
-              "code": "6742",
-              "name": "京三製作所",
-              "segment": "p"
-            },
-            {
-              "code": "6743",
-              "name": "大同信号",
-              "segment": "s"
-            },
-            {
-              "code": "6744",
-              "name": "能美防災",
-              "segment": "p"
-            },
-            {
-              "code": "6745",
-              "name": "ホーチキ",
-              "segment": "p"
-            },
-            {
-              "code": "6748",
-              "name": "星和電機",
-              "segment": "s"
-            },
-            {
-              "code": "6750",
-              "name": "エレコム",
-              "segment": "p"
-            },
-            {
-              "code": "6752",
-              "name": "パナソニック　ホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "6753",
-              "name": "シャープ",
-              "segment": "p"
-            },
-            {
-              "code": "6754",
-              "name": "アンリツ",
-              "segment": "p"
-            },
-            {
-              "code": "6757",
-              "name": "ＯＳＧコーポレーション",
-              "segment": "s"
-            },
-            {
-              "code": "6758",
-              "name": "ソニーグループ",
-              "segment": "p"
-            },
-            {
               "code": "6762",
               "name": "ＴＤＫ",
               "segment": "p"
@@ -932,11 +817,6 @@
               "segment": "p"
             },
             {
-              "code": "5352",
-              "name": "黒崎播磨",
-              "segment": "p"
-            },
-            {
               "code": "5355",
               "name": "日本坩堝",
               "segment": "s"
@@ -980,11 +860,6 @@
               "code": "5384",
               "name": "フジミインコーポレーテッド",
               "segment": "p"
-            },
-            {
-              "code": "5386",
-              "name": "鶴弥",
-              "segment": "s"
             },
             {
               "code": "5388",
@@ -1301,11 +1176,6 @@
             {
               "code": "7203",
               "name": "トヨタ自動車",
-              "segment": "p"
-            },
-            {
-              "code": "7205",
-              "name": "日野自動車",
               "segment": "p"
             },
             {
@@ -2075,7 +1945,7 @@
             {
               "code": "7743",
               "name": "シード",
-              "segment": "p"
+              "segment": "s"
             },
             {
               "code": "7744",
@@ -2568,6 +2438,136 @@
             {
               "code": "7381",
               "name": "ＣＣＩグループ",
+              "segment": "p"
+            },
+            {
+              "code": "7384",
+              "name": "プロクレアホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "7389",
+              "name": "あいちフィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8303",
+              "name": "ＳＢＩ新生銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8304",
+              "name": "あおぞら銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8306",
+              "name": "三菱ＵＦＪフィナンシャル・グループ",
+              "segment": "p"
+            },
+            {
+              "code": "8308",
+              "name": "りそなホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "8309",
+              "name": "三井住友トラストグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8316",
+              "name": "三井住友フィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8331",
+              "name": "千葉銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8334",
+              "name": "群馬銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8336",
+              "name": "武蔵野銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8337",
+              "name": "千葉興業銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8338",
+              "name": "筑波銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8341",
+              "name": "七十七銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8343",
+              "name": "秋田銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8344",
+              "name": "山形銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8345",
+              "name": "岩手銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8346",
+              "name": "東邦銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8349",
+              "name": "東北銀行",
+              "segment": "s"
+            },
+            {
+              "code": "8354",
+              "name": "ふくおかフィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8358",
+              "name": "スルガ銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8359",
+              "name": "八十二長野銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8360",
+              "name": "山梨中央銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8361",
+              "name": "大垣共立銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8362",
+              "name": "福井銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8364",
+              "name": "清水銀行",
               "segment": "p"
             }
           ]

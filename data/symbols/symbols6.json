@@ -11,111 +11,6 @@
           "name": "卸売業",
           "symbols": [
             {
-              "code": "8089",
-              "name": "ナイス",
-              "segment": "s"
-            },
-            {
-              "code": "8091",
-              "name": "ニチモウ",
-              "segment": "p"
-            },
-            {
-              "code": "8093",
-              "name": "極東貿易",
-              "segment": "p"
-            },
-            {
-              "code": "8095",
-              "name": "アステナホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "8097",
-              "name": "三愛オブリ",
-              "segment": "p"
-            },
-            {
-              "code": "8098",
-              "name": "稲畑産業",
-              "segment": "p"
-            },
-            {
-              "code": "8101",
-              "name": "ＧＳＩクレオス",
-              "segment": "p"
-            },
-            {
-              "code": "8103",
-              "name": "明和産業",
-              "segment": "p"
-            },
-            {
-              "code": "8104",
-              "name": "クワザワホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "8105",
-              "name": "Ｂｉｔｃｏｉｎ　Ｊａｐａｎ",
-              "segment": "s"
-            },
-            {
-              "code": "8115",
-              "name": "ムーンバット",
-              "segment": "s"
-            },
-            {
-              "code": "8117",
-              "name": "中央自動車工業",
-              "segment": "s"
-            },
-            {
-              "code": "8119",
-              "name": "三栄コーポレーション",
-              "segment": "s"
-            },
-            {
-              "code": "8123",
-              "name": "川辺",
-              "segment": "s"
-            },
-            {
-              "code": "8125",
-              "name": "ワキタ",
-              "segment": "p"
-            },
-            {
-              "code": "8129",
-              "name": "東邦ホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "8130",
-              "name": "サンゲツ",
-              "segment": "p"
-            },
-            {
-              "code": "8131",
-              "name": "ミツウロコグループホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "8132",
-              "name": "シナネンホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "8133",
-              "name": "伊藤忠エネクス",
-              "segment": "p"
-            },
-            {
-              "code": "8135",
-              "name": "ゼット",
-              "segment": "s"
-            },
-            {
               "code": "8136",
               "name": "サンリオ",
               "segment": "p"
@@ -1215,11 +1110,6 @@
               "code": "4956",
               "name": "コニシ",
               "segment": "p"
-            },
-            {
-              "code": "4957",
-              "name": "ヤスハラケミカル",
-              "segment": "s"
             },
             {
               "code": "4958",
@@ -2356,7 +2246,7 @@
             },
             {
               "code": "6634",
-              "name": "ネクスグループ",
+              "name": "ＪＮグループ",
               "segment": "s"
             },
             {
@@ -2532,6 +2422,116 @@
             {
               "code": "6718",
               "name": "アイホン",
+              "segment": "p"
+            },
+            {
+              "code": "6721",
+              "name": "ウインテスト",
+              "segment": "s"
+            },
+            {
+              "code": "6723",
+              "name": "ルネサスエレクトロニクス",
+              "segment": "p"
+            },
+            {
+              "code": "6724",
+              "name": "セイコーエプソン",
+              "segment": "p"
+            },
+            {
+              "code": "6727",
+              "name": "ワコム",
+              "segment": "p"
+            },
+            {
+              "code": "6728",
+              "name": "アルバック",
+              "segment": "p"
+            },
+            {
+              "code": "6730",
+              "name": "アクセル",
+              "segment": "s"
+            },
+            {
+              "code": "6731",
+              "name": "ピクセラ",
+              "segment": "s"
+            },
+            {
+              "code": "6736",
+              "name": "サン電子",
+              "segment": "s"
+            },
+            {
+              "code": "6737",
+              "name": "ＥＩＺＯ",
+              "segment": "p"
+            },
+            {
+              "code": "6740",
+              "name": "ジャパンディスプレイ",
+              "segment": "p"
+            },
+            {
+              "code": "6741",
+              "name": "日本信号",
+              "segment": "p"
+            },
+            {
+              "code": "6742",
+              "name": "京三製作所",
+              "segment": "p"
+            },
+            {
+              "code": "6743",
+              "name": "大同信号",
+              "segment": "s"
+            },
+            {
+              "code": "6744",
+              "name": "能美防災",
+              "segment": "p"
+            },
+            {
+              "code": "6745",
+              "name": "ホーチキ",
+              "segment": "p"
+            },
+            {
+              "code": "6748",
+              "name": "星和電機",
+              "segment": "s"
+            },
+            {
+              "code": "6750",
+              "name": "エレコム",
+              "segment": "p"
+            },
+            {
+              "code": "6752",
+              "name": "パナソニック　ホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "6753",
+              "name": "シャープ",
+              "segment": "p"
+            },
+            {
+              "code": "6754",
+              "name": "アンリツ",
+              "segment": "p"
+            },
+            {
+              "code": "6757",
+              "name": "ＯＳＧコーポレーション",
+              "segment": "s"
+            },
+            {
+              "code": "6758",
+              "name": "ソニーグループ",
               "segment": "p"
             }
           ]
