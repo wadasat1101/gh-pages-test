@@ -333,9 +333,20 @@
     "time": "2026-04-01",
     "open": 323,
     "high": 366,
-    "low": 319,
-    "close": 330,
-    "volume": 4896900,
+    "low": 317,
+    "close": 325,
+    "volume": 5491300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-05-01",
+    "open": 315,
+    "high": 352,
+    "low": 282,
+    "close": 283,
+    "volume": 3762100,
     "ma36": null,
     "dev36": null,
     "tav36": null
