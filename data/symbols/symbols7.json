@@ -11,41 +11,6 @@
           "name": "電気機器",
           "symbols": [
             {
-              "code": "6762",
-              "name": "ＴＤＫ",
-              "segment": "p"
-            },
-            {
-              "code": "6763",
-              "name": "帝国通信工業",
-              "segment": "p"
-            },
-            {
-              "code": "6768",
-              "name": "タムラ製作所",
-              "segment": "p"
-            },
-            {
-              "code": "6769",
-              "name": "ザインエレクトロニクス",
-              "segment": "s"
-            },
-            {
-              "code": "6770",
-              "name": "アルプスアルパイン",
-              "segment": "p"
-            },
-            {
-              "code": "6771",
-              "name": "池上通信機",
-              "segment": "s"
-            },
-            {
-              "code": "6772",
-              "name": "東京コスモス電機",
-              "segment": "s"
-            },
-            {
               "code": "6775",
               "name": "ＴＢグループ",
               "segment": "s"
@@ -596,11 +561,6 @@
               "segment": "p"
             },
             {
-              "code": "7739",
-              "name": "キヤノン電子",
-              "segment": "p"
-            },
-            {
               "code": "7751",
               "name": "キヤノン",
               "segment": "p"
@@ -788,7 +748,7 @@
             },
             {
               "code": "5333",
-              "name": "日本碍子",
+              "name": "ＮＧＫ",
               "segment": "p"
             },
             {
@@ -1154,11 +1114,6 @@
               "segment": "p"
             },
             {
-              "code": "7105",
-              "name": "三菱ロジスネクスト",
-              "segment": "s"
-            },
-            {
               "code": "7122",
               "name": "近畿車輛",
               "segment": "s"
@@ -1307,11 +1262,6 @@
               "code": "7247",
               "name": "ミクニ",
               "segment": "s"
-            },
-            {
-              "code": "7250",
-              "name": "太平洋工業",
-              "segment": "p"
             },
             {
               "code": "7254",
@@ -2568,6 +2518,56 @@
             {
               "code": "8364",
               "name": "清水銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8365",
+              "name": "富山銀行",
+              "segment": "s"
+            },
+            {
+              "code": "8366",
+              "name": "滋賀銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8367",
+              "name": "南都銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8368",
+              "name": "百五銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8370",
+              "name": "紀陽銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8377",
+              "name": "ほくほくフィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8381",
+              "name": "山陰合同銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8383",
+              "name": "鳥取銀行",
+              "segment": "s"
+            },
+            {
+              "code": "8386",
+              "name": "百十四銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8387",
+              "name": "四国銀行",
               "segment": "p"
             }
           ]
