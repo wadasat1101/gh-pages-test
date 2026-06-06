@@ -163,5 +163,16 @@
     "ma36": null,
     "dev36": null,
     "tav36": null
+  },
+  {
+    "time": "2026-05-01",
+    "open": 1500,
+    "high": 1500,
+    "low": 1500,
+    "close": 1500,
+    "volume": 400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
   }
 ]
