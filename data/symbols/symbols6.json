@@ -11,51 +11,6 @@
           "name": "卸売業",
           "symbols": [
             {
-              "code": "8144",
-              "name": "デンキョーグループホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "8147",
-              "name": "トミタ",
-              "segment": "s"
-            },
-            {
-              "code": "8150",
-              "name": "三信電気",
-              "segment": "p"
-            },
-            {
-              "code": "8151",
-              "name": "東陽テクニカ",
-              "segment": "p"
-            },
-            {
-              "code": "8152",
-              "name": "ソマール",
-              "segment": "s"
-            },
-            {
-              "code": "8153",
-              "name": "モスフードサービス",
-              "segment": "p"
-            },
-            {
-              "code": "8154",
-              "name": "加賀電子",
-              "segment": "p"
-            },
-            {
-              "code": "8158",
-              "name": "ソーダニッカ",
-              "segment": "p"
-            },
-            {
-              "code": "8159",
-              "name": "立花エレテック",
-              "segment": "p"
-            },
-            {
               "code": "8225",
               "name": "タカチホ",
               "segment": "s"
@@ -977,11 +932,6 @@
               "segment": "p"
             },
             {
-              "code": "4917",
-              "name": "マンダム",
-              "segment": "p"
-            },
-            {
               "code": "4918",
               "name": "アイビー化粧品",
               "segment": "s"
@@ -1244,11 +1194,6 @@
             {
               "code": "7917",
               "name": "ＺＡＣＲＯＳ",
-              "segment": "p"
-            },
-            {
-              "code": "7925",
-              "name": "前澤化成工業",
               "segment": "p"
             },
             {
@@ -1894,11 +1839,6 @@
               "segment": "p"
             },
             {
-              "code": "3593",
-              "name": "ホギメディカル",
-              "segment": "p"
-            },
-            {
               "code": "3597",
               "name": "自重堂",
               "segment": "s"
@@ -2532,6 +2472,66 @@
             {
               "code": "6772",
               "name": "東京コスモス電機",
+              "segment": "s"
+            },
+            {
+              "code": "6775",
+              "name": "ＴＢグループ",
+              "segment": "s"
+            },
+            {
+              "code": "6777",
+              "name": "ｓａｎｔｅｃ　Ｈｏｌｄｉｎｇｓ",
+              "segment": "s"
+            },
+            {
+              "code": "6778",
+              "name": "アルチザネットワークス",
+              "segment": "s"
+            },
+            {
+              "code": "6779",
+              "name": "日本電波工業",
+              "segment": "p"
+            },
+            {
+              "code": "6785",
+              "name": "鈴木",
+              "segment": "p"
+            },
+            {
+              "code": "6787",
+              "name": "メイコー",
+              "segment": "p"
+            },
+            {
+              "code": "6788",
+              "name": "日本トリム",
+              "segment": "p"
+            },
+            {
+              "code": "6794",
+              "name": "フォスター電機",
+              "segment": "p"
+            },
+            {
+              "code": "6797",
+              "name": "名古屋電機工業",
+              "segment": "s"
+            },
+            {
+              "code": "6798",
+              "name": "ＳＭＫ",
+              "segment": "p"
+            },
+            {
+              "code": "6800",
+              "name": "ヨコオ",
+              "segment": "p"
+            },
+            {
+              "code": "6803",
+              "name": "ティアック",
               "segment": "s"
             }
           ]

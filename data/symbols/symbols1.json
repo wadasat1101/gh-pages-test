@@ -257,11 +257,6 @@
               "segment": "p"
             },
             {
-              "code": "1776",
-              "name": "三井住建道路",
-              "segment": "s"
-            },
-            {
               "code": "1780",
               "name": "ヤマウラ",
               "segment": "p"
@@ -1479,11 +1474,6 @@
               "segment": "p"
             },
             {
-              "code": "5727",
-              "name": "東邦チタニウム",
-              "segment": "p"
-            },
-            {
               "code": "5729",
               "name": "日本精鉱",
               "segment": "s"
@@ -2357,11 +2347,6 @@
               "segment": "s"
             },
             {
-              "code": "2344",
-              "name": "平安レイサービス",
-              "segment": "s"
-            },
-            {
               "code": "2370",
               "name": "メディネット",
               "segment": "g"
@@ -2545,6 +2530,21 @@
               "code": "2475",
               "name": "ＷＤＢホールディングス",
               "segment": "p"
+            },
+            {
+              "code": "2479",
+              "name": "ジェイテック",
+              "segment": "s"
+            },
+            {
+              "code": "2481",
+              "name": "タウンニュース社",
+              "segment": "s"
+            },
+            {
+              "code": "2483",
+              "name": "翻訳センター",
+              "segment": "s"
             }
           ]
         }

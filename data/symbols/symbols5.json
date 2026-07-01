@@ -11,46 +11,6 @@
           "name": "小売業",
           "symbols": [
             {
-              "code": "2790",
-              "name": "ナフコ",
-              "segment": "s"
-            },
-            {
-              "code": "2791",
-              "name": "大黒天物産",
-              "segment": "p"
-            },
-            {
-              "code": "2792",
-              "name": "ハニーズホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "2796",
-              "name": "ファーマライズホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "2798",
-              "name": "ワイズテーブルコーポレーション",
-              "segment": "s"
-            },
-            {
-              "code": "3011",
-              "name": "バナーズ",
-              "segment": "s"
-            },
-            {
-              "code": "3020",
-              "name": "アプライド",
-              "segment": "s"
-            },
-            {
-              "code": "3028",
-              "name": "アルペン",
-              "segment": "p"
-            },
-            {
               "code": "3030",
               "name": "ハブ",
               "segment": "s"
@@ -318,7 +278,7 @@
             {
               "code": "3195",
               "name": "ジェネレーションパス",
-              "segment": "g"
+              "segment": "s"
             },
             {
               "code": "3196",
@@ -1427,11 +1387,6 @@
               "segment": "s"
             },
             {
-              "code": "2692",
-              "name": "伊藤忠食品",
-              "segment": "p"
-            },
-            {
               "code": "2693",
               "name": "ＹＫＴ",
               "segment": "s"
@@ -2514,6 +2469,51 @@
             {
               "code": "8142",
               "name": "トーホー",
+              "segment": "p"
+            },
+            {
+              "code": "8144",
+              "name": "デンキョーグループホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "8147",
+              "name": "トミタ",
+              "segment": "s"
+            },
+            {
+              "code": "8150",
+              "name": "三信電気",
+              "segment": "p"
+            },
+            {
+              "code": "8151",
+              "name": "東陽テクニカ",
+              "segment": "p"
+            },
+            {
+              "code": "8152",
+              "name": "ソマール",
+              "segment": "s"
+            },
+            {
+              "code": "8153",
+              "name": "モスフードサービス",
+              "segment": "p"
+            },
+            {
+              "code": "8154",
+              "name": "加賀電子",
+              "segment": "p"
+            },
+            {
+              "code": "8158",
+              "name": "ソーダニッカ",
+              "segment": "p"
+            },
+            {
+              "code": "8159",
+              "name": "立花エレテック",
               "segment": "p"
             }
           ]

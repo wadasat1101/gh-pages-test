@@ -11,36 +11,6 @@
           "name": "情報・通信業",
           "symbols": [
             {
-              "code": "4256",
-              "name": "サインド",
-              "segment": "g"
-            },
-            {
-              "code": "4258",
-              "name": "網屋",
-              "segment": "g"
-            },
-            {
-              "code": "4259",
-              "name": "エクサウィザーズ",
-              "segment": "g"
-            },
-            {
-              "code": "4260",
-              "name": "ハイブリッドテクノロジーズ",
-              "segment": "g"
-            },
-            {
-              "code": "4261",
-              "name": "アジアクエスト",
-              "segment": "g"
-            },
-            {
-              "code": "4262",
-              "name": "ニフティライフスタイル",
-              "segment": "g"
-            },
-            {
               "code": "4263",
               "name": "サスメド",
               "segment": "g"
@@ -194,11 +164,6 @@
               "code": "4382",
               "name": "ＨＥＲＯＺ",
               "segment": "s"
-            },
-            {
-              "code": "4384",
-              "name": "ラクスル",
-              "segment": "p"
             },
             {
               "code": "4385",
@@ -1557,11 +1522,6 @@
               "segment": "p"
             },
             {
-              "code": "4530",
-              "name": "久光製薬",
-              "segment": "p"
-            },
-            {
               "code": "4534",
               "name": "持田製薬",
               "segment": "p"
@@ -2015,7 +1975,7 @@
             {
               "code": "9046",
               "name": "神戸電鉄",
-              "segment": "p"
+              "segment": "s"
             },
             {
               "code": "9048",
@@ -2533,6 +2493,46 @@
               "code": "2789",
               "name": "カルラ",
               "segment": "s"
+            },
+            {
+              "code": "2790",
+              "name": "ナフコ",
+              "segment": "s"
+            },
+            {
+              "code": "2791",
+              "name": "大黒天物産",
+              "segment": "p"
+            },
+            {
+              "code": "2792",
+              "name": "ハニーズホールディングス",
+              "segment": "p"
+            },
+            {
+              "code": "2796",
+              "name": "ファーマライズホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "2798",
+              "name": "ワイズテーブルコーポレーション",
+              "segment": "s"
+            },
+            {
+              "code": "3011",
+              "name": "バナーズ",
+              "segment": "s"
+            },
+            {
+              "code": "3020",
+              "name": "アプライド",
+              "segment": "s"
+            },
+            {
+              "code": "3028",
+              "name": "アルペン",
+              "segment": "p"
             }
           ]
         }

@@ -11,66 +11,6 @@
           "name": "電気機器",
           "symbols": [
             {
-              "code": "6775",
-              "name": "ＴＢグループ",
-              "segment": "s"
-            },
-            {
-              "code": "6777",
-              "name": "ｓａｎｔｅｃ　Ｈｏｌｄｉｎｇｓ",
-              "segment": "s"
-            },
-            {
-              "code": "6778",
-              "name": "アルチザネットワークス",
-              "segment": "s"
-            },
-            {
-              "code": "6779",
-              "name": "日本電波工業",
-              "segment": "p"
-            },
-            {
-              "code": "6785",
-              "name": "鈴木",
-              "segment": "p"
-            },
-            {
-              "code": "6787",
-              "name": "メイコー",
-              "segment": "p"
-            },
-            {
-              "code": "6788",
-              "name": "日本トリム",
-              "segment": "p"
-            },
-            {
-              "code": "6794",
-              "name": "フォスター電機",
-              "segment": "p"
-            },
-            {
-              "code": "6797",
-              "name": "名古屋電機工業",
-              "segment": "s"
-            },
-            {
-              "code": "6798",
-              "name": "ＳＭＫ",
-              "segment": "p"
-            },
-            {
-              "code": "6800",
-              "name": "ヨコオ",
-              "segment": "p"
-            },
-            {
-              "code": "6803",
-              "name": "ティアック",
-              "segment": "s"
-            },
-            {
               "code": "6804",
               "name": "ホシデン",
               "segment": "p"
@@ -308,11 +248,6 @@
             {
               "code": "6899",
               "name": "ＡＳＴＩ",
-              "segment": "s"
-            },
-            {
-              "code": "6901",
-              "name": "澤藤電機",
               "segment": "s"
             },
             {
@@ -2568,6 +2503,71 @@
             {
               "code": "8387",
               "name": "四国銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8388",
+              "name": "阿波銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8392",
+              "name": "大分銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8393",
+              "name": "宮崎銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8395",
+              "name": "佐賀銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8399",
+              "name": "琉球銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8410",
+              "name": "セブン銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8411",
+              "name": "みずほフィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8416",
+              "name": "高知銀行",
+              "segment": "s"
+            },
+            {
+              "code": "8418",
+              "name": "山口フィナンシャルグループ",
+              "segment": "p"
+            },
+            {
+              "code": "8522",
+              "name": "名古屋銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8524",
+              "name": "北洋銀行",
+              "segment": "p"
+            },
+            {
+              "code": "8537",
+              "name": "大光銀行",
+              "segment": "s"
+            },
+            {
+              "code": "8541",
+              "name": "愛媛銀行",
               "segment": "p"
             }
           ]

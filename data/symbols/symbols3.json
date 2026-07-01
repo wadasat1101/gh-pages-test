@@ -11,31 +11,6 @@
           "name": "機械",
           "symbols": [
             {
-              "code": "6302",
-              "name": "住友重機械工業",
-              "segment": "p"
-            },
-            {
-              "code": "6305",
-              "name": "日立建機",
-              "segment": "p"
-            },
-            {
-              "code": "6306",
-              "name": "日工",
-              "segment": "p"
-            },
-            {
-              "code": "6307",
-              "name": "サンセイ",
-              "segment": "s"
-            },
-            {
-              "code": "6309",
-              "name": "巴工業",
-              "segment": "p"
-            },
-            {
               "code": "6310",
               "name": "井関農機",
               "segment": "p"
@@ -528,11 +503,6 @@
             {
               "code": "6488",
               "name": "ヨシタケ",
-              "segment": "s"
-            },
-            {
-              "code": "6489",
-              "name": "前澤工業",
               "segment": "s"
             },
             {
@@ -2520,6 +2490,36 @@
             {
               "code": "4255",
               "name": "ＴＨＥＣＯＯ",
+              "segment": "g"
+            },
+            {
+              "code": "4256",
+              "name": "サインド",
+              "segment": "g"
+            },
+            {
+              "code": "4258",
+              "name": "網屋",
+              "segment": "g"
+            },
+            {
+              "code": "4259",
+              "name": "エクサウィザーズ",
+              "segment": "g"
+            },
+            {
+              "code": "4260",
+              "name": "ハイブリッドテクノロジーズ",
+              "segment": "g"
+            },
+            {
+              "code": "4261",
+              "name": "アジアクエスト",
+              "segment": "g"
+            },
+            {
+              "code": "4262",
+              "name": "ニフティライフスタイル",
               "segment": "g"
             }
           ]

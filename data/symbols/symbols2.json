@@ -11,21 +11,6 @@
           "name": "サービス業",
           "symbols": [
             {
-              "code": "2479",
-              "name": "ジェイテック",
-              "segment": "s"
-            },
-            {
-              "code": "2481",
-              "name": "タウンニュース社",
-              "segment": "s"
-            },
-            {
-              "code": "2483",
-              "name": "翻訳センター",
-              "segment": "s"
-            },
-            {
               "code": "2485",
               "name": "ティア",
               "segment": "s"
@@ -523,7 +508,7 @@
             {
               "code": "6047",
               "name": "Ｇｕｎｏｓｙ",
-              "segment": "p"
+              "segment": "s"
             },
             {
               "code": "6049",
@@ -926,11 +911,6 @@
               "segment": "p"
             },
             {
-              "code": "6565",
-              "name": "ＡＢホテル",
-              "segment": "s"
-            },
-            {
               "code": "6566",
               "name": "要興業",
               "segment": "s"
@@ -1229,11 +1209,6 @@
               "code": "7087",
               "name": "ウイルテック",
               "segment": "s"
-            },
-            {
-              "code": "7088",
-              "name": "フォーラムエンジニアリング",
-              "segment": "p"
             },
             {
               "code": "7089",
@@ -2514,6 +2489,31 @@
             {
               "code": "6301",
               "name": "小松製作所",
+              "segment": "p"
+            },
+            {
+              "code": "6302",
+              "name": "住友重機械工業",
+              "segment": "p"
+            },
+            {
+              "code": "6305",
+              "name": "日立建機",
+              "segment": "p"
+            },
+            {
+              "code": "6306",
+              "name": "日工",
+              "segment": "p"
+            },
+            {
+              "code": "6307",
+              "name": "サンセイ",
+              "segment": "s"
+            },
+            {
+              "code": "6309",
+              "name": "巴工業",
               "segment": "p"
             }
           ]
