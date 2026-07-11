@@ -1,0 +1,24 @@
+[
+  {
+    "time": "2026-06-01",
+    "open": 2910,
+    "high": 2948,
+    "low": 2061,
+    "close": 2247,
+    "volume": 60177900,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-07-01",
+    "open": 2221,
+    "high": 2708,
+    "low": 2131,
+    "close": 2505,
+    "volume": 16638300,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]
