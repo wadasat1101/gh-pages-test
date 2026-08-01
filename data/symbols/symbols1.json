@@ -212,11 +212,6 @@
               "segment": "s"
             },
             {
-              "code": "1726",
-              "name": "ビーアールホールディングス",
-              "segment": "p"
-            },
-            {
               "code": "1736",
               "name": "オーテック",
               "segment": "s"
@@ -973,11 +968,6 @@
               "segment": "s"
             },
             {
-              "code": "3294",
-              "name": "イーグランド",
-              "segment": "s"
-            },
-            {
               "code": "3297",
               "name": "東武住販",
               "segment": "s"
@@ -1044,7 +1034,7 @@
             },
             {
               "code": "3479",
-              "name": "ティーケーピー",
+              "name": "ＴＫＰ",
               "segment": "g"
             },
             {
@@ -1951,11 +1941,6 @@
               "segment": "p"
             },
             {
-              "code": "7922",
-              "name": "三光産業",
-              "segment": "s"
-            },
-            {
               "code": "7932",
               "name": "ニッピ",
               "segment": "s"
@@ -2544,6 +2529,21 @@
             {
               "code": "2483",
               "name": "翻訳センター",
+              "segment": "s"
+            },
+            {
+              "code": "2485",
+              "name": "ティア",
+              "segment": "s"
+            },
+            {
+              "code": "2488",
+              "name": "ＪＴＰ",
+              "segment": "s"
+            },
+            {
+              "code": "2489",
+              "name": "アドウェイズ",
               "segment": "s"
             }
           ]

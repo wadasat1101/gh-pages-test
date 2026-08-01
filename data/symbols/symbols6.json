@@ -11,96 +11,6 @@
           "name": "卸売業",
           "symbols": [
             {
-              "code": "8225",
-              "name": "タカチホ",
-              "segment": "s"
-            },
-            {
-              "code": "8226",
-              "name": "理経",
-              "segment": "s"
-            },
-            {
-              "code": "8275",
-              "name": "フォーバル",
-              "segment": "s"
-            },
-            {
-              "code": "8283",
-              "name": "ＰＡＬＴＡＣ",
-              "segment": "p"
-            },
-            {
-              "code": "8285",
-              "name": "三谷産業",
-              "segment": "s"
-            },
-            {
-              "code": "8835",
-              "name": "太平洋興発",
-              "segment": "s"
-            },
-            {
-              "code": "9264",
-              "name": "ポエック",
-              "segment": "s"
-            },
-            {
-              "code": "9265",
-              "name": "ヤマシタヘルスケアホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "9268",
-              "name": "オプティマスグループ",
-              "segment": "s"
-            },
-            {
-              "code": "9270",
-              "name": "バリュエンスホールディングス",
-              "segment": "g"
-            },
-            {
-              "code": "9273",
-              "name": "コーア商事ホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "9274",
-              "name": "ＫＰＰグループホールディングス",
-              "segment": "p"
-            },
-            {
-              "code": "9305",
-              "name": "ヤマタネ",
-              "segment": "p"
-            },
-            {
-              "code": "9763",
-              "name": "丸建リース",
-              "segment": "s"
-            },
-            {
-              "code": "9818",
-              "name": "大丸エナウィン",
-              "segment": "s"
-            },
-            {
-              "code": "9824",
-              "name": "泉州電業",
-              "segment": "p"
-            },
-            {
-              "code": "9827",
-              "name": "リリカラ",
-              "segment": "s"
-            },
-            {
-              "code": "9830",
-              "name": "トラスコ中山",
-              "segment": "p"
-            },
-            {
               "code": "9832",
               "name": "オートバックスセブン",
               "segment": "p"
@@ -1069,11 +979,6 @@
             {
               "code": "4973",
               "name": "日本高純度化学",
-              "segment": "p"
-            },
-            {
-              "code": "4974",
-              "name": "タカラバイオ",
               "segment": "p"
             },
             {
@@ -2255,11 +2160,6 @@
               "segment": "s"
             },
             {
-              "code": "6670",
-              "name": "ＭＣＪ",
-              "segment": "s"
-            },
-            {
               "code": "6674",
               "name": "ジーエス・ユアサ　コーポレーション",
               "segment": "p"
@@ -2533,6 +2433,106 @@
               "code": "6803",
               "name": "ティアック",
               "segment": "s"
+            },
+            {
+              "code": "6804",
+              "name": "ホシデン",
+              "segment": "p"
+            },
+            {
+              "code": "6806",
+              "name": "ヒロセ電機",
+              "segment": "p"
+            },
+            {
+              "code": "6807",
+              "name": "日本航空電子工業",
+              "segment": "p"
+            },
+            {
+              "code": "6809",
+              "name": "ＴＯＡ",
+              "segment": "p"
+            },
+            {
+              "code": "6810",
+              "name": "マクセル",
+              "segment": "p"
+            },
+            {
+              "code": "6814",
+              "name": "古野電気",
+              "segment": "p"
+            },
+            {
+              "code": "6817",
+              "name": "スミダコーポレーション",
+              "segment": "p"
+            },
+            {
+              "code": "6820",
+              "name": "アイコム",
+              "segment": "p"
+            },
+            {
+              "code": "6822",
+              "name": "大井電気",
+              "segment": "s"
+            },
+            {
+              "code": "6823",
+              "name": "リオン",
+              "segment": "p"
+            },
+            {
+              "code": "6824",
+              "name": "新コスモス電機",
+              "segment": "s"
+            },
+            {
+              "code": "6832",
+              "name": "アオイ電子",
+              "segment": "s"
+            },
+            {
+              "code": "6834",
+              "name": "精工技研",
+              "segment": "s"
+            },
+            {
+              "code": "6835",
+              "name": "アライドテレシスホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "6836",
+              "name": "ぷらっとホーム",
+              "segment": "s"
+            },
+            {
+              "code": "6837",
+              "name": "京写",
+              "segment": "s"
+            },
+            {
+              "code": "6838",
+              "name": "多摩川ホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "6840",
+              "name": "ＡＫＩＢＡホールディングス",
+              "segment": "s"
+            },
+            {
+              "code": "6841",
+              "name": "横河電機",
+              "segment": "p"
+            },
+            {
+              "code": "6844",
+              "name": "新電元工業",
+              "segment": "p"
             }
           ]
         }
