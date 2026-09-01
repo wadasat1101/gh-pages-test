@@ -7,55 +7,9 @@
       "suffix": ".jp",
       "sectors": [
         {
-          "code": "7150",
-          "name": "保険業",
-          "symbols": [
-            {
-              "code": "8798",
-              "name": "アドバンスクリエイト",
-              "segment": "p"
-            }
-          ]
-        },
-        {
           "code": "5100",
           "name": "海運業",
           "symbols": [
-            {
-              "code": "9101",
-              "name": "日本郵船",
-              "segment": "p"
-            },
-            {
-              "code": "9104",
-              "name": "商船三井",
-              "segment": "p"
-            },
-            {
-              "code": "9107",
-              "name": "川崎汽船",
-              "segment": "p"
-            },
-            {
-              "code": "9110",
-              "name": "ＮＳユナイテッド海運",
-              "segment": "p"
-            },
-            {
-              "code": "9115",
-              "name": "明海グループ",
-              "segment": "s"
-            },
-            {
-              "code": "9119",
-              "name": "飯野海運",
-              "segment": "p"
-            },
-            {
-              "code": "9127",
-              "name": "玉井商船",
-              "segment": "s"
-            },
             {
               "code": "9130",
               "name": "共栄タンカー",

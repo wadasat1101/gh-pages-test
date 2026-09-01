@@ -11,26 +11,6 @@
           "name": "卸売業",
           "symbols": [
             {
-              "code": "9832",
-              "name": "オートバックスセブン",
-              "segment": "p"
-            },
-            {
-              "code": "9837",
-              "name": "モリト",
-              "segment": "p"
-            },
-            {
-              "code": "9849",
-              "name": "共同紙販ホールディングス",
-              "segment": "s"
-            },
-            {
-              "code": "9857",
-              "name": "英和",
-              "segment": "s"
-            },
-            {
               "code": "9867",
               "name": "ソレキア",
               "segment": "s"
@@ -647,11 +627,6 @@
               "segment": "s"
             },
             {
-              "code": "4367",
-              "name": "広栄化学",
-              "segment": "s"
-            },
-            {
               "code": "4368",
               "name": "扶桑化学工業",
               "segment": "p"
@@ -1117,11 +1092,6 @@
               "segment": "p"
             },
             {
-              "code": "7940",
-              "name": "ウェーブロックホールディングス",
-              "segment": "s"
-            },
-            {
               "code": "7942",
               "name": "ＪＳＰ",
               "segment": "p"
@@ -1296,11 +1266,6 @@
               "code": "5902",
               "name": "ホッカンホールディングス",
               "segment": "p"
-            },
-            {
-              "code": "5903",
-              "name": "シンポ",
-              "segment": "s"
             },
             {
               "code": "5905",
@@ -2532,6 +2497,41 @@
             {
               "code": "6844",
               "name": "新電元工業",
+              "segment": "p"
+            },
+            {
+              "code": "6845",
+              "name": "アズビル",
+              "segment": "p"
+            },
+            {
+              "code": "6848",
+              "name": "東亜ディーケーケー",
+              "segment": "s"
+            },
+            {
+              "code": "6849",
+              "name": "日本光電工業",
+              "segment": "p"
+            },
+            {
+              "code": "6850",
+              "name": "チノー",
+              "segment": "p"
+            },
+            {
+              "code": "6853",
+              "name": "共和電業",
+              "segment": "s"
+            },
+            {
+              "code": "6855",
+              "name": "日本電子材料",
+              "segment": "s"
+            },
+            {
+              "code": "6856",
+              "name": "堀場製作所",
               "segment": "p"
             }
           ]

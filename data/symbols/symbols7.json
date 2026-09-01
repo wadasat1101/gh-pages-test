@@ -11,41 +11,6 @@
           "name": "電気機器",
           "symbols": [
             {
-              "code": "6845",
-              "name": "アズビル",
-              "segment": "p"
-            },
-            {
-              "code": "6848",
-              "name": "東亜ディーケーケー",
-              "segment": "s"
-            },
-            {
-              "code": "6849",
-              "name": "日本光電工業",
-              "segment": "p"
-            },
-            {
-              "code": "6850",
-              "name": "チノー",
-              "segment": "p"
-            },
-            {
-              "code": "6853",
-              "name": "共和電業",
-              "segment": "s"
-            },
-            {
-              "code": "6855",
-              "name": "日本電子材料",
-              "segment": "s"
-            },
-            {
-              "code": "6856",
-              "name": "堀場製作所",
-              "segment": "p"
-            },
-            {
               "code": "6857",
               "name": "アドバンテスト",
               "segment": "p"
@@ -1232,11 +1197,6 @@
               "code": "7314",
               "name": "小田原機器",
               "segment": "s"
-            },
-            {
-              "code": "7317",
-              "name": "松屋アールアンドディ",
-              "segment": "g"
             },
             {
               "code": "7318",
@@ -2575,6 +2535,52 @@
               "code": "8795",
               "name": "Ｔ＆Ｄホールディングス",
               "segment": "p"
+            },
+            {
+              "code": "8798",
+              "name": "アドバンスクリエイト",
+              "segment": "p"
+            }
+          ]
+        },
+        {
+          "code": "5100",
+          "name": "海運業",
+          "symbols": [
+            {
+              "code": "9101",
+              "name": "日本郵船",
+              "segment": "p"
+            },
+            {
+              "code": "9104",
+              "name": "商船三井",
+              "segment": "p"
+            },
+            {
+              "code": "9107",
+              "name": "川崎汽船",
+              "segment": "p"
+            },
+            {
+              "code": "9110",
+              "name": "ＮＳユナイテッド海運",
+              "segment": "p"
+            },
+            {
+              "code": "9115",
+              "name": "明海グループ",
+              "segment": "s"
+            },
+            {
+              "code": "9119",
+              "name": "飯野海運",
+              "segment": "p"
+            },
+            {
+              "code": "9127",
+              "name": "玉井商船",
+              "segment": "s"
             }
           ]
         }

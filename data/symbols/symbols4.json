@@ -11,21 +11,6 @@
           "name": "情報・通信業",
           "symbols": [
             {
-              "code": "4307",
-              "name": "野村総合研究所",
-              "segment": "p"
-            },
-            {
-              "code": "4308",
-              "name": "Ｊストリーム",
-              "segment": "g"
-            },
-            {
-              "code": "4316",
-              "name": "ビーマップ",
-              "segment": "g"
-            },
-            {
               "code": "4320",
               "name": "ＣＥホールディングス",
               "segment": "s"
@@ -348,7 +333,7 @@
             {
               "code": "4446",
               "name": "Ｌｉｎｋ－Ｕグループ",
-              "segment": "p"
+              "segment": "s"
             },
             {
               "code": "4447",
@@ -2532,6 +2517,21 @@
             {
               "code": "3068",
               "name": "ＷＤＩ",
+              "segment": "s"
+            },
+            {
+              "code": "3071",
+              "name": "ストリーム",
+              "segment": "s"
+            },
+            {
+              "code": "3075",
+              "name": "銚子丸",
+              "segment": "s"
+            },
+            {
+              "code": "3077",
+              "name": "ホリイフードサービス",
               "segment": "s"
             }
           ]
