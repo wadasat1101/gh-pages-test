@@ -222,10 +222,21 @@
   {
     "time": "2026-08-01",
     "open": 852,
-    "high": 886,
+    "high": 1182,
     "low": 852,
-    "close": 874,
-    "volume": 100600,
+    "close": 1161,
+    "volume": 2033700,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-09-01",
+    "open": 1170,
+    "high": 1170,
+    "low": 1067,
+    "close": 1150,
+    "volume": 549400,
     "ma36": null,
     "dev36": null,
     "tav36": null
