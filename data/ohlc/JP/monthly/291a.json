@@ -233,10 +233,10 @@
   {
     "time": "2026-09-01",
     "open": 1990,
-    "high": 2014,
-    "low": 1980,
-    "close": 1981,
-    "volume": 18500,
+    "high": 2100,
+    "low": 1962,
+    "close": 2032,
+    "volume": 43800,
     "ma36": null,
     "dev36": null,
     "tav36": null
