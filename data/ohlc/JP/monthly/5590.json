@@ -334,8 +334,8 @@
     "open": 801,
     "high": 831,
     "low": 709,
-    "close": 748,
-    "volume": 3009900,
+    "close": 756,
+    "volume": 3144700,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -345,8 +345,8 @@
     "open": 756,
     "high": 890,
     "low": 756,
-    "close": 853,
-    "volume": 3611100,
+    "close": 848,
+    "volume": 3814700,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -356,8 +356,8 @@
     "open": 863,
     "high": 884,
     "low": 711,
-    "close": 751,
-    "volume": 3434100,
+    "close": 728,
+    "volume": 4073900,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -367,8 +367,8 @@
     "open": 728,
     "high": 744,
     "low": 598,
-    "close": 658,
-    "volume": 11453600,
+    "close": 675,
+    "volume": 11660900,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -378,8 +378,8 @@
     "open": 669,
     "high": 754,
     "low": 641,
-    "close": 653,
-    "volume": 3134300,
+    "close": 668,
+    "volume": 3220300,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -389,21 +389,43 @@
     "open": 668,
     "high": 727,
     "low": 640,
-    "close": 725,
-    "volume": 2424700,
-    "ma36": 938,
-    "dev36": -22.7,
-    "tav36": 2526488619.4
+    "close": 705,
+    "volume": 2532900,
+    "ma36": 937.8,
+    "dev36": -24.8,
+    "tav36": 2557995941.7
   },
   {
     "time": "2026-09-01",
     "open": 706,
     "high": 759,
     "low": 683,
-    "close": 724,
-    "volume": 1395200,
-    "ma36": 928.8,
-    "dev36": -22,
-    "tav36": 2475970655.6
+    "close": 725,
+    "volume": 1590500,
+    "ma36": 928.6,
+    "dev36": -21.9,
+    "tav36": 2511449858.3
+  },
+  {
+    "time": "2026-10-01",
+    "open": 726,
+    "high": 738,
+    "low": 632,
+    "close": 642,
+    "volume": 1486400,
+    "ma36": 924.4,
+    "dev36": -30.5,
+    "tav36": 2499298575
+  },
+  {
+    "time": "2026-11-01",
+    "open": 642,
+    "high": 653,
+    "low": 565,
+    "close": 633,
+    "volume": 812100,
+    "ma36": 920.3,
+    "dev36": -31.2,
+    "tav36": 2494733972.2
   }
 ]

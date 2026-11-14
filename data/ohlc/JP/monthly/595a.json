@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "time": "2026-06-01",
+    "open": 452,
+    "high": 452,
+    "low": 452,
+    "close": 452,
+    "volume": 100,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  }
+]

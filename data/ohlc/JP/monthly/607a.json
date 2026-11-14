@@ -4,8 +4,8 @@
     "open": 294,
     "high": 307,
     "low": 210,
-    "close": 245,
-    "volume": 40368100,
+    "close": 260,
+    "volume": 43321400,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -15,8 +15,30 @@
     "open": 262,
     "high": 317,
     "low": 228,
-    "close": 281,
-    "volume": 43098700,
+    "close": 271,
+    "volume": 44790500,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-10-01",
+    "open": 266,
+    "high": 273,
+    "low": 214,
+    "close": 218,
+    "volume": 6910000,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-11-01",
+    "open": 216,
+    "high": 216,
+    "low": 166,
+    "close": 170,
+    "volume": 4993800,
     "ma36": null,
     "dev36": null,
     "tav36": null

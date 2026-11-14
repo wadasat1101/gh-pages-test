@@ -323,8 +323,8 @@
     "open": 879,
     "high": 919,
     "low": 690,
-    "close": 739,
-    "volume": 1010600,
+    "close": 720,
+    "volume": 1025600,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -333,9 +333,9 @@
     "time": "2026-04-01",
     "open": 734,
     "high": 776,
-    "low": 694,
-    "close": 694,
-    "volume": 488700,
+    "low": 679,
+    "close": 680,
+    "volume": 503300,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -344,9 +344,9 @@
     "time": "2026-05-01",
     "open": 683,
     "high": 764,
-    "low": 562,
-    "close": 581,
-    "volume": 539800,
+    "low": 552,
+    "close": 552,
+    "volume": 567100,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -356,8 +356,8 @@
     "open": 542,
     "high": 888,
     "low": 511,
-    "close": 836,
-    "volume": 800600,
+    "close": 824,
+    "volume": 815400,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -367,8 +367,8 @@
     "open": 824,
     "high": 850,
     "low": 742,
-    "close": 840,
-    "volume": 162100,
+    "close": 841,
+    "volume": 167800,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -378,8 +378,8 @@
     "open": 812,
     "high": 975,
     "low": 794,
-    "close": 968,
-    "volume": 268300,
+    "close": 973,
+    "volume": 275400,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -389,10 +389,32 @@
     "open": 973,
     "high": 1018,
     "low": 785,
-    "close": 819,
-    "volume": 507300,
-    "ma36": 987.9,
-    "dev36": -17.1,
-    "tav36": 1118759325
+    "close": 829,
+    "volume": 526000,
+    "ma36": 986.3,
+    "dev36": -15.9,
+    "tav36": 1119605688.9
+  },
+  {
+    "time": "2026-10-01",
+    "open": 829,
+    "high": 859,
+    "low": 730,
+    "close": 755,
+    "volume": 3636500,
+    "ma36": 988.2,
+    "dev36": -23.6,
+    "tav36": 1094437897.2
+  },
+  {
+    "time": "2026-11-01",
+    "open": 740,
+    "high": 820,
+    "low": 668,
+    "close": 765,
+    "volume": 76000,
+    "ma36": 988.7,
+    "dev36": -22.6,
+    "tav36": 1076377747.2
   }
 ]

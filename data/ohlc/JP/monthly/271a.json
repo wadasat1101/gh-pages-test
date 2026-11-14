@@ -1,10 +1,10 @@
 [
   {
     "time": "2025-02-01",
-    "open": 1500,
-    "high": 1500,
-    "low": 1500,
-    "close": 1500,
+    "open": 1495,
+    "high": 1495,
+    "low": 1495,
+    "close": 1495,
     "volume": 200,
     "ma36": null,
     "dev36": null,
@@ -12,11 +12,11 @@
   },
   {
     "time": "2025-03-01",
-    "open": 1500,
-    "high": 1500,
-    "low": 1500,
-    "close": 1500,
-    "volume": 1000,
+    "open": 1495,
+    "high": 1495,
+    "low": 1495,
+    "close": 1495,
+    "volume": 1003,
     "ma36": null,
     "dev36": null,
     "tav36": null
@@ -215,6 +215,17 @@
     "low": 1500,
     "close": 1500,
     "volume": 400,
+    "ma36": null,
+    "dev36": null,
+    "tav36": null
+  },
+  {
+    "time": "2026-10-01",
+    "open": 1500,
+    "high": 1500,
+    "low": 1500,
+    "close": 1500,
+    "volume": 300,
     "ma36": null,
     "dev36": null,
     "tav36": null
